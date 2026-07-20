@@ -1,0 +1,57 @@
+[
+  {
+    "id": "esp",
+    "name": "Spain",
+    "short_name": "ESP",
+    "confederation": "UEFA",
+    "football_association": "Royal Spanish Football Federation",
+    "default_points": 1850,
+    "strength": 92,
+    "flag_url": "https://flagcdn.com/w40/es.png",
+    "home_stadium": "Santiago Bernabéu"
+  },
+  {
+    "id": "por",
+    "name": "Portugal",
+    "short_name": "POR",
+    "confederation": "UEFA",
+    "football_association": "Portuguese Football Federation",
+    "default_points": 1810,
+    "strength": 89,
+    "flag_url": "https://flagcdn.com/w40/pt.png",
+    "home_stadium": "Estádio da Luz"
+  },
+  {
+    "id": "and",
+    "name": "Andorra",
+    "short_name": "AND",
+    "confederation": "UEFA",
+    "football_association": "Andorran Football Federation",
+    "default_points": 1300,
+    "strength": 45,
+    "flag_url": "https://flagcdn.com/w40/ad.png",
+    "home_stadium": "Estadi Comunal"
+  },
+  {
+    "id": "gib",
+    "name": "Gibraltar",
+    "short_name": "GIB",
+    "confederation": "UEFA",
+    "football_association": "Gibraltar Football Association",
+    "default_points": 1310,
+    "strength": 47,
+    "flag_url": "https://flagcdn.com/w40/gi.png",
+    "home_stadium": "Victoria Stadium"
+  },
+  {
+    "id": "fra",
+    "name": "France",
+    "short_name": "FRA",
+    "confederation": "UEFA",
+    "football_association": "French Football Federation",
+    "default_points": 1870,
+    "strength": 94,
+    "flag_url": "https://flagcdn.com/w40/fr.png",
+    "home_stadium": "Stade de France"
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "fin",
+    "name": "Finland",
+    "short_name": "FIN",
+    "confederation": "UEFA",
+    "football_association": "Football Association of Finland",
+    "default_points": 1550,
+    "strength": 68,
+    "flag_url": "https://flagcdn.com/w40/fi.png",
+    "home_stadium": "Helsinki Olympic Stadium"
+  },
+  {
+    "id": "rus",
+    "name": "Russia",
+    "short_name": "RUS",
+    "confederation": "UEFA",
+    "football_association": "Russian Football Union",
+    "default_points": 1700,
+    "strength": 78,
+    "flag_url": "https://flagcdn.com/w40/ru.png",
+    "home_stadium": "Luzhniki Stadium"
+  },
+  {
+    "id": "kaz",
+    "name": "Kazakhstan",
+    "short_name": "KAZ",
+    "confederation": "UEFA",
+    "football_association": "Kazakhstan Football Federation",
+    "default_points": 1400,
+    "strength": 58,
+    "flag_url": "https://flagcdn.com/w40/kz.png",
+    "home_stadium": "Astana Arena"
+  },
+  {
+    "id": "blr",
+    "name": "Belarus",
+    "short_name": "BLR",
+    "confederation": "UEFA",
+    "football_association": "Football Federation of Belarus",
+    "default_points": 1350,
+    "strength": 55,
+    "flag_url": "https://flagcdn.com/w40/by.png",
+    "home_stadium": "Dinamo Stadium"
+  },
+  {
+    "id": "ukr",
+    "name": "Ukraine",
+    "short_name": "UKR",
+    "confederation": "UEFA",
+    "football_association": "Association of Football Federations of Ukraine",
+    "default_points": 1700,
+    "strength": 78,
+    "flag_url": "https://flagcdn.com/w40/ua.png",
+    "home_stadium": "NSC Olimpiyskiy"
+  }
+]

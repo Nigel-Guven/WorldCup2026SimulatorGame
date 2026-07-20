@@ -1,0 +1,57 @@
+[
+  {
+    "id": "nld",
+    "name": "Netherlands",
+    "short_name": "NED",
+    "confederation": "UEFA",
+    "football_association": "Royal Dutch Football Association",
+    "default_points": 1800,
+    "strength": 88,
+    "flag_url": "https://flagcdn.com/w40/nl.png",
+    "home_stadium": "Johan Cruyff Arena"
+  },
+  {
+    "id": "bel",
+    "name": "Belgium",
+    "short_name": "BEL",
+    "confederation": "UEFA",
+    "football_association": "Royal Belgian Football Association",
+    "default_points": 1790,
+    "strength": 87,
+    "flag_url": "https://flagcdn.com/w40/be.png",
+    "home_stadium": "King Baudouin Stadium"
+  },
+  {
+    "id": "lux",
+    "name": "Luxembourg",
+    "short_name": "LUX",
+    "confederation": "UEFA",
+    "football_association": "Luxembourg Football Federation",
+    "default_points": 1540,
+    "strength": 66,
+    "flag_url": "https://flagcdn.com/w40/lu.png",
+    "home_stadium": "Stade Josy Barthel"
+  },
+  {
+    "id": "ger",
+    "name": "Germany",
+    "short_name": "GER",
+    "confederation": "UEFA",
+    "football_association": "German Football Association",
+    "default_points": 1820,
+    "strength": 90,
+    "flag_url": "https://flagcdn.com/w40/de.png",
+    "home_stadium": "Olympiastadion"
+  },
+  {
+    "id": "cze",
+    "name": "Czechia",
+    "short_name": "CZE",
+    "confederation": "UEFA",
+    "football_association": "Football Association of the Czech Republic",
+    "default_points": 1650,
+    "strength": 74,
+    "flag_url": "https://flagcdn.com/w40/cz.png",
+    "home_stadium": "Fortuna Arena"
+  }
+]

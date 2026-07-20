@@ -1,0 +1,57 @@
+[
+  {
+    "id": "bra",
+    "name": "Brazil",
+    "short_name": "BRA",
+    "confederation": "CONMEBOL",
+    "football_association": "Brazilian Football Confederation",
+    "default_points": 1860,
+    "strength": 94,
+    "flag_url": "https://flagcdn.com/w40/br.png",
+    "home_stadium": "Estádio Maracanã"
+  },
+  {
+    "id": "col",
+    "name": "Colombia",
+    "short_name": "COL",
+    "confederation": "CONMEBOL",
+    "football_association": "Federación Colombiana de Fútbol",
+    "default_points": 1770,
+    "strength": 85,
+    "flag_url": "https://flagcdn.com/w40/co.png",
+    "home_stadium": "Estadio Metropolitano"
+  },
+  {
+    "id": "ecu",
+    "name": "Ecuador",
+    "short_name": "ECU",
+    "confederation": "CONMEBOL",
+    "football_association": "Federación Ecuatoriana de Fútbol",
+    "default_points": 1740,
+    "strength": 82,
+    "flag_url": "https://flagcdn.com/w40/ec.png",
+    "home_stadium": "Estadio Olímpico Atahualpa"
+  },
+  {
+    "id": "per",
+    "name": "Peru",
+    "short_name": "PER",
+    "confederation": "CONMEBOL",
+    "football_association": "Peruvian Football Federation",
+    "default_points": 1710,
+    "strength": 80,
+    "flag_url": "https://flagcdn.com/w40/pe.png",
+    "home_stadium": "Estadio Nacional"
+  },
+  {
+    "id": "ven",
+    "name": "Venezuela",
+    "short_name": "VEN",
+    "confederation": "CONMEBOL",
+    "football_association": "Venezuelan Football Federation",
+    "default_points": 1650,
+    "strength": 75,
+    "flag_url": "https://flagcdn.com/w40/ve.png",
+    "home_stadium": "Estadio Monumental de Maturín"
+  }
+]

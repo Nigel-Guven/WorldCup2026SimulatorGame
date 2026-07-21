@@ -1,0 +1,47 @@
+[
+  {
+    "id": "mnc",
+    "name": "Monaco",
+    "short_name": "MNC",
+    "confederation": "UEFA",
+    "football_association": "Monegasque Football Association",
+    "default_points": 1290,
+    "strength": 45,
+    "flag_url": "https://flagcdn.com/w40/mc.png",
+    "home_stadium": "Stade Louis II"
+  },
+  {
+    "id": "vtc",
+    "name": "Vatican City",
+    "short_name": "VTC",
+    "confederation": "UEFA",
+    "football_association": "Federazione Sammarinese di Calcio",
+    "default_points": 1115,
+    "strength": 38,
+    "flag_url": "https://flagcdn.com/w40/va.png",
+    "home_stadium": "Campo Pio XI"
+  },
+  {
+    "id": "grl",
+    "name": "Greenland",
+    "short_name": "GRL",
+    "confederation": "CONCACAF",
+    "football_association": "Grønlands Fodboldlandshold",
+    "default_points": 904,
+    "strength": 27,
+    "flag_url": "https://flagcdn.com/w40/gl.png",
+    "home_stadium": "Nuuk Stadium"
+  },
+  {
+    "id": "jgy",
+    "name": "Jersey and Guernsey",
+    "short_name": "JGY",
+    "confederation": "UEFA",
+    "football_association": "Jersey & Guernsey Football Association",
+    "default_points": 920,
+    "strength": 35,
+    "flag_url": "https://flagcdn.com/w40/gg.png",
+    "home_stadium": "Corbet Field"
+  }
+  
+]

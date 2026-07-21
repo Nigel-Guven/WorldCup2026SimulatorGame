@@ -1,0 +1,57 @@
+[
+  {
+    "id": "mol",
+    "name": "Moldova",
+    "short_name": "MOL",
+    "confederation": "UEFA",
+    "football_association": "Moldovan Football Federation",
+    "default_points": 1380,
+    "strength": 55,
+    "flag_url": "https://flagcdn.com/w40/md.png",
+    "home_stadium": "Stadionul Zimbru"
+  },
+  {
+    "id": "rou",
+    "name": "Romania",
+    "short_name": "ROU",
+    "confederation": "UEFA",
+    "football_association": "Romanian Football Federation",
+    "default_points": 1680,
+    "strength": 78,
+    "flag_url": "https://flagcdn.com/w40/ro.png",
+    "home_stadium": "Arena Națională"
+  },
+  {
+    "id": "srb",
+    "name": "Serbia",
+    "short_name": "SRB",
+    "confederation": "UEFA",
+    "football_association": "Football Association of Serbia",
+    "default_points": 1720,
+    "strength": 80,
+    "flag_url": "https://flagcdn.com/w40/rs.png",
+    "home_stadium": "Rajko Mitić Stadium"
+  },
+  {
+    "id": "bul",
+    "name": "Bulgaria",
+    "short_name": "BUL",
+    "confederation": "UEFA",
+    "football_association": "Bulgarian Football Union",
+    "default_points": 1550,
+    "strength": 68,
+    "flag_url": "https://flagcdn.com/w40/bg.png",
+    "home_stadium": "Vasil Levski National Stadium"
+  },
+  {
+    "id": "mne",
+    "name": "Montenegro",
+    "short_name": "MNE",
+    "confederation": "UEFA",
+    "football_association": "Football Association of Montenegro",
+    "default_points": 1450,
+    "strength": 62,
+    "flag_url": "https://flagcdn.com/w40/me.png",
+    "home_stadium": "Podgorica City Stadium"
+  }
+]

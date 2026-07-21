@@ -18,7 +18,7 @@
     "football_association": "Irish Football Association",
     "default_points": 1480,
     "strength": 65,
-    "flag_url": "https://flagcdn.com/w40/gb.png",
+    "flag_url": "https://flagcdn.com/w40/gb-nir.png",
     "home_stadium": "Windsor Park"
   },
   {
@@ -29,7 +29,7 @@
     "football_association": "Football Association of Wales",
     "default_points": 1670,
     "strength": 77,
-    "flag_url": "https://flagcdn.com/w40/gb.png",
+    "flag_url": "https://flagcdn.com/w40/gb-wls.png",
     "home_stadium": "Cardiff City Stadium"
   },
   {
@@ -40,7 +40,7 @@
     "football_association": "Scottish Football Association",
     "default_points": 1690,
     "strength": 79,
-    "flag_url": "https://flagcdn.com/w40/gb.png",
+    "flag_url": "https://flagcdn.com/w40/gb-sct.png",
     "home_stadium": "Hampden Park"
   },
   {
@@ -51,7 +51,7 @@
     "football_association": "The Football Association",
     "default_points": 1865,
     "strength": 93,
-    "flag_url": "https://flagcdn.com/w40/gb.png",
+    "flag_url": "https://flagcdn.com/w40/gb-eng.png",
     "home_stadium": "Wembley Stadium"
   }
 ]

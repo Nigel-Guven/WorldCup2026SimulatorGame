@@ -5,7 +5,7 @@ namespace WorldCupSimulator.Infrastructure;
 
 public class CountryRepository : ICountryRepository
 {
-    private readonly List<Country> _countries = new();
+    private readonly List<Country> _countries = [];
 
     public CountryRepository(IWebHostEnvironment env)
     {
@@ -16,7 +16,7 @@ public class CountryRepository : ICountryRepository
     {
 
         var dataFolder = Path.Combine(env.ContentRootPath, "Data");
-        
+        Console.WriteLine($"[CountryRepository] Looking for JSON files in: {dataFolder}");
         if (!Directory.Exists(dataFolder))
             return;
 
@@ -41,10 +41,10 @@ public class CountryRepository : ICountryRepository
         }
     }
 
-    public IEnumerable<Country> GetAllTeams() => _countries;
+    public IEnumerable<Country> GetAllTeams() => _countries.OrderByDescending(t => t.DefaultRankingPoints);
 
     public IEnumerable<Country> GetTeamsByConfederation(string confederation) =>
-        _countries.Where(t => t.Confederation.ToString().Equals(confederation));
+        _countries.Where(t => t.Confederation.ToString().Equals(confederation)).OrderByDescending(t => t.DefaultRankingPoints);
 
     public Country? GetTeamById(string id) =>
         _countries.FirstOrDefault(t => t.Id.Equals(id, StringComparison.OrdinalIgnoreCase));

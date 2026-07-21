@@ -12,6 +12,7 @@ public class Country
     [JsonPropertyName("short_name")]
     public string ShortName { get; set; } = string.Empty;
     [JsonPropertyName("confederation")]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public Confederation Confederation { get; set; }
     [JsonPropertyName("football_association")]
     public string FootballAssociationName { get; set; } = string.Empty;

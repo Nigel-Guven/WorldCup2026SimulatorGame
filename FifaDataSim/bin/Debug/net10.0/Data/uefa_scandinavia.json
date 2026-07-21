@@ -1,0 +1,57 @@
+[
+  {
+    "id": "isl",
+    "name": "Iceland",
+    "short_name": "ISL",
+    "confederation": "UEFA",
+    "football_association": "Football Association of Iceland",
+    "default_points": 1660,
+    "strength": 77,
+    "flag_url": "https://flagcdn.com/w40/is.png",
+    "home_stadium": "Laugardalsvöllur"
+  },
+  {
+    "id": "nor",
+    "name": "Norway",
+    "short_name": "NOR",
+    "confederation": "UEFA",
+    "football_association": "Norwegian Football Federation",
+    "default_points": 1740,
+    "strength": 81,
+    "flag_url": "https://flagcdn.com/w40/no.png",
+    "home_stadium": "Ullevaal Stadion"
+  },
+  {
+    "id": "swe",
+    "name": "Sweden",
+    "short_name": "SWE",
+    "confederation": "UEFA",
+    "football_association": "Swedish Football Association",
+    "default_points": 1760,
+    "strength": 83,
+    "flag_url": "https://flagcdn.com/w40/se.png",
+    "home_stadium": "Friends Arena"
+  },
+  {
+    "id": "den",
+    "name": "Denmark",
+    "short_name": "DEN",
+    "confederation": "UEFA",
+    "football_association": "Danish Football Association",
+    "default_points": 1770,
+    "strength": 84,
+    "flag_url": "https://flagcdn.com/w40/dk.png",
+    "home_stadium": "Parken Stadium"
+  },
+  {
+    "id": "fro",
+    "name": "Faroe Islands",
+    "short_name": "FRO",
+    "confederation": "UEFA",
+    "football_association": "Faroese Football Association",
+    "default_points": 1350,
+    "strength": 50,
+    "flag_url": "https://flagcdn.com/w40/fo.png",
+    "home_stadium": "Tórsvøllur"
+  }
+]

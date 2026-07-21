@@ -1,0 +1,79 @@
+[
+  {
+    "id": "bng",
+    "name": "Bangladesh",
+    "short_name": "BAN",
+    "confederation": "AFC",
+    "football_association": "Bangladesh Football Federation",
+    "default_points": 1200,
+    "strength": 45,
+    "flag_url": "https://flagcdn.com/w40/bd.png",
+    "home_stadium": "Bangabandhu National Stadium"
+  },
+  {
+    "id": "bhu",
+    "name": "Bhutan",
+    "short_name": "BHU",
+    "confederation": "AFC",
+    "football_association": "Bhutan Football Federation",
+    "default_points": 1000,
+    "strength": 35,
+    "flag_url": "https://flagcdn.com/w40/bt.png",
+    "home_stadium": "Changlimithang Stadium"
+  },
+  {
+    "id": "ind",
+    "name": "India",
+    "short_name": "IND",
+    "confederation": "AFC",
+    "football_association": "All India Football Federation",
+    "default_points": 1400,
+    "strength": 55,
+    "flag_url": "https://flagcdn.com/w40/in.png",
+    "home_stadium": "Salt Lake Stadium"
+  },
+  {
+    "id": "mld",
+    "name": "Maldives",
+    "short_name": "MDV",
+    "confederation": "AFC",
+    "football_association": "Football Association of Maldives",
+    "default_points": 1250,
+    "strength": 50,
+    "flag_url": "https://flagcdn.com/w40/mv.png",
+    "home_stadium": "National Football Stadium"
+  },
+  {
+    "id": "nep",
+    "name": "Nepal",
+    "short_name": "NEP",
+    "confederation": "AFC",
+    "football_association": "All Nepal Football Association",
+    "default_points": 1200,
+    "strength": 48,
+    "flag_url": "https://flagcdn.com/w40/np.png",
+    "home_stadium": "Dasharath Stadium"
+  },
+  {
+    "id": "pak",
+    "name": "Pakistan",
+    "short_name": "PAK",
+    "confederation": "AFC",
+    "football_association": "Pakistan Football Federation",
+    "default_points": 1100,
+    "strength": 42,
+    "flag_url": "https://flagcdn.com/w40/pk.png",
+    "home_stadium": "Jinnah Stadium"
+  },
+  {
+    "id": "lka",
+    "name": "Sri Lanka",
+    "short_name": "SRI",
+    "confederation": "AFC",
+    "football_association": "Football Federation of Sri Lanka",
+    "default_points": 1150,
+    "strength": 45,
+    "flag_url": "https://flagcdn.com/w40/lk.png",
+    "home_stadium": "Sugathadasa Stadium"
+  }
+]

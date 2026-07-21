@@ -26,12 +26,16 @@ public class TournamentController(
             return BadRequest(new { message = $"Not enough teams to simulate a 48-team tournament. Found {allTeams.Count}." });
         }
         
-        //var random = new Random();
-        //var qualifiedTeams = allTeams.OrderBy(_ => random.Next()).Take(48).ToList();
+        //Random 48
+        var random = new Random();
+        var qualifiedTeams = allTeams.OrderBy(_ => random.Next()).Take(48).ToList();
         
+        //Top 48
         //var qualifiedTeams = allTeams.Take(48).ToList();
         
-        var qualifiedTeams = allTeams.TakeLast(48).ToList();
+        //Bottom 48
+        //var qualifiedTeams = allTeams.TakeLast(48).ToList();
+        
         
         var sortedQualified = qualifiedTeams.OrderByDescending(t => t.DefaultRankingPoints).ToList();
 

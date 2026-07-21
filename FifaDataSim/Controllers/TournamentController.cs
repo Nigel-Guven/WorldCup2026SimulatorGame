@@ -12,7 +12,8 @@ namespace WorldCupSimulator.Controllers;
 public class TournamentController(
     ICountryRepository countryRepository, 
     ITournamentService tournamentService,
-    ISimulationEngine simEngine)
+    ISimulationEngine simEngine,
+    IKnockoutBracketService bracketService)
     : ControllerBase
 {
     [HttpGet("draw-setup")]
@@ -25,8 +26,12 @@ public class TournamentController(
             return BadRequest(new { message = $"Not enough teams to simulate a 48-team tournament. Found {allTeams.Count}." });
         }
         
-        var random = new Random();
-        var qualifiedTeams = allTeams.OrderBy(_ => random.Next()).Take(48).ToList();
+        //var random = new Random();
+        //var qualifiedTeams = allTeams.OrderBy(_ => random.Next()).Take(48).ToList();
+        
+        //var qualifiedTeams = allTeams.Take(48).ToList();
+        
+        var qualifiedTeams = allTeams.TakeLast(48).ToList();
         
         var sortedQualified = qualifiedTeams.OrderByDescending(t => t.DefaultRankingPoints).ToList();
 
@@ -108,5 +113,49 @@ public class TournamentController(
     {
         public int HomeScore { get; set; }
         public int AwayScore { get; set; }
+    }
+    
+    [HttpGet("knockout/third-place-rankings")]
+    public ActionResult<List<ThirdPlaceCandidate>> GetThirdPlaceRankings()
+    {
+        var session = tournamentService.GetCurrentSession();
+        if (session == null) return NotFound("No active session.");
+
+        return Ok( bracketService.GetTopEightThirdPlaceTeams(session));
+    }
+
+    [HttpPost("knockout/generate")]
+    public ActionResult<KnockoutBracket> GenerateBracket()
+    {
+        var session = tournamentService.GetCurrentSession();
+        if (session == null) return NotFound("No active session.");
+
+        var bracket = bracketService.GenerateRoundOf32(session);
+        session.KnockoutBracket = bracket;
+        return Ok(bracket);
+    }
+    
+    [HttpPost("knockout/simulate-match/{matchId}")]
+    public ActionResult<KnockoutBracket> SimulateKnockoutMatch(Guid matchId)
+    {
+        var session = tournamentService.GetCurrentSession();
+        if (session == null || session.KnockoutBracket == null) return NotFound("No active bracket.");
+
+        var bracket = session.KnockoutBracket;
+    
+        // Find match in any round
+        var allMatches = bracket.RoundOf32
+            .Concat(bracket.RoundOf16)
+            .Concat(bracket.QuarterFinals)
+            .Concat(bracket.SemiFinals)
+            .Concat(new[] { bracket.ThirdPlaceMatch, bracket.Final });
+
+        var match = allMatches.FirstOrDefault(m => m.Id == matchId);
+        if (match == null) return NotFound("Knockout match not found.");
+
+        simEngine.SimulateKnockoutMatch(match);
+        bracketService.AdvanceBracket(bracket);
+
+        return Ok(bracket);
     }
 }

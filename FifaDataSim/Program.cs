@@ -16,6 +16,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddSingleton<ICountryRepository, CountryRepository>();
 builder.Services.AddSingleton<ITournamentService, TournamentService>();
 builder.Services.AddSingleton<ISimulationEngine, SimulationEngine>();
+builder.Services.AddSingleton<IKnockoutBracketService, KnockoutBracketService>();
 
 builder.Services.AddControllers();
 

@@ -93,13 +93,6 @@ public class TournamentService : ITournamentService
             .ThenByDescending(s => s.GoalsFor)
             .ToList();
     }
-    
-    public class ThirdPlaceCandidate
-    {
-        public string GroupName { get; set; } = string.Empty;
-        public GroupTeamStanding Standing { get; set; } = null!;
-    }
-
     public List<ThirdPlaceCandidate> GetTopThirdPlaceTeams(TournamentSession session)
     {
         var candidates = session.Groups
@@ -117,5 +110,13 @@ public class TournamentService : ITournamentService
             .ToList();
 
         return candidates;
+    }
+    
+    public void CheckAndSetGroupStageCompletion(TournamentSession session)
+    {
+        if (session.Fixtures.Count == 36 && session.Fixtures.All(f => f.IsPlayed))
+        {
+            session.IsGroupStageCompleted = true;
+        }
     }
 }

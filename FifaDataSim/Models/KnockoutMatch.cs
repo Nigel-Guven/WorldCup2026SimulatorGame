@@ -11,8 +11,10 @@ public class KnockoutMatch
     
     public int? HomeScore { get; set; }
     public int? AwayScore { get; set; }
+    public bool WentToExtraTime { get; set; }
     public int? HomeExtraTimeScore { get; set; }
     public int? AwayExtraTimeScore { get; set; }
+    public bool WentToPenalties { get; set; }
     public int? HomePenaltyScore { get; set; }
     public int? AwayPenaltyScore { get; set; }
     

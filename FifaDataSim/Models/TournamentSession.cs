@@ -7,4 +7,5 @@ public class TournamentSession
     public List<GroupState> Groups { get; set; } = [];
     public List<MatchFixture> Fixtures { get; set; } = [];
     public bool IsGroupStageCompleted { get; set; }
+    public KnockoutBracket? KnockoutBracket { get; set; }
 }

@@ -3,8 +3,9 @@ import type { TournamentSession } from './types/tournamentSession';
 import RankingsPage from './pages/RankingsPage';
 import TournamentDrawPage from './pages/TournamentDrawPage';
 import MatchCentrePage from './pages/MatchCentrePage';
+import KnockoutBracketPage from './pages/KnockoutBracketPage';
 
-type ActivePage = 'rankings' | 'draw' | 'centre';
+type ActivePage = 'rankings' | 'draw' | 'centre' | 'knockout';
 
 export default function App() {
   const [activePage, setActivePage] = useState<ActivePage>('rankings');
@@ -76,14 +77,25 @@ export default function App() {
               </button>
 
               {session && (
-                <button
-                  onClick={() => setActivePage('centre')}
-                  className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
-                    activePage === 'centre' ? 'bg-emerald-500 text-slate-950 shadow-md' : 'text-emerald-500 border border-emerald-500/30 hover:bg-emerald-500/10'
-                  }`}
-                >
-                  Match Centre ⚽
-                </button>
+                <>
+                  <button
+                    onClick={() => setActivePage('centre')}
+                    className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
+                      activePage === 'centre' ? 'bg-emerald-500 text-slate-950 shadow-md' : 'text-emerald-500 border border-emerald-500/30 hover:bg-emerald-500/10'
+                    }`}
+                  >
+                    Match Centre ⚽
+                  </button>
+
+                  <button
+                    onClick={() => setActivePage('knockout')}
+                    className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
+                      activePage === 'knockout' ? 'bg-emerald-500 text-slate-950 shadow-md' : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                    }`}
+                  >
+                    Knockout Bracket
+                  </button>
+                </>
               )}
             </div>
           </div>
@@ -105,7 +117,12 @@ export default function App() {
           <MatchCentrePage 
             session={session} 
             onSessionUpdate={setSession} 
+            onNavigateToKnockout={() => setActivePage('knockout')}
           />
+        )}
+
+        {activePage === 'knockout' && session && (
+          <KnockoutBracketPage />
         )}
       </main>
 

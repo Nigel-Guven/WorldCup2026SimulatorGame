@@ -1,5 +1,5 @@
-import { useRankings } from "../../hooks/useRankings";
-import RankingsTable from "./rankingsComponents/RankingsTable";
+import RankingsTable from "../components/rankings/RankingsTable";
+import { useRankings } from "../hooks/useRankings";
 
 export default function RankingsPage() {
     const { teams, loading, error } = useRankings();

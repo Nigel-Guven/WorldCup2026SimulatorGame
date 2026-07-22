@@ -1,4 +1,4 @@
-import type { Country } from "../../../types/country";
+import type { Country } from "../../types/country";
 import RankingRow from "./RankingRow";
 
 type Props = {

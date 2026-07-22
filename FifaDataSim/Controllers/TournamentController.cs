@@ -3,6 +3,7 @@ using WorldCupSimulator.Application;
 using WorldCupSimulator.Contracts;
 using WorldCupSimulator.Infrastructure;
 using WorldCupSimulator.Models;
+using WorldCupSimulator.Models.Countries;
 using WorldCupSimulator.Models.WorldCup48Format;
 
 namespace WorldCupSimulator.Controllers;
@@ -27,8 +28,8 @@ public class TournamentController(
         }
         
         //Random 48
-        var random = new Random();
-        var qualifiedTeams = allTeams.OrderBy(_ => random.Next()).Take(48).ToList();
+        //var random = new Random();
+        //var qualifiedTeams = allTeams.OrderBy(_ => random.Next()).Take(48).ToList();
         
         //Top 48
         //var qualifiedTeams = allTeams.Take(48).ToList();
@@ -36,6 +37,23 @@ public class TournamentController(
         //Bottom 48
         //var qualifiedTeams = allTeams.TakeLast(48).ToList();
         
+        //UEFA = 20, CONMEBOL = 5, AFC = 6, CAF = 8, OFC = 2, CONCACAF = 7  
+        var random = new Random();
+        var afcTeams = allTeams.Where(c => c.Confederation == Confederation.AFC).OrderBy(_ => random.Next()).Take(6).ToList();
+        var uefaTeams = allTeams.Where(c => c.Confederation == Confederation.UEFA).OrderBy(_ => random.Next()).Take(20).ToList();
+        var cafTeams = allTeams.Where(c => c.Confederation == Confederation.CAF).OrderBy(_ => random.Next()).Take(8).ToList();
+        var concacafTeams = allTeams.Where(c => c.Confederation == Confederation.CONCACAF).OrderBy(_ => random.Next()).Take(7).ToList();
+        var conmebolTeams = allTeams.Where(c => c.Confederation == Confederation.CONMEBOL).OrderBy(_ => random.Next()).Take(5).ToList();
+        var ofcTeams = allTeams.Where(c => c.Confederation == Confederation.OFC).OrderBy(_ => random.Next()).Take(2).ToList();
+        
+        var qualifiedTeams = new List<Country>();
+        
+        qualifiedTeams.AddRange(afcTeams);
+        qualifiedTeams.AddRange(uefaTeams);
+        qualifiedTeams.AddRange(cafTeams);
+        qualifiedTeams.AddRange(concacafTeams);
+        qualifiedTeams.AddRange(conmebolTeams);
+        qualifiedTeams.AddRange(ofcTeams);
         
         var sortedQualified = qualifiedTeams.OrderByDescending(t => t.DefaultRankingPoints).ToList();
 

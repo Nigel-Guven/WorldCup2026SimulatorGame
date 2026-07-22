@@ -5,7 +5,7 @@
     "short_name": "NED",
     "confederation": "UEFA",
     "football_association": "Royal Dutch Football Association",
-    "default_points": 1800,
+    "default_points": 1775,
     "strength": 88,
     "flag_url": "https://flagcdn.com/w40/nl.png",
     "home_stadium": "Johan Cruyff Arena"
@@ -16,7 +16,7 @@
     "short_name": "BEL",
     "confederation": "UEFA",
     "football_association": "Royal Belgian Football Association",
-    "default_points": 1790,
+    "default_points": 1778,
     "strength": 87,
     "flag_url": "https://flagcdn.com/w40/be.png",
     "home_stadium": "King Baudouin Stadium"
@@ -27,7 +27,7 @@
     "short_name": "LUX",
     "confederation": "UEFA",
     "football_association": "Luxembourg Football Federation",
-    "default_points": 1540,
+    "default_points": 1232,
     "strength": 66,
     "flag_url": "https://flagcdn.com/w40/lu.png",
     "home_stadium": "Stade Josy Barthel"
@@ -38,7 +38,7 @@
     "short_name": "GER",
     "confederation": "UEFA",
     "football_association": "German Football Association",
-    "default_points": 1820,
+    "default_points": 1726,
     "strength": 90,
     "flag_url": "https://flagcdn.com/w40/de.png",
     "home_stadium": "Olympiastadion"
@@ -49,7 +49,7 @@
     "short_name": "CZE",
     "confederation": "UEFA",
     "football_association": "Football Association of the Czech Republic",
-    "default_points": 1650,
+    "default_points": 1467,
     "strength": 74,
     "flag_url": "https://flagcdn.com/w40/cz.png",
     "home_stadium": "Fortuna Arena"

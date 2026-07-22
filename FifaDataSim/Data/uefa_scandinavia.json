@@ -5,7 +5,7 @@
     "short_name": "ISL",
     "confederation": "UEFA",
     "football_association": "Football Association of Iceland",
-    "default_points": 1660,
+    "default_points": 1342,
     "strength": 77,
     "flag_url": "https://flagcdn.com/w40/is.png",
     "home_stadium": "Laugardalsvöllur"
@@ -16,7 +16,7 @@
     "short_name": "NOR",
     "confederation": "UEFA",
     "football_association": "Norwegian Football Federation",
-    "default_points": 1740,
+    "default_points": 1651,
     "strength": 81,
     "flag_url": "https://flagcdn.com/w40/no.png",
     "home_stadium": "Ullevaal Stadion"
@@ -27,7 +27,7 @@
     "short_name": "SWE",
     "confederation": "UEFA",
     "football_association": "Swedish Football Association",
-    "default_points": 1760,
+    "default_points": 1525,
     "strength": 83,
     "flag_url": "https://flagcdn.com/w40/se.png",
     "home_stadium": "Friends Arena"
@@ -38,7 +38,7 @@
     "short_name": "DEN",
     "confederation": "UEFA",
     "football_association": "Danish Football Association",
-    "default_points": 1770,
+    "default_points": 1619,
     "strength": 84,
     "flag_url": "https://flagcdn.com/w40/dk.png",
     "home_stadium": "Parken Stadium"
@@ -49,7 +49,7 @@
     "short_name": "FRO",
     "confederation": "UEFA",
     "football_association": "Faroese Football Association",
-    "default_points": 1350,
+    "default_points": 1136,
     "strength": 50,
     "flag_url": "https://flagcdn.com/w40/fo.png",
     "home_stadium": "Tórsvøllur"

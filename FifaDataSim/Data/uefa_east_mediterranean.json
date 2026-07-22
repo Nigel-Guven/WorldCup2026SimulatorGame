@@ -5,7 +5,7 @@
     "short_name": "CYP",
     "confederation": "UEFA",
     "football_association": "Cyprus Football Association",
-    "default_points": 1450,
+    "default_points": 1133,
     "strength": 65,
     "flag_url": "https://flagcdn.com/w40/cy.png",
     "home_stadium": "GSP Stadium"
@@ -16,7 +16,7 @@
     "short_name": "GRE",
     "confederation": "UEFA",
     "football_association": "Hellenic Football Federation",
-    "default_points": 1700,
+    "default_points": 1473,
     "strength": 78,
     "flag_url": "https://flagcdn.com/w40/gr.png",
     "home_stadium": "Karaiskakis Stadium"
@@ -27,7 +27,7 @@
     "short_name": "ALB",
     "confederation": "UEFA",
     "football_association": "Albanian Football Association",
-    "default_points": 1600,
+    "default_points": 16376,
     "strength": 72,
     "flag_url": "https://flagcdn.com/w40/al.png",
     "home_stadium": "Air Albania Stadium"
@@ -38,7 +38,7 @@
     "short_name": "MKD",
     "confederation": "UEFA",
     "football_association": "Football Federation of Macedonia",
-    "default_points": 1480,
+    "default_points": 1369,
     "strength": 66,
     "flag_url": "https://flagcdn.com/w40/mk.png",
     "home_stadium": "Toše Proeski Arena"
@@ -49,7 +49,7 @@
     "short_name": "KOS",
     "confederation": "UEFA",
     "football_association": "Football Federation of Kosovo",
-    "default_points": 1350,
+    "default_points": 1319,
     "strength": 58,
     "flag_url": "https://flagcdn.com/w40/xk.png",
     "home_stadium": "Fadil Vokrri Stadium"

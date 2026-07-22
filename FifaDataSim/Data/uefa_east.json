@@ -5,7 +5,7 @@
     "short_name": "GEO",
     "confederation": "UEFA",
     "football_association": "Georgian Football Federation",
-    "default_points": 1580,
+    "default_points": 1355,
     "strength": 69,
     "flag_url": "https://flagcdn.com/w40/ge.png",
     "home_stadium": "Boris Paichadze Dinamo Arena"
@@ -16,7 +16,7 @@
     "short_name": "AZE",
     "confederation": "UEFA",
     "football_association": "Association of Football Federations of Azerbaijan",
-    "default_points": 1360,
+    "default_points": 1132,
     "strength": 56,
     "flag_url": "https://flagcdn.com/w40/az.png",
     "home_stadium": "Baku Olympic Stadium"
@@ -27,7 +27,7 @@
     "short_name": "ARM",
     "confederation": "UEFA",
     "football_association": "Football Federation of Armenia",
-    "default_points": 1380,
+    "default_points": 1189,
     "strength": 57,
     "flag_url": "https://flagcdn.com/w40/am.png",
     "home_stadium": "Vazgen Sargsyan Republican Stadium"
@@ -38,7 +38,7 @@
     "short_name": "TUR",
     "confederation": "UEFA",
     "football_association": "Turkish Football Federation",
-    "default_points": 1710,
+    "default_points": 1582,
     "strength": 79,
     "flag_url": "https://flagcdn.com/w40/tr.png",
     "home_stadium": "Rams Park"
@@ -49,7 +49,7 @@
     "short_name": "ISR",
     "confederation": "UEFA",
     "football_association": "Israel Football Association",
-    "default_points": 1620,
+    "default_points": 1333,
     "strength": 72,
     "flag_url": "https://flagcdn.com/w40/il.png",
     "home_stadium": "Sammy Ofer Stadium"

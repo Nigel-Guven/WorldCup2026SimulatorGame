@@ -5,7 +5,7 @@
     "short_name": "ITA",
     "confederation": "UEFA",
     "football_association": "Italian Football Federation",
-    "default_points": 1830,
+    "default_points": 1704,
     "strength": 90,
     "flag_url": "https://flagcdn.com/w40/it.png",
     "home_stadium": "Stadio Olimpico"
@@ -16,7 +16,7 @@
     "short_name": "SMR",
     "confederation": "UEFA",
     "football_association": "Federazione Sammarinese di Calcio",
-    "default_points": 1200,
+    "default_points": 721,
     "strength": 30,
     "flag_url": "https://flagcdn.com/w40/sm.png",
     "home_stadium": "Stadio Zanucci"
@@ -27,7 +27,7 @@
     "short_name": "SUI",
     "confederation": "UEFA",
     "football_association": "Swiss Football Association",
-    "default_points": 1750,
+    "default_points": 1710,
     "strength": 82,
     "flag_url": "https://flagcdn.com/w40/ch.png",
     "home_stadium": "St. Jakob-Park"
@@ -38,7 +38,7 @@
     "short_name": "MLT",
     "confederation": "UEFA",
     "football_association": "Malta Football Association",
-    "default_points": 1510,
+    "default_points": 992,
     "strength": 64,
     "flag_url": "https://flagcdn.com/w40/mt.png",
     "home_stadium": "Ta' Qali National Stadium"
@@ -49,7 +49,7 @@
     "short_name": "LIE",
     "confederation": "UEFA",
     "football_association": "Liechtenstein Football Association",
-    "default_points": 1320,
+    "default_points": 797,
     "strength": 48,
     "flag_url": "https://flagcdn.com/w40/li.png",
     "home_stadium": "Rheinpark Stadion"

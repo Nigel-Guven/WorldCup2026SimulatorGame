@@ -5,7 +5,7 @@
     "short_name": "EST",
     "confederation": "UEFA",
     "football_association": "Estonian Football Association",
-    "default_points": 1420,
+    "default_points": 1130,
     "strength": 58,
     "flag_url": "https://flagcdn.com/w40/ee.png",
     "home_stadium": "A. Le Coq Arena"
@@ -16,7 +16,7 @@
     "short_name": "LAT",
     "confederation": "UEFA",
     "football_association": "Latvian Football Federation",
-    "default_points": 1410,
+    "default_points": 1085,
     "strength": 57,
     "flag_url": "https://flagcdn.com/w40/lv.png",
     "home_stadium": "Skonto Stadium"
@@ -27,7 +27,7 @@
     "short_name": "LIT",
     "confederation": "UEFA",
     "football_association": "Lithuanian Football Federation",
-    "default_points": 1400,
+    "default_points": 1056,
     "strength": 56,
     "flag_url": "https://flagcdn.com/w40/lt.png",
     "home_stadium": "LFF Stadium"
@@ -38,7 +38,7 @@
     "short_name": "POL",
     "confederation": "UEFA",
     "football_association": "Polish Football Association",
-    "default_points": 1720,
+    "default_points": 1526,
     "strength": 79,
     "flag_url": "https://flagcdn.com/w40/pl.png",
     "home_stadium": "Stadion Narodowy"
@@ -49,7 +49,7 @@
     "short_name": "SVK",
     "confederation": "UEFA",
     "football_association": "Slovak Football Association",
-    "default_points": 1650,
+    "default_points": 1473,
     "strength": 73,
     "flag_url": "https://flagcdn.com/w40/sk.png",
     "home_stadium": "Tehelný field"

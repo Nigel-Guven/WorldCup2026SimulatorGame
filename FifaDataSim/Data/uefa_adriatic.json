@@ -5,7 +5,7 @@
     "short_name": "AUT",
     "confederation": "UEFA",
     "football_association": "Austrian Football Association",
-    "default_points": 1730,
+    "default_points": 1598,
     "strength": 80,
     "flag_url": "https://flagcdn.com/w40/at.png",
     "home_stadium": "Ernst Happel Stadium"
@@ -16,7 +16,7 @@
     "short_name": "SLO",
     "confederation": "UEFA",
     "football_association": "Football Association of Slovenia",
-    "default_points": 1610,
+    "default_points": 1441,
     "strength": 71,
     "flag_url": "https://flagcdn.com/w40/si.png",
     "home_stadium": "Stožice Stadium"
@@ -27,7 +27,7 @@
     "short_name": "HUN",
     "confederation": "UEFA",
     "football_association": "Hungarian Football Federation",
-    "default_points": 1740,
+    "default_points": 1506,
     "strength": 82,
     "flag_url": "https://flagcdn.com/w40/hu.png",
     "home_stadium": "Puskás Aréna"
@@ -38,7 +38,7 @@
     "short_name": "CRO",
     "confederation": "UEFA",
     "football_association": "Croatian Football Federation",
-    "default_points": 1780,
+    "default_points": 1723,
     "strength": 86,
     "flag_url": "https://flagcdn.com/w40/hr.png",
     "home_stadium": "Stadion Maksimir"
@@ -49,7 +49,7 @@
     "short_name": "BIH",
     "confederation": "UEFA",
     "football_association": "Football Federation of Bosnia and Herzegovina",
-    "default_points": 1600,
+    "default_points": 1408,
     "strength": 70,
     "flag_url": "https://flagcdn.com/w40/ba.png",
     "home_stadium": "Asim Ferhatović Koševo Stadium"

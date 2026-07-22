@@ -5,7 +5,7 @@
     "short_name": "CPV",
     "confederation": "CAF",
     "football_association": "Cape Verdean Football Federation",
-    "default_points": 1450,
+    "default_points": 1402,
     "strength": 62,
     "flag_url": "https://flagcdn.com/w40/cv.png",
     "home_stadium": "Estádio Aristides Gomes"
@@ -16,7 +16,7 @@
     "short_name": "GAM",
     "confederation": "CAF",
     "football_association": "Gambia Football Federation",
-    "default_points": 1200,
+    "default_points": 1159,
     "strength": 50,
     "flag_url": "https://flagcdn.com/w40/gm.png",
     "home_stadium": "Independence Stadium"
@@ -27,7 +27,7 @@
     "short_name": "SEN",
     "confederation": "CAF",
     "football_association": "Senegalese Football Federation",
-    "default_points": 1720,
+    "default_points": 1653,
     "strength": 82,
     "flag_url": "https://flagcdn.com/w40/sn.png",
     "home_stadium": "Stade Mehtara"
@@ -38,7 +38,7 @@
     "short_name": "GUI",
     "confederation": "CAF",
     "football_association": "Guinean Football Federation",
-    "default_points": 1400,
+    "default_points": 1295,
     "strength": 58,
     "flag_url": "https://flagcdn.com/w40/gn.png",
     "home_stadium": "Stade du 28 Septembre"
@@ -49,7 +49,7 @@
     "short_name": "GNB",
     "confederation": "CAF",
     "football_association": "Guinea-Bissau Football Federation",
-    "default_points": 1250,
+    "default_points": 1108,
     "strength": 52,
     "flag_url": "https://flagcdn.com/w40/gw.png",
     "home_stadium": "Estádio Lino Steve Crocker"
@@ -60,7 +60,7 @@
     "short_name": "SLE",
     "confederation": "CAF",
     "football_association": "Sierra Leone Football Association",
-    "default_points": 1200,
+    "default_points": 1147,
     "strength": 48,
     "flag_url": "https://flagcdn.com/w40/sl.png",
     "home_stadium": "Siaka Stevens Stadium"
@@ -71,7 +71,7 @@
     "short_name": "LBR",
     "confederation": "CAF",
     "football_association": "Liberia Football Association",
-    "default_points": 1150,
+    "default_points": 1080,
     "strength": 45,
     "flag_url": "https://flagcdn.com/w40/lr.png",
     "home_stadium": "Antoinette Tubman Stadium"
@@ -82,7 +82,7 @@
     "short_name": "CIV",
     "confederation": "CAF",
     "football_association": "Ivorian Football Federation",
-    "default_points": 1670,
+    "default_points": 1565,
     "strength": 78,
     "flag_url": "https://flagcdn.com/w40/ci.png",
     "home_stadium": "Stade Félix Houphouët-Boigny"
@@ -93,7 +93,7 @@
     "short_name": "BFA",
     "confederation": "CAF",
     "football_association": "Burkinabé Football Federation",
-    "default_points": 1480,
+    "default_points": 1406,
     "strength": 65,
     "flag_url": "https://flagcdn.com/w40/bf.png",
     "home_stadium": "Stade du Faso"

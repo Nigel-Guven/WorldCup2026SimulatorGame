@@ -5,7 +5,7 @@
     "short_name": "SUD",
     "confederation": "CAF",
     "football_association": "Sudan Football Association",
-    "default_points": 1400,
+    "default_points": 1157,
     "strength": 60,
     "flag_url": "https://flagcdn.com/w40/sd.png",
     "home_stadium": "Jubilee Stadium"
@@ -16,7 +16,7 @@
     "short_name": "SSD",
     "confederation": "CAF",
     "football_association": "South Sudan Football Association",
-    "default_points": 1100,
+    "default_points": 970,
     "strength": 40,
     "flag_url": "https://flagcdn.com/w40/ss.png",
     "home_stadium": "Juba Stadium"
@@ -27,7 +27,7 @@
     "short_name": "ERI",
     "confederation": "CAF",
     "football_association": "Eritrean Football Federation",
-    "default_points": 1000,
+    "default_points": 887,
     "strength": 35,
     "flag_url": "https://flagcdn.com/w40/er.png",
     "home_stadium": "Asmara Stadium"
@@ -38,7 +38,7 @@
     "short_name": "ETH",
     "confederation": "CAF",
     "football_association": "Ethiopian Football Federation",
-    "default_points": 1300,
+    "default_points": 1077,
     "strength": 55,
     "flag_url": "https://flagcdn.com/w40/et.png",
     "home_stadium": "Addis Ababa Stadium"
@@ -49,7 +49,7 @@
     "short_name": "DJI",
     "confederation": "CAF",
     "football_association": "Djibouti Football Federation",
-    "default_points": 1100,
+    "default_points": 853,
     "strength": 40,
     "flag_url": "https://flagcdn.com/w40/dj.png",
     "home_stadium": "Stade El Hadj Hassan Gouled Aptidé"
@@ -60,7 +60,7 @@
     "short_name": "SOM",
     "confederation": "CAF",
     "football_association": "Somali Football Federation",
-    "default_points": 1000,
+    "default_points": 839,
     "strength": 35,
     "flag_url": "https://flagcdn.com/w40/so.png",
     "home_stadium": "Mogadishu Stadium"
@@ -71,7 +71,7 @@
     "short_name": "KEN",
     "confederation": "CAF",
     "football_association": "Football Kenya Federation",
-    "default_points": 1350,
+    "default_points": 1185,
     "strength": 58,
     "flag_url": "https://flagcdn.com/w40/ke.png",
     "home_stadium": "Kasarani Stadium"
@@ -82,7 +82,7 @@
     "short_name": "UGA",
     "confederation": "CAF",
     "football_association": "Federation of Uganda Football Associations",
-    "default_points": 1450,
+    "default_points": 1264,
     "strength": 65,
     "flag_url": "https://flagcdn.com/w40/ug.png",
     "home_stadium": "Mandela National Stadium"
@@ -93,7 +93,7 @@
     "short_name": "SEY",
     "confederation": "CAF",
     "football_association": "Seychelles Football Association",
-    "default_points": 1100,
+    "default_points": 804,
     "strength": 40,
     "flag_url": "https://flagcdn.com/w40/sc.png",
     "home_stadium": "Stade Linite"

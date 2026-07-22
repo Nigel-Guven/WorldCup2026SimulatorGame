@@ -5,7 +5,7 @@
     "short_name": "MRI",
     "confederation": "CAF",
     "football_association": "Mauritius Football Association",
-    "default_points": 1200,
+    "default_points": 911,
     "strength": 50,
     "flag_url": "https://flagcdn.com/w40/mu.png",
     "home_stadium": "George V Stadium"
@@ -16,7 +16,7 @@
     "short_name": "REU",
     "confederation": "CAF",
     "football_association": "Ligue de Football de la Réunion",
-    "default_points": 1100,
+    "default_points": 972,
     "strength": 45,
     "flag_url": "https://flagcdn.com/w40/re.png",
     "home_stadium": "Stade Georges SMTP"
@@ -27,7 +27,7 @@
     "short_name": "MAD",
     "confederation": "CAF",
     "football_association": "Malagasy Football Federation",
-    "default_points": 1300,
+    "default_points": 1202,
     "strength": 55,
     "flag_url": "https://flagcdn.com/w40/mg.png",
     "home_stadium": "Stade Barea"
@@ -38,7 +38,7 @@
     "short_name": "COM",
     "confederation": "CAF",
     "football_association": "Fédération Comorienne de Football",
-    "default_points": 1350,
+    "default_points": 1187,
     "strength": 58,
     "flag_url": "https://flagcdn.com/w40/km.png",
     "home_stadium": "Stade International de Mitsamyou"
@@ -60,7 +60,7 @@
     "short_name": "TAN",
     "confederation": "CAF",
     "football_association": "Tanzania Football Federation",
-    "default_points": 1400,
+    "default_points": 1180,
     "strength": 62,
     "flag_url": "https://flagcdn.com/w40/tz.png",
     "home_stadium": "Benjamin Mkapa Stadium"
@@ -71,7 +71,7 @@
     "short_name": "MLA",
     "confederation": "CAF",
     "football_association": "Football Association of Malawi",
-    "default_points": 1300,
+    "default_points": 1122,
     "strength": 55,
     "flag_url": "https://flagcdn.com/w40/mw.png",
     "home_stadium": "National Stadium"
@@ -82,7 +82,7 @@
     "short_name": "BDI",
     "confederation": "CAF",
     "football_association": "Fédération Burundaise de Football",
-    "default_points": 1200,
+    "default_points": 1078,
     "strength": 48,
     "flag_url": "https://flagcdn.com/w40/bi.png",
     "home_stadium": "Stade Prince Louis Rwagasore"
@@ -93,7 +93,7 @@
     "short_name": "RWA",
     "confederation": "CAF",
     "football_association": "Rwanda Football Federation",
-    "default_points": 1300,
+    "default_points": 1126,
     "strength": 55,
     "flag_url": "https://flagcdn.com/w40/rw.png",
     "home_stadium": "Amahoro Stadium"

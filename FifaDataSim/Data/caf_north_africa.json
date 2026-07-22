@@ -5,7 +5,7 @@
     "short_name": "ALG",
     "confederation": "CAF",
     "football_association": "Algerian Football Federation",
-    "default_points": 1680,
+    "default_points": 1576,
     "strength": 78,
     "flag_url": "https://flagcdn.com/w40/dz.png",
     "home_stadium": "Stade du 5 Juillet 1962"
@@ -16,7 +16,7 @@
     "short_name": "EGY",
     "confederation": "CAF",
     "football_association": "Egyptian Football Association",
-    "default_points": 1710,
+    "default_points": 1610,
     "strength": 81,
     "flag_url": "https://flagcdn.com/w40/eg.png",
     "home_stadium": "Cairo International Stadium"
@@ -27,7 +27,7 @@
     "short_name": "LBY",
     "confederation": "CAF",
     "football_association": "Libyan Football Federation",
-    "default_points": 1300,
+    "default_points": 1182,
     "strength": 55,
     "flag_url": "https://flagcdn.com/w40/ly.png",
     "home_stadium": "Tripoli Stadium"
@@ -38,7 +38,7 @@
     "short_name": "MAR",
     "confederation": "CAF",
     "football_association": "Royal Moroccan Football Federation",
-    "default_points": 1730,
+    "default_points": 1803,
     "strength": 83,
     "flag_url": "https://flagcdn.com/w40/ma.png",
     "home_stadium": "Stade Mohammed V"
@@ -49,7 +49,7 @@
     "short_name": "TUN",
     "confederation": "CAF",
     "football_association": "Tunisian Football Federation",
-    "default_points": 1660,
+    "default_points": 1426,
     "strength": 77,
     "flag_url": "https://flagcdn.com/w40/tn.png",
     "home_stadium": "Stade Olympique de Radès"
@@ -60,7 +60,7 @@
     "short_name": "MRT",
     "confederation": "CAF",
     "football_association": "Fédération de Football de Mauritanie",
-    "default_points": 1400,
+    "default_points": 1176,
     "strength": 60,
     "flag_url": "https://flagcdn.com/w40/mr.png",
     "home_stadium": "Stade Olympique de Nouakchott"
@@ -71,7 +71,7 @@
     "short_name": "MLI",
     "confederation": "CAF",
     "football_association": "Malian Football Federation",
-    "default_points": 1600,
+    "default_points": 1455,
     "strength": 72,
     "flag_url": "https://flagcdn.com/w40/ml.png",
     "home_stadium": "Stade Amadou Gon Coulibaly"
@@ -82,7 +82,7 @@
     "short_name": "NIG",
     "confederation": "CAF",
     "football_association": "Nigerien Football Federation",
-    "default_points": 1200,
+    "default_points": 1175,
     "strength": 50,
     "flag_url": "https://flagcdn.com/w40/ne.png",
     "home_stadium": "Stade Général Seyni Kountché"
@@ -93,7 +93,7 @@
     "short_name": "TCD",
     "confederation": "CAF",
     "football_association": "Chadian Football Federation",
-    "default_points": 1100,
+    "default_points": 895,
     "strength": 40,
     "flag_url": "https://flagcdn.com/w40/td.png",
     "home_stadium": "Stade Omnisports Idriss Mahamat Ouya"

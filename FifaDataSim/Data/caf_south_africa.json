@@ -5,7 +5,7 @@
     "short_name": "RSA",
     "confederation": "CAF",
     "football_association": "South African Football Association",
-    "default_points": 1600,
+    "default_points": 1451,
     "strength": 75,
     "flag_url": "https://flagcdn.com/w40/za.png",
     "home_stadium": "FNB Stadium"
@@ -16,7 +16,7 @@
     "short_name": "LES",
     "confederation": "CAF",
     "football_association": "Lesotho Football Association",
-    "default_points": 1100,
+    "default_points": 1064,
     "strength": 45,
     "flag_url": "https://flagcdn.com/w40/ls.png",
     "home_stadium": "Setsoto Stadium"
@@ -27,7 +27,7 @@
     "short_name": "SWZ",
     "confederation": "CAF",
     "football_association": "Eswatini Football Association",
-    "default_points": 1100,
+    "default_points": 979,
     "strength": 45,
     "flag_url": "https://flagcdn.com/w40/sz.png",
     "home_stadium": "Somhlolo National Stadium"
@@ -38,7 +38,7 @@
     "short_name": "BOT",
     "confederation": "CAF",
     "football_association": "Botswana Football Association",
-    "default_points": 1200,
+    "default_points": 1063,
     "strength": 50,
     "flag_url": "https://flagcdn.com/w40/bw.png",
     "home_stadium": "National Stadium"
@@ -49,7 +49,7 @@
     "short_name": "NAM",
     "confederation": "CAF",
     "football_association": "Namibia Football Association",
-    "default_points": 1250,
+    "default_points": 1148,
     "strength": 52,
     "flag_url": "https://flagcdn.com/w40/na.png",
     "home_stadium": "Sam Nujoma Stadium"
@@ -60,7 +60,7 @@
     "short_name": "ZIM",
     "confederation": "CAF",
     "football_association": "Zimbabwe Football Association",
-    "default_points": 1300,
+    "default_points": 1119,
     "strength": 58,
     "flag_url": "https://flagcdn.com/w40/zw.png",
     "home_stadium": "National Sports Stadium"
@@ -71,7 +71,7 @@
     "short_name": "MOZ",
     "confederation": "CAF",
     "football_association": "Mozambican Football Federation",
-    "default_points": 1350,
+    "default_points": 1218,
     "strength": 60,
     "flag_url": "https://flagcdn.com/w40/mz.png",
     "home_stadium": "Estádio Nacional do Zimpeto"
@@ -82,7 +82,7 @@
     "short_name": "ANG",
     "confederation": "CAF",
     "football_association": "Angolan Football Federation",
-    "default_points": 1450,
+    "default_points": 1265,
     "strength": 65,
     "flag_url": "https://flagcdn.com/w40/ao.png",
     "home_stadium": "Estádio 11 de Novembro"
@@ -93,7 +93,7 @@
     "short_name": "ZAM",
     "confederation": "CAF",
     "football_association": "Football Association of Zambia",
-    "default_points": 1550,
+    "default_points": 1255,
     "strength": 70,
     "flag_url": "https://flagcdn.com/w40/zm.png",
     "home_stadium": "National Heroes Stadium"

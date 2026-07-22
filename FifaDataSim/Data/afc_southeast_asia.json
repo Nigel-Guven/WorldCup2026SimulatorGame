@@ -5,7 +5,7 @@
     "short_name": "AUS",
     "confederation": "AFC",
     "football_association": "Football Australia",
-    "default_points": 1670,
+    "default_points": 1581,
     "strength": 77,
     "flag_url": "https://flagcdn.com/w40/au.png",
     "home_stadium": "Stadium Australia"
@@ -16,7 +16,7 @@
     "short_name": "BRU",
     "confederation": "AFC",
     "football_association": "Football Association of Brunei Darussalam",
-    "default_points": 1000,
+    "default_points": 857,
     "strength": 35,
     "flag_url": "https://flagcdn.com/w40/bn.png",
     "home_stadium": "Hassanal Bolkiah National Stadium"
@@ -27,7 +27,7 @@
     "short_name": "CAM",
     "confederation": "AFC",
     "football_association": "Football Federation Cambodia",
-    "default_points": 1200,
+    "default_points": 922,
     "strength": 45,
     "flag_url": "https://flagcdn.com/w40/kh.png",
     "home_stadium": "Olympic Stadium"
@@ -38,7 +38,7 @@
     "short_name": "TLS",
     "confederation": "AFC",
     "football_association": "Timor-Leste Football Association",
-    "default_points": 1000,
+    "default_points": 831,
     "strength": 32,
     "flag_url": "https://flagcdn.com/w40/tl.png",
     "home_stadium": "National Stadium"
@@ -49,7 +49,7 @@
     "short_name": "IDN",
     "confederation": "AFC",
     "football_association": "Football Association of Indonesia",
-    "default_points": 1520,
+    "default_points": 1157,
     "strength": 64,
     "flag_url": "https://flagcdn.com/w40/id.png",
     "home_stadium": "Gelora Bung Karno Stadium"
@@ -60,7 +60,7 @@
     "short_name": "LAO",
     "confederation": "AFC",
     "football_association": "Lao Football Federation",
-    "default_points": 1100,
+    "default_points": 885,
     "strength": 40,
     "flag_url": "https://flagcdn.com/w40/la.png",
     "home_stadium": "National Stadium"
@@ -71,7 +71,7 @@
     "short_name": "MAS",
     "confederation": "AFC",
     "football_association": "Football Association of Malaysia",
-    "default_points": 1450,
+    "default_points": 1086,
     "strength": 62,
     "flag_url": "https://flagcdn.com/w40/my.png",
     "home_stadium": "Bukit Jalil National Stadium"
@@ -82,7 +82,7 @@
     "short_name": "MYA",
     "confederation": "AFC",
     "football_association": "Myanmar Football Federation",
-    "default_points": 1420,
+    "default_points": 1009,
     "strength": 58,
     "flag_url": "https://flagcdn.com/w40/mm.png",
     "home_stadium": "Thuwunna Stadium"
@@ -93,7 +93,7 @@
     "short_name": "PHI",
     "confederation": "AFC",
     "football_association": "Philippine Football Federation",
-    "default_points": 1400,
+    "default_points": 1100,
     "strength": 56,
     "flag_url": "https://flagcdn.com/w40/ph.png",
     "home_stadium": "Philippine Sports Stadium"
@@ -104,7 +104,7 @@
     "short_name": "SIN",
     "confederation": "AFC",
     "football_association": "Football Association of Singapore",
-    "default_points": 1300,
+    "default_points": 1057,
     "strength": 50,
     "flag_url": "https://flagcdn.com/w40/sg.png",
     "home_stadium": "National Stadium"
@@ -115,7 +115,7 @@
     "short_name": "THA",
     "confederation": "AFC",
     "football_association": "Football Association of Thailand",
-    "default_points": 1580,
+    "default_points": 1250,
     "strength": 69,
     "flag_url": "https://flagcdn.com/w40/th.png",
     "home_stadium": "Rajamangala Stadium"
@@ -126,7 +126,7 @@
     "short_name": "VIE",
     "confederation": "AFC",
     "football_association": "Vietnam Football Federation",
-    "default_points": 1550,
+    "default_points": 1227,
     "strength": 67,
     "flag_url": "https://flagcdn.com/w40/vn.png",
     "home_stadium": "Mỹ Đình National Stadium"

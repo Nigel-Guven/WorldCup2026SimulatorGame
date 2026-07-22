@@ -5,7 +5,7 @@
     "short_name": "MNC",
     "confederation": "UEFA",
     "football_association": "Monegasque Football Association",
-    "default_points": 1290,
+    "default_points": 873,
     "strength": 45,
     "flag_url": "https://flagcdn.com/w40/mc.png",
     "home_stadium": "Stade Louis II"
@@ -16,7 +16,7 @@
     "short_name": "VTC",
     "confederation": "UEFA",
     "football_association": "Federazione Sammarinese di Calcio",
-    "default_points": 1115,
+    "default_points": 789,
     "strength": 38,
     "flag_url": "https://flagcdn.com/w40/va.png",
     "home_stadium": "Campo Pio XI"
@@ -38,7 +38,7 @@
     "short_name": "JGY",
     "confederation": "UEFA",
     "football_association": "Jersey & Guernsey Football Association",
-    "default_points": 920,
+    "default_points": 901,
     "strength": 35,
     "flag_url": "https://flagcdn.com/w40/gg.png",
     "home_stadium": "Corbet Field"

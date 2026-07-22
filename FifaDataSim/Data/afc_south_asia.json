@@ -5,7 +5,7 @@
     "short_name": "BAN",
     "confederation": "AFC",
     "football_association": "Bangladesh Football Federation",
-    "default_points": 1200,
+    "default_points":902,
     "strength": 45,
     "flag_url": "https://flagcdn.com/w40/bd.png",
     "home_stadium": "Bangabandhu National Stadium"
@@ -16,7 +16,7 @@
     "short_name": "BHU",
     "confederation": "AFC",
     "football_association": "Bhutan Football Federation",
-    "default_points": 1000,
+    "default_points": 870,
     "strength": 35,
     "flag_url": "https://flagcdn.com/w40/bt.png",
     "home_stadium": "Changlimithang Stadium"
@@ -27,7 +27,7 @@
     "short_name": "IND",
     "confederation": "AFC",
     "football_association": "All India Football Federation",
-    "default_points": 1400,
+    "default_points": 1084,
     "strength": 55,
     "flag_url": "https://flagcdn.com/w40/in.png",
     "home_stadium": "Salt Lake Stadium"
@@ -38,7 +38,7 @@
     "short_name": "MDV",
     "confederation": "AFC",
     "football_association": "Football Association of Maldives",
-    "default_points": 1250,
+    "default_points": 943,
     "strength": 50,
     "flag_url": "https://flagcdn.com/w40/mv.png",
     "home_stadium": "National Football Stadium"
@@ -49,7 +49,7 @@
     "short_name": "NEP",
     "confederation": "AFC",
     "football_association": "All Nepal Football Association",
-    "default_points": 1200,
+    "default_points": 914,
     "strength": 48,
     "flag_url": "https://flagcdn.com/w40/np.png",
     "home_stadium": "Dasharath Stadium"
@@ -60,7 +60,7 @@
     "short_name": "PAK",
     "confederation": "AFC",
     "football_association": "Pakistan Football Federation",
-    "default_points": 1100,
+    "default_points": 840,
     "strength": 42,
     "flag_url": "https://flagcdn.com/w40/pk.png",
     "home_stadium": "Jinnah Stadium"
@@ -71,7 +71,7 @@
     "short_name": "SRI",
     "confederation": "AFC",
     "football_association": "Football Federation of Sri Lanka",
-    "default_points": 1150,
+    "default_points": 876,
     "strength": 45,
     "flag_url": "https://flagcdn.com/w40/lk.png",
     "home_stadium": "Sugathadasa Stadium"

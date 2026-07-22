@@ -5,7 +5,7 @@
     "short_name": "CHN",
     "confederation": "AFC",
     "football_association": "Chinese Football Association",
-    "default_points": 1550,
+    "default_points": 1258,
     "strength": 65,
     "flag_url": "https://flagcdn.com/w40/cn.png",
     "home_stadium": "Workers' Stadium"
@@ -16,7 +16,7 @@
     "short_name": "TPE",
     "confederation": "AFC",
     "football_association": "Chinese Taipei Football Association",
-    "default_points": 1200,
+    "default_points": 923,
     "strength": 45,
     "flag_url": "https://flagcdn.com/w40/tw.png",
     "home_stadium": "Taipei Municipal Stadium"
@@ -27,7 +27,7 @@
     "short_name": "GUM",
     "confederation": "AFC",
     "football_association": "Guam Football Association",
-    "default_points": 1000,
+    "default_points":819,
     "strength": 35,
     "flag_url": "https://flagcdn.com/w40/gu.png",
     "home_stadium": "Calvo Stadium"
@@ -38,7 +38,7 @@
     "short_name": "HKG",
     "confederation": "AFC",
     "football_association": "Hong Kong Football Association",
-    "default_points": 1300,
+    "default_points": 1024,
     "strength": 50,
     "flag_url": "https://flagcdn.com/w40/hk.png",
     "home_stadium": "Hong Kong Stadium"
@@ -49,7 +49,7 @@
     "short_name": "JPN",
     "confederation": "AFC",
     "football_association": "Japan Football Association",
-    "default_points": 1710,
+    "default_points": 1673,
     "strength": 82,
     "flag_url": "https://flagcdn.com/w40/jp.png",
     "home_stadium": "Japan National Stadium"
@@ -60,7 +60,7 @@
     "short_name": "PRK",
     "confederation": "AFC",
     "football_association": "DPR Korea Football Association",
-    "default_points": 1400,
+    "default_points": 1151,
     "strength": 60,
     "flag_url": "https://flagcdn.com/w40/kp.png",
     "home_stadium": "Kim Il-sung Stadium"
@@ -71,7 +71,7 @@
     "short_name": "KOR",
     "confederation": "AFC",
     "football_association": "Korea Football Association",
-    "default_points": 1700,
+    "default_points": 1558,
     "strength": 81,
     "flag_url": "https://flagcdn.com/w40/kr.png",
     "home_stadium": "Seoul World Cup Stadium"
@@ -82,7 +82,7 @@
     "short_name": "MAC",
     "confederation": "AFC",
     "football_association": "Macau Football Association",
-    "default_points": 900,
+    "default_points": 858,
     "strength": 30,
     "flag_url": "https://flagcdn.com/w40/mo.png",
     "home_stadium": "Macau Stadium"
@@ -93,7 +93,7 @@
     "short_name": "MGL",
     "confederation": "AFC",
     "football_association": "Mongolian Football Federation",
-    "default_points": 1100,
+    "default_points": 874,
     "strength": 40,
     "flag_url": "https://flagcdn.com/w40/mn.png",
     "home_stadium": "MFF Football Centre"
@@ -104,7 +104,7 @@
     "short_name": "MNI",
     "confederation": "AFC",
     "football_association": "Northern Mariana Islands Football Association",
-    "default_points": 800,
+    "default_points": 697,
     "strength": 25,
     "flag_url": "https://flagcdn.com/w40/mp.png",
     "home_stadium": "Smith Recreational Field"

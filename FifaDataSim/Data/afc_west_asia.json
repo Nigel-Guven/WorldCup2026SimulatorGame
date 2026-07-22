@@ -5,7 +5,7 @@
     "short_name": "BAH",
     "confederation": "AFC",
     "football_association": "Bahrain Football Association",
-    "default_points": 1400,
+    "default_points": 1254,
     "strength": 60,
     "flag_url": "https://flagcdn.com/w40/bh.png",
     "home_stadium": "Bahrain National Stadium"
@@ -16,7 +16,7 @@
     "short_name": "IRQ",
     "confederation": "AFC",
     "football_association": "Iraq Football Association",
-    "default_points": 1600,
+    "default_points": 1404,
     "strength": 75,
     "flag_url": "https://flagcdn.com/w40/iq.png",
     "home_stadium": "Al-Yaqbiya Stadium"
@@ -27,7 +27,7 @@
     "short_name": "JOR",
     "confederation": "AFC",
     "football_association": "Jordan Football Association",
-    "default_points": 1450,
+    "default_points": 1350,
     "strength": 62,
     "flag_url": "https://flagcdn.com/w40/jo.png",
     "home_stadium": "Amman International Stadium"
@@ -38,7 +38,7 @@
     "short_name": "KUW",
     "confederation": "AFC",
     "football_association": "Kuwait Football Association",
-    "default_points": 1400,
+    "default_points": 1106,
     "strength": 60,
     "flag_url": "https://flagcdn.com/w40/kw.png",
     "home_stadium": "Jaber Al-Ahmad Stadium"
@@ -49,7 +49,7 @@
     "short_name": "LEB",
     "confederation": "AFC",
     "football_association": "Lebanese Football Association",
-    "default_points": 1250,
+    "default_points": 1172,
     "strength": 50,
     "flag_url": "https://flagcdn.com/w40/lb.png",
     "home_stadium": "Camille Chamoun Sports City Stadium"
@@ -60,7 +60,7 @@
     "short_name": "OMA",
     "confederation": "AFC",
     "football_association": "Oman Football Association",
-    "default_points": 1450,
+    "default_points": 1306,
     "strength": 62,
     "flag_url": "https://flagcdn.com/w40/om.png",
     "home_stadium": "Sultan Qaboos Sports Complex"
@@ -71,7 +71,7 @@
     "short_name": "PLE",
     "confederation": "AFC",
     "football_association": "Palestinian Football Association",
-    "default_points": 1200,
+    "default_points": 1243,
     "strength": 48,
     "flag_url": "https://flagcdn.com/w40/ps.png",
     "home_stadium": "Al-Amareen Stadium"
@@ -82,7 +82,7 @@
     "short_name": "QAT",
     "confederation": "AFC",
     "football_association": "Qatar Football Association",
-    "default_points": 1630,
+    "default_points": 1411,
     "strength": 74,
     "flag_url": "https://flagcdn.com/w40/qa.png",
     "home_stadium": "Lusail Stadium"
@@ -93,7 +93,7 @@
     "short_name": "KSA",
     "confederation": "AFC",
     "football_association": "Saudi Arabian Football Federation",
-    "default_points": 1680,
+    "default_points": 1425,
     "strength": 78,
     "flag_url": "https://flagcdn.com/w40/sa.png",
     "home_stadium": "King Abdullah Sports City"
@@ -104,7 +104,7 @@
     "short_name": "SYR",
     "confederation": "AFC",
     "football_association": "Syrian Arab Football Federation",
-    "default_points": 1300,
+    "default_points": 1283,
     "strength": 55,
     "flag_url": "https://flagcdn.com/w40/sy.png",
     "home_stadium": "Al-Bashair Stadium"
@@ -115,7 +115,7 @@
     "short_name": "UAE",
     "confederation": "AFC",
     "football_association": "UAE Football Association",
-    "default_points": 1550,
+    "default_points": 1370,
     "strength": 68,
     "flag_url": "https://flagcdn.com/w40/ae.png",
     "home_stadium": "Zayed Sports City Stadium"
@@ -126,7 +126,7 @@
     "short_name": "YEM",
     "confederation": "AFC",
     "football_association": "Yemen Football Association",
-    "default_points": 1000,
+    "default_points": 1065,
     "strength": 35,
     "flag_url": "https://flagcdn.com/w40/ye.png",
     "home_stadium": "22 May Stadium"

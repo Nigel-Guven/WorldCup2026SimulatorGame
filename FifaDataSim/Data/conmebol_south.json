@@ -5,8 +5,8 @@
     "short_name": "ARG",
     "confederation": "CONMEBOL",
     "football_association": "Argentine Football Association",
-    "default_points": 1885,
-    "strength": 95,
+    "default_points": 1970,
+    "strength": 93,
     "flag_url": "https://flagcdn.com/w40/ar.png",
     "home_stadium": "Estadio Monumental"
   },
@@ -16,7 +16,7 @@
     "short_name": "BOL",
     "confederation": "CONMEBOL",
     "football_association": "Bolivian Football Federation",
-    "default_points": 1620,
+    "default_points": 1326,
     "strength": 72,
     "flag_url": "https://flagcdn.com/w40/bo.png",
     "home_stadium": "Estadio Hernando Siles"
@@ -27,7 +27,7 @@
     "short_name": "CHI",
     "confederation": "CONMEBOL",
     "football_association": "Federación de Fútbol de Chile",
-    "default_points": 1750,
+    "default_points": 1458,
     "strength": 83,
     "flag_url": "https://flagcdn.com/w40/cl.png",
     "home_stadium": "Estadio Nacional"
@@ -38,7 +38,7 @@
     "short_name": "PAR",
     "confederation": "CONMEBOL",
     "football_association": "Paraguayan Football Association",
-    "default_points": 1680,
+    "default_points": 1542,
     "strength": 78,
     "flag_url": "https://flagcdn.com/w40/py.png",
     "home_stadium": "Estadio Defensores del Chaco"
@@ -49,7 +49,7 @@
     "short_name": "URU",
     "confederation": "CONMEBOL",
     "football_association": "Uruguayan Football Association",
-    "default_points": 1790,
+    "default_points": 1634,
     "strength": 87,
     "flag_url": "https://flagcdn.com/w40/uy.png",
     "home_stadium": "Estadio Centenario"

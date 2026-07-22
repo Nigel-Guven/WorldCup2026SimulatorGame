@@ -16,7 +16,7 @@
     "short_name": "PNG",
     "confederation": "OFC",
     "football_association": "Papua New Guinea Football Association",
-    "default_points": 1250,
+    "default_points": 974,
     "strength": 50,
     "flag_url": "https://flagcdn.com/w40/pg.png",
     "home_stadium": "Sir Hubert Murray Stadium"
@@ -27,7 +27,7 @@
     "short_name": "SOL",
     "confederation": "OFC",
     "football_association": "Solomon Islands Football Federation",
-    "default_points": 1350,
+    "default_points": 1031,
     "strength": 60,
     "flag_url": "https://flagcdn.com/w40/sb.png",
     "home_stadium": "Lawson Tama Stadium"
@@ -49,7 +49,7 @@
     "short_name": "TAH",
     "confederation": "OFC",
     "football_association": "Tahitian Football Federation",
-    "default_points": 1300,
+    "default_points": 1019,
     "strength": 55,
     "flag_url": "https://flagcdn.com/w40/pf.png",
     "home_stadium": "Stade de la Proue"
@@ -60,7 +60,7 @@
     "short_name": "FJI",
     "confederation": "OFC",
     "football_association": "Fiji Football Association",
-    "default_points": 1320,
+    "default_points": 1024,
     "strength": 57,
     "flag_url": "https://flagcdn.com/w40/fj.png",
     "home_stadium": "HFC Park"
@@ -71,7 +71,7 @@
     "short_name": "SAM",
     "confederation": "OFC",
     "football_association": "Football Federation Samoa",
-    "default_points": 1100,
+    "default_points": 876,
     "strength": 40,
     "flag_url": "https://flagcdn.com/w40/ws.png",
     "home_stadium": "Tuanaimamo Stadium"

@@ -5,7 +5,7 @@
     "short_name": "BRA",
     "confederation": "CONMEBOL",
     "football_association": "Brazilian Football Confederation",
-    "default_points": 1860,
+    "default_points": 1804,
     "strength": 94,
     "flag_url": "https://flagcdn.com/w40/br.png",
     "home_stadium": "Estádio Maracanã"
@@ -16,7 +16,7 @@
     "short_name": "COL",
     "confederation": "CONMEBOL",
     "football_association": "Federación Colombiana de Fútbol",
-    "default_points": 1770,
+    "default_points": 1739,
     "strength": 85,
     "flag_url": "https://flagcdn.com/w40/co.png",
     "home_stadium": "Estadio Metropolitano"
@@ -27,7 +27,7 @@
     "short_name": "ECU",
     "confederation": "CONMEBOL",
     "football_association": "Federación Ecuatoriana de Fútbol",
-    "default_points": 1740,
+    "default_points": 1592,
     "strength": 82,
     "flag_url": "https://flagcdn.com/w40/ec.png",
     "home_stadium": "Estadio Olímpico Atahualpa"
@@ -38,7 +38,7 @@
     "short_name": "PER",
     "confederation": "CONMEBOL",
     "football_association": "Peruvian Football Federation",
-    "default_points": 1710,
+    "default_points": 1457,
     "strength": 80,
     "flag_url": "https://flagcdn.com/w40/pe.png",
     "home_stadium": "Estadio Nacional"
@@ -49,7 +49,7 @@
     "short_name": "VEN",
     "confederation": "CONMEBOL",
     "football_association": "Venezuelan Football Federation",
-    "default_points": 1650,
+    "default_points": 1469,
     "strength": 75,
     "flag_url": "https://flagcdn.com/w40/ve.png",
     "home_stadium": "Estadio Monumental de Maturín"

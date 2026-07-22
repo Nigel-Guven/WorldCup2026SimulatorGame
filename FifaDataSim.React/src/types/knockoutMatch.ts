@@ -9,8 +9,8 @@ export interface KnockoutMatch {
   homeScore: number | null;
   awayScore: number | null;
   wentToExtraTime: boolean;
-  homeExtraScore: number | null;
-  awayExtraScore: number | null;
+  homeExtraTimeScore: number | null;
+  awayExtraTimeScore: number | null;
   wentToPenalties: boolean;
   homePenaltyScore: number | null;
   awayPenaltyScore: number | null;

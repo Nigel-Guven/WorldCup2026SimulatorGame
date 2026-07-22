@@ -5,7 +5,7 @@
     "short_name": "SLU",
     "confederation": "CONCACAF",
     "football_association": "Saint Lucia Football Association",
-    "default_points": 1250,
+    "default_points": 976,
     "strength": 48,
     "flag_url": "https://flagcdn.com/w40/lc.png",
     "home_stadium": "Beausejour Stadium"
@@ -16,7 +16,7 @@
     "short_name": "ARU",
     "confederation": "CONCACAF",
     "football_association": "Aruban Football Federation",
-    "default_points": 1350,
+    "default_points": 875,
     "strength": 50,
     "flag_url": "https://flagcdn.com/w40/aw.png",
     "home_stadium": "Andoeestadion"
@@ -27,7 +27,7 @@
     "short_name": "CUR",
     "confederation": "CONCACAF",
     "football_association": "Curaçao Football Federation",
-    "default_points": 1500,
+    "default_points": 1285,
     "strength": 63,
     "flag_url": "https://flagcdn.com/w40/cw.png",
     "home_stadium": "Stadion Ergilio Hili"
@@ -38,7 +38,7 @@
     "short_name": "GRD",
     "confederation": "CONCACAF",
     "football_association": "Grenada Football Association",
-    "default_points": 1320,
+    "default_points": 981,
     "strength": 55,
     "flag_url": "https://flagcdn.com/w40/gd.png",
     "home_stadium": "National Stadium"
@@ -49,7 +49,7 @@
     "short_name": "SVG",
     "confederation": "CONCACAF",
     "football_association": "St. Vincent and the Grenadines Football Association",
-    "default_points": 1380,
+    "default_points": 968,
     "strength": 58,
     "flag_url": "https://flagcdn.com/w40/vc.png",
     "home_stadium": "SVG National Stadium"
@@ -60,7 +60,7 @@
     "short_name": "TTO",
     "confederation": "CONCACAF",
     "football_association": "Trinidad and Tobago Football Association",
-    "default_points": 1600,
+    "default_points": 1219,
     "strength": 75,
     "flag_url": "https://flagcdn.com/w40/tt.png",
     "home_stadium": "Hasely Crawford Stadium"
@@ -71,10 +71,10 @@
     "short_name": "BON",
     "confederation": "CONCACAF",
     "football_association": "Bonaire Football Federation",
-    "default_points": 1100,
+    "default_points": 894,
     "strength": 40,
     "flag_url": "https://flagcdn.com/w40/bq.png",
-    "home_stadium": "S chronic Stadium"
+    "home_stadium": "S Chronic Stadium"
   },
   {
     "id": "bar",
@@ -82,7 +82,7 @@
     "short_name": "BAR",
     "confederation": "CONCACAF",
     "football_association": "Barbados Football Association",
-    "default_points": 1400,
+    "default_points": 909,
     "strength": 60,
     "flag_url": "https://flagcdn.com/w40/bb.png",
     "home_stadium": "Barbados City Stadium"
@@ -93,7 +93,7 @@
     "short_name": "MTQ",
     "confederation": "CONCACAF",
     "football_association": "Ligue de Football de la Martinique",
-    "default_points": 1420,
+    "default_points": 962,
     "strength": 62,
     "flag_url": "https://flagcdn.com/w40/mq.png",
     "home_stadium": "Stade Pierre et Victor"
@@ -104,7 +104,7 @@
     "short_name": "DOM",
     "confederation": "CONCACAF",
     "football_association": "Dominica Football Association",
-    "default_points": 1050,
+    "default_points": 897,
     "strength": 38,
     "flag_url": "https://flagcdn.com/w40/dm.png",
     "home_stadium": "Windsor Park"
@@ -115,7 +115,7 @@
     "short_name": "GDL",
     "confederation": "CONCACAF",
     "football_association": "Ligue de Football de la Guadeloupe",
-    "default_points": 1410,
+    "default_points": 799,
     "strength": 61,
     "flag_url": "https://flagcdn.com/w40/gp.png",
     "home_stadium": "Stade René Serge Nabajoth"
@@ -126,7 +126,7 @@
     "short_name": "MSR",
     "confederation": "CONCACAF",
     "football_association": "Montserrat Football Association",
-    "default_points": 850,
+    "default_points": 916,
     "strength": 25,
     "flag_url": "https://flagcdn.com/w40/ms.png",
     "home_stadium": "Stade Charles Konane"
@@ -137,7 +137,7 @@
     "short_name": "ANG",
     "confederation": "CONCACAF",
     "football_association": "Anguilla Football Association",
-    "default_points": 800,
+    "default_points": 760,
     "strength": 20,
     "flag_url": "https://flagcdn.com/w40/ai.png",
     "home_stadium": "Anguilla National Stadium"

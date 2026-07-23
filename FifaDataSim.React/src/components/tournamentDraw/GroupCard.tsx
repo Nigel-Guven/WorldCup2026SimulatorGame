@@ -3,10 +3,13 @@ import type { Country } from "../../types/country";
 
 interface GroupCardProps {
   group: Group;
+  totalPots?: number; // Pass totalPots from useTournamentDraw (defaults to 4 if not provided)
 }
 
-export function GroupCard({ group }: GroupCardProps) {
-  const emptySlotsCount = 4 - group.teams.length;
+export function GroupCard({ group, totalPots = 4 }: GroupCardProps) {
+  // Max teams per group corresponds directly to the total number of pots in the tournament
+  const maxTeamsPerGroup = totalPots;
+  const emptySlotsCount = Math.max(0, maxTeamsPerGroup - group.teams.length);
 
   return (
     <div className="bg-slate-950 border border-slate-800/80 rounded-xl p-4 min-h-48 flex flex-col justify-between">
@@ -14,7 +17,7 @@ export function GroupCard({ group }: GroupCardProps) {
         <div className="bg-slate-900 border-b border-slate-800 px-3 py-1.5 rounded-t-lg -mx-4 -mt-4 mb-3 flex justify-between items-center">
           <span className="font-black text-slate-200">GROUP {group.name}</span>
           <span className="text-[10px] font-mono text-slate-500">
-            {group.teams.length}/4
+            {group.teams.length}/{maxTeamsPerGroup}
           </span>
         </div>
         <div className="space-y-2">

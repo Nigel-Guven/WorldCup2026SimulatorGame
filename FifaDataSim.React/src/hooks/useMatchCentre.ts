@@ -1,5 +1,4 @@
 import { useState, useMemo, useCallback } from 'react';
-import type { MatchFixture } from '../types/matchFixture';
 import type { TournamentSession } from '../types/tournamentSession';
 import { tournamentService } from '../services/tournamentService';
 
@@ -13,38 +12,46 @@ export function useMatchCentre({ session, onSessionUpdate }: UseMatchCentreProps
   const [simulating, setSimulating] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const isGroupStageComplete = useMemo(() => {
-    return session.fixtures.length > 0 && session.fixtures.every((f) => f.isPlayed);
+  // 1. Compute total matchdays dynamically from actual fixtures
+  const totalMatchdays = useMemo(() => {
+    if (!session.fixtures || session.fixtures.length === 0) return 3;
+    return Math.max(...session.fixtures.map((f) => f.matchday));
   }, [session.fixtures]);
 
+  // 2. Filter fixtures by the active selected matchday tab
   const filteredFixtures = useMemo(() => {
-    return session.fixtures.filter(
-      (f: MatchFixture) => f.matchday === activeMatchday
-    );
+    return session.fixtures.filter((f) => f.matchday === activeMatchday);
   }, [session.fixtures, activeMatchday]);
 
+  // 3. Compute overall group stage completion
+  const isGroupStageComplete = useMemo(() => {
+    if (!session.fixtures || session.fixtures.length === 0) return false;
+    return session.fixtures.every((f) => f.isPlayed);
+  }, [session.fixtures]);
+
+  // 4. Single match simulation (uses simulateFixture)
   const simulateMatch = useCallback(
     async (fixtureId: string) => {
       try {
         setError(null);
-        await tournamentService.simulateFixture(fixtureId);
-        const updatedData = await tournamentService.getCurrentSession();
-        onSessionUpdate(updatedData);
+        const updatedSession = await tournamentService.simulateFixture(fixtureId);
+        onSessionUpdate(updatedSession);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Simulation failed');
+        setError(err instanceof Error ? err.message : 'Failed to simulate match');
       }
     },
     [onSessionUpdate]
   );
 
+  // 5. Bulk simulation (uses simulateAllFixtures)
   const simulateAllUnplayed = useCallback(async () => {
-    setSimulating(true);
-    setError(null);
     try {
+      setSimulating(true);
+      setError(null);
       const updatedSession = await tournamentService.simulateAllFixtures();
       onSessionUpdate(updatedSession);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Bulk calculation failure');
+      setError(err instanceof Error ? err.message : 'Failed to simulate all matches');
     } finally {
       setSimulating(false);
     }
@@ -53,6 +60,7 @@ export function useMatchCentre({ session, onSessionUpdate }: UseMatchCentreProps
   return {
     activeMatchday,
     setActiveMatchday,
+    totalMatchdays,
     simulating,
     error,
     isGroupStageComplete,

@@ -14,6 +14,7 @@ export default function TournamentDrawPage({ onDrawComplete }: TournamentDrawPag
     pots,
     groups,
     currentPotIndex,
+    totalPots,
     loading,
     error,
     drawHistory,
@@ -84,9 +85,9 @@ export default function TournamentDrawPage({ onDrawComplete }: TournamentDrawPag
           </div>
 
           {/* Dynamic grid column sizing based on number of groups */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[60vh] overflow-y-auto pr-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {groups.map((group) => (
-              <GroupCard key={group.name} group={group} />
+              <GroupCard key={group.name} group={group} totalPots={totalPots} />
             ))}
           </div>
         </div>

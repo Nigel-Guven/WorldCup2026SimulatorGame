@@ -19,18 +19,19 @@ export const tournamentService = {
     return res.json();
   },
 
-  async simulateFixture(fixtureId: string): Promise<void> {
+  async simulateFixture(fixtureId: string): Promise<TournamentSession> {
     const res = await fetch(`${API_BASE_URL}/fixtures/${fixtureId}/simulate`, {
       method: 'POST',
     });
-    if (!res.ok) throw new Error('Match simulation failed');
+    if (!res.ok) throw new Error('Simulation failed');
+    return res.json(); // <-- Explicitly return the parsed JSON
   },
 
   async simulateAllFixtures(): Promise<TournamentSession> {
     const res = await fetch(`${API_BASE_URL}/fixtures/simulate-all`, {
       method: 'POST',
     });
-    if (!res.ok) throw new Error('Bulk simulation failed');
-    return res.json();
+    if (!res.ok) throw new Error('Simulation failed');
+    return res.json(); // <-- Explicitly return the parsed JSON
   },
 };

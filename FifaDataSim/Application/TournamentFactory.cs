@@ -111,19 +111,19 @@ public static class TournamentFactory
     {
         Code = "Custom Tourney",
         Name = "Targaryen Tourney",
-        TotalTeams = 30,
+        TotalTeams = 80,
         ConfederationSlots = new Dictionary<Confederation, int>
         {
-            { Confederation.UEFA, 12 },
-            { Confederation.CAF, 4 },
-            { Confederation.AFC, 4 },
-            { Confederation.CONCACAF, 4 },
-            { Confederation.CONMEBOL, 6 },
-            { Confederation.OFC, 0 },
+            { Confederation.UEFA, 32 },
+            { Confederation.CAF, 12 },
+            { Confederation.AFC, 12 },
+            { Confederation.CONCACAF, 10 },
+            { Confederation.CONMEBOL, 10 },
+            { Confederation.OFC, 4 },
         },
         Pots = new PotConfiguration
         {
-            TotalPots = 5,
+            TotalPots = 4,
             SortingType = PotSortingType.WorldRanking,
             HostInPotOne = true,
             DrawConstraints = new DrawConstraintsConfiguration
@@ -131,26 +131,26 @@ public static class TournamentFactory
                 SeparateConfederations = true,
                 MaxTeamsPerConfederation = new Dictionary<Confederation, int>
                 {
-                    { Confederation.UEFA, 4 },
-                    { Confederation.AFC, 3 },
-                    { Confederation.CAF, 3 },
-                    { Confederation.CONMEBOL, 3 },
-                    { Confederation.CONCACAF, 3 },
-                    { Confederation.OFC, 3 },
+                    { Confederation.UEFA, 6 },
+                    { Confederation.AFC, 6 },
+                    { Confederation.CAF, 6 },
+                    { Confederation.CONMEBOL, 6 },
+                    { Confederation.CONCACAF, 6 },
+                    { Confederation.OFC, 6 },
                 }
             }
         },
         GroupStage = new GroupStageConfiguration
         {
-            NumberOfGroups = 6,
-            TeamsPerGroup = 5,
+            NumberOfGroups = 20,
+            TeamsPerGroup = 4,
             AutomaticQualifiersPerGroup = 2,
             Matchmaking = MatchmakingType.SingleRoundRobin,
-            ThirdPlaceRule = new ThirdPlaceQualificationConfiguration { TotalQualifyingThirdPlaceTeams = 4 }
+            ThirdPlaceRule = new ThirdPlaceQualificationConfiguration { TotalQualifyingThirdPlaceTeams = 8 }
         },
         KnockoutStage = new KnockoutStageConfiguration
         {
-            StartingRound = KnockoutRound.RoundOf16,
+            StartingRound = KnockoutRound.RoundOf32,
             HasThirdPlaceMatch = true
         }
     };

@@ -1,4 +1,4 @@
-import type { MatchFixture } from "../../types/matchFixture";
+import type { MatchFixture } from '../../types/matchFixture';
 
 interface FixtureCardProps {
   fixture: MatchFixture;
@@ -6,60 +6,83 @@ interface FixtureCardProps {
 }
 
 export function FixtureCard({ fixture, onSimulate }: FixtureCardProps) {
-  return (
-    <div className="bg-slate-900 border border-slate-800/60 rounded-xl p-4 flex items-center justify-between shadow group hover:border-slate-700/60 transition-colors">
-      <div className="flex-1 space-y-2">
-        <span className="text-[10px] font-mono font-bold uppercase tracking-wider bg-slate-950 px-2 py-0.5 rounded text-slate-500">
-          Group {fixture.groupName}
+  // If either team is missing (a Bye week fixture), render a subtle Bye indicator instead of crashing
+  const isBye = !fixture.homeTeam || !fixture.awayTeam;
+  const activeTeam = fixture.homeTeam || fixture.awayTeam;
+
+  if (isBye) {
+    return (
+      <div className="bg-slate-900/40 border border-slate-800/60 rounded-xl p-3 flex items-center justify-between text-xs text-slate-500 font-mono">
+        <div className="flex items-center space-x-2">
+          {fixture.groupName && (
+            <span className="bg-slate-800 text-slate-400 text-[10px] font-bold px-1.5 py-0.5 rounded border border-slate-700/50">
+              Group {fixture.groupName}
+            </span>
+          )}
+          {activeTeam?.flag_url && (
+            <img src={activeTeam.flag_url} alt="" className="w-4 h-3 object-cover rounded" />
+          )}
+          <span className="font-semibold text-slate-400">{activeTeam?.name || 'Unknown'}</span>
+        </div>
+        <span className="bg-slate-950 px-2 py-0.5 rounded text-[10px] tracking-widest uppercase">
+          BYE WEEK
         </span>
+      </div>
+    );
+  }
 
-        <div className="grid grid-cols-12 items-center gap-2">
-          {/* Home Team */}
-          <div className="col-span-5 flex items-center space-x-2.5 min-w-0 justify-end text-right">
-            <span className="text-sm font-semibold truncate text-slate-200">
-              {fixture.homeTeam.name}
+  return (
+    <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-md">
+      {/* Group Badge Header */}
+      {fixture.groupName && (
+        <div className="mb-2 text-left">
+          <span className="inline-block bg-slate-800/80 text-slate-400 font-mono text-[10px] font-semibold px-2 py-0.5 rounded border border-slate-700/60 uppercase tracking-wider">
+            Group {fixture.groupName}
+          </span>
+        </div>
+      )}
+
+      <div className="flex items-center justify-between">
+        {/* Home Team */}
+        <div className="flex items-center space-x-3 flex-1 min-w-0">
+          <img
+            src={fixture.homeTeam.flag_url}
+            alt=""
+            className="w-6 h-4 object-cover rounded shadow-sm"
+          />
+          <span className="text-sm font-bold text-white truncate">
+            {fixture.homeTeam.name}
+          </span>
+        </div>
+
+        {/* Score / Status */}
+        <div className="px-4 text-center">
+          {fixture.isPlayed ? (
+            <span className="text-sm font-black font-mono text-emerald-400">
+              {fixture.homeScore} - {fixture.awayScore}
             </span>
-            <img
-              src={fixture.homeTeam.flag_url}
-              alt=""
-              className="w-5 h-3.5 object-cover rounded shadow-sm shrink-0"
-            />
-          </div>
+          ) : (
+            <button
+              onClick={() => onSimulate(fixture.id)}
+              className="bg-slate-800 hover:bg-slate-700 text-emerald-400 font-mono text-xs px-2.5 py-1 rounded border border-slate-700 transition-all"
+            >
+              VS
+            </button>
+          )}
+        </div>
 
-          {/* Score Box */}
-          <div className="col-span-2 flex justify-center text-center font-mono font-black text-sm bg-slate-950 rounded py-1 px-1.5 border border-slate-800/80">
-            {fixture.isPlayed ? (
-              <span className="text-emerald-400">
-                {fixture.homeScore} - {fixture.awayScore}
-              </span>
-            ) : (
-              <span className="text-slate-600">VS</span>
-            )}
-          </div>
-
-          {/* Away Team */}
-          <div className="col-span-5 flex items-center space-x-2.5 min-w-0 justify-start">
-            <img
-              src={fixture.awayTeam.flag_url}
-              alt=""
-              className="w-5 h-3.5 object-cover rounded shadow-sm shrink-0"
-            />
-            <span className="text-sm font-semibold truncate text-slate-200">
-              {fixture.awayTeam.name}
-            </span>
-          </div>
+        {/* Away Team */}
+        <div className="flex items-center justify-end space-x-3 flex-1 min-w-0 text-right">
+          <span className="text-sm font-bold text-white truncate">
+            {fixture.awayTeam.name}
+          </span>
+          <img
+            src={fixture.awayTeam.flag_url}
+            alt=""
+            className="w-6 h-4 object-cover rounded shadow-sm"
+          />
         </div>
       </div>
-
-      {!fixture.isPlayed && (
-        <button
-          onClick={() => onSimulate(fixture.id)}
-          className="ml-4 p-2 bg-slate-950 hover:bg-slate-800 text-slate-400 hover:text-emerald-400 border border-slate-800 rounded-lg text-xs transition-colors"
-          title="Simulate Match"
-        >
-          🎲
-        </button>
-      )}
     </div>
   );
 }

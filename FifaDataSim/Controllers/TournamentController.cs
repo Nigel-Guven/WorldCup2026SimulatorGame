@@ -71,8 +71,11 @@ public class TournamentController(
     [HttpPut("fixtures/{id:guid}")]
     public ActionResult UpdateScore(Guid id, [FromBody] MatchScoreUpdate update)
     {
+        var session = tournamentService.GetCurrentSession();
+        if (session == null) return NotFound("No active tournament running.");
+
         tournamentService.UpdateFixtureScore(id, update.HomeScore, update.AwayScore);
-        return Ok();
+        return Ok(session);
     }
     
     [HttpPost("fixtures/simulate-all")]
@@ -85,6 +88,12 @@ public class TournamentController(
 
         foreach (var fixture in unplayedFixtures)
         {
+            if (fixture.HomeTeam == null || fixture.AwayTeam == null)
+            {
+                fixture.IsPlayed = true;
+                continue;
+            }
+
             var (homeScore, awayScore) = simEngine.SimulateMatch(fixture.HomeTeam, fixture.AwayTeam);
             tournamentService.UpdateFixtureScore(fixture.Id, homeScore, awayScore);
         }
@@ -101,11 +110,18 @@ public class TournamentController(
         var fixture = session.Fixtures.FirstOrDefault(f => f.Id == id);
         if (fixture == null) return NotFound("Fixture not found.");
 
-        if (fixture.IsPlayed) return Ok(fixture);
+        if (fixture.IsPlayed) return Ok(session);
+
+        if (fixture.HomeTeam == null || fixture.AwayTeam == null)
+        {
+            fixture.IsPlayed = true;
+            return Ok(session);
+        }
+
         var (homeScore, awayScore) = simEngine.SimulateMatch(fixture.HomeTeam, fixture.AwayTeam);
         tournamentService.UpdateFixtureScore(fixture.Id, homeScore, awayScore);
 
-        return Ok(fixture);
+        return Ok(session);
     }
 
     public class MatchScoreUpdate

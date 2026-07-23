@@ -9,5 +9,5 @@ public class MatchFixture
     public Country AwayTeam { get; set; } = null!;
     public int? HomeScore { get; set; }
     public int? AwayScore { get; set; }
-    public bool IsPlayed => HomeScore.HasValue && AwayScore.HasValue;
+    public bool IsPlayed { get; set; }
 }

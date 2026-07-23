@@ -23,6 +23,7 @@ export default function MatchCentrePage({
   const {
     activeMatchday,
     setActiveMatchday,
+    totalMatchdays,
     simulating,
     error,
     isGroupStageComplete,
@@ -31,7 +32,6 @@ export default function MatchCentrePage({
     simulateAllUnplayed,
   } = useMatchCentre({ session, onSessionUpdate });
 
-  // Calculate cutoff based on group count (12 groups = 8 teams; 6 groups = 4 teams)
   const thirdPlaceCutoff = session.groups.length === 12 ? 8 : 4;
 
   return (
@@ -72,9 +72,12 @@ export default function MatchCentrePage({
             </button>
           </div>
 
+          {/* DYNAMIC MATCHDAY TABS */}
           <MatchdayTabs
             activeMatchday={activeMatchday}
             onSelectMatchday={setActiveMatchday}
+            fixtures={session.fixtures}
+            totalMatchdays={totalMatchdays}
           />
 
           {/* Fixtures Feed Cards */}

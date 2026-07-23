@@ -1,5 +1,6 @@
 import type { KnockoutBracket } from "../../types/KnockoutBracket";
 
+
 interface ChampionBannerProps {
   champion: KnockoutBracket['champion'];
 }

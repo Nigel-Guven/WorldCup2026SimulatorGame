@@ -7,6 +7,7 @@ import { GroupStageCompletionBanner } from '../components/matchCentre/GroupStage
 import { MatchdayTabs } from '../components/matchCentre/MatchdayTabs';
 import { FixtureCard } from '../components/matchCentre/FixtureCard';
 import { GroupStandingsTable } from '../components/matchCentre/GroupStandingTable';
+import { ThirdPlaceStandingsTable } from '../components/matchCentre/ThirdPlaceStandingsTable';
 
 interface MatchCentreProps {
   session: TournamentSession;
@@ -29,6 +30,9 @@ export default function MatchCentrePage({
     simulateMatch,
     simulateAllUnplayed,
   } = useMatchCentre({ session, onSessionUpdate });
+
+  // Calculate cutoff based on group count (12 groups = 8 teams; 6 groups = 4 teams)
+  const thirdPlaceCutoff = session.groups.length === 12 ? 8 : 4;
 
   return (
     <div className="space-y-6 animate-fade-in">
@@ -85,8 +89,15 @@ export default function MatchCentrePage({
           </div>
         </div>
 
-        {/* RIGHT COLUMN: The 12 Live Standings Tables */}
+        {/* RIGHT COLUMN: Standings & 3rd Place Tracker */}
         <div className="lg:col-span-7 space-y-6 max-h-[85vh] overflow-y-auto pr-1">
+          {/* Third Place Cross-Group Rankings */}
+          <ThirdPlaceStandingsTable
+            groups={session.groups}
+            qualifierCutoff={thirdPlaceCutoff}
+          />
+
+          {/* All Group Standings Tables */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {session.groups.map((group: GroupState) => (
               <GroupStandingsTable key={group.name} group={group} />

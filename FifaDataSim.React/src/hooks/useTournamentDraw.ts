@@ -1,18 +1,16 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import type { Country } from '../types/country';
-import { tournamentService, type DrawSetup } from '../services/tournamentService';
+import type { TournamentDrawSetupDto } from '../types/drawSetup';
+import { tournamentService } from '../services/tournamentService';
 
 export interface Group {
   name: string;
   teams: Country[];
 }
 
-export type PotKey = 'pot1' | 'pot2' | 'pot3' | 'pot4';
-
-const GROUP_NAMES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
-
-export function useTournamentDraw() {
-  const [pots, setPots] = useState<DrawSetup | null>(null);
+export function useTournamentDraw(tournamentCode: string = 'WORLD_CUP_2026') {
+  const [potsData, setPotsData] = useState<TournamentDrawSetupDto | null>(null);
+  const [pots, setPots] = useState<Country[][]>([]);
   const [groups, setGroups] = useState<Group[]>([]);
   const [currentPotIndex, setCurrentPotIndex] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(true);
@@ -25,14 +23,33 @@ export function useTournamentDraw() {
     async function loadDrawSetup() {
       try {
         setLoading(true);
-        const data = await tournamentService.getDrawSetup();
+        setError(null);
+
+        // 1. Fetch full DTO from service
+        const data: TournamentDrawSetupDto = await tournamentService.getDrawSetup(tournamentCode);
         if (!isMounted) return;
 
-        setPots(data);
-        setGroups(GROUP_NAMES.map((name) => ({ name, teams: [] })));
+        // 2. Store full DTO
+        setPotsData(data);
+
+        // 3. Extract Country[][] array for hook's active state
+        const fetchedPots = data.pots || [];
+        setPots(fetchedPots);
+
+        // 4. Derive group count from Pot 1 size
+        const groupCount = fetchedPots[0]?.length || 0;
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        const generatedGroups: Group[] = Array.from({ length: groupCount }, (_, idx) => ({
+          name: alphabet[idx] || `Group ${idx + 1}`,
+          teams: [],
+        }));
+
+        setGroups(generatedGroups);
+        setCurrentPotIndex(1);
       } catch (err) {
         if (isMounted) {
-          setError(err instanceof Error ? err.message : 'An error occurred');
+          setError(err instanceof Error ? err.message : 'An error occurred during setup');
         }
       } finally {
         if (isMounted) setLoading(false);
@@ -44,23 +61,37 @@ export function useTournamentDraw() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [tournamentCode]);
 
+  const totalPots = pots.length;
+  const numGroups = groups.length;
+
+  // 2. Derive completion state dynamically across all pots
+  const isDrawComplete = useMemo(() => {
+    if (pots.length === 0) return false;
+    return pots.every((pot) => pot.length === 0);
+  }, [pots]);
+
+  // 3. Draw a single next team manually
   const drawNextTeam = useCallback(() => {
-    if (!pots) return;
+    if (!pots.length || isDrawComplete) return;
 
-    const activePotKey: PotKey = `pot${currentPotIndex}` as PotKey;
-    const activePot = pots[activePotKey];
+    const activePotIdx = currentPotIndex - 1;
+    const activePot = pots[activePotIdx];
     if (!activePot || activePot.length === 0) return;
 
+    // Find first group needing a team for the current pot layer
     const targetGroupIndex = groups.findIndex(
       (g) => g.teams.length === currentPotIndex - 1
     );
     if (targetGroupIndex === -1) return;
 
+    // Pick a team randomly from the active pot
     const randomIdx = Math.floor(Math.random() * activePot.length);
     const selectedTeam = activePot[randomIdx];
+
     const updatedPot = activePot.filter((_, idx) => idx !== randomIdx);
+    const updatedPots = pots.map((pot, idx) => (idx === activePotIdx ? updatedPot : pot));
 
     const updatedGroups = groups.map((group, idx) => {
       if (idx === targetGroupIndex) {
@@ -69,35 +100,37 @@ export function useTournamentDraw() {
       return group;
     });
 
-    setPots({ ...pots, [activePotKey]: updatedPot });
+    setPots(updatedPots);
     setGroups(updatedGroups);
     setDrawHistory((prev) => [
-      `Drew ${selectedTeam.name} (${selectedTeam.short_name}) into Group ${groups[targetGroupIndex].name}`,
+      `Drew ${selectedTeam.name} (${selectedTeam.short_name || selectedTeam.id}) into Group ${groups[targetGroupIndex].name}`,
       ...prev,
     ]);
 
+    // Advance to next pot when current pot layer is completely assigned
     const totalTeamsInCurrentLayer = updatedGroups.filter(
       (g) => g.teams.length === currentPotIndex
     ).length;
 
-    if (totalTeamsInCurrentLayer === 12 && currentPotIndex < 4) {
+    if (totalTeamsInCurrentLayer === numGroups && currentPotIndex < totalPots) {
       setCurrentPotIndex((prev) => prev + 1);
     }
-  }, [pots, groups, currentPotIndex]);
+  }, [pots, groups, currentPotIndex, totalPots, numGroups, isDrawComplete]);
 
+  // 4. Auto-draw all remaining teams instantly
   const autoDrawAll = useCallback(() => {
-    if (!pots) return;
+    if (!pots.length || isDrawComplete) return;
 
-    let currentPots = { ...pots };
+    let currentPots = pots.map((p) => [...p]);
     let currentGroups = groups.map((g) => ({ ...g, teams: [...g.teams] }));
     let potIdx = currentPotIndex;
     const historyLogs: string[] = [];
 
-    while (potIdx <= 4) {
-      const activePotKey: PotKey = `pot${potIdx}` as PotKey;
-      const activePot = [...currentPots[activePotKey]];
+    while (potIdx <= totalPots) {
+      const activePotIdx = potIdx - 1;
+      const activePot = currentPots[activePotIdx];
 
-      while (activePot.length > 0) {
+      while (activePot && activePot.length > 0) {
         const targetGroupIndex = currentGroups.findIndex(
           (g) => g.teams.length === potIdx - 1
         );
@@ -113,27 +146,21 @@ export function useTournamentDraw() {
         );
       }
 
-      currentPots[activePotKey] = [];
       potIdx++;
     }
 
     setPots(currentPots);
     setGroups(currentGroups);
-    setCurrentPotIndex(4);
+    setCurrentPotIndex(totalPots);
     setDrawHistory((prev) => [...historyLogs, ...prev]);
-  }, [pots, groups, currentPotIndex]);
-
-  const isDrawComplete = pots
-    ? pots.pot1.length === 0 &&
-      pots.pot2.length === 0 &&
-      pots.pot3.length === 0 &&
-      pots.pot4.length === 0
-    : false;
+  }, [pots, groups, currentPotIndex, totalPots, isDrawComplete]);
 
   return {
+    potsData,
     pots,
     groups,
     currentPotIndex,
+    totalPots,
     loading,
     error,
     drawHistory,

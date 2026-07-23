@@ -1,6 +1,6 @@
 using WorldCupSimulator.Models;
 
-namespace WorldCupSimulator.Application;
+namespace WorldCupSimulator.Application.Simulations;
 
 public class SimulationEngine : ISimulationEngine
 {

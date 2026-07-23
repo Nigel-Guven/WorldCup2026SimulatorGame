@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using WorldCupSimulator.Application;
+using WorldCupSimulator.Application.PotSeeding;
+using WorldCupSimulator.Application.Simulations;
 using WorldCupSimulator.Contracts;
 using WorldCupSimulator.Infrastructure;
 using WorldCupSimulator.Models;
-using WorldCupSimulator.Models.Countries;
-using WorldCupSimulator.Models.WorldCup48Format;
+using WorldCupSimulator.Models.TournamentConfigurations;
 
 namespace WorldCupSimulator.Controllers;
 
@@ -14,62 +15,41 @@ public class TournamentController(
     ICountryRepository countryRepository, 
     ITournamentService tournamentService,
     ISimulationEngine simEngine,
-    IKnockoutBracketService bracketService)
+    IKnockoutBracketService bracketService,
+    IPotSeedingService potSeedingService)
     : ControllerBase
 {
     [HttpGet("draw-setup")]
-    public ActionResult<WorldCupDrawSetup> GetDrawSetup()
+    public ActionResult<TournamentDrawSetup> GetDrawSetup([FromQuery] string? tournamentCode)
     {
+        var config = TournamentFactory.GetByCode(tournamentCode) ?? TournamentFactory.WorldCup2026;
+    
         var allTeams = countryRepository.GetAllTeams().ToList();
 
-        if (allTeams.Count < 48)
+        if (allTeams.Count < config.TotalTeams)
         {
-            return BadRequest(new { message = $"Not enough teams to simulate a 48-team tournament. Found {allTeams.Count}." });
+            return BadRequest(new { 
+                message = $"Not enough teams to simulate {config.Name}. Required: {config.TotalTeams}, Found: {allTeams.Count}." 
+            });
         }
+    
+        var qualifiedTeams = SelectQualifiedTeams(allTeams, config);
         
-        //Random 48
-        //var random = new Random();
-        //var qualifiedTeams = allTeams.OrderBy(_ => random.Next()).Take(48).ToList();
-        
-        //Top 48
-        //var qualifiedTeams = allTeams.Take(48).ToList();
-        
-        //Bottom 48
-        //var qualifiedTeams = allTeams.TakeLast(48).ToList();
-        
-        //UEFA = 20, CONMEBOL = 5, AFC = 6, CAF = 8, OFC = 2, CONCACAF = 7  
-        var random = new Random();
-        var afcTeams = allTeams.Where(c => c.Confederation == Confederation.AFC).OrderBy(_ => random.Next()).Take(6).ToList();
-        var uefaTeams = allTeams.Where(c => c.Confederation == Confederation.UEFA).OrderBy(_ => random.Next()).Take(20).ToList();
-        var cafTeams = allTeams.Where(c => c.Confederation == Confederation.CAF).OrderBy(_ => random.Next()).Take(8).ToList();
-        var concacafTeams = allTeams.Where(c => c.Confederation == Confederation.CONCACAF).OrderBy(_ => random.Next()).Take(7).ToList();
-        var conmebolTeams = allTeams.Where(c => c.Confederation == Confederation.CONMEBOL).OrderBy(_ => random.Next()).Take(5).ToList();
-        var ofcTeams = allTeams.Where(c => c.Confederation == Confederation.OFC).OrderBy(_ => random.Next()).Take(2).ToList();
-        
-        var qualifiedTeams = new List<Country>();
-        
-        qualifiedTeams.AddRange(afcTeams);
-        qualifiedTeams.AddRange(uefaTeams);
-        qualifiedTeams.AddRange(cafTeams);
-        qualifiedTeams.AddRange(concacafTeams);
-        qualifiedTeams.AddRange(conmebolTeams);
-        qualifiedTeams.AddRange(ofcTeams);
-        
-        var sortedQualified = qualifiedTeams.OrderByDescending(t => t.DefaultRankingPoints).ToList();
-
-        var setup = new WorldCupDrawSetup
+        var pots = potSeedingService.GeneratePots(qualifiedTeams, config);
+    
+        var setup = new TournamentDrawSetup
         {
-            Pot1 = sortedQualified.Skip(0).Take(12).ToList(),
-            Pot2 = sortedQualified.Skip(12).Take(12).ToList(),
-            Pot3 = sortedQualified.Skip(24).Take(12).ToList(),
-            Pot4 = sortedQualified.Skip(36).Take(12).ToList()
+            TournamentCode = config.Code,
+            TournamentName = config.Name,
+            TotalTeams = config.TotalTeams,
+            Pots = pots
         };
 
         return Ok(setup);
     }
     
     [HttpPost("initialize")]
-    public ActionResult<TournamentSession> InitializeTournament([FromBody] List<GroupSetupDto> groups)
+    public ActionResult<TournamentSession> InitializeTournament([FromBody] List<GroupSetupDto>? groups)
     {
         if (groups == null || groups.Count == 0)
         {
@@ -112,8 +92,7 @@ public class TournamentController(
         return Ok(session);
     }
 
-// POST: api/tournament/fixtures/{id}/simulate
-    [HttpPost("fixtures/{id}/simulate")]
+    [HttpPost("fixtures/{id:guid}/simulate")]
     public ActionResult<MatchFixture> SimulateSingleFixture(Guid id)
     {
         var session = tournamentService.GetCurrentSession();
@@ -122,11 +101,9 @@ public class TournamentController(
         var fixture = session.Fixtures.FirstOrDefault(f => f.Id == id);
         if (fixture == null) return NotFound("Fixture not found.");
 
-        if (!fixture.IsPlayed)
-        {
-            var (homeScore, awayScore) = simEngine.SimulateMatch(fixture.HomeTeam, fixture.AwayTeam);
-            tournamentService.UpdateFixtureScore(fixture.Id, homeScore, awayScore);
-        }
+        if (fixture.IsPlayed) return Ok(fixture);
+        var (homeScore, awayScore) = simEngine.SimulateMatch(fixture.HomeTeam, fixture.AwayTeam);
+        tournamentService.UpdateFixtureScore(fixture.Id, homeScore, awayScore);
 
         return Ok(fixture);
     }
@@ -161,16 +138,15 @@ public class TournamentController(
     public ActionResult<KnockoutBracket> SimulateKnockoutMatch(Guid matchId)
     {
         var session = tournamentService.GetCurrentSession();
-        if (session == null || session.KnockoutBracket == null) return NotFound("No active bracket.");
+        if (session?.KnockoutBracket == null) return NotFound("No active bracket.");
 
         var bracket = session.KnockoutBracket;
-    
-        // Find match in any round
+
         var allMatches = bracket.RoundOf32
             .Concat(bracket.RoundOf16)
             .Concat(bracket.QuarterFinals)
             .Concat(bracket.SemiFinals)
-            .Concat(new[] { bracket.ThirdPlaceMatch, bracket.Final });
+            .Concat([bracket.ThirdPlaceMatch, bracket.Final]);
 
         var match = allMatches.FirstOrDefault(m => m.Id == matchId);
         if (match == null) return NotFound("Knockout match not found.");
@@ -179,5 +155,41 @@ public class TournamentController(
         bracketService.AdvanceBracket(bracket);
 
         return Ok(bracket);
+    }
+    
+    private List<Country> SelectQualifiedTeams(List<Country> allTeams, TournamentConfiguration config)
+    {
+        var random = Random.Shared;
+        var qualifiedTeams = new List<Country>();
+        
+        if (config.ConfederationSlots is { Count: > 0 } slots)
+        {
+            foreach (var (confed, slotCount) in slots)
+            {
+                var confedTeams = allTeams
+                    .Where(c => c.Confederation == confed)
+                    .OrderBy(_ => random.Next()) 
+                    .Take(slotCount)
+                    .ToList();
+
+                qualifiedTeams.AddRange(confedTeams);
+            }
+        }
+        else
+        {
+            qualifiedTeams = allTeams
+                .OrderByDescending(t => t.DefaultRankingPoints)
+                .Take(config.TotalTeams)
+                .ToList();
+        }
+
+        if (qualifiedTeams.Count < config.TotalTeams)
+        {
+            throw new InvalidOperationException(
+                $"Configuration required {config.TotalTeams} teams, but only {qualifiedTeams.Count} were qualified."
+            );
+        }
+
+        return qualifiedTeams;
     }
 }

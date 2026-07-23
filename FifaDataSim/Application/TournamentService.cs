@@ -111,12 +111,4 @@ public class TournamentService : ITournamentService
 
         return candidates;
     }
-    
-    public void CheckAndSetGroupStageCompletion(TournamentSession session)
-    {
-        if (session.Fixtures.Count == 36 && session.Fixtures.All(f => f.IsPlayed))
-        {
-            session.IsGroupStageCompleted = true;
-        }
-    }
 }

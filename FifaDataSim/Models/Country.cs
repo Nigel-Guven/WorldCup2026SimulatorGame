@@ -24,4 +24,5 @@ public class Country
     public string FlagUrl { get; set; } = string.Empty;
     [JsonPropertyName("home_stadium")]
     public string HomeStadium { get; set; } = string.Empty;
+    public bool IsHost { get; set; } = false;
 }

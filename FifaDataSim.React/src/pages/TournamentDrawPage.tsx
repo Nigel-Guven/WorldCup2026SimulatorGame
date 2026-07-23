@@ -2,7 +2,7 @@ import { DrawControls } from '../components/tournamentDraw/DrawControls';
 import { DrawTicker } from '../components/tournamentDraw/DrawTicker';
 import { GroupCard } from '../components/tournamentDraw/GroupCard';
 import { PotCard } from '../components/tournamentDraw/PotCard';
-import { useTournamentDraw, type PotKey } from '../hooks/useTournamentDraw';
+import { useTournamentDraw } from '../hooks/useTournamentDraw';
 
 interface TournamentDrawPageProps {
   onDrawComplete: (groups: { name: string; teams: any[] }[]) => void;
@@ -40,7 +40,12 @@ export default function TournamentDrawPage({ onDrawComplete }: TournamentDrawPag
     );
   }
 
-  const potKeys: PotKey[] = ['pot1', 'pot2', 'pot3', 'pot4'];
+  const potList = Array.isArray(pots)
+    ? pots
+    : Object.keys(pots).map((key) => (pots as Record<string, any[]>)[key]);
+
+  const totalTeams = groups.reduce((acc, g) => acc + (g.teams?.length || 0), 0) || 
+                     potList.reduce((acc, pot) => acc + (pot?.length || 0), 0);
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 animate-fade-in">
@@ -53,12 +58,13 @@ export default function TournamentDrawPage({ onDrawComplete }: TournamentDrawPag
           onAutoDraw={autoDrawAll}
         />
 
-        <div className="grid grid-cols-2 gap-3 xl:grid-cols-1">
-          {potKeys.map((key: PotKey, index: number) => (
+        {/* Dynamic pot rendering container */}
+        <div className="grid grid-cols-2 gap-3 xl:grid-cols-1 max-h-[70vh] xl:max-h-[75vh] overflow-y-auto pr-1">
+          {potList.map((potTeams, index) => (
             <PotCard
-              key={key}
+              key={`pot-${index + 1}`}
               potNumber={index + 1}
-              teams={pots[key]}
+              teams={potTeams}
               isActive={currentPotIndex === index + 1 && !isDrawComplete}
             />
           ))}
@@ -68,11 +74,17 @@ export default function TournamentDrawPage({ onDrawComplete }: TournamentDrawPag
       {/* Main Groups Visual Box */}
       <div className="xl:col-span-3 bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl flex flex-col justify-between">
         <div>
-          <h2 className="text-lg font-bold text-white mb-4 uppercase tracking-wider">
-            Tournament Groups
-          </h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold text-white uppercase tracking-wider">
+              Tournament Groups ({groups.length})
+            </h2>
+            <span className="text-xs font-mono font-bold bg-slate-800 text-slate-300 px-2.5 py-1 rounded border border-slate-700">
+              {potList.length} Seeding Pots
+            </span>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          {/* Dynamic grid column sizing based on number of groups */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[60vh] overflow-y-auto pr-1">
             {groups.map((group) => (
               <GroupCard key={group.name} group={group} />
             ))}
@@ -89,7 +101,7 @@ export default function TournamentDrawPage({ onDrawComplete }: TournamentDrawPag
                 Draw Sequence Concluded!
               </h3>
               <p className="text-xs text-slate-400 mt-0.5">
-                All 48 federations are successfully seeded into their group stage containers.
+                All {totalTeams || 'qualifying'} federations are successfully seeded into their group stage containers.
               </p>
             </div>
             <button

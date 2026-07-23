@@ -1,4 +1,6 @@
 using WorldCupSimulator.Application;
+using WorldCupSimulator.Application.PotSeeding;
+using WorldCupSimulator.Application.Simulations;
 using WorldCupSimulator.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,7 @@ builder.Services.AddSingleton<ICountryRepository, CountryRepository>();
 builder.Services.AddSingleton<ITournamentService, TournamentService>();
 builder.Services.AddSingleton<ISimulationEngine, SimulationEngine>();
 builder.Services.AddSingleton<IKnockoutBracketService, KnockoutBracketService>();
+builder.Services.AddSingleton<IPotSeedingService, PotSeedingService>();
 
 builder.Services.AddControllers();
 

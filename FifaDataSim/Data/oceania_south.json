@@ -64,5 +64,16 @@
     "strength": 60,
     "flag_url": "https://flagcdn.com/w40/vu.png",
     "home_stadium": "Port Vila Municipal Stadium"
+  },
+  {
+    "id": "tok",
+    "name": "Tokelau",
+    "short_name": "TOK",
+    "confederation": "OFC",
+    "football_association": "Tokelau Football Association",
+    "default_points": 846,
+    "strength": 60,
+    "flag_url": "https://flagcdn.com/w40/tk.png",
+    "home_stadium": "Hemoana Park"
   }
 ]

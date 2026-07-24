@@ -97,5 +97,16 @@
     "strength": 70,
     "flag_url": "https://flagcdn.com/w40/zm.png",
     "home_stadium": "National Heroes Stadium"
+  },
+  {
+    "id": "myt",
+    "name": "Mayotte",
+    "short_name": "MAY",
+    "confederation": "CAF",
+    "football_association": "Ligue Mahoraise de football",
+    "default_points": 813,
+    "strength": 70,
+    "flag_url": "https://flagcdn.com/w40/yt.png",
+    "home_stadium": "Complexe de Kawani"
   }
 ]

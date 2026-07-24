@@ -42,6 +42,28 @@
     "strength": 35,
     "flag_url": "https://flagcdn.com/w40/gg.png",
     "home_stadium": "Corbet Field"
+  },
+  {
+    "id": "ala",
+    "name": "Åland Islands",
+    "short_name": "ALA",
+    "confederation": "UEFA",
+    "football_association": "Ålands Fotbollförbund",
+    "default_points": 782,
+    "strength": 35,
+    "flag_url": "https://flagcdn.com/w40/ax.png",
+    "home_stadium": "Corbet Field"
+  },
+  {
+    "id": "imn",
+    "name": "Isle Of Man",
+    "short_name": "IMN",
+    "confederation": "UEFA",
+    "football_association": "Isle of Man Football Association",
+    "default_points": 699,
+    "strength": 35,
+    "flag_url": "https://flagcdn.com/w40/imn.png",
+    "home_stadium": "King George V Bowl"
   }
   
 ]

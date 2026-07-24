@@ -1,5 +1,6 @@
 using System.Text.Json;
 using WorldCupSimulator.Models;
+using WorldCupSimulator.Models.Countries;
 
 namespace WorldCupSimulator.Infrastructure;
 
@@ -43,8 +44,8 @@ public class CountryRepository : ICountryRepository
 
     public IEnumerable<Country> GetAllTeams() => _countries.OrderByDescending(t => t.DefaultRankingPoints);
 
-    public IEnumerable<Country> GetTeamsByConfederation(string confederation) =>
-        _countries.Where(t => t.Confederation.ToString().Equals(confederation)).OrderByDescending(t => t.DefaultRankingPoints);
+    public IEnumerable<Country> GetTeamsByConfederation(Confederation confederation) =>
+        _countries.Where(t => t.Confederation.Equals(confederation)).OrderByDescending(t => t.DefaultRankingPoints);
 
     public Country? GetTeamById(string id) =>
         _countries.FirstOrDefault(t => t.Id.Equals(id, StringComparison.OrdinalIgnoreCase));

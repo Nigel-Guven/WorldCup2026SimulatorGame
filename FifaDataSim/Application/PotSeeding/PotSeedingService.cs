@@ -6,7 +6,7 @@ namespace WorldCupSimulator.Application.PotSeeding;
 
 public class PotSeedingService : IPotSeedingService
 {
-    public List<List<Country>> GeneratePots(IEnumerable<Country> teams, TournamentConfiguration config)
+    public List<List<Country>> GeneratePots(IEnumerable<Country> teams, IEnumerable<Country>? hosts, TournamentConfiguration config)
     {
         var potConfig = config.Pots 
                         ?? throw new InvalidOperationException($"Tournament configuration '{config.Name}' has no PotConfig defined.");
@@ -14,42 +14,50 @@ public class PotSeedingService : IPotSeedingService
         var totalPots = potConfig.TotalPots;
         var teamsPerPot = config.TotalTeams / totalPots;
 
-        var remainingTeams = teams.ToList();
+        var hostList = hosts.ToList();
+        var hostIds = hostList.Select(h => h.Id).ToHashSet();
         
-        List<Country> hosts = [];
-        if (potConfig.HostInPotOne)
-        {
-            hosts = remainingTeams.Where(t => t.IsHost).ToList();
-            remainingTeams.RemoveAll(t => t.IsHost);
-        }
+        var nonHostTeams = teams.Where(t => !hostIds.Contains(t.Id)).ToList();
 
-        var sortedTeams = potConfig.SortingType switch
+        var sortedNonHosts = potConfig.SortingType switch
         {
-            PotSortingType.WorldRanking => remainingTeams
+            PotSortingType.Strict => nonHostTeams,
+
+            PotSortingType.WorldRanking => nonHostTeams
                 .OrderByDescending(t => t.DefaultRankingPoints)
                 .ToList(),
 
-            PotSortingType.ConfederationBalanced => remainingTeams
+            PotSortingType.ConfederationBalanced => nonHostTeams
                 .GroupBy(t => t.Confederation)
                 .SelectMany(g => g.OrderByDescending(t => t.DefaultRankingPoints))
                 .ToList(),
 
-            _ => remainingTeams.OrderByDescending(t => t.DefaultRankingPoints).ToList()
+            _ => nonHostTeams.ToList()
         };
         
-        var pot1 = new List<Country>(hosts);
+        var pot1 = new List<Country>();
+    
+        if (potConfig.HostInPotOne)
+        {
+            pot1.AddRange(hostList);
+        }
+
         var pot1Remainder = teamsPerPot - pot1.Count;
-        pot1.AddRange(sortedTeams.Take(pot1Remainder));
+        if (pot1Remainder > 0)
+        {
+            pot1.AddRange(sortedNonHosts.Take(pot1Remainder));
+        }
 
         var pots = new List<List<Country>> { pot1 };
 
-        var remainingSorted = sortedTeams.Skip(pot1Remainder).ToList();
+        var remainingPool = sortedNonHosts.Skip(pot1Remainder).ToList();
         for (var i = 1; i < totalPots; i++)
         {
-            var pot = remainingSorted
+            var pot = remainingPool
                 .Skip((i - 1) * teamsPerPot)
                 .Take(teamsPerPot)
                 .ToList();
+
             pots.Add(pot);
         }
 

@@ -5,7 +5,7 @@ namespace WorldCupSimulator.Application;
 
 public interface ITournamentService
 {
-    TournamentSession CreateNewSession(List<GroupSetupDto> groupsFromFrontend);
+    TournamentSession CreateNewSession(List<GroupSetupDto> groupsFromFrontend, bool isRoundRobin);
     TournamentSession? GetCurrentSession();
     void UpdateFixtureScore(Guid fixtureId, int homeScore, int awayScore);
 }

@@ -8,7 +8,7 @@ public static class TournamentFactory
 {
     public static TournamentConfiguration GetByCode(string code)
     {
-            return Custom28;
+            return UEFAQualification;
     }
     
     public static readonly TournamentConfiguration WorldCup2026 = new()
@@ -58,100 +58,29 @@ public static class TournamentFactory
             HasThirdPlaceMatch = true
         }
     };
-
-    private static readonly TournamentConfiguration EURO2028 = new()
-    {
-        Code = "EURO_2028",
-        Name = "UEFA Euro 2028",
-        TotalTeams = 24,
-        ConfederationSlots = new Dictionary<Confederation, int>
-        {
-            { Confederation.UEFA, 24 },
-            { Confederation.CAF, 0 },
-            { Confederation.AFC, 0 },
-            { Confederation.CONCACAF, 0 },
-            { Confederation.CONMEBOL, 0 },
-            { Confederation.OFC, 0 },
-        },
-        Pots = new PotConfiguration
-        {
-            TotalPots = 4,
-            SortingType = PotSortingType.WorldRanking,
-            HostInPotOne = true,
-            DrawConstraints = new DrawConstraintsConfiguration
-            {
-                SeparateConfederations = true,
-                MaxTeamsPerConfederation = new Dictionary<Confederation, int>
-                {
-                    { Confederation.UEFA, 4 },
-                    { Confederation.AFC, 0 },
-                    { Confederation.CAF, 0 },
-                    { Confederation.CONMEBOL, 0 },
-                    { Confederation.CONCACAF, 0 },
-                    { Confederation.OFC, 0 },
-                }
-            }
-        },
-        GroupStage = new GroupStageConfiguration
-        {
-            NumberOfGroups = 6,
-            TeamsPerGroup = 4,
-            AutomaticQualifiersPerGroup = 2,
-            Matchmaking = MatchmakingType.SingleRoundRobin,
-            ThirdPlaceRule = new ThirdPlaceQualificationConfiguration { TotalQualifyingThirdPlaceTeams = 4 }
-        },
-        KnockoutStage = new KnockoutStageConfiguration
-        {
-            StartingRound = KnockoutRound.RoundOf16,
-            HasThirdPlaceMatch = true
-        }
-    };
     
-    private static readonly TournamentConfiguration Custom28 = new()
+    private static readonly TournamentConfiguration UEFAQualification = new()
     {
-        Code = "Custom Tourney",
-        Name = "Targaryen Tourney",
-        TotalTeams = 80,
-        ConfederationSlots = new Dictionary<Confederation, int>
-        {
-            { Confederation.UEFA, 32 },
-            { Confederation.CAF, 12 },
-            { Confederation.AFC, 12 },
-            { Confederation.CONCACAF, 10 },
-            { Confederation.CONMEBOL, 10 },
-            { Confederation.OFC, 4 },
-        },
+        
+        Code = "UEFA_WORLD_CUP_QUALIFIERS",
+        Name = "UEFA World Cup Qualifiers",
+        TotalTeams = 32,
+        ConfederationSlots = null,
         Pots = new PotConfiguration
         {
             TotalPots = 4,
-            SortingType = PotSortingType.WorldRanking,
+            SortingType = PotSortingType.Strict,
             HostInPotOne = true,
-            DrawConstraints = new DrawConstraintsConfiguration
-            {
-                SeparateConfederations = true,
-                MaxTeamsPerConfederation = new Dictionary<Confederation, int>
-                {
-                    { Confederation.UEFA, 6 },
-                    { Confederation.AFC, 6 },
-                    { Confederation.CAF, 6 },
-                    { Confederation.CONMEBOL, 6 },
-                    { Confederation.CONCACAF, 6 },
-                    { Confederation.OFC, 6 },
-                }
-            }
+            DrawConstraints = null
         },
         GroupStage = new GroupStageConfiguration
         {
-            NumberOfGroups = 20,
+            NumberOfGroups = 8,
             TeamsPerGroup = 4,
-            AutomaticQualifiersPerGroup = 2,
-            Matchmaking = MatchmakingType.SingleRoundRobin,
-            ThirdPlaceRule = new ThirdPlaceQualificationConfiguration { TotalQualifyingThirdPlaceTeams = 8 }
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            ThirdPlaceRule = null
         },
-        KnockoutStage = new KnockoutStageConfiguration
-        {
-            StartingRound = KnockoutRound.RoundOf32,
-            HasThirdPlaceMatch = true
-        }
+        KnockoutStage = null
     };
 }

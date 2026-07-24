@@ -34,10 +34,10 @@
   },
   {
     "id": "jgy",
-    "name": "Jersey and Guernsey",
+    "name": "Channel Islands",
     "short_name": "JGY",
     "confederation": "UEFA",
-    "football_association": "Jersey & Guernsey Football Association",
+    "football_association": "Channel Islands Football Association",
     "default_points": 901,
     "strength": 35,
     "flag_url": "https://flagcdn.com/w40/gg.png",
@@ -52,7 +52,7 @@
     "default_points": 782,
     "strength": 35,
     "flag_url": "https://flagcdn.com/w40/ax.png",
-    "home_stadium": "Corbet Field"
+    "home_stadium": "Wiklöf Holding Arena"
   },
   {
     "id": "imn",
@@ -62,8 +62,73 @@
     "football_association": "Isle of Man Football Association",
     "default_points": 699,
     "strength": 35,
-    "flag_url": "https://flagcdn.com/w40/imn.png",
+    "flag_url": "https://flagcdn.com/w40/im.png",
     "home_stadium": "King George V Bowl"
+  },
+  {
+    "id": "fmc",
+    "name": "Micronesia",
+    "short_name": "FMC",
+    "confederation": "OFC",
+    "football_association": "Federated States of Micronesia Football Association",
+    "default_points": 680,
+    "strength": 35,
+    "flag_url": "https://flagcdn.com/w40/fm.png",
+    "home_stadium": "Yap Sports Complex"
+  },
+  {
+    "id": "nru",
+    "name": "Nauru",
+    "short_name": "NRU",
+    "confederation": "OFC",
+    "football_association": "Nauru Soccer Federation",
+    "default_points": 660,
+    "strength": 35,
+    "flag_url": "https://flagcdn.com/w40/nr.png",
+    "home_stadium": "New Nauru Stadium"
+  },
+  {
+    "id": "mhl",
+    "name": "Marshall Islands",
+    "short_name": "MHL",
+    "confederation": "OFC",
+    "football_association": "Marshall Islands Soccer Federation",
+    "default_points": 691,
+    "strength": 35,
+    "flag_url": "https://flagcdn.com/w40/mh.png",
+    "home_stadium": "Majuro Track and Field Stadium"
+  },
+  {
+    "id": "plw",
+    "name": "Palau",
+    "short_name": "PLW",
+    "confederation": "OFC",
+    "football_association": "Palau Football Association",
+    "default_points": 714,
+    "strength": 35,
+    "flag_url": "https://flagcdn.com/w40/pw.png",
+    "home_stadium": "PCC Track & Field Stadium"
+  },
+  {
+    "id": "niu",
+    "name": "Niue",
+    "short_name": "NIU",
+    "confederation": "OFC",
+    "football_association": "Niue Football Association",
+    "default_points": 671,
+    "strength": 35,
+    "flag_url": "https://flagcdn.com/w40/nu.png",
+    "home_stadium": "Paliati Grounds"
+  },
+  {
+    "id": "cck",
+    "name": "Cocos Islands",
+    "short_name": "CCK",
+    "confederation": "OFC",
+    "football_association": "Keeling Islands Football Association",
+    "default_points": 643,
+    "strength": 35,
+    "flag_url": "https://flagcdn.com/w40/cc.png",
+    "home_stadium": "Pulu Stadium"
   }
-  
 ]

@@ -5,6 +5,7 @@ using WorldCupSimulator.Application.Simulations;
 using WorldCupSimulator.Contracts;
 using WorldCupSimulator.Infrastructure;
 using WorldCupSimulator.Models;
+using WorldCupSimulator.Models.Countries;
 using WorldCupSimulator.Models.TournamentConfigurations;
 
 namespace WorldCupSimulator.Controllers;
@@ -23,20 +24,11 @@ public class TournamentController(
     public ActionResult<TournamentDrawSetup> GetDrawSetup([FromQuery] string? tournamentCode)
     {
         var config = TournamentFactory.GetByCode(tournamentCode) ?? TournamentFactory.WorldCup2026;
-    
-        var allTeams = countryRepository.GetAllTeams().ToList();
-
-        if (allTeams.Count < config.TotalTeams)
-        {
-            return BadRequest(new { 
-                message = $"Not enough teams to simulate {config.Name}. Required: {config.TotalTeams}, Found: {allTeams.Count}." 
-            });
-        }
-    
-        var qualifiedTeams = SelectQualifiedTeams(allTeams, config);
         
-        var pots = potSeedingService.GeneratePots(qualifiedTeams, config);
-    
+        var allTeams = countryRepository.GetAllTeams().ToList();
+        
+        var pots = potSeedingService.GeneratePots(allTeams, null, config);
+
         var setup = new TournamentDrawSetup
         {
             TournamentCode = config.Code,
@@ -56,7 +48,7 @@ public class TournamentController(
             return BadRequest("Invalid group configuration package.");
         }
 
-        var session = tournamentService.CreateNewSession(groups);
+        var session = tournamentService.CreateNewSession(groups, true);
         return Ok(session);
     }
 

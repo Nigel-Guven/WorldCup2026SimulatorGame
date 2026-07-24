@@ -9,7 +9,7 @@ public class TournamentService : ITournamentService
 
     public TournamentSession? GetCurrentSession() => _activeSession;
 
-    public TournamentSession CreateNewSession(List<GroupSetupDto> groupsFromFrontend)
+    public TournamentSession CreateNewSession(List<GroupSetupDto> groupsFromFrontend, bool isRoundRobin)
     {
         var session = new TournamentSession();
 
@@ -29,7 +29,7 @@ public class TournamentService : ITournamentService
             session.Groups.Add(groupState);
 
             if (g.Teams.Count < 2) continue;
-            var groupFixtures = GenerateRoundRobinFixtures(g.Name, g.Teams);
+            var groupFixtures = GenerateRoundRobinFixtures(g.Name, g.Teams, isRoundRobin);
             session.Fixtures.AddRange(groupFixtures);
         }
 
@@ -121,7 +121,7 @@ public class TournamentService : ITournamentService
             .ToList();
     }
     
-    private static List<MatchFixture> GenerateRoundRobinFixtures(string groupName, List<Country> teams)
+    private static List<MatchFixture> GenerateRoundRobinFixtures(string groupName, List<Country> teams, bool isRoundRobin)
     {
         var fixtures = new List<MatchFixture>();
         var teamList = teams.ToList();
@@ -148,6 +148,9 @@ public class TournamentService : ITournamentService
                     (home, away) = (away, home);
                 }
 
+                if (home == null || away == null) 
+                    continue;
+
                 fixtures.Add(new MatchFixture
                 {
                     GroupName = groupName,
@@ -155,6 +158,17 @@ public class TournamentService : ITournamentService
                     HomeTeam = home,
                     AwayTeam = away
                 });
+
+                if (isRoundRobin)
+                {
+                    fixtures.Add(new MatchFixture
+                    {
+                        GroupName = groupName,
+                        Matchday = matchday + totalMatchdays,
+                        HomeTeam = away,
+                        AwayTeam = home
+                    });
+                }
             }
             
             var last = teamList[^1];

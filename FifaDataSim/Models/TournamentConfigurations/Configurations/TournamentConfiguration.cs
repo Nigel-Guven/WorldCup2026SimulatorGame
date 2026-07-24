@@ -10,5 +10,5 @@ public class TournamentConfiguration
     public required Dictionary<Confederation, int>? ConfederationSlots { get; init; }
     public required PotConfiguration Pots { get; init; }
     public required GroupStageConfiguration GroupStage { get; init; }
-    public required KnockoutStageConfiguration KnockoutStage { get; init; }
+    public KnockoutStageConfiguration? KnockoutStage { get; init; }
 }

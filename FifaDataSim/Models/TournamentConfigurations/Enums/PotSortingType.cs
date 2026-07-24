@@ -4,5 +4,6 @@ public enum PotSortingType
 {
     WorldRanking, 
     ConfederationBalanced, 
+    Strict,
     Random
 }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WorldCupSimulator.Infrastructure;
 using WorldCupSimulator.Models;
+using WorldCupSimulator.Models.Countries;
 
 namespace WorldCupSimulator.Controllers;
 

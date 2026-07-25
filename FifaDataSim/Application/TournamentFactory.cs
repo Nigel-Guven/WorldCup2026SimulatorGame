@@ -8,7 +8,7 @@ public static class TournamentFactory
 {
     public static TournamentConfiguration GetByCode(string code)
     {
-            return UEFAQualification;
+            return OceaniaQualification;
     }
     
     public static readonly TournamentConfiguration WorldCup2026 = new()
@@ -59,24 +59,24 @@ public static class TournamentFactory
         }
     };
     
-    private static readonly TournamentConfiguration UEFAQualification = new()
+    private static readonly TournamentConfiguration OceaniaQualification = new()
     {
         
-        Code = "UEFA_WORLD_CUP_QUALIFIERS",
-        Name = "UEFA World Cup Qualifiers",
-        TotalTeams = 32,
+        Code = "OCEANIA_WORLD_CUP_QUALIFIERS",
+        Name = "OCEANIA World Cup Qualifiers",
+        TotalTeams = 20,
         ConfederationSlots = null,
         Pots = new PotConfiguration
         {
-            TotalPots = 4,
+            TotalPots = 5,
             SortingType = PotSortingType.Strict,
             HostInPotOne = true,
             DrawConstraints = null
         },
         GroupStage = new GroupStageConfiguration
         {
-            NumberOfGroups = 8,
-            TeamsPerGroup = 4,
+            NumberOfGroups = 4,
+            TeamsPerGroup = 5,
             AutomaticQualifiersPerGroup = 1,
             Matchmaking = MatchmakingType.DoubleRoundRobin,
             ThirdPlaceRule = null

@@ -15,7 +15,7 @@ export function ThirdPlaceStandingsTable({
     const thirdPlaceTeams = groups
       .map((group) => {
         // Assume standings are ordered (0: 1st, 1: 2nd, 2: 3rd, 3: 4th)
-        const row = group.standings[2];
+        const row = group.standings[1];
         if (!row) return null;
         return {
           ...row,

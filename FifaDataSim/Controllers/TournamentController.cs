@@ -25,9 +25,9 @@ public class TournamentController(
     {
         var config = TournamentFactory.GetByCode(tournamentCode) ?? TournamentFactory.WorldCup2026;
         
-        var allTeams = countryRepository.GetAllTeams().ToList();
+        var allTeams = countryRepository.GetTeamsByConfederation(Confederation.OFC).ToList();
         
-        var pots = potSeedingService.GeneratePots(allTeams, null, config);
+        var pots = potSeedingService.GeneratePots(allTeams, config);
 
         var setup = new TournamentDrawSetup
         {

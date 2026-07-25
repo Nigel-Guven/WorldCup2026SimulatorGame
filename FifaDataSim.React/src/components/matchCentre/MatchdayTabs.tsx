@@ -22,7 +22,7 @@ export function MatchdayTabs({
   const availableMatchdays = matchdays.length > 0 ? matchdays : [1, 2, 3];
 
   return (
-    <div className="flex space-x-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800/80 overflow-x-auto scrollbar-none">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex space-x-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800/80 overflow-x-auto scrollbar-none">
       {availableMatchdays.map((md) => {
         const isActive = activeMatchday === md;
         return (

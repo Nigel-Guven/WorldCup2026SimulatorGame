@@ -9,7 +9,9 @@ export default function RankBadge({ rank }: Props) {
             : rank === 2
             ? "bg-slate-300 text-slate-950"
             : rank === 3
-            ? "bg-amber-700 text-white"
+            ? "bg-amber-700 text-white" 
+            : rank >= 4 && rank <= 10
+            ? "bg-blue-700 text-white"
             : "text-slate-400";
 
     return (

@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WorldCupSimulator.Infrastructure;
 using WorldCupSimulator.Models;
-using WorldCupSimulator.Models.Countries;
 
 namespace WorldCupSimulator.Controllers;
 
@@ -10,11 +9,9 @@ namespace WorldCupSimulator.Controllers;
 public class TeamsController(ICountryRepository repository) : ControllerBase
 {
     [HttpGet]
-    public ActionResult<IEnumerable<Country>> GetTeams([FromQuery] string? confederation = null)
+    public ActionResult<IEnumerable<Country>> GetAllTeams()
     {
-        Enum.TryParse(confederation, out Confederation validConfederation);
-        
-        return Ok(!string.IsNullOrEmpty(confederation) ? repository.GetTeamsByConfederation(validConfederation) : repository.GetAllTeams());
+        return Ok(repository.GetAllTeams());
     }
     
     [HttpGet("{id}")]
@@ -27,5 +24,12 @@ public class TeamsController(ICountryRepository repository) : ControllerBase
         }
         
         return Ok(team);
+    }
+
+    [HttpGet("confederation/{confederation}")]
+    public ActionResult<IEnumerable<Country>> GetTeamsByConfederation(Confederation confederation)
+    {
+        var teams = repository.GetTeamsByConfederation(confederation);
+        return Ok(teams);
     }
 }

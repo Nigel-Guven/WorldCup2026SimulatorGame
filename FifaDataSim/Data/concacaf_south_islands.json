@@ -72,7 +72,7 @@
     "confederation": "CONCACAF",
     "football_association": "Fédération Haïtienne de Football",
     "default_points": 1264,
-    "strength": 62,
+    "strength": 65,
     "flag_url": "https://flagcdn.com/w40/ht.png",
     "home_stadium": "Parc Saint Louis"
   },
@@ -83,7 +83,7 @@
     "confederation": "CONCACAF",
     "football_association": "Jamaica Football Federation",
     "default_points": 1357,
-    "strength": 76,
+    "strength": 70,
     "flag_url": "https://flagcdn.com/w40/jm.png",
     "home_stadium": "National Stadium"
   },

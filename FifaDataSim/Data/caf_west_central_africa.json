@@ -17,7 +17,7 @@
     "confederation": "CAF",
     "football_association": "Fédération Congolaise de Football Association",
     "default_points": 1495,
-    "strength": 68,
+    "strength": 71,
     "flag_url": "https://flagcdn.com/w40/cd.png",
     "home_stadium": "Stade des Martyrs"
   },
@@ -28,7 +28,7 @@
     "confederation": "CAF",
     "football_association": "Ghana Football Association",
     "default_points": 1387,
-    "strength": 75,
+    "strength": 72,
     "flag_url": "https://flagcdn.com/w40/gh.png",
     "home_stadium": "Cape Coast Stadium"
   },
@@ -61,7 +61,7 @@
     "confederation": "CAF",
     "football_association": "Nigeria Football Federation",
     "default_points": 1585,
-    "strength": 79,
+    "strength": 77,
     "flag_url": "https://flagcdn.com/w40/ng.png",
     "home_stadium": "Godswill Akpabio International Stadium"
   },
@@ -72,7 +72,7 @@
     "confederation": "CAF",
     "football_association": "Cameroonian Football Federation",
     "default_points": 1481,
-    "strength": 76,
+    "strength": 74,
     "flag_url": "https://flagcdn.com/w40/cm.png",
     "home_stadium": "Stade Japoma"
   },
@@ -116,7 +116,7 @@
     "confederation": "CAF",
     "football_association": "Fédération Gabonaise de Football",
     "default_points": 1272,
-    "strength": 60,
+    "strength": 58,
     "flag_url": "https://flagcdn.com/w40/ga.png",
     "home_stadium": "Stade d'Angondjé"
   }

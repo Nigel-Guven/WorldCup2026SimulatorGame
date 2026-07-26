@@ -17,7 +17,7 @@
     "confederation": "UEFA",
     "football_association": "Russian Football Union",
     "default_points": 1529,
-    "strength": 78,
+    "strength": 73,
     "flag_url": "https://flagcdn.com/w40/ru.png",
     "home_stadium": "Luzhniki Stadium"
   },
@@ -39,7 +39,7 @@
     "confederation": "UEFA",
     "football_association": "Football Federation of Belarus",
     "default_points": 1242,
-    "strength": 55,
+    "strength": 53,
     "flag_url": "https://flagcdn.com/w40/by.png",
     "home_stadium": "Dinamo Stadium"
   },
@@ -50,7 +50,7 @@
     "confederation": "UEFA",
     "football_association": "Association of Football Federations of Ukraine",
     "default_points": 1549,
-    "strength": 78,
+    "strength": 76,
     "flag_url": "https://flagcdn.com/w40/ua.png",
     "home_stadium": "NSC Olimpiyskiy"
   }

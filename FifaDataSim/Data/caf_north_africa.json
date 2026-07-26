@@ -6,7 +6,7 @@
     "confederation": "CAF",
     "football_association": "Algerian Football Federation",
     "default_points": 1576,
-    "strength": 78,
+    "strength": 75,
     "flag_url": "https://flagcdn.com/w40/dz.png",
     "home_stadium": "Stade du 5 Juillet 1962"
   },
@@ -17,7 +17,7 @@
     "confederation": "CAF",
     "football_association": "Egyptian Football Association",
     "default_points": 1610,
-    "strength": 81,
+    "strength": 84,
     "flag_url": "https://flagcdn.com/w40/eg.png",
     "home_stadium": "Cairo International Stadium"
   },
@@ -39,7 +39,7 @@
     "confederation": "CAF",
     "football_association": "Royal Moroccan Football Federation",
     "default_points": 1803,
-    "strength": 83,
+    "strength": 85,
     "flag_url": "https://flagcdn.com/w40/ma.png",
     "home_stadium": "Stade Mohammed V"
   },
@@ -50,7 +50,7 @@
     "confederation": "CAF",
     "football_association": "Tunisian Football Federation",
     "default_points": 1426,
-    "strength": 77,
+    "strength": 73,
     "flag_url": "https://flagcdn.com/w40/tn.png",
     "home_stadium": "Stade Olympique de Radès"
   },

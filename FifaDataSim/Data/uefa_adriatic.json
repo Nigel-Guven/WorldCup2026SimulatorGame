@@ -28,7 +28,7 @@
     "confederation": "UEFA",
     "football_association": "Hungarian Football Federation",
     "default_points": 1506,
-    "strength": 82,
+    "strength": 79,
     "flag_url": "https://flagcdn.com/w40/hu.png",
     "home_stadium": "Puskás Aréna"
   },
@@ -50,7 +50,7 @@
     "confederation": "UEFA",
     "football_association": "Football Federation of Bosnia and Herzegovina",
     "default_points": 1408,
-    "strength": 70,
+    "strength": 72,
     "flag_url": "https://flagcdn.com/w40/ba.png",
     "home_stadium": "Asim Ferhatović Koševo Stadium"
   }

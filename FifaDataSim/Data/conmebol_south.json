@@ -6,7 +6,7 @@
     "confederation": "CONMEBOL",
     "football_association": "Argentine Football Association",
     "default_points": 1970,
-    "strength": 93,
+    "strength": 92,
     "flag_url": "https://flagcdn.com/w40/ar.png",
     "home_stadium": "Estadio Monumental"
   },
@@ -17,7 +17,7 @@
     "confederation": "CONMEBOL",
     "football_association": "Bolivian Football Federation",
     "default_points": 1326,
-    "strength": 72,
+    "strength": 68,
     "flag_url": "https://flagcdn.com/w40/bo.png",
     "home_stadium": "Estadio Hernando Siles"
   },
@@ -28,7 +28,7 @@
     "confederation": "CONMEBOL",
     "football_association": "Federación de Fútbol de Chile",
     "default_points": 1458,
-    "strength": 83,
+    "strength": 73,
     "flag_url": "https://flagcdn.com/w40/cl.png",
     "home_stadium": "Estadio Nacional"
   },
@@ -50,7 +50,7 @@
     "confederation": "CONMEBOL",
     "football_association": "Uruguayan Football Association",
     "default_points": 1634,
-    "strength": 87,
+    "strength": 83,
     "flag_url": "https://flagcdn.com/w40/uy.png",
     "home_stadium": "Estadio Centenario"
   }

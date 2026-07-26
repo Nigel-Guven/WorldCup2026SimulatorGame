@@ -6,7 +6,7 @@
     "confederation": "OFC",
     "football_association": "Cook Islands Football Association",
     "default_points": 877,
-    "strength": 35,
+    "strength": 27,
     "flag_url": "https://flagcdn.com/w40/ck.png",
     "home_stadium": "Baira Park"
   },
@@ -17,7 +17,7 @@
     "confederation": "OFC",
     "football_association": "American Samoa Football Association",
     "default_points": 871,
-    "strength": 25,
+    "strength": 21,
     "flag_url": "https://flagcdn.com/w40/as.png",
     "home_stadium": "Pago Pago Football Field"
   },
@@ -28,7 +28,7 @@
     "confederation": "OFC",
     "football_association": "New Zealand Football",
     "default_points": 1269,
-    "strength": 70,
+    "strength": 66,
     "flag_url": "https://flagcdn.com/w40/nz.png",
     "home_stadium": "Wellington Regional Stadium"
   },
@@ -39,7 +39,7 @@
     "confederation": "OFC",
     "football_association": "Fédération Calédonienne de Football",
     "default_points": 1036,
-    "strength": 55,
+    "strength": 44,
     "flag_url": "https://flagcdn.com/w40/nc.png",
     "home_stadium": "Stade Nesselmann"
   },
@@ -50,7 +50,7 @@
     "confederation": "OFC",
     "football_association": "Tonga Football Association",
     "default_points": 1080,
-    "strength": 38,
+    "strength": 48,
     "flag_url": "https://flagcdn.com/w40/to.png",
     "home_stadium": "Tonga Stadium"
   },
@@ -61,7 +61,7 @@
     "confederation": "OFC",
     "football_association": "Vanuatu Football Federation",
     "default_points": 1002,
-    "strength": 60,
+    "strength": 34,
     "flag_url": "https://flagcdn.com/w40/vu.png",
     "home_stadium": "Port Vila Municipal Stadium"
   },
@@ -72,7 +72,7 @@
     "confederation": "OFC",
     "football_association": "Tokelau Football Association",
     "default_points": 846,
-    "strength": 60,
+    "strength": 18,
     "flag_url": "https://flagcdn.com/w40/tk.png",
     "home_stadium": "Hemoana Park"
   }

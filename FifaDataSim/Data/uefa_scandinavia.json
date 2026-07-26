@@ -6,7 +6,7 @@
     "confederation": "UEFA",
     "football_association": "Football Association of Iceland",
     "default_points": 1342,
-    "strength": 77,
+    "strength": 69,
     "flag_url": "https://flagcdn.com/w40/is.png",
     "home_stadium": "Laugardalsvöllur"
   },
@@ -28,7 +28,7 @@
     "confederation": "UEFA",
     "football_association": "Swedish Football Association",
     "default_points": 1525,
-    "strength": 83,
+    "strength": 78,
     "flag_url": "https://flagcdn.com/w40/se.png",
     "home_stadium": "Friends Arena"
   },

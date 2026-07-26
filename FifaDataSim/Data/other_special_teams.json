@@ -72,7 +72,7 @@
     "confederation": "OFC",
     "football_association": "Federated States of Micronesia Football Association",
     "default_points": 680,
-    "strength": 35,
+    "strength": 10,
     "flag_url": "https://flagcdn.com/w40/fm.png",
     "home_stadium": "Yap Sports Complex"
   },
@@ -83,7 +83,7 @@
     "confederation": "OFC",
     "football_association": "Nauru Soccer Federation",
     "default_points": 660,
-    "strength": 35,
+    "strength": 8,
     "flag_url": "https://flagcdn.com/w40/nr.png",
     "home_stadium": "New Nauru Stadium"
   },
@@ -94,7 +94,7 @@
     "confederation": "OFC",
     "football_association": "Marshall Islands Soccer Federation",
     "default_points": 691,
-    "strength": 35,
+    "strength": 12,
     "flag_url": "https://flagcdn.com/w40/mh.png",
     "home_stadium": "Majuro Track and Field Stadium"
   },
@@ -105,7 +105,7 @@
     "confederation": "OFC",
     "football_association": "Palau Football Association",
     "default_points": 714,
-    "strength": 35,
+    "strength": 17,
     "flag_url": "https://flagcdn.com/w40/pw.png",
     "home_stadium": "PCC Track & Field Stadium"
   },
@@ -116,7 +116,7 @@
     "confederation": "OFC",
     "football_association": "Niue Football Association",
     "default_points": 671,
-    "strength": 35,
+    "strength": 6,
     "flag_url": "https://flagcdn.com/w40/nu.png",
     "home_stadium": "Paliati Grounds"
   },
@@ -127,7 +127,7 @@
     "confederation": "OFC",
     "football_association": "Keeling Islands Football Association",
     "default_points": 643,
-    "strength": 35,
+    "strength": 5,
     "flag_url": "https://flagcdn.com/w40/cc.png",
     "home_stadium": "Pulu Stadium"
   }

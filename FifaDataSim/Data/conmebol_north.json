@@ -6,7 +6,7 @@
     "confederation": "CONMEBOL",
     "football_association": "Brazilian Football Confederation",
     "default_points": 1804,
-    "strength": 94,
+    "strength": 90,
     "flag_url": "https://flagcdn.com/w40/br.png",
     "home_stadium": "Estádio Maracanã"
   },
@@ -17,7 +17,7 @@
     "confederation": "CONMEBOL",
     "football_association": "Federación Colombiana de Fútbol",
     "default_points": 1739,
-    "strength": 85,
+    "strength": 86,
     "flag_url": "https://flagcdn.com/w40/co.png",
     "home_stadium": "Estadio Metropolitano"
   },
@@ -28,7 +28,7 @@
     "confederation": "CONMEBOL",
     "football_association": "Federación Ecuatoriana de Fútbol",
     "default_points": 1592,
-    "strength": 82,
+    "strength": 79,
     "flag_url": "https://flagcdn.com/w40/ec.png",
     "home_stadium": "Estadio Olímpico Atahualpa"
   },
@@ -39,7 +39,7 @@
     "confederation": "CONMEBOL",
     "football_association": "Peruvian Football Federation",
     "default_points": 1457,
-    "strength": 80,
+    "strength": 70,
     "flag_url": "https://flagcdn.com/w40/pe.png",
     "home_stadium": "Estadio Nacional"
   },

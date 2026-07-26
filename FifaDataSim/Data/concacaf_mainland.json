@@ -17,7 +17,7 @@
     "confederation": "CONCACAF",
     "football_association": "United States Soccer Federation",
     "default_points": 1690,
-    "strength": 85,
+    "strength": 83,
     "flag_url": "https://flagcdn.com/w40/us.png",
     "home_stadium": "Lower.com Field"
   },
@@ -61,7 +61,7 @@
     "confederation": "CONCACAF",
     "football_association": "Federación Salvadoreña de Fútbol",
     "default_points": 1225,
-    "strength": 69,
+    "strength": 64,
     "flag_url": "https://flagcdn.com/w40/sv.png",
     "home_stadium": "Estadio Cuscatlán"
   },
@@ -72,7 +72,7 @@
     "confederation": "CONCACAF",
     "football_association": "Federación Nacional de Fútbol de Guatemala",
     "default_points": 1238,
-    "strength": 68,
+    "strength": 62,
     "flag_url": "https://flagcdn.com/w40/gt.png",
     "home_stadium": "Estadio Doroteo Guamuz"
   },
@@ -83,7 +83,7 @@
     "confederation": "CONCACAF",
     "football_association": "Federación Nacional Autónoma de Fútbol",
     "default_points": 1378,
-    "strength": 73,
+    "strength": 68,
     "flag_url": "https://flagcdn.com/w40/hn.png",
     "home_stadium": "Estadio Olímpico Metropolitano"
   },
@@ -105,7 +105,7 @@
     "confederation": "CONCACAF",
     "football_association": "Panamanian Football Federation",
     "default_points": 1478,
-    "strength": 74,
+    "strength": 76,
     "flag_url": "https://flagcdn.com/w40/pa.png",
     "home_stadium": "Estadio Rommel Fernández"
   },

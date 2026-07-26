@@ -6,7 +6,7 @@
     "confederation": "AFC",
     "football_association": "Football Australia",
     "default_points": 1581,
-    "strength": 77,
+    "strength": 76,
     "flag_url": "https://flagcdn.com/w40/au.png",
     "home_stadium": "Stadium Australia"
   },
@@ -116,7 +116,7 @@
     "confederation": "AFC",
     "football_association": "Football Association of Thailand",
     "default_points": 1250,
-    "strength": 69,
+    "strength": 62,
     "flag_url": "https://flagcdn.com/w40/th.png",
     "home_stadium": "Rajamangala Stadium"
   },
@@ -127,7 +127,7 @@
     "confederation": "AFC",
     "football_association": "Vietnam Football Federation",
     "default_points": 1227,
-    "strength": 67,
+    "strength": 60,
     "flag_url": "https://flagcdn.com/w40/vn.png",
     "home_stadium": "Mỹ Đình National Stadium"
   }

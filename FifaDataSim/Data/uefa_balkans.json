@@ -17,7 +17,7 @@
     "confederation": "UEFA",
     "football_association": "Romanian Football Federation",
     "default_points": 1455,
-    "strength": 78,
+    "strength": 72,
     "flag_url": "https://flagcdn.com/w40/ro.png",
     "home_stadium": "Arena Națională"
   },
@@ -28,7 +28,7 @@
     "confederation": "UEFA",
     "football_association": "Football Association of Serbia",
     "default_points": 1502,
-    "strength": 80,
+    "strength": 76,
     "flag_url": "https://flagcdn.com/w40/rs.png",
     "home_stadium": "Rajko Mitić Stadium"
   },
@@ -39,7 +39,7 @@
     "confederation": "UEFA",
     "football_association": "Bulgarian Football Union",
     "default_points": 1271,
-    "strength": 68,
+    "strength": 65,
     "flag_url": "https://flagcdn.com/w40/bg.png",
     "home_stadium": "Vasil Levski National Stadium"
   },

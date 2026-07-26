@@ -17,7 +17,7 @@
     "confederation": "UEFA",
     "football_association": "Hellenic Football Federation",
     "default_points": 1473,
-    "strength": 78,
+    "strength": 76,
     "flag_url": "https://flagcdn.com/w40/gr.png",
     "home_stadium": "Karaiskakis Stadium"
   },
@@ -28,7 +28,7 @@
     "confederation": "UEFA",
     "football_association": "Albanian Football Association",
     "default_points": 1376,
-    "strength": 72,
+    "strength": 70,
     "flag_url": "https://flagcdn.com/w40/al.png",
     "home_stadium": "Air Albania Stadium"
   },
@@ -39,7 +39,7 @@
     "confederation": "UEFA",
     "football_association": "Football Federation of Macedonia",
     "default_points": 1369,
-    "strength": 66,
+    "strength": 68,
     "flag_url": "https://flagcdn.com/w40/mk.png",
     "home_stadium": "Toše Proeski Arena"
   },
@@ -50,7 +50,7 @@
     "confederation": "UEFA",
     "football_association": "Football Federation of Kosovo",
     "default_points": 1319,
-    "strength": 58,
+    "strength": 67,
     "flag_url": "https://flagcdn.com/w40/xk.png",
     "home_stadium": "Fadil Vokrri Stadium"
   }

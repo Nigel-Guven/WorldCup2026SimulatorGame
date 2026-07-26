@@ -6,7 +6,7 @@
     "confederation": "OFC",
     "football_association": "Tuvalu National Football Association",
     "default_points": 900,
-    "strength": 25,
+    "strength": 27,
     "flag_url": "https://flagcdn.com/w40/tv.png",
     "home_stadium": "Tuvalu Sports Ground"
   },
@@ -17,7 +17,7 @@
     "confederation": "OFC",
     "football_association": "Papua New Guinea Football Association",
     "default_points": 974,
-    "strength": 50,
+    "strength": 30,
     "flag_url": "https://flagcdn.com/w40/pg.png",
     "home_stadium": "Sir Hubert Murray Stadium"
   },
@@ -28,7 +28,7 @@
     "confederation": "OFC",
     "football_association": "Solomon Islands Football Federation",
     "default_points": 1031,
-    "strength": 60,
+    "strength": 43,
     "flag_url": "https://flagcdn.com/w40/sb.png",
     "home_stadium": "Lawson Tama Stadium"
   },
@@ -50,7 +50,7 @@
     "confederation": "OFC",
     "football_association": "Tahitian Football Federation",
     "default_points": 1019,
-    "strength": 55,
+    "strength": 43,
     "flag_url": "https://flagcdn.com/w40/pf.png",
     "home_stadium": "Stade de la Proue"
   },
@@ -61,7 +61,7 @@
     "confederation": "OFC",
     "football_association": "Fiji Football Association",
     "default_points": 1024,
-    "strength": 57,
+    "strength": 43,
     "flag_url": "https://flagcdn.com/w40/fj.png",
     "home_stadium": "HFC Park"
   },
@@ -72,7 +72,7 @@
     "confederation": "OFC",
     "football_association": "Football Federation Samoa",
     "default_points": 876,
-    "strength": 40,
+    "strength": 27,
     "flag_url": "https://flagcdn.com/w40/ws.png",
     "home_stadium": "Tuanaimamo Stadium"
   }

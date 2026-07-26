@@ -116,7 +116,7 @@
     "confederation": "CONCACAF",
     "football_association": "Ligue de football de Saint-Pierre-et-Miquelon",
     "default_points": 620,
-    "strength": 34,
+    "strength": 5,
     "flag_url": "https://flagcdn.com/w40/pm.png",
     "home_stadium": "Stade John Girardin"
   },
@@ -138,7 +138,7 @@
     "confederation": "AFC",
     "football_association": "Karen Soccer Federation",
     "default_points": 646,
-    "strength": 34,
+    "strength": 6,
     "flag_url": "/flags/kayin.png",
     "home_stadium": "Zwekabin Stadium"
   },

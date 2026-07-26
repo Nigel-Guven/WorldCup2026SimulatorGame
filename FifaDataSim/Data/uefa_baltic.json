@@ -39,7 +39,7 @@
     "confederation": "UEFA",
     "football_association": "Polish Football Association",
     "default_points": 1526,
-    "strength": 79,
+    "strength": 76,
     "flag_url": "https://flagcdn.com/w40/pl.png",
     "home_stadium": "Stadion Narodowy"
   },
@@ -50,7 +50,7 @@
     "confederation": "UEFA",
     "football_association": "Slovak Football Association",
     "default_points": 1473,
-    "strength": 73,
+    "strength": 74,
     "flag_url": "https://flagcdn.com/w40/sk.png",
     "home_stadium": "Tehelný field"
   }

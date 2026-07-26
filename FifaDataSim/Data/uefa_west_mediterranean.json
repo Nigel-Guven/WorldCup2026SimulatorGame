@@ -6,7 +6,7 @@
     "confederation": "UEFA",
     "football_association": "Royal Spanish Football Federation",
     "default_points": 1995,
-    "strength": 94,
+    "strength": 93,
     "flag_url": "https://flagcdn.com/w40/es.png",
     "home_stadium": "Santiago Bernabéu"
   },
@@ -50,7 +50,7 @@
     "confederation": "UEFA",
     "football_association": "French Football Federation",
     "default_points": 1948,
-    "strength": 94,
+    "strength": 91,
     "flag_url": "https://flagcdn.com/w40/fr.png",
     "home_stadium": "Stade de France"
   }

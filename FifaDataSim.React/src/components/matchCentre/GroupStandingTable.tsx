@@ -3,48 +3,48 @@ import type { GroupTeamStanding } from '../../types/groupTeamStanding';
 
 interface GroupStandingsTableProps {
   group: GroupState;
+  totalFixtures: number;
 }
 
 type QualificationStatus = 'Q' | 'E' | null;
 
-export function GroupStandingsTable({ group }: GroupStandingsTableProps) {
-  const TOTAL_GROUP_MATCHES = 3;
-  const POINTS_PER_WIN = 3;
+export function GroupStandingsTable({ group, totalFixtures }: GroupStandingsTableProps) {
 
-  const getStatus = (teamIdx: number): QualificationStatus => {
+  const getQualificationStatus = (teamIdx: number): QualificationStatus => {
     const standings = group.standings;
+
     if (!standings || standings.length === 0) return null;
 
-    const totalTeams = standings.length;
-    const matchesPerTeam = totalTeams - 1; // e.g. 9 matches for a 10-team group
-    const qualifyingSpots = 2; // Top 2 advance
+    const qualifyingSpots = 2;
 
-    // If group has fewer teams than qualification spots, qualification logic doesn't apply
-    if (totalTeams <= qualifyingSpots) return null;
+    if (standings.length <= qualifyingSpots) return null;
 
     const currentTeam = standings[teamIdx];
-    const teamMaxPoints = currentTeam.points + (matchesPerTeam - currentTeam.played) * 3;
 
-    // 1. Check for Guaranteed Qualification ('Q')
-    // For teams currently inside qualifying spots (e.g. index 0 or 1)
+    const remainingFixtures = totalFixtures - currentTeam.played;
+    const teamMaxPoints = currentTeam.points + remainingFixtures * 3;
+
+    // Guaranteed Qualification
     if (teamIdx < qualifyingSpots) {
-      // The first team outside qualification (e.g. index 2 for 3rd place)
-      const firstOutTeam = standings[qualifyingSpots]; 
-      const firstOutMaxPoints = firstOutTeam.points + (matchesPerTeam - firstOutTeam.played) * 3;
+      const firstTeamOutsideQualification = standings[qualifyingSpots];
 
-      // If 3rd place cannot catch up to current team's existing points even by winning all remaining games
-      if (currentTeam.points > firstOutMaxPoints) {
+      const outsideRemainingFixtures =
+        totalFixtures - firstTeamOutsideQualification.played;
+
+      const outsideMaxPoints =
+        firstTeamOutsideQualification.points + outsideRemainingFixtures * 3;
+
+      // Current team already has more points than the best possible result
+      // of the first team outside qualification
+      if (currentTeam.points > outsideMaxPoints) {
         return 'Q';
       }
     }
 
-    // 2. Check for Mathematical Elimination ('E')
-    // For teams currently outside qualifying spots (e.g. index >= 2)
+    // Mathematically Eliminated
     if (teamIdx >= qualifyingSpots) {
-      // The team currently holding the last qualifying spot (e.g. index 1 for 2nd place)
       const lastQualifyingTeam = standings[qualifyingSpots - 1];
 
-      // If current team's max possible points cannot reach 2nd place's current points
       if (teamMaxPoints < lastQualifyingTeam.points) {
         return 'E';
       }
@@ -83,7 +83,7 @@ export function GroupStandingsTable({ group }: GroupStandingsTableProps) {
         </thead>
         <tbody className="divide-y divide-slate-800/40 font-medium">
           {group.standings.map((row: GroupTeamStanding, idx: number) => {
-            const status = getStatus(idx);
+            const status = getQualificationStatus(idx);
 
             // Row highlighting & position badge styling
             let posBadgeStyle = 'text-slate-600 bg-slate-950/40';

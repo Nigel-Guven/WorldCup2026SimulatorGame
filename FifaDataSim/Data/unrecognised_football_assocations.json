@@ -1,0 +1,157 @@
+[
+  {
+    "id": "abk",
+    "name": "Abkhazia",
+    "short_name": "ABK",
+    "confederation": "UEFA",
+    "football_association": "Football Federation of Abkhazia",
+    "default_points": 862,
+    "strength": 34,
+    "flag_url": "/flags/abkhazia.png",
+    "home_stadium": "Dinamo Stadium, Sokhumi"
+  },
+  {
+    "id": "bfr",
+    "name": "Biafra",
+    "short_name": "BFR",
+    "confederation": "CAF",
+    "football_association": "Biafra Football Association",
+    "default_points": 767,
+    "strength": 34,
+    "flag_url": "/flags/biafra.png",
+    "home_stadium": "Muhoroni Stadium"
+  },
+  {
+    "id": "kbl",
+    "name": "Kabylie",
+    "short_name": "KBL",
+    "confederation": "CAF",
+    "football_association": "Tarvaɛt tayelnawt taqvaylit n ddavex uḍar",
+    "default_points": 1001,
+    "strength": 34,
+    "flag_url": "/flags/kabylia.png",
+    "home_stadium": "Hocine Aït Ahmed Stadium"
+  },
+  {
+    "id": "krd",
+    "name": "Kurdistan",
+    "short_name": "KRD",
+    "confederation": "AFC",
+    "football_association": "Kurdistan Football Association",
+    "default_points": 901,
+    "strength": 34,
+    "flag_url": "/flags/kurdistan.png",
+    "home_stadium": "Duhok Stadium"
+  },
+  {
+    "id": "ncp",
+    "name": "Northern Cyprus",
+    "short_name": "NCP",
+    "confederation": "UEFA",
+    "football_association": "Kibris Türk Futbol Federasyonu",
+    "default_points": 1195,
+    "strength": 34,
+    "flag_url": "/flags/northern_cyprus.png",
+    "home_stadium": "Nicosia Atatürk Stadium"
+  },
+  {
+    "id": "oss",
+    "name": "Ossetia",
+    "short_name": "OSS",
+    "confederation": "UEFA",
+    "football_association": "Football Association of Ossetia",
+    "default_points": 947,
+    "strength": 34,
+    "flag_url": "/flags/ossetia.png",
+    "home_stadium": " Republican Spartak Stadium"
+  },
+  {
+    "id": "pnj",
+    "name": "Panjab",
+    "short_name": "PNJ",
+    "confederation": "AFC",
+    "football_association": "Punjab Football Association",
+    "default_points": 947,
+    "strength": 34,
+    "flag_url": "/flags/panjab.png",
+    "home_stadium": "Punjab Stadium"
+  },
+  {
+    "id": "sml",
+    "name": "Somaliland",
+    "short_name": "SML",
+    "confederation": "CAF",
+    "football_association": "Xidhiidhka Kubadda Cagta Somaliland",
+    "default_points": 893,
+    "strength": 34,
+    "flag_url": "/flags/somaliland.png",
+    "home_stadium": "Hargeisa Stadium"
+  },
+  {
+    "id": "tib",
+    "name": "Tibet",
+    "short_name": "TIB",
+    "confederation": "AFC",
+    "football_association": "Tibetan National Football Association",
+    "default_points": 825,
+    "strength": 34,
+    "flag_url": "/flags/tibet.png",
+    "home_stadium": "Tibet Stadium"
+  },
+  {
+    "id": "tns",
+    "name": "Pridnestrovian Moldavian Republic",
+    "short_name": "TNS",
+    "confederation": "UEFA",
+    "football_association": "Transnistria Football Federation",
+    "default_points": 702,
+    "strength": 34,
+    "flag_url": "/flags/transnistria.png",
+    "home_stadium": "Sheriff Arena"
+  },
+  {
+    "id": "spm",
+    "name": "Saint Pierre and Miquelon",
+    "short_name": "SPM",
+    "confederation": "CONCACAF",
+    "football_association": "Ligue de football de Saint-Pierre-et-Miquelon",
+    "default_points": 620,
+    "strength": 34,
+    "flag_url": "https://flagcdn.com/w40/pm.png",
+    "home_stadium": "Stade John Girardin"
+  },
+  {
+    "id": "que",
+    "name": "Quebec",
+    "short_name": "QUE",
+    "confederation": "CONCACAF",
+    "football_association": "Quebec Soccer Federation",
+    "default_points": 1130,
+    "strength": 34,
+    "flag_url": "/flags/quebec.png",
+    "home_stadium": "Stade Saputo de Montreal"
+  },
+  {
+    "id": "kay",
+    "name": "Karen State",
+    "short_name": "KAY",
+    "confederation": "AFC",
+    "football_association": "Karen Soccer Federation",
+    "default_points": 646,
+    "strength": 34,
+    "flag_url": "/flags/kayin.png",
+    "home_stadium": "Zwekabin Stadium"
+  },
+  {
+    "id": "blc",
+    "name": "Balochistan",
+    "short_name": "BLC",
+    "confederation": "AFC",
+    "football_association": "Balochistan Football Association",
+    "default_points": 720,
+    "strength": 34,
+    "flag_url": "/flags/balochistan.png",
+    "home_stadium": "Ayub National Stadium"
+  }
+  
+]

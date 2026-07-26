@@ -8,7 +8,7 @@ public static class TournamentFactory
 {
     public static TournamentConfiguration GetByCode(string code)
     {
-            return OceaniaQualification;
+            return SuperCup;
     }
     
     public static readonly TournamentConfiguration WorldCup2026 = new()
@@ -79,6 +79,31 @@ public static class TournamentFactory
             TeamsPerGroup = 5,
             AutomaticQualifiersPerGroup = 1,
             Matchmaking = MatchmakingType.DoubleRoundRobin,
+            ThirdPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
+    private static readonly TournamentConfiguration SuperCup = new()
+    {
+        
+        Code = "SUPER_CUP",
+        Name = "Super Cup",
+        TotalTeams = 250,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 10,
+            SortingType = PotSortingType.WorldRanking,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 25,
+            TeamsPerGroup = 10,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.SingleRoundRobin,
             ThirdPlaceRule = null
         },
         KnockoutStage = null

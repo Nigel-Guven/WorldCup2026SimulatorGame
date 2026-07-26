@@ -30,6 +30,25 @@ public class CountryRepository : ICountryRepository
                 var jsonString = File.ReadAllText(file);
                 var teamsInFile = JsonSerializer.Deserialize<List<Country>>(jsonString);
                 
+                var ids = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                var shortNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                
+                var errors = new List<string>();
+                
+                foreach (var team in teamsInFile)
+                {
+                    if (!ids.Add(team.Id))
+                        errors.Add($"Duplicate id: {team.Id}");
+
+                    if (!shortNames.Add(team.ShortName))
+                        errors.Add($"Duplicate short name: {team.ShortName}");
+                }
+                
+                if (errors.Any())
+                {
+                    Console.WriteLine($"Duplicate ids found: {string.Join(", ", errors)}");
+                }
+                
                 if (teamsInFile != null)
                 {
                     _countries.AddRange(teamsInFile);

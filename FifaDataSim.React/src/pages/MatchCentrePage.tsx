@@ -32,7 +32,7 @@ export default function MatchCentrePage({
     simulateAllUnplayed,
   } = useMatchCentre({ session, onSessionUpdate });
 
-  const thirdPlaceCutoff = session.groups.length === 12 ? 8 : 4;
+  const thirdPlaceCutoff = 7;
 
   return (
     <div className="space-y-6 animate-fade-in">
@@ -98,12 +98,13 @@ export default function MatchCentrePage({
           <ThirdPlaceStandingsTable
             groups={session.groups}
             qualifierCutoff={thirdPlaceCutoff}
+            totalFixtures={totalMatchdays}
           />
 
           {/* All Group Standings Tables */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {session.groups.map((group: GroupState) => (
-              <GroupStandingsTable key={group.name} group={group} />
+              <GroupStandingsTable key={group.name} group={group} totalFixtures={totalMatchdays} />
             ))}
           </div>
         </div>

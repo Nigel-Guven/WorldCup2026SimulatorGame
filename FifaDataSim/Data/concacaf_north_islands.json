@@ -17,7 +17,7 @@
     "confederation": "CONCACAF",
     "football_association": "Aruban Football Federation",
     "default_points": 875,
-    "strength": 50,
+    "strength": 16,
     "flag_url": "https://flagcdn.com/w40/aw.png",
     "home_stadium": "Andoeestadion"
   },
@@ -39,7 +39,7 @@
     "confederation": "CONCACAF",
     "football_association": "Grenada Football Association",
     "default_points": 981,
-    "strength": 55,
+    "strength": 53,
     "flag_url": "https://flagcdn.com/w40/gd.png",
     "home_stadium": "National Stadium"
   },
@@ -61,7 +61,7 @@
     "confederation": "CONCACAF",
     "football_association": "Trinidad and Tobago Football Association",
     "default_points": 1219,
-    "strength": 75,
+    "strength": 68,
     "flag_url": "https://flagcdn.com/w40/tt.png",
     "home_stadium": "Hasely Crawford Stadium"
   },
@@ -72,7 +72,7 @@
     "confederation": "CONCACAF",
     "football_association": "Bonaire Football Federation",
     "default_points": 894,
-    "strength": 40,
+    "strength": 20,
     "flag_url": "https://flagcdn.com/w40/bq.png",
     "home_stadium": "S Chronic Stadium"
   },
@@ -83,7 +83,7 @@
     "confederation": "CONCACAF",
     "football_association": "Barbados Football Association",
     "default_points": 909,
-    "strength": 60,
+    "strength": 25,
     "flag_url": "https://flagcdn.com/w40/bb.png",
     "home_stadium": "Barbados City Stadium"
   },
@@ -94,7 +94,7 @@
     "confederation": "CONCACAF",
     "football_association": "Ligue de Football de la Martinique",
     "default_points": 962,
-    "strength": 62,
+    "strength": 46,
     "flag_url": "https://flagcdn.com/w40/mq.png",
     "home_stadium": "Stade Pierre et Victor"
   },
@@ -105,7 +105,7 @@
     "confederation": "CONCACAF",
     "football_association": "Dominica Football Association",
     "default_points": 897,
-    "strength": 38,
+    "strength": 21,
     "flag_url": "https://flagcdn.com/w40/dm.png",
     "home_stadium": "Windsor Park"
   },
@@ -116,7 +116,7 @@
     "confederation": "CONCACAF",
     "football_association": "Ligue de Football de la Guadeloupe",
     "default_points": 799,
-    "strength": 61,
+    "strength": 9,
     "flag_url": "https://flagcdn.com/w40/gp.png",
     "home_stadium": "Stade René Serge Nabajoth"
   },
@@ -138,7 +138,7 @@
     "confederation": "CONCACAF",
     "football_association": "Anguilla Football Association",
     "default_points": 760,
-    "strength": 20,
+    "strength": 11,
     "flag_url": "https://flagcdn.com/w40/ai.png",
     "home_stadium": "Anguilla National Stadium"
   }

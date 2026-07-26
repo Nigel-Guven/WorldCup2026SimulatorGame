@@ -72,7 +72,7 @@
     "confederation": "CAF",
     "football_association": "Mozambican Football Federation",
     "default_points": 1218,
-    "strength": 60,
+    "strength": 52,
     "flag_url": "https://flagcdn.com/w40/mz.png",
     "home_stadium": "Estádio Nacional do Zimpeto"
   },
@@ -105,7 +105,7 @@
     "confederation": "CAF",
     "football_association": "Ligue Mahoraise de football",
     "default_points": 813,
-    "strength": 70,
+    "strength": 11,
     "flag_url": "https://flagcdn.com/w40/yt.png",
     "home_stadium": "Complexe de Kawani"
   }

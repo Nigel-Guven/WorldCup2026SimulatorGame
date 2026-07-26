@@ -17,7 +17,7 @@
     "confederation": "AFC",
     "football_association": "Iraq Football Association",
     "default_points": 1404,
-    "strength": 751,
+    "strength": 71,
     "flag_url": "https://flagcdn.com/w40/iq.png",
     "home_stadium": "Al-Yaqbiya Stadium"
   },
@@ -127,7 +127,7 @@
     "confederation": "AFC",
     "football_association": "Yemen Football Association",
     "default_points": 1065,
-    "strength": 35,
+    "strength": 44,
     "flag_url": "https://flagcdn.com/w40/ye.png",
     "home_stadium": "22 May Stadium"
   }

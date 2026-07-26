@@ -17,7 +17,7 @@
     "confederation": "AFC",
     "football_association": "Chinese Taipei Football Association",
     "default_points": 923,
-    "strength": 45,
+    "strength": 26,
     "flag_url": "https://flagcdn.com/w40/tw.png",
     "home_stadium": "Taipei Municipal Stadium"
   },
@@ -28,7 +28,7 @@
     "confederation": "AFC",
     "football_association": "Guam Football Association",
     "default_points":819,
-    "strength": 35,
+    "strength": 12,
     "flag_url": "https://flagcdn.com/w40/gu.png",
     "home_stadium": "Calvo Stadium"
   },
@@ -39,7 +39,7 @@
     "confederation": "AFC",
     "football_association": "Hong Kong Football Association",
     "default_points": 1024,
-    "strength": 50,
+    "strength": 49,
     "flag_url": "https://flagcdn.com/w40/hk.png",
     "home_stadium": "Hong Kong Stadium"
   },
@@ -83,7 +83,7 @@
     "confederation": "AFC",
     "football_association": "Macau Football Association",
     "default_points": 858,
-    "strength": 30,
+    "strength": 13,
     "flag_url": "https://flagcdn.com/w40/mo.png",
     "home_stadium": "Macau Stadium"
   },
@@ -94,7 +94,7 @@
     "confederation": "AFC",
     "football_association": "Mongolian Football Federation",
     "default_points": 874,
-    "strength": 40,
+    "strength": 15,
     "flag_url": "https://flagcdn.com/w40/mn.png",
     "home_stadium": "MFF Football Centre"
   },
@@ -105,7 +105,7 @@
     "confederation": "AFC",
     "football_association": "Northern Mariana Islands Football Association",
     "default_points": 697,
-    "strength": 25,
+    "strength": 8,
     "flag_url": "https://flagcdn.com/w40/mp.png",
     "home_stadium": "Smith Recreational Field"
   }

@@ -28,7 +28,7 @@
     "confederation": "UEFA",
     "football_association": "Andorran Football Federation",
     "default_points": 946,
-    "strength": 45,
+    "strength": 33,
     "flag_url": "https://flagcdn.com/w40/ad.png",
     "home_stadium": "Estadi Comunal"
   },
@@ -39,7 +39,7 @@
     "confederation": "UEFA",
     "football_association": "Gibraltar Football Association",
     "default_points": 820,
-    "strength": 47,
+    "strength": 13,
     "flag_url": "https://flagcdn.com/w40/gi.png",
     "home_stadium": "Victoria Stadium"
   },

@@ -6,7 +6,7 @@
     "confederation": "OFC",
     "football_association": "Cook Islands Football Association",
     "default_points": 877,
-    "strength": 27,
+    "strength": 16,
     "flag_url": "https://flagcdn.com/w40/ck.png",
     "home_stadium": "Baira Park"
   },
@@ -17,7 +17,7 @@
     "confederation": "OFC",
     "football_association": "American Samoa Football Association",
     "default_points": 871,
-    "strength": 21,
+    "strength": 13,
     "flag_url": "https://flagcdn.com/w40/as.png",
     "home_stadium": "Pago Pago Football Field"
   },
@@ -50,7 +50,7 @@
     "confederation": "OFC",
     "football_association": "Tonga Football Association",
     "default_points": 1080,
-    "strength": 48,
+    "strength": 44,
     "flag_url": "https://flagcdn.com/w40/to.png",
     "home_stadium": "Tonga Stadium"
   },

@@ -6,7 +6,7 @@
     "confederation": "AFC",
     "football_association": "Bangladesh Football Federation",
     "default_points":902,
-    "strength": 45,
+    "strength": 22,
     "flag_url": "https://flagcdn.com/w40/bd.png",
     "home_stadium": "Bangabandhu National Stadium"
   },
@@ -17,7 +17,7 @@
     "confederation": "AFC",
     "football_association": "Bhutan Football Federation",
     "default_points": 870,
-    "strength": 35,
+    "strength": 17,
     "flag_url": "https://flagcdn.com/w40/bt.png",
     "home_stadium": "Changlimithang Stadium"
   },
@@ -28,7 +28,7 @@
     "confederation": "AFC",
     "football_association": "All India Football Federation",
     "default_points": 1084,
-    "strength": 55,
+    "strength": 50,
     "flag_url": "https://flagcdn.com/w40/in.png",
     "home_stadium": "Salt Lake Stadium"
   },
@@ -39,7 +39,7 @@
     "confederation": "AFC",
     "football_association": "Football Association of Maldives",
     "default_points": 943,
-    "strength": 50,
+    "strength": 29,
     "flag_url": "https://flagcdn.com/w40/mv.png",
     "home_stadium": "National Football Stadium"
   },
@@ -50,7 +50,7 @@
     "confederation": "AFC",
     "football_association": "All Nepal Football Association",
     "default_points": 914,
-    "strength": 48,
+    "strength": 23,
     "flag_url": "https://flagcdn.com/w40/np.png",
     "home_stadium": "Dasharath Stadium"
   },
@@ -61,7 +61,7 @@
     "confederation": "AFC",
     "football_association": "Pakistan Football Federation",
     "default_points": 840,
-    "strength": 42,
+    "strength": 19,
     "flag_url": "https://flagcdn.com/w40/pk.png",
     "home_stadium": "Jinnah Stadium"
   },
@@ -72,7 +72,7 @@
     "confederation": "AFC",
     "football_association": "Football Federation of Sri Lanka",
     "default_points": 876,
-    "strength": 45,
+    "strength": 17,
     "flag_url": "https://flagcdn.com/w40/lk.png",
     "home_stadium": "Sugathadasa Stadium"
   }

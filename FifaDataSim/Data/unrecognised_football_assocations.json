@@ -6,7 +6,7 @@
     "confederation": "UEFA",
     "football_association": "Football Federation of Abkhazia",
     "default_points": 862,
-    "strength": 34,
+    "strength": 20,
     "flag_url": "/flags/abkhazia.png",
     "home_stadium": "Dinamo Stadium, Sokhumi"
   },
@@ -16,8 +16,8 @@
     "short_name": "BFR",
     "confederation": "CAF",
     "football_association": "Biafra Football Association",
-    "default_points": 767,
-    "strength": 34,
+    "default_points": 864,
+    "strength": 21,
     "flag_url": "/flags/biafra.png",
     "home_stadium": "Muhoroni Stadium"
   },
@@ -28,7 +28,7 @@
     "confederation": "CAF",
     "football_association": "Tarvaɛt tayelnawt taqvaylit n ddavex uḍar",
     "default_points": 1001,
-    "strength": 34,
+    "strength": 39,
     "flag_url": "/flags/kabylia.png",
     "home_stadium": "Hocine Aït Ahmed Stadium"
   },
@@ -38,8 +38,8 @@
     "short_name": "KRD",
     "confederation": "AFC",
     "football_association": "Kurdistan Football Association",
-    "default_points": 901,
-    "strength": 34,
+    "default_points": 948,
+    "strength": 46,
     "flag_url": "/flags/kurdistan.png",
     "home_stadium": "Duhok Stadium"
   },
@@ -50,7 +50,7 @@
     "confederation": "UEFA",
     "football_association": "Kibris Türk Futbol Federasyonu",
     "default_points": 1195,
-    "strength": 34,
+    "strength": 58,
     "flag_url": "/flags/northern_cyprus.png",
     "home_stadium": "Nicosia Atatürk Stadium"
   },
@@ -61,7 +61,7 @@
     "confederation": "UEFA",
     "football_association": "Football Association of Ossetia",
     "default_points": 947,
-    "strength": 34,
+    "strength": 41,
     "flag_url": "/flags/ossetia.png",
     "home_stadium": " Republican Spartak Stadium"
   },
@@ -72,7 +72,7 @@
     "confederation": "AFC",
     "football_association": "Punjab Football Association",
     "default_points": 947,
-    "strength": 34,
+    "strength": 40,
     "flag_url": "/flags/panjab.png",
     "home_stadium": "Punjab Stadium"
   },
@@ -82,8 +82,8 @@
     "short_name": "SML",
     "confederation": "CAF",
     "football_association": "Xidhiidhka Kubadda Cagta Somaliland",
-    "default_points": 893,
-    "strength": 34,
+    "default_points": 905,
+    "strength": 30,
     "flag_url": "/flags/somaliland.png",
     "home_stadium": "Hargeisa Stadium"
   },
@@ -94,7 +94,7 @@
     "confederation": "AFC",
     "football_association": "Tibetan National Football Association",
     "default_points": 825,
-    "strength": 34,
+    "strength": 14,
     "flag_url": "/flags/tibet.png",
     "home_stadium": "Tibet Stadium"
   },
@@ -104,8 +104,8 @@
     "short_name": "TNS",
     "confederation": "UEFA",
     "football_association": "Transnistria Football Federation",
-    "default_points": 702,
-    "strength": 34,
+    "default_points": 743,
+    "strength": 22,
     "flag_url": "/flags/transnistria.png",
     "home_stadium": "Sheriff Arena"
   },
@@ -115,8 +115,8 @@
     "short_name": "SPM",
     "confederation": "CONCACAF",
     "football_association": "Ligue de football de Saint-Pierre-et-Miquelon",
-    "default_points": 620,
-    "strength": 5,
+    "default_points": 684,
+    "strength": 12,
     "flag_url": "https://flagcdn.com/w40/pm.png",
     "home_stadium": "Stade John Girardin"
   },
@@ -127,7 +127,7 @@
     "confederation": "CONCACAF",
     "football_association": "Quebec Soccer Federation",
     "default_points": 1130,
-    "strength": 34,
+    "strength": 54,
     "flag_url": "/flags/quebec.png",
     "home_stadium": "Stade Saputo de Montreal"
   },
@@ -138,7 +138,7 @@
     "confederation": "AFC",
     "football_association": "Karen Soccer Federation",
     "default_points": 646,
-    "strength": 6,
+    "strength": 11,
     "flag_url": "/flags/kayin.png",
     "home_stadium": "Zwekabin Stadium"
   },
@@ -149,7 +149,7 @@
     "confederation": "AFC",
     "football_association": "Balochistan Football Association",
     "default_points": 720,
-    "strength": 34,
+    "strength": 16,
     "flag_url": "/flags/balochistan.png",
     "home_stadium": "Ayub National Stadium"
   }

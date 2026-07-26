@@ -6,7 +6,7 @@
     "confederation": "AFC",
     "football_association": "Afghanistan Football Federation",
     "default_points": 968,
-    "strength": 40,
+    "strength": 36,
     "flag_url": "https://flagcdn.com/w40/af.png",
     "home_stadium": "Ghazi Stadium"
   },
@@ -39,7 +39,7 @@
     "confederation": "AFC",
     "football_association": "Tajikistan Football Federation",
     "default_points": 1224,
-    "strength": 55,
+    "strength": 54,
     "flag_url": "https://flagcdn.com/w40/tj.png",
     "home_stadium": "Central Republican Stadium"
   },

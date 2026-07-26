@@ -39,7 +39,7 @@
     "confederation": "CONCACAF",
     "football_association": "Football Federation of Belize",
     "default_points": 907,
-    "strength": 48,
+    "strength": 22,
     "flag_url": "https://flagcdn.com/w40/bz.png",
     "home_stadium": "FFB Stadium"
   },
@@ -94,7 +94,7 @@
     "confederation": "CONCACAF",
     "football_association": "Federación Nicaragüense de Fútbol",
     "default_points": 1114,
-    "strength": 58,
+    "strength": 53,
     "flag_url": "https://flagcdn.com/w40/ni.png",
     "home_stadium": "Estadio Nacional de Fútbol"
   },
@@ -138,7 +138,7 @@
     "confederation": "CONCACAF",
     "football_association": "Ligue de Football de la Guyane",
     "default_points": 990,
-    "strength": 40,
+    "strength": 43,
     "flag_url": "https://flagcdn.com/w40/gf.png",
     "home_stadium": "Stade Régional Centre"
   }

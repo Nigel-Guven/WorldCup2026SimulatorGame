@@ -6,7 +6,7 @@
     "confederation": "CAF",
     "football_association": "Sudan Football Association",
     "default_points": 1157,
-    "strength": 60,
+    "strength": 52,
     "flag_url": "https://flagcdn.com/w40/sd.png",
     "home_stadium": "Jubilee Stadium"
   },
@@ -17,7 +17,7 @@
     "confederation": "CAF",
     "football_association": "South Sudan Football Association",
     "default_points": 970,
-    "strength": 40,
+    "strength": 37,
     "flag_url": "https://flagcdn.com/w40/ss.png",
     "home_stadium": "Juba Stadium"
   },
@@ -28,7 +28,7 @@
     "confederation": "CAF",
     "football_association": "Eritrean Football Federation",
     "default_points": 887,
-    "strength": 35,
+    "strength": 20,
     "flag_url": "https://flagcdn.com/w40/er.png",
     "home_stadium": "Asmara Stadium"
   },
@@ -39,7 +39,7 @@
     "confederation": "CAF",
     "football_association": "Ethiopian Football Federation",
     "default_points": 1077,
-    "strength": 55,
+    "strength": 50,
     "flag_url": "https://flagcdn.com/w40/et.png",
     "home_stadium": "Addis Ababa Stadium"
   },
@@ -50,7 +50,7 @@
     "confederation": "CAF",
     "football_association": "Djibouti Football Federation",
     "default_points": 853,
-    "strength": 40,
+    "strength": 15,
     "flag_url": "https://flagcdn.com/w40/dj.png",
     "home_stadium": "Stade El Hadj Hassan Gouled Aptidé"
   },
@@ -61,7 +61,7 @@
     "confederation": "CAF",
     "football_association": "Somali Football Federation",
     "default_points": 839,
-    "strength": 35,
+    "strength": 18,
     "flag_url": "https://flagcdn.com/w40/so.png",
     "home_stadium": "Mogadishu Stadium"
   },
@@ -94,7 +94,7 @@
     "confederation": "CAF",
     "football_association": "Seychelles Football Association",
     "default_points": 804,
-    "strength": 40,
+    "strength": 10,
     "flag_url": "https://flagcdn.com/w40/sc.png",
     "home_stadium": "Stade Linite"
   }

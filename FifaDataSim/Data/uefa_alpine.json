@@ -17,7 +17,7 @@
     "confederation": "UEFA",
     "football_association": "Federazione Sammarinese di Calcio",
     "default_points": 721,
-    "strength": 30,
+    "strength": 14,
     "flag_url": "https://flagcdn.com/w40/sm.png",
     "home_stadium": "Stadio Zanucci"
   },
@@ -39,7 +39,7 @@
     "confederation": "UEFA",
     "football_association": "Malta Football Association",
     "default_points": 992,
-    "strength": 64,
+    "strength": 46,
     "flag_url": "https://flagcdn.com/w40/mt.png",
     "home_stadium": "Ta' Qali National Stadium"
   },
@@ -50,7 +50,7 @@
     "confederation": "UEFA",
     "football_association": "Liechtenstein Football Association",
     "default_points": 797,
-    "strength": 48,
+    "strength": 16,
     "flag_url": "https://flagcdn.com/w40/li.png",
     "home_stadium": "Rheinpark Stadion"
   }

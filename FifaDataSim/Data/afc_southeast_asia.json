@@ -17,7 +17,7 @@
     "confederation": "AFC",
     "football_association": "Football Association of Brunei Darussalam",
     "default_points": 857,
-    "strength": 35,
+    "strength": 14,
     "flag_url": "https://flagcdn.com/w40/bn.png",
     "home_stadium": "Hassanal Bolkiah National Stadium"
   },
@@ -28,7 +28,7 @@
     "confederation": "AFC",
     "football_association": "Football Federation Cambodia",
     "default_points": 922,
-    "strength": 45,
+    "strength": 26,
     "flag_url": "https://flagcdn.com/w40/kh.png",
     "home_stadium": "Olympic Stadium"
   },
@@ -39,7 +39,7 @@
     "confederation": "AFC",
     "football_association": "Timor-Leste Football Association",
     "default_points": 831,
-    "strength": 32,
+    "strength": 11,
     "flag_url": "https://flagcdn.com/w40/tl.png",
     "home_stadium": "National Stadium"
   },
@@ -50,7 +50,7 @@
     "confederation": "AFC",
     "football_association": "Football Association of Indonesia",
     "default_points": 1157,
-    "strength": 64,
+    "strength": 54,
     "flag_url": "https://flagcdn.com/w40/id.png",
     "home_stadium": "Gelora Bung Karno Stadium"
   },
@@ -61,7 +61,7 @@
     "confederation": "AFC",
     "football_association": "Lao Football Federation",
     "default_points": 885,
-    "strength": 40,
+    "strength": 19,
     "flag_url": "https://flagcdn.com/w40/la.png",
     "home_stadium": "National Stadium"
   },
@@ -72,7 +72,7 @@
     "confederation": "AFC",
     "football_association": "Football Association of Malaysia",
     "default_points": 1086,
-    "strength": 62,
+    "strength": 58,
     "flag_url": "https://flagcdn.com/w40/my.png",
     "home_stadium": "Bukit Jalil National Stadium"
   },
@@ -83,7 +83,7 @@
     "confederation": "AFC",
     "football_association": "Myanmar Football Federation",
     "default_points": 1009,
-    "strength": 58,
+    "strength": 49,
     "flag_url": "https://flagcdn.com/w40/mm.png",
     "home_stadium": "Thuwunna Stadium"
   },
@@ -94,7 +94,7 @@
     "confederation": "AFC",
     "football_association": "Philippine Football Federation",
     "default_points": 1100,
-    "strength": 56,
+    "strength": 51,
     "flag_url": "https://flagcdn.com/w40/ph.png",
     "home_stadium": "Philippine Sports Stadium"
   },

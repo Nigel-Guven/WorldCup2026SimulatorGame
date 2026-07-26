@@ -39,7 +39,7 @@
     "confederation": "CAF",
     "football_association": "Togolese Football Federation",
     "default_points": 1152,
-    "strength": 52,
+    "strength": 60,
     "flag_url": "https://flagcdn.com/w40/tg.png",
     "home_stadium": "Stade du Togo"
   },
@@ -94,7 +94,7 @@
     "confederation": "CAF",
     "football_association": "Federação São Tomense de Futebol",
     "default_points": 855,
-    "strength": 38,
+    "strength": 15,
     "flag_url": "https://flagcdn.com/w40/st.png",
     "home_stadium": "Estádio Nacional 12 de Julho"
   },
@@ -105,7 +105,7 @@
     "confederation": "CAF",
     "football_association": "Fédération Centrafricaine de Football",
     "default_points": 1080,
-    "strength": 45,
+    "strength": 46,
     "flag_url": "https://flagcdn.com/w40/cf.png",
     "home_stadium": "Stade Barthélemy Boganda"
   },

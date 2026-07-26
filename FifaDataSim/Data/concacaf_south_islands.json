@@ -17,7 +17,7 @@
     "confederation": "CONCACAF",
     "football_association": "Bahamas Football Association",
     "default_points": 786,
-    "strength": 35,
+    "strength": 16,
     "flag_url": "https://flagcdn.com/w40/bs.png",
     "home_stadium": "Thomas Robinson Stadium"
   },
@@ -28,7 +28,7 @@
     "confederation": "CONCACAF",
     "football_association": "Turks and Caicos Islands Football Association",
     "default_points": 803,
-    "strength": 30,
+    "strength": 14,
     "flag_url": "https://flagcdn.com/w40/tc.png",
     "home_stadium": "TCIFA Stadium"
   },
@@ -50,7 +50,7 @@
     "confederation": "CONCACAF",
     "football_association": "Cayman Islands Football Association",
     "default_points": 850,
-    "strength": 40,
+    "strength": 14,
     "flag_url": "https://flagcdn.com/w40/ky.png",
     "home_stadium": "Truman Bodden Sports Complex"
   },
@@ -61,7 +61,7 @@
     "confederation": "CONCACAF",
     "football_association": "Federación Dominicana de Fútbol",
     "default_points": 1076,
-    "strength": 65,
+    "strength": 57,
     "flag_url": "https://flagcdn.com/w40/do.png",
     "home_stadium": "Estadio Olímpico Ing. Juan Pablo Duarte"
   },
@@ -105,7 +105,7 @@
     "confederation": "CONCACAF",
     "football_association": "BVI Football Association",
     "default_points": 777,
-    "strength": 30,
+    "strength": 13,
     "flag_url": "https://flagcdn.com/w40/vg.png",
     "home_stadium": "BVI National Sports Complex"
   },
@@ -116,7 +116,7 @@
     "confederation": "CONCACAF",
     "football_association": "USVI Soccer Federation",
     "default_points": 779,
-    "strength": 30,
+    "strength": 12,
     "flag_url": "https://flagcdn.com/w40/vi.png",
     "home_stadium": "Bói Fields"
   },
@@ -127,7 +127,7 @@
     "confederation": "CONCACAF",
     "football_association": "Saint Martin Football Federation",
     "default_points": 778,
-    "strength": 20,
+    "strength": 11,
     "flag_url": "https://flagcdn.com/w40/mf.png",
     "home_stadium": "Stade Louis Van Mégret"
   },
@@ -138,7 +138,7 @@
     "confederation": "CONCACAF",
     "football_association": "Sint Maarten Football Federation",
     "default_points": 792,
-    "strength": 20,
+    "strength": 8,
     "flag_url": "https://flagcdn.com/w40/sx.png",
     "home_stadium": "Sint Maarten Sports Complex"
   },
@@ -149,7 +149,7 @@
     "confederation": "CONCACAF",
     "football_association": "St. Kitts and Nevis Football Association",
     "default_points": 1036,
-    "strength": 58,
+    "strength": 53,
     "flag_url": "https://flagcdn.com/w40/kn.png",
     "home_stadium": "Warner Park Stadium"
   },
@@ -160,7 +160,7 @@
     "confederation": "CONCACAF",
     "football_association": "Antigua and Barbuda Football Association",
     "default_points": 986,
-    "strength": 60,
+    "strength": 50,
     "flag_url": "https://flagcdn.com/w40/ag.png",
     "home_stadium": "Sir Vivian Richards Stadium"
   }

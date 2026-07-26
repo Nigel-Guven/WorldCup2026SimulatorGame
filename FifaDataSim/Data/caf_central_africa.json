@@ -6,7 +6,7 @@
     "confederation": "CAF",
     "football_association": "Mauritius Football Association",
     "default_points": 911,
-    "strength": 50,
+    "strength": 21,
     "flag_url": "https://flagcdn.com/w40/mu.png",
     "home_stadium": "George V Stadium"
   },
@@ -50,7 +50,7 @@
     "confederation": "CAF",
     "football_association": "Zanzibar Football Federation",
     "default_points": 1000,
-    "strength": 40,
+    "strength": 37,
     "flag_url": "https://flagcdn.com/w40/tz.png",
     "home_stadium": "Amaan Stadium"
   },

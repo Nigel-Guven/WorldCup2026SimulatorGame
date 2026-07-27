@@ -8,5 +8,5 @@ public class GroupStageConfiguration
     public required int TeamsPerGroup { get; init; } 
     public required int AutomaticQualifiersPerGroup { get; init; } 
     public required MatchmakingType Matchmaking { get; init; } 
-    public ThirdPlaceQualificationConfiguration? ThirdPlaceRule { get; init; }
+    public ThirdPlaceQualificationConfiguration? NthPlaceRule { get; init; }
 }

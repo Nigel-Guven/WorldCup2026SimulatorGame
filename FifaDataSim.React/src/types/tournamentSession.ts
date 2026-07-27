@@ -5,5 +5,6 @@ export interface TournamentSession {
   id: string;
   groups: GroupState[];
   fixtures: MatchFixture[];
-  isGroupStageCompleted: boolean;
+  nthPlaceQualificationPosition: number;
+  nthPlaceNumberOfCandidates: number;
 }

@@ -8,7 +8,7 @@ public static class TournamentFactory
 {
     public static TournamentConfiguration GetByCode(string code)
     {
-            return OceaniaQualificationFirstRound;
+            return CafQualificationFirstRound;
     }
     
     public static readonly TournamentConfiguration WorldCup2026 = new()
@@ -50,7 +50,7 @@ public static class TournamentFactory
             TeamsPerGroup = 4,
             AutomaticQualifiersPerGroup = 2,
             Matchmaking = MatchmakingType.SingleRoundRobin,
-            ThirdPlaceRule = new ThirdPlaceQualificationConfiguration { TotalQualifyingThirdPlaceTeams = 8 }
+            NthPlaceRule = new ThirdPlaceQualificationConfiguration { TotalQualifyingThirdPlaceTeams = 8 }
         },
         KnockoutStage = new KnockoutStageConfiguration
         {
@@ -79,7 +79,7 @@ public static class TournamentFactory
             TeamsPerGroup = 5,
             AutomaticQualifiersPerGroup = 1,
             Matchmaking = MatchmakingType.DoubleRoundRobin,
-            ThirdPlaceRule = null
+            NthPlaceRule = null
         },
         KnockoutStage = null
     };
@@ -89,7 +89,7 @@ public static class TournamentFactory
         
         Code = "OCEANIA_WORLD_CUP_QUALIFIERS",
         Name = "OCEANIA World Cup Qualifiers",
-        TotalTeams = 20,
+        TotalTeams = 8,
         ConfederationSlots = null,
         Pots = new PotConfiguration
         {
@@ -104,7 +104,61 @@ public static class TournamentFactory
             TeamsPerGroup = 4,
             AutomaticQualifiersPerGroup = 1,
             Matchmaking = MatchmakingType.DoubleRoundRobin,
-            ThirdPlaceRule = null
+            NthPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
+    private static readonly TournamentConfiguration ConmebolQualificationFirstRound = new()
+    {
+        
+        Code = "OCEANIA_WORLD_CUP_QUALIFIERS",
+        Name = "OCEANIA World Cup Qualifiers",
+        TotalTeams = 10,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 10,
+            SortingType = PotSortingType.Strict,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 1,
+            TeamsPerGroup = 10,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            NthPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
+    private static readonly TournamentConfiguration CafQualificationFirstRound = new()
+    {
+        
+        Code = "OCEANIA_WORLD_CUP_QUALIFIERS",
+        Name = "OCEANIA World Cup Qualifiers",
+        TotalTeams = 60,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 6,
+            SortingType = PotSortingType.Strict,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 10,
+            TeamsPerGroup = 6,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            NthPlaceRule = new ThirdPlaceQualificationConfiguration()
+            {
+                Criteria = RankingCriterion.PointsGoalDiffGoalsFor,
+                TotalQualifyingThirdPlaceTeams = 6
+            }
         },
         KnockoutStage = null
     };
@@ -129,32 +183,32 @@ public static class TournamentFactory
             TeamsPerGroup = 4,
             AutomaticQualifiersPerGroup = 2,
             Matchmaking = MatchmakingType.SingleRoundRobin,
-            ThirdPlaceRule = null
+            NthPlaceRule = null
         },
         KnockoutStage = null
     };
     
-    private static readonly TournamentConfiguration UEFAPreliminaries = new()
+    private static readonly TournamentConfiguration UEFANationsLeague = new()
     {
         
         Code = "Uefa_Preliminaries",
         Name = "Uefa Preliminaries",
-        TotalTeams = 30,
+        TotalTeams = 70,
         ConfederationSlots = null,
         Pots = new PotConfiguration
         {
-            TotalPots = 3,
+            TotalPots = 70,
             SortingType = PotSortingType.WorldRanking,
             HostInPotOne = true,
             DrawConstraints = null
         },
         GroupStage = new GroupStageConfiguration
         {
-            NumberOfGroups = 10,
-            TeamsPerGroup = 3,
+            NumberOfGroups = 7,
+            TeamsPerGroup = 10,
             AutomaticQualifiersPerGroup = 1,
             Matchmaking = MatchmakingType.DoubleRoundRobin,
-            ThirdPlaceRule = null
+            NthPlaceRule = null
         },
         KnockoutStage = null
     };

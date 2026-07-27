@@ -36,8 +36,8 @@ export function useTournamentDraw(tournamentCode: string = 'WORLD_CUP_2026') {
         const fetchedPots = data.pots || [];
         setPots(fetchedPots);
 
-        // 4. Derive group count from Pot 1 size
-        const groupCount = fetchedPots[0]?.length || 0;
+        // 4. Derive group count from DTO
+        const groupCount = data.numberOfGroups || 0;
         const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
         const generatedGroups: Group[] = Array.from({ length: groupCount }, (_, idx) => ({
@@ -64,15 +64,23 @@ export function useTournamentDraw(tournamentCode: string = 'WORLD_CUP_2026') {
   }, [tournamentCode]);
 
   const totalPots = pots.length;
-  const numGroups = groups.length;
 
-  // 2. Derive completion state dynamically across all pots
+  // Max capacity per group driven by backend DTO
+  const maxTeamsPerGroup = useMemo(() => {
+    if (!potsData) return 0;
+    if (potsData.numberOfTeamsPerGroup) return potsData.numberOfTeamsPerGroup;
+    return potsData.numberOfGroups > 0
+      ? Math.ceil(potsData.totalTeams / potsData.numberOfGroups)
+      : 0;
+  }, [potsData]);
+
+  // Derive completion state dynamically across all pots
   const isDrawComplete = useMemo(() => {
     if (pots.length === 0) return false;
     return pots.every((pot) => pot.length === 0);
   }, [pots]);
 
-  // 3. Draw a single next team manually
+  // Draw a single next team manually
   const drawNextTeam = useCallback(() => {
     if (!pots.length || isDrawComplete) return;
 
@@ -80,10 +88,14 @@ export function useTournamentDraw(tournamentCode: string = 'WORLD_CUP_2026') {
     const activePot = pots[activePotIdx];
     if (!activePot || activePot.length === 0) return;
 
-    // Find first group needing a team for the current pot layer
-    const targetGroupIndex = groups.findIndex(
-      (g) => g.teams.length === currentPotIndex - 1
-    );
+    // Find the current minimum team count among all groups
+    const minTeamsCount = Math.min(...groups.map((g) => g.teams.length));
+
+    // Cap check: avoid exceeding max team limit per group
+    if (minTeamsCount >= maxTeamsPerGroup) return;
+
+    // Pick the first group sitting at the minimum size
+    const targetGroupIndex = groups.findIndex((g) => g.teams.length === minTeamsCount);
     if (targetGroupIndex === -1) return;
 
     // Pick a team randomly from the active pot
@@ -107,17 +119,13 @@ export function useTournamentDraw(tournamentCode: string = 'WORLD_CUP_2026') {
       ...prev,
     ]);
 
-    // Advance to next pot when current pot layer is completely assigned
-    const totalTeamsInCurrentLayer = updatedGroups.filter(
-      (g) => g.teams.length === currentPotIndex
-    ).length;
-
-    if (totalTeamsInCurrentLayer === numGroups && currentPotIndex < totalPots) {
+    // Advance to next pot when current pot is completely emptied
+    if (updatedPot.length === 0 && currentPotIndex < totalPots) {
       setCurrentPotIndex((prev) => prev + 1);
     }
-  }, [pots, groups, currentPotIndex, totalPots, numGroups, isDrawComplete]);
+  }, [pots, groups, currentPotIndex, totalPots, isDrawComplete, maxTeamsPerGroup]);
 
-  // 4. Auto-draw all remaining teams instantly
+  // Auto-draw all remaining teams instantly
   const autoDrawAll = useCallback(() => {
     if (!pots.length || isDrawComplete) return;
 
@@ -131,9 +139,11 @@ export function useTournamentDraw(tournamentCode: string = 'WORLD_CUP_2026') {
       const activePot = currentPots[activePotIdx];
 
       while (activePot && activePot.length > 0) {
-        const targetGroupIndex = currentGroups.findIndex(
-          (g) => g.teams.length === potIdx - 1
-        );
+        const minTeamsCount = Math.min(...currentGroups.map((g) => g.teams.length));
+
+        if (minTeamsCount >= maxTeamsPerGroup) break;
+
+        const targetGroupIndex = currentGroups.findIndex((g) => g.teams.length === minTeamsCount);
         if (targetGroupIndex === -1) break;
 
         const randomIdx = Math.floor(Math.random() * activePot.length);
@@ -153,7 +163,7 @@ export function useTournamentDraw(tournamentCode: string = 'WORLD_CUP_2026') {
     setGroups(currentGroups);
     setCurrentPotIndex(totalPots);
     setDrawHistory((prev) => [...historyLogs, ...prev]);
-  }, [pots, groups, currentPotIndex, totalPots, isDrawComplete]);
+  }, [pots, groups, currentPotIndex, totalPots, isDrawComplete, maxTeamsPerGroup]);
 
   return {
     potsData,

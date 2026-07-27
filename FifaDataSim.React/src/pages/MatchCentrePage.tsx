@@ -32,8 +32,6 @@ export default function MatchCentrePage({
     simulateAllUnplayed,
   } = useMatchCentre({ session, onSessionUpdate });
 
-  const thirdPlaceCutoff = 7;
-
   return (
     <div className="space-y-6 animate-fade-in">
       {error && (
@@ -97,8 +95,9 @@ export default function MatchCentrePage({
           {/* Third Place Cross-Group Rankings */}
           <ThirdPlaceStandingsTable
             groups={session.groups}
-            qualifierCutoff={thirdPlaceCutoff}
             totalFixtures={totalMatchdays}
+            nthPlacePositionQualifier={session.nthPlaceQualificationPosition}
+            nthPlacePositionCandidates={session.nthPlaceNumberOfCandidates}
           />
 
           {/* All Group Standings Tables */}

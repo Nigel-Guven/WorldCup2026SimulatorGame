@@ -4,7 +4,8 @@ import type { GroupState } from '../../types/groupState';
 interface ThirdPlaceStandingsTableProps {
   groups: GroupState[];
   totalFixtures: number;
-  qualifierCutoff?: number;
+  nthPlacePositionQualifier: number;
+  nthPlacePositionCandidates: number;
 }
 
 type QualificationStatus = 'Q' | 'E' | null;
@@ -12,14 +13,15 @@ type QualificationStatus = 'Q' | 'E' | null;
 export function ThirdPlaceStandingsTable({
   groups,
   totalFixtures,
-  qualifierCutoff = 7,
+  nthPlacePositionQualifier,
+  nthPlacePositionCandidates
 }: ThirdPlaceStandingsTableProps) {
 
   const thirdPlaceRankings = useMemo(() => {
     const thirdPlaceTeams = groups
       .map((group) => {
         // Index 2 = 3rd place
-        const row = group.standings[0];
+        const row = group.standings[nthPlacePositionQualifier];
 
         if (!row) return null;
 
@@ -60,7 +62,7 @@ export function ThirdPlaceStandingsTable({
 
 
     const cutoffTeam =
-      thirdPlaceRankings[qualifierCutoff - 1];
+      thirdPlaceRankings[nthPlacePositionQualifier - 1];
 
 
     if (!cutoffTeam) return null;
@@ -73,10 +75,10 @@ export function ThirdPlaceStandingsTable({
       the qualifying positions and the next
       team cannot catch them.
     */
-    if (teamIdx < qualifierCutoff) {
+    if (teamIdx < nthPlacePositionQualifier) {
 
       const firstNonQualifier =
-        thirdPlaceRankings[qualifierCutoff];
+        thirdPlaceRankings[nthPlacePositionQualifier];
 
 
       if (!firstNonQualifier) {
@@ -101,7 +103,7 @@ export function ThirdPlaceStandingsTable({
       If this team cannot reach the
       current cutoff team's points.
     */
-    if (teamIdx >= qualifierCutoff) {
+    if (teamIdx >= nthPlacePositionQualifier) {
       const isFinished = remainingFixtures === 0;
 
       // 1. Points impossible to reach
@@ -146,7 +148,7 @@ export function ThirdPlaceStandingsTable({
           </h3>
 
           <p className="text-[11px] text-slate-400">
-            Top {qualifierCutoff} third-place teams qualify for the Knockout Stage.
+            Top {nthPlacePositionCandidates} third-place teams qualify for the Knockout Stage.
           </p>
         </div>
 
@@ -205,7 +207,7 @@ export function ThirdPlaceStandingsTable({
             const status = getQualificationStatus(idx);
 
             const isQualifying =
-              idx < qualifierCutoff;
+              idx < nthPlacePositionCandidates;
 
 
             return (

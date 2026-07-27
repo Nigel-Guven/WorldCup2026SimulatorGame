@@ -28,8 +28,10 @@ export default function RankingRow({ team, rank }: RankingRowProps) {
                 ({team.short_name})
               </span>
             </div>
-
-            <div className="text-xs font-normal text-slate-500 transition-colors group-hover:text-slate-400">
+            <div className="text-xs font-normal text-green-500 transition-colors group-hover:text-slate-400">
+              {team.football_association}
+            </div>
+            <div className="text-xs font-normal text-amber-400 transition-colors group-hover:text-slate-400">
               {team.home_stadium}
             </div>
           </div>

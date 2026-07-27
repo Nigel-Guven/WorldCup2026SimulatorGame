@@ -4,7 +4,7 @@ namespace WorldCupSimulator.Application;
 
 public interface IKnockoutBracketService
 {
-    List<ThirdPlaceCandidate> GetTopEightThirdPlaceTeams(TournamentSession session);
+    List<ThirdPlaceCandidate> GetTopNthPlaceTeams(TournamentSession session);
     KnockoutBracket GenerateRoundOf32(TournamentSession session);
     void AdvanceBracket(KnockoutBracket bracket);
 }

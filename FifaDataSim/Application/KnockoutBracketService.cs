@@ -4,7 +4,7 @@ namespace WorldCupSimulator.Application;
 
 public class KnockoutBracketService: IKnockoutBracketService
 {
-    public List<ThirdPlaceCandidate> GetTopEightThirdPlaceTeams(TournamentSession session)
+    public List<ThirdPlaceCandidate> GetTopNthPlaceTeams(TournamentSession session)
     {
         var candidates = (from @group in session.Groups
             where @group.Standings.Count >= 3
@@ -19,7 +19,7 @@ public class KnockoutBracketService: IKnockoutBracketService
             .ThenByDescending(c => c.Standing.GoalsFor)
             .ThenByDescending(c => c.Standing.Won)
             .ThenByDescending(c => c.Team.Strength)
-            .Take(8)
+            .Take(session.NthPlaceNumberOfCandidates)
             .ToList();
     }
 
@@ -43,8 +43,8 @@ public class KnockoutBracketService: IKnockoutBracketService
                 .SelectMany(f => new[] { f.HomeTeam, f.AwayTeam })
                 .First(t => t.Id == runnerUpStanding.TeamId);
         }
-        
-        var thirdPlacePool = GetTopEightThirdPlaceTeams(session);
+
+        var thirdPlacePool = GetTopNthPlaceTeams(session);
         
         Country DrawThirdPlaceAvoidingGroup(string winnerGroupName)
         {

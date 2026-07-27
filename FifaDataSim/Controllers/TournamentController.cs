@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using Microsoft.AspNetCore.Mvc;
 using WorldCupSimulator.Application;
 using WorldCupSimulator.Application.PotSeeding;
@@ -25,7 +26,9 @@ public class TournamentController(
     {
         var config = TournamentFactory.GetByCode(tournamentCode) ?? TournamentFactory.WorldCup2026;
 
-        var allTeams = countryRepository.GetAllTeams();
+        var allTeams = countryRepository.GetTeamsByConfederation(Confederation.UEFA).Skip(39).ToList();
+        
+        allTeams.Sort((a, b) => b.DefaultRankingPoints.CompareTo(a.DefaultRankingPoints));
         
         var pots = potSeedingService.GeneratePots(allTeams, config);
 
@@ -48,7 +51,7 @@ public class TournamentController(
             return BadRequest("Invalid group configuration package.");
         }
 
-        var session = tournamentService.CreateNewSession(groups, true);
+        var session = tournamentService.CreateNewSession(groups, true, 0, 0);
         return Ok(session);
     }
 
@@ -128,7 +131,7 @@ public class TournamentController(
         var session = tournamentService.GetCurrentSession();
         if (session == null) return NotFound("No active session.");
 
-        return Ok( bracketService.GetTopEightThirdPlaceTeams(session));
+        return Ok( bracketService.GetTopNthPlaceTeams(session));
     }
 
     [HttpPost("knockout/generate")]

@@ -152,6 +152,38 @@
     "strength": 16,
     "flag_url": "/flags/balochistan.png",
     "home_stadium": "Ayub National Stadium"
+  },
+  {
+    "id": "alk",
+    "name": "Alaska",
+    "short_name": "ALK",
+    "confederation": "CONCACAF",
+    "football_association": "Alaska Soccer Association",
+    "default_points": 811,
+    "strength": 17,
+    "flag_url": "/flags/alaska.png",
+    "home_stadium": "Anchorage Soccer Stadium"
+  },
+  {
+    "id": "pru",
+    "name": "Prussia",
+    "short_name": "PRU",
+    "confederation": "UEFA",
+    "football_association": "Preussen Fussballbund",
+    "default_points": 979,
+    "strength": 46,
+    "flag_url": "/flags/prussia.png",
+    "home_stadium": "Koenigsberg Stadion"
+  },
+  {
+    "id": "tat",
+    "name": "Tannu Tuva",
+    "short_name": "TAT",
+    "confederation": "AFC",
+    "football_association": "Tuvan Football Association",
+    "default_points": 787,
+    "strength": 17,
+    "flag_url": "/flags/tuva.png",
+    "home_stadium": "Stadium Khuresh"
   }
-  
 ]

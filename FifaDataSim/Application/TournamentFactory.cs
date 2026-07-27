@@ -8,7 +8,7 @@ public static class TournamentFactory
 {
     public static TournamentConfiguration GetByCode(string code)
     {
-            return SuperCup;
+            return OceaniaQualificationFirstRound;
     }
     
     public static readonly TournamentConfiguration WorldCup2026 = new()
@@ -59,7 +59,7 @@ public static class TournamentFactory
         }
     };
     
-    private static readonly TournamentConfiguration OceaniaQualification = new()
+    private static readonly TournamentConfiguration OceaniaQualificationFirstRound = new()
     {
         
         Code = "OCEANIA_WORLD_CUP_QUALIFIERS",
@@ -84,26 +84,76 @@ public static class TournamentFactory
         KnockoutStage = null
     };
     
+    private static readonly TournamentConfiguration OceaniaQualificationSecondRound = new()
+    {
+        
+        Code = "OCEANIA_WORLD_CUP_QUALIFIERS",
+        Name = "OCEANIA World Cup Qualifiers",
+        TotalTeams = 20,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 4,
+            SortingType = PotSortingType.Strict,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 2,
+            TeamsPerGroup = 4,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            ThirdPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
     private static readonly TournamentConfiguration SuperCup = new()
     {
         
         Code = "SUPER_CUP",
         Name = "Super Cup",
-        TotalTeams = 250,
+        TotalTeams = 64,
         ConfederationSlots = null,
         Pots = new PotConfiguration
         {
-            TotalPots = 10,
+            TotalPots = 4,
             SortingType = PotSortingType.WorldRanking,
             HostInPotOne = true,
             DrawConstraints = null
         },
         GroupStage = new GroupStageConfiguration
         {
-            NumberOfGroups = 25,
-            TeamsPerGroup = 10,
-            AutomaticQualifiersPerGroup = 1,
+            NumberOfGroups = 16,
+            TeamsPerGroup = 4,
+            AutomaticQualifiersPerGroup = 2,
             Matchmaking = MatchmakingType.SingleRoundRobin,
+            ThirdPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
+    private static readonly TournamentConfiguration UEFAPreliminaries = new()
+    {
+        
+        Code = "Uefa_Preliminaries",
+        Name = "Uefa Preliminaries",
+        TotalTeams = 30,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 3,
+            SortingType = PotSortingType.WorldRanking,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 10,
+            TeamsPerGroup = 3,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
             ThirdPlaceRule = null
         },
         KnockoutStage = null

@@ -33,11 +33,22 @@
     "home_stadium": "Nuuk Stadium"
   },
   {
-    "id": "jgy",
-    "name": "Channel Islands",
-    "short_name": "JGY",
+    "id": "jey",
+    "name": "Jersey",
+    "short_name": "JEY",
     "confederation": "UEFA",
-    "football_association": "Channel Islands Football Association",
+    "football_association": "Jersey Football Association",
+    "default_points": 878,
+    "strength": 24,
+    "flag_url": "https://flagcdn.com/w40/je.png",
+    "home_stadium": "Springfield Stadium"
+  },
+  {
+    "id": "gue",
+    "name": "Geurnsey",
+    "short_name": "Guernsey",
+    "confederation": "UEFA",
+    "football_association": "Guernsey Football Association",
     "default_points": 901,
     "strength": 28,
     "flag_url": "https://flagcdn.com/w40/gg.png",
@@ -130,5 +141,126 @@
     "strength": 5,
     "flag_url": "https://flagcdn.com/w40/cc.png",
     "home_stadium": "Pulu Stadium"
+  },
+  {
+    "id": "krn",
+    "name": "Cornwall",
+    "short_name": "KRN",
+    "confederation": "UEFA",
+    "football_association": "Kernow Football Association",
+    "default_points": 699,
+    "strength": 15,
+    "flag_url": "/flags/cornwall.png",
+    "home_stadium": "Truro City Stadium"
+  },
+  {
+    "id": "crt",
+    "name": "Ruthenia",
+    "short_name": "CRT",
+    "confederation": "UEFA",
+    "football_association": "Carpathian Ruthenia Football Federation",
+    "default_points": 802,
+    "strength": 26,
+    "flag_url": "/flags/ruthenia.png",
+    "home_stadium": "Avanhard Stadium"
+  },
+  {
+    "id": "NGK",
+    "name": "Artsakh",
+    "short_name": "NGK",
+    "confederation": "UEFA",
+    "football_association": "Nagorno-Karabakh Soccer Federation",
+    "default_points": 753,
+    "strength": 19,
+    "flag_url": "/flags/artsakh.png",
+    "home_stadium": "Stepanakert Republican Stadium"
+  },
+  {
+    "id": "spm",
+    "name": "Sapmi",
+    "short_name": "SPM",
+    "confederation": "UEFA",
+    "football_association": "FA Sapmi",
+    "default_points": 689,
+    "strength": 13,
+    "flag_url": "/flags/sapmi.png",
+    "home_stadium": "Aspmyra Stadion"
+  },
+  {
+    "id": "uyg",
+    "name": "Uyghurstan",
+    "short_name": "UYG",
+    "confederation": "AFC",
+    "football_association": "Turkestan Football Union",
+    "default_points": 1155,
+    "strength": 47,
+    "flag_url": "/flags/turkestan.png",
+    "home_stadium": "Xinjiang Sports Centre"
+  },
+  {
+    "id": "ark",
+    "name": "Arakan",
+    "short_name": "ARK",
+    "confederation": "AFC",
+    "football_association": "Arakan FA",
+    "default_points": 785,
+    "strength": 19,
+    "flag_url": "/flags/arakan.png",
+    "home_stadium": " Wai Thar Li Stadium"
+  },
+  {
+    "id": "shs",
+    "name": "Shan State",
+    "short_name": "SHS",
+    "confederation": "AFC",
+    "football_association": "Shan Football Association",
+    "default_points": 696,
+    "strength": 8,
+    "flag_url": "/flags/shan.png",
+    "home_stadium": "Taunggyi Stadium"
+  },
+  {
+    "id": "tae",
+    "name": "Tamil Ealam",
+    "short_name": "TAE",
+    "confederation": "AFC",
+    "football_association": "Tamil Football Association",
+    "default_points": 649,
+    "strength": 15,
+    "flag_url": "/flags/tamil.png",
+    "home_stadium": "Trincomalee Ehambaram Arena"
+  },
+  {
+    "id": "ksh",
+    "name": "Kashmir",
+    "short_name": "KSH",
+    "confederation": "AFC",
+    "football_association": "Kashmir Football Federation",
+    "default_points": 809,
+    "strength": 17,
+    "flag_url": "/flags/kashmir.png",
+    "home_stadium": "Bakshi Stadium"
+  },
+  {
+    "id": "rke",
+    "name": "Rakhine State",
+    "short_name": "RKE",
+    "confederation": "AFC",
+    "football_association": "AF Rohingya",
+    "default_points": 652,
+    "strength": 7,
+    "flag_url": "/flags/rakhine.png",
+    "home_stadium": "Waitharli Stadium"
+  },
+  {
+    "id": "ryu",
+    "name": "Ryukyu Islands",
+    "short_name": "RYU",
+    "confederation": "AFC",
+    "football_association": "Ryukyu Football Association",
+    "default_points": 640,
+    "strength": 10,
+    "flag_url": "/flags/ryukyu.png",
+    "home_stadium": "Okinawa Athletic Park Stadium"
   }
 ]

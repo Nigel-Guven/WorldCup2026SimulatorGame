@@ -9,9 +9,13 @@ public class TournamentService : ITournamentService
 
     public TournamentSession? GetCurrentSession() => _activeSession;
 
-    public TournamentSession CreateNewSession(List<GroupSetupDto> groupsFromFrontend, bool isRoundRobin)
+    public TournamentSession CreateNewSession(List<GroupSetupDto> groupsFromFrontend, bool isRoundRobin, int NthPlaceQualificationPosition, int nthPlaceCandidates)
     {
-        var session = new TournamentSession();
+        var session = new TournamentSession
+        {
+            NthPlaceQualificationPosition = NthPlaceQualificationPosition,
+            NthPlaceNumberOfCandidates = nthPlaceCandidates
+        };
 
         foreach (var g in groupsFromFrontend)
         {

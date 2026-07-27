@@ -8,7 +8,7 @@ public static class TournamentFactory
 {
     public static TournamentConfiguration GetByCode(string code)
     {
-            return CafQualificationFirstRound;
+            return SuperCup;
     }
     
     public static readonly TournamentConfiguration WorldCup2026 = new()
@@ -118,7 +118,7 @@ public static class TournamentFactory
         ConfederationSlots = null,
         Pots = new PotConfiguration
         {
-            TotalPots = 10,
+            TotalPots = 5,
             SortingType = PotSortingType.Strict,
             HostInPotOne = true,
             DrawConstraints = null
@@ -126,7 +126,7 @@ public static class TournamentFactory
         GroupStage = new GroupStageConfiguration
         {
             NumberOfGroups = 1,
-            TeamsPerGroup = 10,
+            TeamsPerGroup = 5,
             AutomaticQualifiersPerGroup = 1,
             Matchmaking = MatchmakingType.DoubleRoundRobin,
             NthPlaceRule = null
@@ -197,7 +197,7 @@ public static class TournamentFactory
         ConfederationSlots = null,
         Pots = new PotConfiguration
         {
-            TotalPots = 70,
+            TotalPots = 10,
             SortingType = PotSortingType.WorldRanking,
             HostInPotOne = true,
             DrawConstraints = null
@@ -206,6 +206,204 @@ public static class TournamentFactory
         {
             NumberOfGroups = 7,
             TeamsPerGroup = 10,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            NthPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
+    private static readonly TournamentConfiguration UEFAQualificationFirstRound = new()
+    {
+        
+        Code = "Uefa_Preliminaries",
+        Name = "Uefa Preliminaries",
+        TotalTeams = 70,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 5,
+            SortingType = PotSortingType.WorldRanking,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 14,
+            TeamsPerGroup = 5,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            NthPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+
+    private static readonly TournamentConfiguration ConcacafQualificationFirstRound = new()
+    {
+        
+        Code = "Concacaf_Preliminaries",
+        Name = "Concacaf Preliminaries",
+        TotalTeams = 10,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 2,
+            SortingType = PotSortingType.WorldRanking,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 5,
+            TeamsPerGroup = 2,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            NthPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
+    private static readonly TournamentConfiguration ConcacafQualificationSecondRound = new()
+    {
+        
+        Code = "Concacaf_Preliminaries",
+        Name = "Concacaf Preliminaries",
+        TotalTeams = 40,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 5,
+            SortingType = PotSortingType.WorldRanking,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 8,
+            TeamsPerGroup = 5,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            NthPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
+    private static readonly TournamentConfiguration ConcacafQualificationThirdRound = new()
+    {
+        
+        Code = "Concacaf_Preliminaries",
+        Name = "Concacaf Preliminaries",
+        TotalTeams = 8,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 4,
+            SortingType = PotSortingType.WorldRanking,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 2,
+            TeamsPerGroup = 4,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            NthPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
+    private static readonly TournamentConfiguration AfcQualificationFirstRound = new()
+    {
+        
+        Code = "Concacaf_Preliminaries",
+        Name = "Concacaf Preliminaries",
+        TotalTeams = 24,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 2,
+            SortingType = PotSortingType.WorldRanking,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 12,
+            TeamsPerGroup = 2,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            NthPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
+    private static readonly TournamentConfiguration AfcQualificationSecondRound = new()
+    {
+        
+        Code = "Concacaf_Preliminaries",
+        Name = "Concacaf Preliminaries",
+        TotalTeams = 48,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 6,
+            SortingType = PotSortingType.WorldRanking,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 8,
+            TeamsPerGroup = 6,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            NthPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
+    private static readonly TournamentConfiguration AfcQualificationThirdRound = new()
+    {
+        Code = "Concacaf_Preliminaries",
+        Name = "Concacaf Preliminaries",
+        TotalTeams = 8,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 4,
+            SortingType = PotSortingType.WorldRanking,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 2,
+            TeamsPerGroup = 4,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            NthPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
+    private static readonly TournamentConfiguration ConfederationPlayoffRound = new()
+    {
+        Code = "Concacaf_Preliminaries",
+        Name = "Concacaf Preliminaries",
+        TotalTeams = 20,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 2,
+            SortingType = PotSortingType.WorldRanking,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 10,
+            TeamsPerGroup = 2,
             AutomaticQualifiersPerGroup = 1,
             Matchmaking = MatchmakingType.DoubleRoundRobin,
             NthPlaceRule = null

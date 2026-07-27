@@ -7,5 +7,6 @@ public class TournamentDrawSetup
     public required int TotalTeams { get; init; }
     public int NumberOfGroups { get; set; }
     public int NumberOfTeamsPerGroup { get; set; }
+    public bool MaxTwoUefaPerGroup { get; set; }
     public required List<List<Country>> Pots { get; init; }
 }

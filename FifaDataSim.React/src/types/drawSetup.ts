@@ -6,5 +6,6 @@ export interface TournamentDrawSetupDto {
   totalTeams: number;
   numberOfGroups: number;
   numberOfTeamsPerGroup: number;
+  maxTwoUefaPerGroup: boolean;
   pots: Country[][];
 }

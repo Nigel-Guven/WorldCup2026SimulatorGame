@@ -25,18 +25,12 @@ export function useTournamentDraw(tournamentCode: string = 'WORLD_CUP_2026') {
         setLoading(true);
         setError(null);
 
-        // 1. Fetch full DTO from service
         const data: TournamentDrawSetupDto = await tournamentService.getDrawSetup(tournamentCode);
         if (!isMounted) return;
 
-        // 2. Store full DTO
         setPotsData(data);
+        setPots(data.pots || []);
 
-        // 3. Extract Country[][] array for hook's active state
-        const fetchedPots = data.pots || [];
-        setPots(fetchedPots);
-
-        // 4. Derive group count from DTO
         const groupCount = data.numberOfGroups || 0;
         const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -65,7 +59,6 @@ export function useTournamentDraw(tournamentCode: string = 'WORLD_CUP_2026') {
 
   const totalPots = pots.length;
 
-  // Max capacity per group driven by backend DTO
   const maxTeamsPerGroup = useMemo(() => {
     if (!potsData) return 0;
     if (potsData.numberOfTeamsPerGroup) return potsData.numberOfTeamsPerGroup;
@@ -74,13 +67,51 @@ export function useTournamentDraw(tournamentCode: string = 'WORLD_CUP_2026') {
       : 0;
   }, [potsData]);
 
-  // Derive completion state dynamically across all pots
   const isDrawComplete = useMemo(() => {
     if (pots.length === 0) return false;
     return pots.every((pot) => pot.length === 0);
   }, [pots]);
 
-  // Draw a single next team manually
+  // --- NEW: Helper to validate if a team can be placed in a specific group ---
+  const canPlaceTeamInGroup = useCallback((team: Country, group: Group) => {
+    if (group.teams.length >= maxTeamsPerGroup) return false;
+
+    if (potsData?.maxTwoUefaPerGroup) {
+      const teamConfed = team.confederation;
+      
+      // Count how many teams in this group already have the SAME confederation as the drawn team
+      const confedCountInGroup = group.teams.filter(t => t.confederation === teamConfed).length;
+
+      // Apply limits
+      if (teamConfed === 'UEFA') {
+        if (confedCountInGroup >= 2) return false;
+      } else {
+        // AFC, OFC, CONMEBOL, CONCACAF, CAF
+        if (confedCountInGroup >= 1) return false;
+      }
+    }
+
+    return true;
+  }, [maxTeamsPerGroup, potsData?.maxTwoUefaPerGroup]);
+
+  // --- NEW: Helper to find the next available valid group ---
+  const findValidGroupIndex = useCallback((team: Country, currentGroups: Group[]) => {
+    const minTeamsCount = Math.min(...currentGroups.map((g) => g.teams.length));
+
+    // First attempt: Try to place in a group currently sitting at the minimum size
+    let targetIndex = currentGroups.findIndex(g => 
+      g.teams.length === minTeamsCount && canPlaceTeamInGroup(team, g)
+    );
+
+    // Fallback: If all min-size groups reject the team due to constraints, 
+    // find ANY group that can accept them without violating max capacity or UEFA limits
+    if (targetIndex === -1) {
+      targetIndex = currentGroups.findIndex(g => canPlaceTeamInGroup(team, g));
+    }
+
+    return targetIndex;
+  }, [canPlaceTeamInGroup]);
+
   const drawNextTeam = useCallback(() => {
     if (!pots.length || isDrawComplete) return;
 
@@ -88,19 +119,17 @@ export function useTournamentDraw(tournamentCode: string = 'WORLD_CUP_2026') {
     const activePot = pots[activePotIdx];
     if (!activePot || activePot.length === 0) return;
 
-    // Find the current minimum team count among all groups
-    const minTeamsCount = Math.min(...groups.map((g) => g.teams.length));
-
-    // Cap check: avoid exceeding max team limit per group
-    if (minTeamsCount >= maxTeamsPerGroup) return;
-
-    // Pick the first group sitting at the minimum size
-    const targetGroupIndex = groups.findIndex((g) => g.teams.length === minTeamsCount);
-    if (targetGroupIndex === -1) return;
-
-    // Pick a team randomly from the active pot
     const randomIdx = Math.floor(Math.random() * activePot.length);
     const selectedTeam = activePot[randomIdx];
+
+    // Use the constraint-aware finder
+    const targetGroupIndex = findValidGroupIndex(selectedTeam, groups);
+    
+    if (targetGroupIndex === -1) {
+      // Edge case: Draw deadlock. (More details below)
+      console.warn(`Deadlock: Cannot place ${selectedTeam.name} without violating constraints.`);
+      return; 
+    }
 
     const updatedPot = activePot.filter((_, idx) => idx !== randomIdx);
     const updatedPots = pots.map((pot, idx) => (idx === activePotIdx ? updatedPot : pot));
@@ -119,13 +148,11 @@ export function useTournamentDraw(tournamentCode: string = 'WORLD_CUP_2026') {
       ...prev,
     ]);
 
-    // Advance to next pot when current pot is completely emptied
     if (updatedPot.length === 0 && currentPotIndex < totalPots) {
       setCurrentPotIndex((prev) => prev + 1);
     }
-  }, [pots, groups, currentPotIndex, totalPots, isDrawComplete, maxTeamsPerGroup]);
+  }, [pots, groups, currentPotIndex, totalPots, isDrawComplete, findValidGroupIndex]);
 
-  // Auto-draw all remaining teams instantly
   const autoDrawAll = useCallback(() => {
     if (!pots.length || isDrawComplete) return;
 
@@ -139,17 +166,18 @@ export function useTournamentDraw(tournamentCode: string = 'WORLD_CUP_2026') {
       const activePot = currentPots[activePotIdx];
 
       while (activePot && activePot.length > 0) {
-        const minTeamsCount = Math.min(...currentGroups.map((g) => g.teams.length));
-
-        if (minTeamsCount >= maxTeamsPerGroup) break;
-
-        const targetGroupIndex = currentGroups.findIndex((g) => g.teams.length === minTeamsCount);
-        if (targetGroupIndex === -1) break;
-
         const randomIdx = Math.floor(Math.random() * activePot.length);
         const selectedTeam = activePot[randomIdx];
-        activePot.splice(randomIdx, 1);
 
+        // Use the constraint-aware finder
+        const targetGroupIndex = findValidGroupIndex(selectedTeam, currentGroups);
+
+        if (targetGroupIndex === -1) {
+           console.warn(`Deadlock encountered during auto-draw for ${selectedTeam.name}`);
+           break; // Hault auto-draw to prevent infinite loops if constraints are impossible
+        }
+
+        activePot.splice(randomIdx, 1);
         currentGroups[targetGroupIndex].teams.push(selectedTeam);
         historyLogs.unshift(
           `Drew ${selectedTeam.name} into Group ${currentGroups[targetGroupIndex].name}`
@@ -163,7 +191,7 @@ export function useTournamentDraw(tournamentCode: string = 'WORLD_CUP_2026') {
     setGroups(currentGroups);
     setCurrentPotIndex(totalPots);
     setDrawHistory((prev) => [...historyLogs, ...prev]);
-  }, [pots, groups, currentPotIndex, totalPots, isDrawComplete, maxTeamsPerGroup]);
+  }, [pots, groups, currentPotIndex, totalPots, isDrawComplete, findValidGroupIndex]);
 
   return {
     potsData,

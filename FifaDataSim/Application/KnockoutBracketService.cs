@@ -4,27 +4,9 @@ namespace WorldCupSimulator.Application;
 
 public class KnockoutBracketService: IKnockoutBracketService
 {
-    public List<ThirdPlaceCandidate> GetTopNthPlaceTeams(TournamentSession session)
-    {
-        var candidates = (from @group in session.Groups
-            where @group.Standings.Count >= 3
-            let thirdPlaceStanding = @group.Standings[2]
-            let team = session.Fixtures.SelectMany(f => new[] { f.HomeTeam, f.AwayTeam })
-                .First(t => t.Id == thirdPlaceStanding.TeamId)
-            select new ThirdPlaceCandidate { GroupName = @group.Name, Standing = thirdPlaceStanding, Team = team }).ToList();
-        
-        return candidates
-            .OrderByDescending(c => c.Standing.Points)
-            .ThenByDescending(c => c.Standing.GoalDifference)
-            .ThenByDescending(c => c.Standing.GoalsFor)
-            .ThenByDescending(c => c.Standing.Won)
-            .ThenByDescending(c => c.Team.Strength)
-            .Take(session.NthPlaceNumberOfCandidates)
-            .ToList();
-    }
-
     public KnockoutBracket GenerateRoundOf32(TournamentSession session)
     {
+        var IsEvenGroup = session.Groups.Count is 2 or 4 or 8 or 16 or 32;
         var bracket = new KnockoutBracket();
 
         var groupWinners = new Dictionary<string, Country>();
@@ -44,39 +26,70 @@ public class KnockoutBracketService: IKnockoutBracketService
                 .First(t => t.Id == runnerUpStanding.TeamId);
         }
 
-        var thirdPlacePool = GetTopNthPlaceTeams(session);
-        
-        Country DrawThirdPlaceAvoidingGroup(string winnerGroupName)
-        {
-            var match = thirdPlacePool.FirstOrDefault(c => c.GroupName != winnerGroupName) 
-                         ?? thirdPlacePool.First();
+        var r32Pairings = new List<(Country Home, Country Away)>();
 
-            thirdPlacePool.Remove(match);
-            return match.Team;
+        if (IsEvenGroup)
+        {
+            r32Pairings =
+            [
+                (groupWinners["A"], groupRunnersUp["B"]),
+                (groupWinners["E"], groupRunnersUp["F"]),
+                (groupWinners["I"], groupRunnersUp["J"]),
+                (groupWinners["M"], groupRunnersUp["N"]),
+                
+                (groupWinners["C"], groupRunnersUp["D"]),
+                (groupWinners["G"], groupRunnersUp["H"]),
+                (groupWinners["K"], groupRunnersUp["L"]),
+                (groupWinners["O"], groupRunnersUp["P"]),
+                
+                (groupWinners["B"], groupRunnersUp["A"]),
+                (groupWinners["F"], groupRunnersUp["E"]),
+                (groupWinners["J"], groupRunnersUp["I"]),
+                (groupWinners["N"], groupRunnersUp["M"]),
+                
+                (groupWinners["D"], groupRunnersUp["C"]),
+                (groupWinners["H"], groupRunnersUp["G"]),
+                (groupWinners["L"], groupRunnersUp["K"]),
+                (groupWinners["P"], groupRunnersUp["O"]),
+                
+            ];
         }
-
-        var r32Pairings = new List<(Country Home, Country Away)>
+        else
         {
-            (groupWinners["A"], DrawThirdPlaceAvoidingGroup("A")),
-            (groupRunnersUp["B"], groupRunnersUp["C"]),
-            (groupWinners["D"], DrawThirdPlaceAvoidingGroup("D")),
-            (groupRunnersUp["E"], groupRunnersUp["F"]),
+            var thirdPlacePool = GetTopNthPlaceTeams(session);
+        
+            Country DrawThirdPlaceAvoidingGroup(string winnerGroupName)
+            {
+                var match = thirdPlacePool.FirstOrDefault(c => c.GroupName != winnerGroupName) 
+                            ?? thirdPlacePool.First();
 
-            (groupWinners["B"], DrawThirdPlaceAvoidingGroup("B")),
-            (groupRunnersUp["A"], groupRunnersUp["D"]),
-            (groupWinners["C"], DrawThirdPlaceAvoidingGroup("C")),
-            (groupRunnersUp["G"], groupRunnersUp["H"]),
+                thirdPlacePool.Remove(match);
+                return match.Team;
+            }
 
-            (groupWinners["E"], DrawThirdPlaceAvoidingGroup("E")),
-            (groupRunnersUp["I"], groupRunnersUp["J"]),
-            (groupWinners["F"], DrawThirdPlaceAvoidingGroup("F")),
-            (groupRunnersUp["K"], groupRunnersUp["L"]),
+            r32Pairings =
+            [
+                (groupWinners["A"], DrawThirdPlaceAvoidingGroup("A")),
+                (groupRunnersUp["B"], groupRunnersUp["C"]),
+                (groupWinners["D"], DrawThirdPlaceAvoidingGroup("D")),
+                (groupRunnersUp["E"], groupRunnersUp["F"]),
 
-            (groupWinners["G"], DrawThirdPlaceAvoidingGroup("G")),
-            (groupRunnersUp["H"], groupRunnersUp["E"]),
-            (groupWinners["H"], DrawThirdPlaceAvoidingGroup("H")),
-            (groupRunnersUp["L"], groupRunnersUp["I"])
-        };
+                (groupWinners["B"], DrawThirdPlaceAvoidingGroup("B")),
+                (groupRunnersUp["A"], groupRunnersUp["D"]),
+                (groupWinners["C"], DrawThirdPlaceAvoidingGroup("C")),
+                (groupRunnersUp["G"], groupRunnersUp["H"]),
+
+                (groupWinners["E"], DrawThirdPlaceAvoidingGroup("E")),
+                (groupRunnersUp["I"], groupRunnersUp["J"]),
+                (groupWinners["F"], DrawThirdPlaceAvoidingGroup("F")),
+                (groupRunnersUp["K"], groupRunnersUp["L"]),
+
+                (groupWinners["G"], DrawThirdPlaceAvoidingGroup("G")),
+                (groupRunnersUp["H"], groupRunnersUp["E"]),
+                (groupWinners["H"], DrawThirdPlaceAvoidingGroup("H")),
+                (groupRunnersUp["L"], groupRunnersUp["I"])
+            ];
+        }
 
         for (var i = 0; i < r32Pairings.Count; i++)
         {
@@ -92,6 +105,25 @@ public class KnockoutBracketService: IKnockoutBracketService
         InitializeNextRounds(bracket);
 
         return bracket;
+    }
+    
+    public List<ThirdPlaceCandidate> GetTopNthPlaceTeams(TournamentSession session)
+    {
+        var candidates = (from @group in session.Groups
+            where @group.Standings.Count >= 3
+            let thirdPlaceStanding = @group.Standings[2]
+            let team = session.Fixtures.SelectMany(f => new[] { f.HomeTeam, f.AwayTeam })
+                .First(t => t.Id == thirdPlaceStanding.TeamId)
+            select new ThirdPlaceCandidate { GroupName = @group.Name, Standing = thirdPlaceStanding, Team = team }).ToList();
+        
+        return candidates
+            .OrderByDescending(c => c.Standing.Points)
+            .ThenByDescending(c => c.Standing.GoalDifference)
+            .ThenByDescending(c => c.Standing.GoalsFor)
+            .ThenByDescending(c => c.Standing.Won)
+            .ThenByDescending(c => c.Team.Strength)
+            .Take(session.NthPlaceNumberOfCandidates)
+            .ToList();
     }
 
     public void AdvanceBracket(KnockoutBracket bracket)

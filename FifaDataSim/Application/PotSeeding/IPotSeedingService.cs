@@ -5,5 +5,5 @@ namespace WorldCupSimulator.Application.PotSeeding;
 
 public interface IPotSeedingService
 {
-    List<List<Country>> GeneratePots(IEnumerable<Country> teams, TournamentConfiguration config);
+    List<List<Country>> GeneratePots(IEnumerable<Country> teams, IEnumerable<Country>? hosts, TournamentConfiguration config);
 }

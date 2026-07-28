@@ -8,7 +8,7 @@ public static class TournamentFactory
 {
     public static TournamentConfiguration GetByCode(string code)
     {
-            return SuperCup;
+            return UefaEuro32Finals;
     }
     
     public static readonly TournamentConfiguration WorldCup2026 = new()
@@ -404,6 +404,54 @@ public static class TournamentFactory
         {
             NumberOfGroups = 10,
             TeamsPerGroup = 2,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            NthPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
+    private static readonly TournamentConfiguration UefaEuro32PlayoffRoundOne = new()
+    {
+        Code = "Concacaf_Preliminaries",
+        Name = "Concacaf Preliminaries",
+        TotalTeams = 70,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 5,
+            SortingType = PotSortingType.WorldRanking,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 14,
+            TeamsPerGroup = 5,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            NthPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
+    private static readonly TournamentConfiguration UefaEuro32Finals = new()
+    {
+        Code = "Concacaf_Preliminaries",
+        Name = "Concacaf Preliminaries",
+        TotalTeams = 32,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 4,
+            SortingType = PotSortingType.WorldRanking,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 8,
+            TeamsPerGroup = 4,
             AutomaticQualifiersPerGroup = 1,
             Matchmaking = MatchmakingType.DoubleRoundRobin,
             NthPlaceRule = null

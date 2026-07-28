@@ -93,12 +93,14 @@ export default function MatchCentrePage({
         {/* RIGHT COLUMN: Standings & 3rd Place Tracker */}
         <div className="lg:col-span-7 space-y-6 max-h-[85vh] overflow-y-auto pr-1">
           {/* Third Place Cross-Group Rankings */}
-          <ThirdPlaceStandingsTable
-            groups={session.groups}
-            totalFixtures={totalMatchdays}
-            nthPlacePositionQualifier={session.nthPlaceQualificationPosition}
-            nthPlacePositionCandidates={session.nthPlaceNumberOfCandidates}
-          />
+          {session.nthPlaceNumberOfCandidates > 0 && (
+            <ThirdPlaceStandingsTable
+              groups={session.groups}
+              totalFixtures={totalMatchdays}
+              nthPlacePositionQualifier={session.nthPlaceQualificationPosition}
+              nthPlacePositionCandidates={session.nthPlaceNumberOfCandidates}
+            />
+          )}
 
           {/* All Group Standings Tables */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

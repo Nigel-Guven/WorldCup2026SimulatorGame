@@ -6,7 +6,6 @@ public class KnockoutBracketService: IKnockoutBracketService
 {
     public KnockoutBracket GenerateRoundOf32(TournamentSession session)
     {
-        var IsEvenGroup = session.Groups.Count is 2 or 4 or 8 or 16 or 32;
         var bracket = new KnockoutBracket();
 
         var groupWinners = new Dictionary<string, Country>();
@@ -26,11 +25,11 @@ public class KnockoutBracketService: IKnockoutBracketService
                 .First(t => t.Id == runnerUpStanding.TeamId);
         }
 
-        var r32Pairings = new List<(Country Home, Country Away)>();
+        var roundPairings = new List<(Country Home, Country Away)>();
 
-        if (IsEvenGroup)
+        if (session.Groups.Count == 16)
         {
-            r32Pairings =
+            roundPairings =
             [
                 (groupWinners["A"], groupRunnersUp["B"]),
                 (groupWinners["E"], groupRunnersUp["F"]),
@@ -54,6 +53,22 @@ public class KnockoutBracketService: IKnockoutBracketService
                 
             ];
         }
+        else if (session.Groups.Count == 8)
+        {
+            roundPairings =
+            [
+                (groupWinners["A"], groupRunnersUp["B"]),
+                (groupWinners["C"], groupRunnersUp["D"]),
+                (groupWinners["E"], groupRunnersUp["F"]),
+                (groupWinners["G"], groupRunnersUp["H"]),
+                
+                (groupWinners["B"], groupRunnersUp["A"]),
+                (groupWinners["D"], groupRunnersUp["C"]),
+                (groupWinners["F"], groupRunnersUp["E"]),
+                (groupWinners["H"], groupRunnersUp["G"])
+                
+            ];
+        }
         else
         {
             var thirdPlacePool = GetTopNthPlaceTeams(session);
@@ -67,7 +82,7 @@ public class KnockoutBracketService: IKnockoutBracketService
                 return match.Team;
             }
 
-            r32Pairings =
+            roundPairings =
             [
                 (groupWinners["A"], DrawThirdPlaceAvoidingGroup("A")),
                 (groupRunnersUp["B"], groupRunnersUp["C"]),
@@ -91,14 +106,14 @@ public class KnockoutBracketService: IKnockoutBracketService
             ];
         }
 
-        for (var i = 0; i < r32Pairings.Count; i++)
+        for (var i = 0; i < roundPairings.Count; i++)
         {
             bracket.RoundOf32.Add(new KnockoutMatch
             {
                 MatchNumber = i + 1,
                 Stage = "R32",
-                HomeTeam = r32Pairings[i].Home,
-                AwayTeam = r32Pairings[i].Away
+                HomeTeam = roundPairings[i].Home,
+                AwayTeam = roundPairings[i].Away
             });
         }
 

@@ -30,13 +30,16 @@ public class TournamentController(
         
         allTeams.Sort((a, b) => b.DefaultRankingPoints.CompareTo(a.DefaultRankingPoints));
         
-        var pots = potSeedingService.GeneratePots(allTeams, config);
+        var pots = potSeedingService.GeneratePots(remainingTeams, hostTeams, config);
 
         var setup = new TournamentDrawSetup
         {
             TournamentCode = config.Code,
             TournamentName = config.Name,
             TotalTeams = config.TotalTeams,
+            NumberOfGroups = config.GroupStage.NumberOfGroups,
+            NumberOfTeamsPerGroup = config.GroupStage.TeamsPerGroup,
+            MaxTwoUefaPerGroup = false,
             Pots = pots
         };
 
@@ -51,7 +54,7 @@ public class TournamentController(
             return BadRequest("Invalid group configuration package.");
         }
 
-        var session = tournamentService.CreateNewSession(groups, true, 0, 0);
+        var session = tournamentService.CreateNewSession(groups, false, 0, 0);
         return Ok(session);
     }
 

@@ -26,11 +26,9 @@ public class TournamentController(
     {
         var config = TournamentFactory.GetByCode(tournamentCode) ?? TournamentFactory.WorldCup2026;
 
-        var allTeams = countryRepository.GetTeamsByConfederation(Confederation.UEFA).Skip(39).ToList();
+        var allTeams = countryRepository.GetAllTeams().ToList();
         
-        allTeams.Sort((a, b) => b.DefaultRankingPoints.CompareTo(a.DefaultRankingPoints));
-        
-        var pots = potSeedingService.GeneratePots(remainingTeams, hostTeams, config);
+        var pots = potSeedingService.GeneratePots(allTeams, null, config);
 
         var setup = new TournamentDrawSetup
         {
@@ -54,7 +52,7 @@ public class TournamentController(
             return BadRequest("Invalid group configuration package.");
         }
 
-        var session = tournamentService.CreateNewSession(groups, false, 0, 0);
+        var session = tournamentService.CreateNewSession(groups, true, 3, 4);
         return Ok(session);
     }
 

@@ -77,6 +77,9 @@ export function GroupStandingsTable({ group, totalFixtures }: GroupStandingsTabl
             <th className="py-2 px-3 w-8 text-center">#</th>
             <th className="py-2 px-2">Team</th>
             <th className="py-2 px-1 text-center w-8">P</th>
+            <th className="py-2 px-1 text-center w-8">W</th>
+            <th className="py-2 px-1 text-center w-8">D</th>
+            <th className="py-2 px-1 text-center w-8">L</th>
             <th className="py-2 px-1 text-center w-8">GD</th>
             <th className="py-2 px-2 text-right w-12">Pts</th>
           </tr>
@@ -139,6 +142,21 @@ export function GroupStandingsTable({ group, totalFixtures }: GroupStandingsTabl
                 {/* Played */}
                 <td className="py-2.5 px-1 text-center font-mono text-slate-400">
                   {row.played}
+                </td>
+
+                {/* Played */}
+                <td className="py-2.5 px-1 text-center font-mono text-slate-400">
+                  {row.won}
+                </td>
+
+                {/* Played */}
+                <td className="py-2.5 px-1 text-center font-mono text-slate-400">
+                  {row.drawn}
+                </td>
+
+                {/* Played */}
+                <td className="py-2.5 px-1 text-center font-mono text-slate-400">
+                  {row.lost}
                 </td>
 
                 {/* Goal Difference */}

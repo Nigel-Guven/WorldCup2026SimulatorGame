@@ -91,8 +91,8 @@ public class TournamentService : ITournamentService
 
             if (home == null || away == null) continue;
 
-            int hScore = m.HomeScore ?? 0;
-            int aScore = m.AwayScore ?? 0;
+            var hScore = m.HomeScore ?? 0;
+            var aScore = m.AwayScore ?? 0;
 
             home.Played++;
             away.Played++;
@@ -105,17 +105,29 @@ public class TournamentService : ITournamentService
             {
                 home.Won++;
                 away.Lost++;
+
+                home.Last5Games += "W";
+                away.Last5Games += "L";
             }
             else if (aScore > hScore)
             {
                 away.Won++;
                 home.Lost++;
+                
+                home.Last5Games += "L";
+                away.Last5Games += "W";
             }
             else
             {
                 home.Drawn++;
                 away.Drawn++;
+                
+                home.Last5Games += "D";
+                away.Last5Games += "D";
             }
+            
+            
+            
         }
         
         group.Standings = group.Standings

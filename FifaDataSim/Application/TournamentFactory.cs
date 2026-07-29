@@ -8,7 +8,7 @@ public static class TournamentFactory
 {
     public static TournamentConfiguration GetByCode(string code)
     {
-            return UefaEuro32Finals;
+            return MegaCup;
     }
     
     public static readonly TournamentConfiguration WorldCup2026 = new()
@@ -452,6 +452,30 @@ public static class TournamentFactory
         {
             NumberOfGroups = 8,
             TeamsPerGroup = 4,
+            AutomaticQualifiersPerGroup = 1,
+            Matchmaking = MatchmakingType.DoubleRoundRobin,
+            NthPlaceRule = null
+        },
+        KnockoutStage = null
+    };
+    
+    private static readonly TournamentConfiguration MegaCup = new()
+    {
+        Code = "Concacaf_Preliminaries",
+        Name = "Concacaf Preliminaries",
+        TotalTeams = 300,
+        ConfederationSlots = null,
+        Pots = new PotConfiguration
+        {
+            TotalPots = 10,
+            SortingType = PotSortingType.WorldRanking,
+            HostInPotOne = true,
+            DrawConstraints = null
+        },
+        GroupStage = new GroupStageConfiguration
+        {
+            NumberOfGroups = 30,
+            TeamsPerGroup = 10,
             AutomaticQualifiersPerGroup = 1,
             Matchmaking = MatchmakingType.DoubleRoundRobin,
             NthPlaceRule = null

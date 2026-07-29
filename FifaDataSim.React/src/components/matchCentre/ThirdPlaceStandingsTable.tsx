@@ -62,7 +62,7 @@ export function ThirdPlaceStandingsTable({
 
 
     const cutoffTeam =
-      thirdPlaceRankings[nthPlacePositionQualifier - 1];
+      thirdPlaceRankings[nthPlacePositionQualifier];
 
 
     if (!cutoffTeam) return null;

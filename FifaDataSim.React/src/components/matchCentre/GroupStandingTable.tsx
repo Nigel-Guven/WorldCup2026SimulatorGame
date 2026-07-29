@@ -76,6 +76,7 @@ export function GroupStandingsTable({ group, totalFixtures }: GroupStandingsTabl
           <tr className="bg-slate-950 text-slate-500 font-bold uppercase tracking-wider border-b border-slate-800">
             <th className="py-2 px-3 w-8 text-center">#</th>
             <th className="py-2 px-2">Team</th>
+            <th className="py-2 px-1 text-center w-8">Last 5 Games</th>
             <th className="py-2 px-1 text-center w-8">P</th>
             <th className="py-2 px-1 text-center w-8">W</th>
             <th className="py-2 px-1 text-center w-8">D</th>
@@ -139,22 +140,39 @@ export function GroupStandingsTable({ group, totalFixtures }: GroupStandingsTabl
                   </div>
                 </td>
 
+                {/* Last 5 Games */}
+                <td className="py-2.5 px-1 text-center font-mono">
+                  <div className="flex items-center justify-center space-x-0.5 text-[11px]">
+                    {row.lastFiveGames?.split('').map((result, i) => {
+                      let icon = '➖';
+                      if (result === 'W') icon = '✅';
+                      if (result === 'L') icon = '❌';
+
+                      return (
+                        <span key={i} title={result === 'W' ? 'Win' : result === 'L' ? 'Loss' : 'Draw'}>
+                          {icon}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </td>
+
                 {/* Played */}
                 <td className="py-2.5 px-1 text-center font-mono text-slate-400">
                   {row.played}
                 </td>
 
-                {/* Played */}
+                {/* Won */}
                 <td className="py-2.5 px-1 text-center font-mono text-slate-400">
                   {row.won}
                 </td>
 
-                {/* Played */}
+                {/* Drawn */}
                 <td className="py-2.5 px-1 text-center font-mono text-slate-400">
                   {row.drawn}
                 </td>
 
-                {/* Played */}
+                {/* Lost */}
                 <td className="py-2.5 px-1 text-center font-mono text-slate-400">
                   {row.lost}
                 </td>

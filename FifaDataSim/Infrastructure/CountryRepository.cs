@@ -72,4 +72,11 @@ public class CountryRepository : ICountryRepository
 
     public Country? GetTeamById(string id) =>
         _countries.FirstOrDefault(t => t.Id.Equals(id, StringComparison.OrdinalIgnoreCase));
+
+    public void UpdateCountryForm(string countryId, string form)
+    {
+        var country = GetTeamById(countryId);
+        country.Form = form;
+        
+    }
 }

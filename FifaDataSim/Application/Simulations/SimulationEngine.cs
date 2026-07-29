@@ -13,10 +13,13 @@ public class SimulationEngine : ISimulationEngine
         
         double strengthDiff = home.Strength - away.Strength;
         
-        var adjustment = strengthDiff * 0.015;
+        var baseAdjustment = strengthDiff * 0.015;
 
-        var homeLambda = Math.Max(0.2, baseHomeExpectancy + adjustment);
-        var awayLambda = Math.Max(0.2, baseAwayExpectancy - adjustment);
+        var homeFormMod = CalculateFormModifier(home.Form);
+        var awayFormMod = CalculateFormModifier(away.Form);
+
+        var homeLambda = Math.Max(0.2, baseHomeExpectancy + baseAdjustment + homeFormMod);
+        var awayLambda = Math.Max(0.2, baseAwayExpectancy - baseAdjustment + awayFormMod);
 
 
         if (home.DefaultRankingPoints > away.DefaultRankingPoints)
@@ -69,11 +72,22 @@ public class SimulationEngine : ISimulationEngine
 
         var homePens = 0;
         var awayPens = 0;
-
+        var homeShotsRemaining = 5;
+        var awayShotsRemaining = 5;
+        
         for (var i = 0; i < 5; i++)
         {
             if (_random.NextDouble() <= homeWinProb) homePens++;
+            homeShotsRemaining--;
+
+            if (homePens > awayPens + awayShotsRemaining || awayPens > homePens + homeShotsRemaining) 
+                break;
+
             if (_random.NextDouble() <= (1.0 - homeWinProb)) awayPens++;
+            awayShotsRemaining--;
+            
+            if (awayPens > homePens + homeShotsRemaining || homePens > awayPens + awayShotsRemaining) 
+                break;
         }
 
         while (homePens == awayPens)
@@ -83,6 +97,7 @@ public class SimulationEngine : ISimulationEngine
 
             if (homeScored) homePens++;
             if (awayScored) awayPens++;
+
         }
 
         match.HomePenaltyScore = homePens;
@@ -103,5 +118,24 @@ public class SimulationEngine : ISimulationEngine
         } while (p > l);
 
         return k - 1;
+    }
+    
+    private double CalculateFormModifier(string lastFiveGames)
+    {
+        if (string.IsNullOrWhiteSpace(lastFiveGames)) return 0.0;
+
+        double formValue = 0.0;
+        
+        foreach (char result in lastFiveGames)
+        {
+            formValue += result switch
+            {
+                'W' => 0.025,
+                'L' => -0.025,
+                _ => 0.0
+            };
+        }
+
+        return formValue;
     }
 }

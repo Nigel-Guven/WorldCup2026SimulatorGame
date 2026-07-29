@@ -1,4 +1,3 @@
-using System.Collections.Immutable;
 using Microsoft.AspNetCore.Mvc;
 using WorldCupSimulator.Application;
 using WorldCupSimulator.Application.PotSeeding;
@@ -6,8 +5,6 @@ using WorldCupSimulator.Application.Simulations;
 using WorldCupSimulator.Contracts;
 using WorldCupSimulator.Infrastructure;
 using WorldCupSimulator.Models;
-using WorldCupSimulator.Models.Countries;
-using WorldCupSimulator.Models.TournamentConfigurations;
 
 namespace WorldCupSimulator.Controllers;
 
@@ -63,16 +60,6 @@ public class TournamentController(
         if (session == null) return NotFound("No active tournament running.");
         return Ok(session);
     }
-
-    [HttpPut("fixtures/{id:guid}")]
-    public ActionResult UpdateScore(Guid id, [FromBody] MatchScoreUpdate update)
-    {
-        var session = tournamentService.GetCurrentSession();
-        if (session == null) return NotFound("No active tournament running.");
-
-        tournamentService.UpdateFixtureScore(id, update.HomeScore, update.AwayScore);
-        return Ok(session);
-    }
     
     [HttpPost("fixtures/simulate-all")]
     public ActionResult<TournamentSession> SimulateAllUnplayedFixtures()
@@ -119,12 +106,6 @@ public class TournamentController(
 
         return Ok(session);
     }
-
-    public class MatchScoreUpdate
-    {
-        public int HomeScore { get; set; }
-        public int AwayScore { get; set; }
-    }
     
     [HttpGet("knockout/third-place-rankings")]
     public ActionResult<List<ThirdPlaceCandidate>> GetThirdPlaceRankings()
@@ -167,41 +148,5 @@ public class TournamentController(
         bracketService.AdvanceBracket(bracket);
 
         return Ok(bracket);
-    }
-    
-    private List<Country> SelectQualifiedTeams(List<Country> allTeams, TournamentConfiguration config)
-    {
-        var random = Random.Shared;
-        var qualifiedTeams = new List<Country>();
-        
-        if (config.ConfederationSlots is { Count: > 0 } slots)
-        {
-            foreach (var (confed, slotCount) in slots)
-            {
-                var confedTeams = allTeams
-                    .Where(c => c.Confederation == confed)
-                    .OrderBy(_ => random.Next()) 
-                    .Take(slotCount)
-                    .ToList();
-
-                qualifiedTeams.AddRange(confedTeams);
-            }
-        }
-        else
-        {
-            qualifiedTeams = allTeams
-                .OrderByDescending(t => t.DefaultRankingPoints)
-                .Take(config.TotalTeams)
-                .ToList();
-        }
-
-        if (qualifiedTeams.Count < config.TotalTeams)
-        {
-            throw new InvalidOperationException(
-                $"Configuration required {config.TotalTeams} teams, but only {qualifiedTeams.Count} were qualified."
-            );
-        }
-
-        return qualifiedTeams;
     }
 }

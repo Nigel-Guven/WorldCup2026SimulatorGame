@@ -10,4 +10,5 @@ export interface GroupTeamStanding {
   goalsAgainst: number;
   goalDifference: number;
   points: number;
+  lastFiveGames : string;
 }

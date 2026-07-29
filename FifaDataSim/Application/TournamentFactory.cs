@@ -8,7 +8,7 @@ public static class TournamentFactory
 {
     public static TournamentConfiguration GetByCode(string code)
     {
-            return MegaCup;
+            return SuperCup;
     }
     
     public static readonly TournamentConfiguration WorldCup2026 = new()

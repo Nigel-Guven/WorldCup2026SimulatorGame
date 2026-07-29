@@ -10,4 +10,5 @@ public interface ICountryRepository
     IEnumerable<Country> GetTeamsByConfederation(Confederation confederation);
     IEnumerable<Country> GetTeamsByConfederationNoOrdering(Confederation confederation);
     Country? GetTeamById(string id);
+    void UpdateCountryForm(string countryId, string form);
 }

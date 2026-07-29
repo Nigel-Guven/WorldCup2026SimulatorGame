@@ -13,5 +13,5 @@ public class GroupTeamStanding
     public int GoalsAgainst { get; set; }
     public int GoalDifference => GoalsFor - GoalsAgainst;
     public int Points => (Won * 3) + Drawn;
-    public string Last5Games;
+    public string LastFiveGames { get; set; } = string.Empty;
 }

@@ -1,4 +1,5 @@
 using WorldCupSimulator.Contracts;
+using WorldCupSimulator.Infrastructure;
 using WorldCupSimulator.Models;
 
 namespace WorldCupSimulator.Application;
@@ -6,6 +7,12 @@ namespace WorldCupSimulator.Application;
 public class TournamentService : ITournamentService
 {
     private TournamentSession? _activeSession;
+    private ICountryRepository _countryRepository;
+
+    public TournamentService(ICountryRepository countryRepository)
+    {
+        _countryRepository = countryRepository;
+    }
 
     public TournamentSession? GetCurrentSession() => _activeSession;
 
@@ -74,6 +81,7 @@ public class TournamentService : ITournamentService
             standing.Lost = 0;
             standing.GoalsFor = 0;
             standing.GoalsAgainst = 0;
+            standing.LastFiveGames = string.Empty;
         }
         
         var groupMatches = session.Fixtures.Where(f => 
@@ -85,7 +93,9 @@ public class TournamentService : ITournamentService
 
         foreach (var m in groupMatches)
         {
-
+            if (m.HomeScore == null || m.AwayScore == null) continue;
+            
+            
             var home = group.Standings.FirstOrDefault(s => s.TeamId == m.HomeTeam.Id);
             var away = group.Standings.FirstOrDefault(s => s.TeamId == m.AwayTeam.Id);
 
@@ -100,34 +110,34 @@ public class TournamentService : ITournamentService
             home.GoalsAgainst += aScore;
             away.GoalsFor += aScore;
             away.GoalsAgainst += hScore;
-
+            
             if (hScore > aScore)
             {
                 home.Won++;
                 away.Lost++;
 
-                home.Last5Games += "W";
-                away.Last5Games += "L";
+                home.LastFiveGames += "W";
+                away.LastFiveGames += "L";
             }
             else if (aScore > hScore)
             {
                 away.Won++;
                 home.Lost++;
                 
-                home.Last5Games += "L";
-                away.Last5Games += "W";
+                home.LastFiveGames += "L";
+                away.LastFiveGames += "W";
             }
             else
             {
                 home.Drawn++;
                 away.Drawn++;
                 
-                home.Last5Games += "D";
-                away.Last5Games += "D";
+                home.LastFiveGames += "D";
+                away.LastFiveGames += "D";
             }
             
-            
-            
+            if (home.LastFiveGames.Length > 5) home.LastFiveGames = home.LastFiveGames[^5..];
+            if (away.LastFiveGames.Length > 5) away.LastFiveGames = away.LastFiveGames[^5..];
         }
         
         group.Standings = group.Standings
@@ -135,6 +145,11 @@ public class TournamentService : ITournamentService
             .ThenByDescending(s => s.GoalDifference)
             .ThenByDescending(s => s.GoalsFor)
             .ToList();
+        
+        foreach (var standing in group.Standings)
+        {
+            _countryRepository.UpdateCountryForm(standing.TeamId, standing.LastFiveGames);
+        }
     }
     
     private static List<MatchFixture> GenerateRoundRobinFixtures(string groupName, List<Country> teams, bool isRoundRobin)

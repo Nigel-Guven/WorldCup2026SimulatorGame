@@ -1,5 +1,4 @@
 using WorldCupSimulator.Models;
-using WorldCupSimulator.Models.Countries;
 
 namespace WorldCupSimulator.Infrastructure;
 

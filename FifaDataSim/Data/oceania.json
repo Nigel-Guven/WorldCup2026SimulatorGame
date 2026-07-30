@@ -1,0 +1,123 @@
+[
+  {
+    "id": "cki",
+    "name": "Cook Islands",
+    "short_name": "CKI",
+    "confederation": "OFC",
+    "football_association": "Cook Islands Football Association",
+    "default_points": 877,
+    "strength": 16,
+    "flag_url": "https://flagcdn.com/w40/ck.png",
+    "home_stadium": "Baira Park"
+  },
+  {
+    "id": "asa",
+    "name": "American Samoa",
+    "short_name": "ASA",
+    "confederation": "OFC",
+    "football_association": "American Samoa Football Association",
+    "default_points": 871,
+    "strength": 13,
+    "flag_url": "https://flagcdn.com/w40/as.png",
+    "home_stadium": "Pago Pago Football Field"
+  },
+  {
+    "id": "nzl",
+    "name": "New Zealand",
+    "short_name": "NZL",
+    "confederation": "OFC",
+    "football_association": "New Zealand Football",
+    "default_points": 1269,
+    "strength": 66,
+    "flag_url": "https://flagcdn.com/w40/nz.png",
+    "home_stadium": "Wellington Regional Stadium"
+  },
+  {
+    "id": "ncl",
+    "name": "New Caledonia",
+    "short_name": "NCL",
+    "confederation": "OFC",
+    "football_association": "Fédération Calédonienne de Football",
+    "default_points": 1036,
+    "strength": 44,
+    "flag_url": "https://flagcdn.com/w40/nc.png",
+    "home_stadium": "Stade Nesselmann"
+  },
+  {
+    "id": "tga",
+    "name": "Tonga",
+    "short_name": "TGA",
+    "confederation": "OFC",
+    "football_association": "Tonga Football Association",
+    "default_points": 1080,
+    "strength": 44,
+    "flag_url": "https://flagcdn.com/w40/to.png",
+    "home_stadium": "Tonga Stadium"
+  },
+  {
+    "id": "van",
+    "name": "Vanuatu",
+    "short_name": "VAN",
+    "confederation": "OFC",
+    "football_association": "Vanuatu Football Federation",
+    "default_points": 1002,
+    "strength": 34,
+    "flag_url": "https://flagcdn.com/w40/vu.png",
+    "home_stadium": "Port Vila Municipal Stadium"
+  },
+  {
+    "id": "png",
+    "name": "Papua New Guinea",
+    "short_name": "PNG",
+    "confederation": "OFC",
+    "football_association": "Papua New Guinea Football Association",
+    "default_points": 974,
+    "strength": 42,
+    "flag_url": "https://flagcdn.com/w40/pg.png",
+    "home_stadium": "Sir Hubert Murray Stadium"
+  },
+  {
+    "id": "sol",
+    "name": "Solomon Islands",
+    "short_name": "SOL",
+    "confederation": "OFC",
+    "football_association": "Solomon Islands Football Federation",
+    "default_points": 1031,
+    "strength": 43,
+    "flag_url": "https://flagcdn.com/w40/sb.png",
+    "home_stadium": "Lawson Tama Stadium"
+  },
+  {
+    "id": "tah",
+    "name": "Tahiti",
+    "short_name": "TAH",
+    "confederation": "OFC",
+    "football_association": "Tahitian Football Federation",
+    "default_points": 1019,
+    "strength": 43,
+    "flag_url": "https://flagcdn.com/w40/pf.png",
+    "home_stadium": "Stade de la Proue"
+  },
+  {
+    "id": "fji",
+    "name": "Fiji",
+    "short_name": "FJI",
+    "confederation": "OFC",
+    "football_association": "Fiji Football Association",
+    "default_points": 1024,
+    "strength": 43,
+    "flag_url": "https://flagcdn.com/w40/fj.png",
+    "home_stadium": "HFC Park"
+  },
+  {
+    "id": "sam",
+    "name": "Samoa",
+    "short_name": "SAM",
+    "confederation": "OFC",
+    "football_association": "Football Federation Samoa",
+    "default_points": 876,
+    "strength": 20,
+    "flag_url": "https://flagcdn.com/w40/ws.png",
+    "home_stadium": "Tuanaimamo Stadium"
+  }
+]

@@ -99,14 +99,47 @@
     "home_stadium": "National Heroes Stadium"
   },
   {
-    "id": "myt",
-    "name": "Mayotte",
-    "short_name": "MAY",
+  "id": "mru",
+  "name": "Mauritius",
+  "short_name": "MRI",
+  "confederation": "CAF",
+  "football_association": "Mauritius Football Association",
+  "default_points": 911,
+  "strength": 21,
+  "flag_url": "https://flagcdn.com/w40/mu.png",
+  "home_stadium": "George V Stadium"
+  },
+  {
+    "id": "mad",
+    "name": "Madagascar",
+    "short_name": "MAD",
     "confederation": "CAF",
-    "football_association": "Ligue Mahoraise de football",
-    "default_points": 813,
-    "strength": 11,
-    "flag_url": "https://flagcdn.com/w40/yt.png",
-    "home_stadium": "Complexe de Kawani"
+    "football_association": "Malagasy Football Federation",
+    "default_points": 1202,
+    "strength": 55,
+    "flag_url": "https://flagcdn.com/w40/mg.png",
+    "home_stadium": "Stade Barea"
+  },
+  {
+    "id": "com",
+    "name": "Comoros",
+    "short_name": "COM",
+    "confederation": "CAF",
+    "football_association": "Fédération Comorienne de Football",
+    "default_points": 1187,
+    "strength": 58,
+    "flag_url": "https://flagcdn.com/w40/km.png",
+    "home_stadium": "Stade International de Mitsamyou"
+  },
+  {
+    "id": "mwi",
+    "name": "Malawi",
+    "short_name": "MLA",
+    "confederation": "CAF",
+    "football_association": "Football Association of Malawi",
+    "default_points": 1122,
+    "strength": 55,
+    "flag_url": "https://flagcdn.com/w40/mw.png",
+    "home_stadium": "National Stadium"
   }
 ]

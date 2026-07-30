@@ -198,17 +198,6 @@
     "home_stadium": "Aloha Stadium"
   },
   {
-    "id": "nfk",
-    "name": "Norfolk Island",
-    "short_name": "NFK",
-    "confederation": "OFC",
-    "football_association": "Norfolk Islander Football Association",
-    "default_points": 500,
-    "strength": 4,
-    "flag_url": "https://flagcdn.com/w40/nf.png",
-    "home_stadium": "Norfolk Island Central School Oval"
-  },
-  {
     "id": "bsk",
     "name": "Bashkortostan",
     "short_name": "BSK",
@@ -374,17 +363,6 @@
     "home_stadium": "Roazhon Park"
   },
   {
-    "id": "chg",
-    "name": "Chagos Islands",
-    "short_name": "CHG",
-    "confederation": "CAF",
-    "football_association": "Chagos Islands Football Association",
-    "default_points": 581,
-    "strength": 10,
-    "flag_url": "/flags/chagos.png",
-    "home_stadium": "Broadfield Stadium"
-  },
-  {
     "id": "soc",
     "name": "Socotra",
     "short_name": "SOC",
@@ -539,17 +517,6 @@
     "home_stadium": "Limbe Stadium"
   },
   {
-    "id": "flk",
-    "name": "Falkland Islands",
-    "short_name": "FLK",
-    "confederation": "CONMEBOL",
-    "football_association": "Falklands Football Association",
-    "default_points": 585,
-    "strength": 14,
-    "flag_url": "/flags/falklands.png",
-    "home_stadium": "Stanley Stadium"
-  },
-  {
     "id": "ptg",
     "name": "Patagonia",
     "short_name": "PTG",
@@ -570,5 +537,236 @@
     "strength": 12,
     "flag_url": "/flags/corsica.png",
     "home_stadium": "Stade Armand-Cesari"
+  },
+  {
+    "id": "krn",
+    "name": "Cornwall",
+    "short_name": "KRN",
+    "confederation": "UEFA",
+    "football_association": "Kernow Football Association",
+    "default_points": 699,
+    "strength": 15,
+    "flag_url": "/flags/cornwall.png",
+    "home_stadium": "Truro City Stadium"
+  },
+  {
+    "id": "crt",
+    "name": "Ruthenia",
+    "short_name": "CRT",
+    "confederation": "UEFA",
+    "football_association": "Carpathian Ruthenia Football Federation",
+    "default_points": 802,
+    "strength": 26,
+    "flag_url": "/flags/ruthenia.png",
+    "home_stadium": "Avanhard Stadium"
+  },
+  {
+    "id": "NGK",
+    "name": "Artsakh",
+    "short_name": "NGK",
+    "confederation": "UEFA",
+    "football_association": "Nagorno-Karabakh Soccer Federation",
+    "default_points": 753,
+    "strength": 19,
+    "flag_url": "/flags/artsakh.png",
+    "home_stadium": "Stepanakert Republican Stadium"
+  },
+  {
+    "id": "spm",
+    "name": "Sapmi",
+    "short_name": "SPM",
+    "confederation": "UEFA",
+    "football_association": "FA Sapmi",
+    "default_points": 689,
+    "strength": 13,
+    "flag_url": "/flags/sapmi.png",
+    "home_stadium": "Aspmyra Stadion"
+  },
+  {
+    "id": "uyg",
+    "name": "Uyghurstan",
+    "short_name": "UYG",
+    "confederation": "AFC",
+    "football_association": "Turkestan Football Union",
+    "default_points": 1155,
+    "strength": 47,
+    "flag_url": "/flags/turkestan.png",
+    "home_stadium": "Xinjiang Sports Centre"
+  },
+  {
+    "id": "ark",
+    "name": "Arakan",
+    "short_name": "ARK",
+    "confederation": "AFC",
+    "football_association": "Arakan FA",
+    "default_points": 785,
+    "strength": 19,
+    "flag_url": "/flags/arakan.png",
+    "home_stadium": " Wai Thar Li Stadium"
+  },
+  {
+    "id": "shs",
+    "name": "Shan State",
+    "short_name": "SHS",
+    "confederation": "AFC",
+    "football_association": "Shan Football Association",
+    "default_points": 696,
+    "strength": 8,
+    "flag_url": "/flags/shan.png",
+    "home_stadium": "Taunggyi Stadium"
+  },
+  {
+    "id": "tae",
+    "name": "Tamil Ealam",
+    "short_name": "TAE",
+    "confederation": "AFC",
+    "football_association": "Tamil Football Association",
+    "default_points": 649,
+    "strength": 15,
+    "flag_url": "/flags/tamil.png",
+    "home_stadium": "Trincomalee Ehambaram Arena"
+  },
+  {
+    "id": "ksh",
+    "name": "Kashmir",
+    "short_name": "KSH",
+    "confederation": "AFC",
+    "football_association": "Kashmir Football Federation",
+    "default_points": 809,
+    "strength": 17,
+    "flag_url": "/flags/kashmir.png",
+    "home_stadium": "Bakshi Stadium"
+  },
+  {
+    "id": "rke",
+    "name": "Rakhine State",
+    "short_name": "RKE",
+    "confederation": "AFC",
+    "football_association": "AF Rohingya",
+    "default_points": 652,
+    "strength": 7,
+    "flag_url": "/flags/rakhine.png",
+    "home_stadium": "Waitharli Stadium"
+  },
+  {
+    "id": "ryu",
+    "name": "Ryukyu Islands",
+    "short_name": "RYU",
+    "confederation": "AFC",
+    "football_association": "Ryukyu Football Association",
+    "default_points": 640,
+    "strength": 10,
+    "flag_url": "/flags/ryukyu.png",
+    "home_stadium": "Okinawa Athletic Park Stadium"
+  },
+  {
+    "id": "wpp",
+    "name": "West Papua",
+    "short_name": "WPP",
+    "confederation": "AFC",
+    "football_association": "West Papuan Football Association",
+    "default_points": 692,
+    "strength": 11,
+    "flag_url": "/flags/westpapua.png",
+    "home_stadium": "Sanggeng Stadium"
+  },
+  {
+    "id": "skk",
+    "name": "Sikkim",
+    "short_name": "SKK",
+    "confederation": "AFC",
+    "football_association": "Sikkimese Football Association",
+    "default_points": 586,
+    "strength": 8,
+    "flag_url": "/flags/sikkim.png",
+    "home_stadium": "Paljor Stadium"
+  },
+  {
+    "id": "asm",
+    "name": "Assam",
+    "short_name": "ASM",
+    "confederation": "AFC",
+    "football_association": "Assamese Football Association",
+    "default_points": 573,
+    "strength": 7,
+    "flag_url": "/flags/assam.png",
+    "home_stadium": "Nehru Stadium, Guwahati"
+  },
+  {
+    "id": "klm",
+    "name": "Kalmykia",
+    "short_name": "KLM",
+    "confederation": "UEFA",
+    "football_association": "Kalmyk Football Association",
+    "default_points": 672,
+    "strength": 14,
+    "flag_url": "/flags/kalymkia.png",
+    "home_stadium": "Uralan Stadium"
+  },
+  {
+    "id": "crm",
+    "name": "Crimea",
+    "short_name": "CRM",
+    "confederation": "UEFA",
+    "football_association": "Crimea Football Association",
+    "default_points": 953,
+    "strength": 35,
+    "flag_url": "/flags/crimea.png",
+    "home_stadium": "Lokomotiv Republican Sports Complex"
+  },
+  {
+    "id": "sze",
+    "name": "Szekelia",
+    "short_name": "SZE",
+    "confederation": "UEFA",
+    "football_association": "Szekely Peoples Football Association",
+    "default_points": 864,
+    "strength": 22,
+    "flag_url": "/flags/szekelia.png",
+    "home_stadium": "Sepsi OSK Arena"
+  },
+  {
+    "id": "mpc",
+    "name": "Mapuche",
+    "short_name": "MPC",
+    "confederation": "CONMEBOL",
+    "football_association": "Mapuche Football Association",
+    "default_points": 580,
+    "strength": 8,
+    "flag_url": "/flags/mapuche.png",
+    "home_stadium": "Estadio Ruca Che"
+  },
+  {
+    "id": "jbl",
+    "name": "Jubaland",
+    "short_name": "JBL",
+    "confederation": "CAF",
+    "football_association": "Jubaland Football Association",
+    "default_points": 610,
+    "strength": 11,
+    "flag_url": "/flags/jubaland.png",
+    "home_stadium": "Waamo Stadium"
+  },
+  {
+    "id": "wsh",
+    "name": "Sahrawi Arab Democratic Republic",
+    "short_name": "WSH",
+    "confederation": "CAF",
+    "football_association": "Sahrawi Arab Football Association",
+    "default_points": 704,
+    "strength": 16,
+    "flag_url": "/flags/sahrawi.png",
+    "home_stadium": "Sheikh Mohamed Laghdaf Stadium"
+  },
+  {
+    "id": "cyr",
+    "name": "Cyrenaica",
+    "short_name": "CYR",
+    "confederation": "CAF",
+    "football_association": "Cyrenaica Football Federation",
+    "default_points": 660,
+    "strength": 13,
+    "flag_url": "/flags/cyrenaica.png",
+    "home_stadium": "Benghazi International Stadium"
   }
 ]

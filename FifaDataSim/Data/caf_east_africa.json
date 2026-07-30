@@ -97,5 +97,16 @@
     "strength": 10,
     "flag_url": "https://flagcdn.com/w40/sc.png",
     "home_stadium": "Stade Linite"
+  },
+  {
+    "id": "tan",
+    "name": "Tanzania",
+    "short_name": "TAN",
+    "confederation": "CAF",
+    "football_association": "Tanzania Football Federation",
+    "default_points": 1180,
+    "strength": 62,
+    "flag_url": "https://flagcdn.com/w40/tz.png",
+    "home_stadium": "Benjamin Mkapa Stadium"
   }
 ]

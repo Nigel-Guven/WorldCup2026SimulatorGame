@@ -1,4 +1,5 @@
 using WorldCupSimulator.Application;
+using WorldCupSimulator.Application.Evaluators;
 using WorldCupSimulator.Application.PotSeeding;
 using WorldCupSimulator.Application.Simulations;
 using WorldCupSimulator.Infrastructure;
@@ -16,10 +17,16 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddSingleton<ICountryRepository, CountryRepository>();
+builder.Services.AddSingleton<ISessionRepository, InMemorySessionRepository>();
 builder.Services.AddSingleton<ITournamentService, TournamentService>();
 builder.Services.AddSingleton<ISimulationEngine, SimulationEngine>();
-builder.Services.AddSingleton<IKnockoutBracketService, KnockoutBracketService>();
 builder.Services.AddSingleton<IPotSeedingService, PotSeedingService>();
+builder.Services.AddSingleton<IPhaseEvaluatorFactory, PhaseEvaluatorFactory>();
+
+builder.Services.AddTransient<GroupStagePhaseEvaluator>();
+builder.Services.AddTransient<GroupPhaseRankingEvaluator>();
+builder.Services.AddTransient<MultiKnockoutPhaseEvaluator>();
+builder.Services.AddTransient<SingleKnockoutPhaseEvaluator>();
 
 builder.Services.AddControllers();
 

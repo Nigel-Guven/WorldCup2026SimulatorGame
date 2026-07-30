@@ -1,81 +1,5 @@
 [
-  {
-    "id": "mru",
-    "name": "Mauritius",
-    "short_name": "MRI",
-    "confederation": "CAF",
-    "football_association": "Mauritius Football Association",
-    "default_points": 911,
-    "strength": 21,
-    "flag_url": "https://flagcdn.com/w40/mu.png",
-    "home_stadium": "George V Stadium"
-  },
-  {
-    "id": "reu",
-    "name": "Reunion",
-    "short_name": "REU",
-    "confederation": "CAF",
-    "football_association": "Ligue de Football de la Réunion",
-    "default_points": 972,
-    "strength": 45,
-    "flag_url": "https://flagcdn.com/w40/re.png",
-    "home_stadium": "Stade Georges SMTP"
-  },
-  {
-    "id": "mad",
-    "name": "Madagascar",
-    "short_name": "MAD",
-    "confederation": "CAF",
-    "football_association": "Malagasy Football Federation",
-    "default_points": 1202,
-    "strength": 55,
-    "flag_url": "https://flagcdn.com/w40/mg.png",
-    "home_stadium": "Stade Barea"
-  },
-  {
-    "id": "com",
-    "name": "Comoros",
-    "short_name": "COM",
-    "confederation": "CAF",
-    "football_association": "Fédération Comorienne de Football",
-    "default_points": 1187,
-    "strength": 58,
-    "flag_url": "https://flagcdn.com/w40/km.png",
-    "home_stadium": "Stade International de Mitsamyou"
-  },
-  {
-    "id": "zan",
-    "name": "Zanzibar",
-    "short_name": "ZAN",
-    "confederation": "CAF",
-    "football_association": "Zanzibar Football Federation",
-    "default_points": 1000,
-    "strength": 37,
-    "flag_url": "https://flagcdn.com/w40/tz.png",
-    "home_stadium": "Amaan Stadium"
-  },
-  {
-    "id": "tan",
-    "name": "Tanzania",
-    "short_name": "TAN",
-    "confederation": "CAF",
-    "football_association": "Tanzania Football Federation",
-    "default_points": 1180,
-    "strength": 62,
-    "flag_url": "https://flagcdn.com/w40/tz.png",
-    "home_stadium": "Benjamin Mkapa Stadium"
-  },
-  {
-    "id": "mwi",
-    "name": "Malawi",
-    "short_name": "MLA",
-    "confederation": "CAF",
-    "football_association": "Football Association of Malawi",
-    "default_points": 1122,
-    "strength": 55,
-    "flag_url": "https://flagcdn.com/w40/mw.png",
-    "home_stadium": "National Stadium"
-  },
+  
   {
     "id": "bur",
     "name": "Burundi",
@@ -97,5 +21,93 @@
     "strength": 55,
     "flag_url": "https://flagcdn.com/w40/rw.png",
     "home_stadium": "Amahoro Stadium"
+  },
+  {
+    "id": "cog",
+    "name": "Congo",
+    "short_name": "COG",
+    "confederation": "CAF",
+    "football_association": "Fédération Congolaise de Football",
+    "default_points": 1105,
+    "strength": 55,
+    "flag_url": "https://flagcdn.com/w40/cg.png",
+    "home_stadium": "Stade Alphonse Massamba-Débat"
+  },
+  {
+    "id": "drc",
+    "name": "DR Congo",
+    "short_name": "DRC",
+    "confederation": "CAF",
+    "football_association": "Fédération Congolaise de Football Association",
+    "default_points": 1495,
+    "strength": 71,
+    "flag_url": "https://flagcdn.com/w40/cd.png",
+    "home_stadium": "Stade des Martyrs"
+  },
+  {
+    "id": "nga",
+    "name": "Nigeria",
+    "short_name": "NGA",
+    "confederation": "CAF",
+    "football_association": "Nigeria Football Federation",
+    "default_points": 1585,
+    "strength": 77,
+    "flag_url": "https://flagcdn.com/w40/ng.png",
+    "home_stadium": "Godswill Akpabio International Stadium"
+  },
+  {
+    "id": "cam",
+    "name": "Cameroon",
+    "short_name": "CMR",
+    "confederation": "CAF",
+    "football_association": "Cameroonian Football Federation",
+    "default_points": 1481,
+    "strength": 74,
+    "flag_url": "https://flagcdn.com/w40/cm.png",
+    "home_stadium": "Stade Japoma"
+  },
+  {
+    "id": "eqg",
+    "name": "Equatorial Guinea",
+    "short_name": "EQG",
+    "confederation": "CAF",
+    "football_association": "Federación Guinea Ecuatorial",
+    "default_points": 1195,
+    "strength": 55,
+    "flag_url": "https://flagcdn.com/w40/gq.png",
+    "home_stadium": "Estadio de Malabo"
+  },
+  {
+    "id": "stp",
+    "name": "Sao Tome and Principe",
+    "short_name": "STP",
+    "confederation": "CAF",
+    "football_association": "Federação São Tomense de Futebol",
+    "default_points": 855,
+    "strength": 15,
+    "flag_url": "https://flagcdn.com/w40/st.png",
+    "home_stadium": "Estádio Nacional 12 de Julho"
+  },
+  {
+    "id": "caf",
+    "name": "Central African Republic",
+    "short_name": "CAF",
+    "confederation": "CAF",
+    "football_association": "Fédération Centrafricaine de Football",
+    "default_points": 1080,
+    "strength": 46,
+    "flag_url": "https://flagcdn.com/w40/cf.png",
+    "home_stadium": "Stade Barthélemy Boganda"
+  },
+  {
+    "id": "gab",
+    "name": "Gabon",
+    "short_name": "GAB",
+    "confederation": "CAF",
+    "football_association": "Fédération Gabonaise de Football",
+    "default_points": 1272,
+    "strength": 58,
+    "flag_url": "https://flagcdn.com/w40/ga.png",
+    "home_stadium": "Stade d'Angondjé"
   }
 ]

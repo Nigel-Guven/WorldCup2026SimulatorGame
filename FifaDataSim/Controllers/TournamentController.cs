@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WorldCupSimulator.Application;
-using WorldCupSimulator.Application.PotSeeding;
-using WorldCupSimulator.Application.Simulations;
 using WorldCupSimulator.Contracts;
-using WorldCupSimulator.Infrastructure;
 using WorldCupSimulator.Models;
 
 namespace WorldCupSimulator.Controllers;
@@ -11,142 +8,63 @@ namespace WorldCupSimulator.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 public class TournamentController(
-    ICountryRepository countryRepository, 
-    ITournamentService tournamentService,
-    ISimulationEngine simEngine,
-    IKnockoutBracketService bracketService,
-    IPotSeedingService potSeedingService)
+    ITournamentService tournamentService)
     : ControllerBase
 {
+
     [HttpGet("draw-setup")]
-    public ActionResult<TournamentDrawSetup> GetDrawSetup([FromQuery] string? tournamentCode)
+    public ActionResult<TournamentDrawSetup> GetDrawSetup(
+        [FromQuery] string tournamentCode, 
+        [FromQuery] string? phaseId = null)
     {
-        var config = TournamentFactory.GetByCode(tournamentCode) ?? TournamentFactory.WorldCup2026;
-
-        var allTeams = countryRepository.GetAllTeams().ToList();
-        
-        var pots = potSeedingService.GeneratePots(allTeams, null, config);
-
-        var setup = new TournamentDrawSetup
-        {
-            TournamentCode = config.Code,
-            TournamentName = config.Name,
-            TotalTeams = config.TotalTeams,
-            NumberOfGroups = config.GroupStage.NumberOfGroups,
-            NumberOfTeamsPerGroup = config.GroupStage.TeamsPerGroup,
-            MaxTwoUefaPerGroup = false,
-            Pots = pots
-        };
+        var setup = tournamentService.GetDrawSetup(tournamentCode, phaseId);
+        if (setup == null) return NotFound("Tournament or Phase configuration not found.");
 
         return Ok(setup);
     }
     
-    [HttpPost("initialize")]
-    public ActionResult<TournamentSession> InitializeTournament([FromBody] List<GroupSetupDto>? groups)
+    [HttpPost("initialize-phase")]
+    public ActionResult<TournamentSession> InitializePhase([FromBody] PhaseInitializationRequest request)
     {
-        if (groups == null || groups.Count == 0)
-        {
-            return BadRequest("Invalid group configuration package.");
-        }
-
-        var session = tournamentService.CreateNewSession(groups, true, 3, 4);
-        return Ok(session);
-    }
-
-    [HttpGet("current-session")]
-    public ActionResult<TournamentSession> GetCurrentSession()
-    {
-        var session = tournamentService.GetCurrentSession();
-        if (session == null) return NotFound("No active tournament running.");
-        return Ok(session);
-    }
-    
-    [HttpPost("fixtures/simulate-all")]
-    public ActionResult<TournamentSession> SimulateAllUnplayedFixtures()
-    {
-        var session = tournamentService.GetCurrentSession();
-        if (session == null) return NotFound("No active tournament running.");
-
-        var unplayedFixtures = session.Fixtures.Where(f => !f.IsPlayed).ToList();
-
-        foreach (var fixture in unplayedFixtures)
-        {
-            if (fixture.HomeTeam == null || fixture.AwayTeam == null)
-            {
-                fixture.IsPlayed = true;
-                continue;
-            }
-
-            var (homeScore, awayScore) = simEngine.SimulateMatch(fixture.HomeTeam, fixture.AwayTeam);
-            tournamentService.UpdateFixtureScore(fixture.Id, homeScore, awayScore);
-        }
+        var session = tournamentService.InitializePhase(request);
+        if (session == null) return BadRequest("Failed to initialize phase. Check request payload.");
 
         return Ok(session);
     }
 
-    [HttpPost("fixtures/{id:guid}/simulate")]
-    public ActionResult<MatchFixture> SimulateSingleFixture(Guid id)
+    [HttpGet("session/{sessionId:guid}")]
+    public ActionResult<TournamentSession> GetSession(Guid sessionId)
     {
-        var session = tournamentService.GetCurrentSession();
-        if (session == null) return NotFound("No active tournament running.");
+        var session = tournamentService.GetSession(sessionId);
+        if (session == null) return NotFound("Session not found.");
 
-        var fixture = session.Fixtures.FirstOrDefault(f => f.Id == id);
-        if (fixture == null) return NotFound("Fixture not found.");
+        return Ok(session);
+    }
 
-        if (fixture.IsPlayed) return Ok(session);
-
-        if (fixture.HomeTeam == null || fixture.AwayTeam == null)
-        {
-            fixture.IsPlayed = true;
-            return Ok(session);
-        }
-
-        var (homeScore, awayScore) = simEngine.SimulateMatch(fixture.HomeTeam, fixture.AwayTeam);
-        tournamentService.UpdateFixtureScore(fixture.Id, homeScore, awayScore);
+    [HttpPost("sessions/{sessionId:guid}/phases/{phaseId}/simulate")]
+    public ActionResult<TournamentSession> SimulatePhase(Guid sessionId, string phaseId)
+    {
+        var session = tournamentService.SimulatePhase(sessionId, phaseId);
+        if (session == null) return NotFound("Session or Phase not found.");
 
         return Ok(session);
     }
     
-    [HttpGet("knockout/third-place-rankings")]
-    public ActionResult<List<ThirdPlaceCandidate>> GetThirdPlaceRankings()
+    [HttpPost("sessions/{sessionId:guid}/fixtures/{fixtureId:guid}/simulate")]
+    public ActionResult<FixtureSimulationResult> SimulateFixture(Guid sessionId, Guid fixtureId)
     {
-        var session = tournamentService.GetCurrentSession();
-        if (session == null) return NotFound("No active session.");
+        var result = tournamentService.SimulateFixture(sessionId, fixtureId);
+        if (result == null) return NotFound("Fixture not found in active session.");
 
-        return Ok( bracketService.GetTopNthPlaceTeams(session));
-    }
-
-    [HttpPost("knockout/generate")]
-    public ActionResult<KnockoutBracket> GenerateBracket()
-    {
-        var session = tournamentService.GetCurrentSession();
-        if (session == null) return NotFound("No active session.");
-
-        var bracket = bracketService.GenerateRoundOf32(session);
-        session.KnockoutBracket = bracket;
-        return Ok(bracket);
+        return Ok(result);
     }
     
-    [HttpPost("knockout/simulate-match/{matchId}")]
-    public ActionResult<KnockoutBracket> SimulateKnockoutMatch(Guid matchId)
+    [HttpPost("sessions/{sessionId:guid}/phases/{phaseId}/advance")]
+    public ActionResult<PhaseAdvancementResult> AdvancePhase(Guid sessionId, string phaseId)
     {
-        var session = tournamentService.GetCurrentSession();
-        if (session?.KnockoutBracket == null) return NotFound("No active bracket.");
+        var result = tournamentService.AdvancePhase(sessionId, phaseId);
+        if (result == null) return BadRequest("Phase cannot be advanced (matches may still be unplayed).");
 
-        var bracket = session.KnockoutBracket;
-
-        var allMatches = bracket.RoundOf32
-            .Concat(bracket.RoundOf16)
-            .Concat(bracket.QuarterFinals)
-            .Concat(bracket.SemiFinals)
-            .Concat([bracket.ThirdPlaceMatch, bracket.Final]);
-
-        var match = allMatches.FirstOrDefault(m => m.Id == matchId);
-        if (match == null) return NotFound("Knockout match not found.");
-
-        simEngine.SimulateKnockoutMatch(match);
-        bracketService.AdvanceBracket(bracket);
-
-        return Ok(bracket);
+        return Ok(result);
     }
 }

@@ -53,5 +53,16 @@
     "strength": 50,
     "flag_url": "https://flagcdn.com/w40/fo.png",
     "home_stadium": "Tórsvøllur"
+  },
+  {
+    "id": "fin",
+    "name": "Finland",
+    "short_name": "FIN",
+    "confederation": "UEFA",
+    "football_association": "Football Association of Finland",
+    "default_points": 1341,
+    "strength": 68,
+    "flag_url": "https://flagcdn.com/w40/fi.png",
+    "home_stadium": "Helsinki Olympic Stadium"
   }
 ]

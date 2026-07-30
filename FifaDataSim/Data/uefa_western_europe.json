@@ -1,0 +1,102 @@
+[
+  {
+    "id": "nld",
+    "name": "Netherlands",
+    "short_name": "NED",
+    "confederation": "UEFA",
+    "football_association": "Royal Dutch Football Association",
+    "default_points": 1775,
+    "strength": 88,
+    "flag_url": "https://flagcdn.com/w40/nl.png",
+    "home_stadium": "Johan Cruyff Arena"
+  },
+  {
+    "id": "bel",
+    "name": "Belgium",
+    "short_name": "BEL",
+    "confederation": "UEFA",
+    "football_association": "Royal Belgian Football Association",
+    "default_points": 1778,
+    "strength": 86,
+    "flag_url": "https://flagcdn.com/w40/be.png",
+    "home_stadium": "King Baudouin Stadium"
+  },
+  {
+    "id": "lux",
+    "name": "Luxembourg",
+    "short_name": "LUX",
+    "confederation": "UEFA",
+    "football_association": "Luxembourg Football Federation",
+    "default_points": 1232,
+    "strength": 63,
+    "flag_url": "https://flagcdn.com/w40/lu.png",
+    "home_stadium": "Stade Josy Barthel"
+  },
+  {
+    "id": "ger",
+    "name": "Germany",
+    "short_name": "GER",
+    "confederation": "UEFA",
+    "football_association": "German Football Association",
+    "default_points": 1726,
+    "strength": 88,
+    "flag_url": "https://flagcdn.com/w40/de.png",
+    "home_stadium": "Olympiastadion"
+  },
+  {
+    "id": "cze",
+    "name": "Czechia",
+    "short_name": "CZE",
+    "confederation": "UEFA",
+    "football_association": "Football Association of the Czech Republic",
+    "default_points": 1467,
+    "strength": 74,
+    "flag_url": "https://flagcdn.com/w40/cz.png",
+    "home_stadium": "Fortuna Arena"
+  },
+  {
+    "id": "fra",
+    "name": "France",
+    "short_name": "FRA",
+    "confederation": "UEFA",
+    "football_association": "French Football Federation",
+    "default_points": 1948,
+    "strength": 91,
+    "flag_url": "https://flagcdn.com/w40/fr.png",
+    "home_stadium": "Stade de France"
+  },
+  {
+    "id": "aut",
+    "name": "Austria",
+    "short_name": "AUT",
+    "confederation": "UEFA",
+    "football_association": "Austrian Football Association",
+    "default_points": 1598,
+    "strength": 80,
+    "flag_url": "https://flagcdn.com/w40/at.png",
+    "home_stadium": "Ernst Happel Stadium"
+  },
+  {
+    "id": "swi",
+    "name": "Switzerland",
+    "short_name": "SUI",
+    "confederation": "UEFA",
+    "football_association": "Swiss Football Association",
+    "default_points": 1710,
+    "strength": 82,
+    "flag_url": "https://flagcdn.com/w40/ch.png",
+    "home_stadium": "St. Jakob-Park"
+  },
+
+  {
+    "id": "lie",
+    "name": "Liechtenstein",
+    "short_name": "LIE",
+    "confederation": "UEFA",
+    "football_association": "Liechtenstein Football Association",
+    "default_points": 797,
+    "strength": 16,
+    "flag_url": "https://flagcdn.com/w40/li.png",
+    "home_stadium": "Rheinpark Stadion"
+  }
+]

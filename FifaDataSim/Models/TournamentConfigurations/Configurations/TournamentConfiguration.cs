@@ -1,14 +1,12 @@
-using WorldCupSimulator.Models.Countries;
+using WorldCupSimulator.Models.TournamentConfigurations.Phase;
 
 namespace WorldCupSimulator.Models.TournamentConfigurations;
 
 public class TournamentConfiguration
 {
-    public required string Code { get; init; }            
-    public required string Name { get; init; }
-    public required int TotalTeams { get; init; }
-    public required Dictionary<Confederation, int>? ConfederationSlots { get; init; }
-    public required PotConfiguration Pots { get; init; }
-    public required GroupStageConfiguration GroupStage { get; init; }
-    public KnockoutStageConfiguration? KnockoutStage { get; init; }
+    public string Code { get; init; }
+    public string Name { get; init; }
+    public int TotalTeams { get; init; }
+
+    public List<TournamentPhaseConfig> Phases { get; init; } = [];
 }

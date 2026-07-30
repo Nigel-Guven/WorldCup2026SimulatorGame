@@ -97,16 +97,5 @@
     "strength": 15,
     "flag_url": "https://flagcdn.com/w40/mn.png",
     "home_stadium": "MFF Football Centre"
-  },
-  {
-    "id": "mni",
-    "name": "Northern Mariana Islands",
-    "short_name": "MNI",
-    "confederation": "AFC",
-    "football_association": "Northern Mariana Islands Football Association",
-    "default_points": 697,
-    "strength": 8,
-    "flag_url": "https://flagcdn.com/w40/mp.png",
-    "home_stadium": "Smith Recreational Field"
   }
 ]

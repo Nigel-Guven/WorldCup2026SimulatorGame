@@ -1,4 +1,4 @@
-namespace WorldCupSimulator.Models.Countries;
+namespace WorldCupSimulator.Models;
 
 public enum Confederation
 {

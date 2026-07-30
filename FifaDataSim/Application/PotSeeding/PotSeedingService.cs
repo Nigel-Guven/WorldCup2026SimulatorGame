@@ -1,23 +1,21 @@
 using WorldCupSimulator.Models;
 using WorldCupSimulator.Models.TournamentConfigurations;
+using WorldCupSimulator.Models.TournamentConfigurations.Phase;
 
 namespace WorldCupSimulator.Application.PotSeeding;
 
 public class PotSeedingService : IPotSeedingService
 {
-    public List<List<Country>> GeneratePots(IEnumerable<Country> teams, IEnumerable<Country>? hosts, TournamentConfiguration config)
+    public List<Pot> GeneratePots(IEnumerable<Country> teams, IEnumerable<Country>? hosts, TournamentPhaseConfig phaseConfig)
     {
-        var potConfig = config.Pots 
-                        ?? throw new InvalidOperationException($"Tournament configuration '{config.Name}' has no PotConfig defined.");
-
-        var totalPots = potConfig.TotalPots;
-        var teamsPerPot = config.TotalTeams / totalPots;
+        var (totalPots, teamsPerPot) = GetPotDimensions(phaseConfig);
 
         var hostList = hosts?.Distinct().ToList() ?? [];
 
         if (hostList.Count > teamsPerPot)
         {
-            throw new InvalidOperationException($"Number of host teams ({hostList.Count}) exceeds Pot 1 capacity ({teamsPerPot}).");
+            throw new InvalidOperationException(
+                $"Number of host teams ({hostList.Count}) exceeds Pot 1 capacity ({teamsPerPot}).");
         }
 
         var hostIds = hostList.Select(h => h.Id).ToHashSet();
@@ -27,24 +25,38 @@ public class PotSeedingService : IPotSeedingService
             .ToList();
         
         var remainingPot1Capacity = teamsPerPot - hostList.Count;
-        var pot1 = hostList
+        var pot1Teams = hostList
             .Concat(nonHostTeams.Take(remainingPot1Capacity))
             .ToList();
         
         var remainingTeams = nonHostTeams.Skip(remainingPot1Capacity).ToList();
 
-        var pots = new List<List<Country>> { pot1 };
+        var pots = new List<Pot>
+        {
+            new() { Number = 1, Countries = pot1Teams }
+        };
         
         for (var i = 1; i < totalPots; i++)
         {
-            var pot = remainingTeams
+            var potTeams = remainingTeams
                 .Skip((i - 1) * teamsPerPot)
                 .Take(teamsPerPot)
                 .ToList();
 
-            pots.Add(pot);
+            pots.Add(new Pot 
+            { 
+                Number = i + 1, 
+                Countries = potTeams 
+            });
         }
 
         return pots;
     }
+
+    private static (int TotalPots, int TeamsPerPot) GetPotDimensions(TournamentPhaseConfig phaseConfig) => phaseConfig switch
+    {
+        GroupPhaseConfig g => (g.TeamsPerGroup, g.NumberOfGroups),
+        MultiKnockoutPhaseConfig m => (m.TeamsPerPath, m.NumberOfPaths),
+        _ => throw new NotSupportedException($"Pot seeding is not supported for phase type '{phaseConfig.GetType().Name}'.")
+    };
 }

@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using WorldCupSimulator.Models.Countries;
 
 namespace WorldCupSimulator.Models;
 

@@ -130,16 +130,5 @@
     "strength": 48,
     "flag_url": "https://flagcdn.com/w40/gy.png",
     "home_stadium": "Guyana National Stadium"
-  },
-  {
-    "id": "fgf",
-    "name": "French Guiana",
-    "short_name": "GFN",
-    "confederation": "CONCACAF",
-    "football_association": "Ligue de Football de la Guyane",
-    "default_points": 990,
-    "strength": 43,
-    "flag_url": "https://flagcdn.com/w40/gf.png",
-    "home_stadium": "Stade Régional Centre"
   }
 ]

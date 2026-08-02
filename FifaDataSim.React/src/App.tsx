@@ -7,6 +7,7 @@ import { useTournamentSession } from './hooks/useTournamentSession';
 export type ActivePage =
   | 'rankings'
   | 'draw'
+  | 'drawv2'
   | 'centre'
   | 'knockout';
 

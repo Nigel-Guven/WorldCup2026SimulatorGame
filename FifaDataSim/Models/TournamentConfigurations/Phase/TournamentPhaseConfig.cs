@@ -10,5 +10,5 @@ public abstract class TournamentPhaseConfig
     public string PhaseName { get; init; }
     public int Order { get; init; }
     public PhaseType PhaseType { get; init;  }
-    public List<ProgressionRule> ProgressionRules { get; init; } = [];
+    public List<ProgressionRule>? ProgressionRules { get; init; } = [];
 }

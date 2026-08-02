@@ -34,6 +34,13 @@ export default function Navbar({
             </NavButton>
 
             <NavButton
+              active={activePage === 'drawv2'}
+              onClick={() => onNavigate('drawv2')}
+            >
+              Tournament Draw V2
+            </NavButton>
+
+            <NavButton
               active={activePage === 'draw'}
               onClick={() => onNavigate('draw')}
             >

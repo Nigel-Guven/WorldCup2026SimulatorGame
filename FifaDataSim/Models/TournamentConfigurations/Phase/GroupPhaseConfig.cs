@@ -11,5 +11,5 @@ public class GroupPhaseConfig : TournamentPhaseConfig
     public bool IsRoundRobin { get; init; }
     public bool LimitConfederationTeamsPerGroup { get; init; }
     public List<ProgressionRule> DirectProgressionRules { get; init; } = [];
-    public List<CrossGroupProgressionRule> CrossGroupProgressionRules { get; init; } = [];
+    public List<CrossGroupProgressionRule>? CrossGroupProgressionRules { get; init; } = [];
 }

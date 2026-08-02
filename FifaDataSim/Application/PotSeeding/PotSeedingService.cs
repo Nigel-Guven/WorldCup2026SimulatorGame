@@ -57,6 +57,7 @@ public class PotSeedingService : IPotSeedingService
     {
         GroupPhaseConfig g => (g.TeamsPerGroup, g.NumberOfGroups),
         MultiKnockoutPhaseConfig m => (m.TeamsPerPath, m.NumberOfPaths),
+        SingleKnockoutPhaseConfig s => (1, s.StartingTeamsCount),
         _ => throw new NotSupportedException($"Pot seeding is not supported for phase type '{phaseConfig.GetType().Name}'.")
     };
 }

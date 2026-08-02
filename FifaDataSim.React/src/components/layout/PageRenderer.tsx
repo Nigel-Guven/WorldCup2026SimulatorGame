@@ -5,6 +5,7 @@ import RankingsPage from '../../pages/RankingsPage';
 import TournamentDrawPage from '../../pages/TournamentDrawPage';
 import MatchCentrePage from '../../pages/MatchCentrePage';
 import KnockoutBracketPage from '../../pages/KnockoutBracketPage';
+import TournamentDrawSetup from '../../pages/TournamentDrawSetup';
 
 interface PageRendererProps {
   activePage: ActivePage;
@@ -35,6 +36,14 @@ export default function PageRenderer({
         <TournamentDrawPage
           onDrawComplete={onDrawComplete}
           hasExistingSession={session !== null}
+        />
+      );
+
+    case 'drawv2':
+      return (
+        <TournamentDrawSetup
+          tournamentCode={"Conmebol"} // e.g., 'WC2026'
+          phaseId={undefined}             // optional string
         />
       );
 

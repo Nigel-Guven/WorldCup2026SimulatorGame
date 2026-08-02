@@ -1,4 +1,3 @@
-using WorldCupSimulator.Contracts;
 using WorldCupSimulator.Infrastructure;
 using WorldCupSimulator.Models;
 using WorldCupSimulator.Models.TournamentConfigurations.Enums;

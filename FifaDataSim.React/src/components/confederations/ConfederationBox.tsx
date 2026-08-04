@@ -2,6 +2,8 @@ import { type DragEvent, type JSX } from 'react';
 import type { ConfederationConfig } from '../../types/tournament';
 import type { Country } from '../../types/country';
 import type { Confederation } from '../../types/confederation';
+import TeamCard from './TeamCard'; // Import TeamCard here
+
 interface ConfederationBoxProps {
   conf: ConfederationConfig;
   teams: Country[];
@@ -31,9 +33,12 @@ export function ConfederationBox({
         <button
           onClick={() => onReload(conf.id)}
           title="Refresh teams"
-          className="p-1 rounded hover:bg-gray-200 text-gray-600 transition-colors cursor-pointer"
+          className="p-1 rounded hover:bg-gray-200 text-gray-600 transition-colors cursor-pointer flex items-center justify-center"
+          aria-label="Refresh teams"
         >
-          🔄
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
         </button>
       </div>
 
@@ -48,19 +53,12 @@ export function ConfederationBox({
         {!isLoading && !error && teams.length > 0 && (
           <ul className="m-0 p-0 list-none space-y-2">
             {teams.map((team, index) => (
-              <li
+              <TeamCard
                 key={team.id ?? index}
-                draggable
-                onDragStart={(e) => handleDragStart(e, team)}
-                className="py-2 px-3 border border-gray-100 bg-white rounded-lg flex justify-between items-center cursor-grab active:cursor-grabbing hover:border-blue-300 hover:shadow-sm transition-all"
-              >
-                <span className="font-medium text-sm text-gray-800">{team.name}</span>
-                {team.id && (
-                  <span className="text-xs text-gray-500 bg-gray-50 px-2 py-0.5 rounded border border-gray-100">
-                    {team.id}
-                  </span>
-                )}
-              </li>
+                team={team}
+                draggable={true}
+                onDragStart={handleDragStart}
+              />
             ))}
           </ul>
         )}

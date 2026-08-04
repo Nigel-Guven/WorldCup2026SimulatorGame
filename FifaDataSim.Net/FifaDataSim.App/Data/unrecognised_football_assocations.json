@@ -933,5 +933,71 @@
     "strength": 44,
     "flag_url": "/flags/newfoundland.png",
     "home_stadium": "King George V Park"
+  },
+  {
+    "id": "amp",
+    "name": "Amapa",
+    "short_name": "AMP",
+    "confederation": "CONMEBOL",
+    "football_association": "Amapa Football Federation",
+    "default_points": 809,
+    "strength": 36,
+    "flag_url": "/flags/amapa.png",
+    "home_stadium": "Zerão"
+  },
+  {
+    "id": "zul",
+    "name": "Zulia",
+    "short_name": "ZUL",
+    "confederation": "CONMEBOL",
+    "football_association": "Zuliano Football Federation",
+    "default_points": 943,
+    "strength": 40,
+    "flag_url": "/flags/zulia.png",
+    "home_stadium": "Estadio Luis Aparicio El Grande"
+  },
+  {
+    "id": "crz",
+    "name": "Crozet Islands",
+    "short_name": "CRZ",
+    "confederation": "OFC",
+    "football_association": "Crozet Islands Football Federation",
+    "default_points": 509,
+    "strength": 7,
+    "flag_url": "/flags/crozet.png",
+    "home_stadium": "Stade Alfred Faure"
+  },
+  {
+    "id": "ker",
+    "name": "Kerguelen Islands",
+    "short_name": "KER",
+    "confederation": "OFC",
+    "football_association": "Kerguelen Football Federation",
+    "default_points": 502,
+    "strength": 5,
+    "flag_url": "/flags/kerguelen.png",
+    "home_stadium": "Kerguelen Ground Station"
+  },
+  {
+    "id": "bsm",
+    "name": "Bismarck Islands",
+    "short_name": "BSM",
+    "confederation": "OFC",
+    "football_association": "Bismarck Archipelago Football Federation",
+    "default_points": 562,
+    "strength": 7,
+    "flag_url": "/flags/bismarck.png",
+    "home_stadium": "Bismarck Municipal Ballpark"
+  },
+  {
+    "id": "krk",
+    "name": "Karakalpakstan",
+    "short_name": "KRK",
+    "confederation": "AFC",
+    "football_association": "Karakalpakstan Football Federation",
+    "default_points": 911,
+    "strength": 36,
+    "flag_url": "/flags/karakalpakstan.png",
+    "home_stadium": "Turan Stadium"
   }
 ]

@@ -1,72 +1,21 @@
 import type { ActivePage } from '../../App';
-import type { TournamentSession } from '../../types/tournamentSession';
+import ConfederationTeams from '../../pages/ConfederationTeams';
 
 import RankingsPage from '../../pages/RankingsPage';
-import TournamentDrawPage from '../../pages/TournamentDrawPage';
-import MatchCentrePage from '../../pages/MatchCentrePage';
-import KnockoutBracketPage from '../../pages/KnockoutBracketPage';
-import TournamentDrawSetup from '../../pages/TournamentDrawSetup';
 
 interface PageRendererProps {
   activePage: ActivePage;
-  session: TournamentSession | null;
-
-  onSessionUpdate: (session: TournamentSession) => void;
-
-  onDrawComplete: (
-    drawnGroups: { name: string; teams: any[] }[]
-  ) => Promise<TournamentSession>;
-
   onNavigate: (page: ActivePage) => void;
 }
 
 export default function PageRenderer({
-  activePage,
-  session,
-  onSessionUpdate,
-  onDrawComplete,
-  onNavigate,
+  activePage
 }: PageRendererProps) {
   switch (activePage) {
     case 'rankings':
       return <RankingsPage />;
-
-    case 'draw':
-      return (
-        <TournamentDrawPage
-          onDrawComplete={onDrawComplete}
-          hasExistingSession={session !== null}
-        />
-      );
-
-    case 'drawv2':
-      return (
-        <TournamentDrawSetup
-          tournamentCode={"Conmebol"} // e.g., 'WC2026'
-          phaseId={undefined}             // optional string
-        />
-      );
-
-    case 'centre':
-      if (!session) {
-        return null;
-      }
-
-      return (
-        <MatchCentrePage
-          session={session}
-          onSessionUpdate={onSessionUpdate}
-          onNavigateToKnockout={() => onNavigate('knockout')}
-        />
-      );
-
-    case 'knockout':
-      if (!session) {
-        return null;
-      }
-
-      return <KnockoutBracketPage />;
-
+    case 'confederations':
+      return <ConfederationTeams />;
     default:
       return null;
   }

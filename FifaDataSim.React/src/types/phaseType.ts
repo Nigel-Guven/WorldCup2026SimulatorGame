@@ -1,6 +1,7 @@
-export enum PhaseType {
+export const PhaseType = {
+    GroupStage: 0,
+    SingleBranchKnockoutStage: 1,
+    MultiBranchKnockoutStage: 2
+} as const;
 
-    GroupStage = 0,
-    SingleBranchKnockoutStage = 1,
-    MultiBranchKnockoutStage = 2
-}
+export type PhaseType = typeof PhaseType[keyof typeof PhaseType];

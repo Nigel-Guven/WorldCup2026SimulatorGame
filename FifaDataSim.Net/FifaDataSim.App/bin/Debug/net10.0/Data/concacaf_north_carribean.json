@@ -1,0 +1,123 @@
+[
+  {
+    "id": "ber",
+    "name": "Bermuda",
+    "short_name": "BER",
+    "confederation": "CONCACAF",
+    "football_association": "Bermuda Football Association",
+    "default_points": 975,
+    "strength": 48,
+    "flag_url": "https://flagcdn.com/w40/bm.png",
+    "home_stadium": "National Stadium"
+  },
+  {
+    "id": "bah",
+    "name": "Bahamas",
+    "short_name": "BAH",
+    "confederation": "CONCACAF",
+    "football_association": "Bahamas Football Association",
+    "default_points": 786,
+    "strength": 16,
+    "flag_url": "https://flagcdn.com/w40/bs.png",
+    "home_stadium": "Thomas Robinson Stadium"
+  },
+  {
+    "id": "tci",
+    "name": "Turks and Caicos Islands",
+    "short_name": "TCI",
+    "confederation": "CONCACAF",
+    "football_association": "Turks and Caicos Islands Football Association",
+    "default_points": 803,
+    "strength": 14,
+    "flag_url": "https://flagcdn.com/w40/tc.png",
+    "home_stadium": "TCIFA Stadium"
+  },
+  {
+    "id": "cub",
+    "name": "Cuba",
+    "short_name": "CUB",
+    "confederation": "CONCACAF",
+    "football_association": "Asociación de Fútbol de Cuba",
+    "default_points": 981,
+    "strength": 58,
+    "flag_url": "https://flagcdn.com/w40/cu.png",
+    "home_stadium": "Estadio La Prolongación"
+  },
+  {
+    "id": "cay",
+    "name": "Cayman Islands",
+    "short_name": "CAY",
+    "confederation": "CONCACAF",
+    "football_association": "Cayman Islands Football Association",
+    "default_points": 850,
+    "strength": 14,
+    "flag_url": "https://flagcdn.com/w40/ky.png",
+    "home_stadium": "Truman Bodden Sports Complex"
+  },
+  {
+    "id": "dom",
+    "name": "Dominican Republic",
+    "short_name": "DOM",
+    "confederation": "CONCACAF",
+    "football_association": "Federación Dominicana de Fútbol",
+    "default_points": 1076,
+    "strength": 57,
+    "flag_url": "https://flagcdn.com/w40/do.png",
+    "home_stadium": "Estadio Olímpico Ing. Juan Pablo Duarte"
+  },
+  {
+    "id": "hai",
+    "name": "Haiti",
+    "short_name": "HAI",
+    "confederation": "CONCACAF",
+    "football_association": "Fédération Haïtienne de Football",
+    "default_points": 1264,
+    "strength": 65,
+    "flag_url": "https://flagcdn.com/w40/ht.png",
+    "home_stadium": "Parc Saint Louis"
+  },
+  {
+    "id": "jam",
+    "name": "Jamaica",
+    "short_name": "JAM",
+    "confederation": "CONCACAF",
+    "football_association": "Jamaica Football Federation",
+    "default_points": 1357,
+    "strength": 70,
+    "flag_url": "https://flagcdn.com/w40/jm.png",
+    "home_stadium": "National Stadium"
+  },
+  {
+    "id": "pur",
+    "name": "Puerto Rico",
+    "short_name": "PUR",
+    "confederation": "CONCACAF",
+    "football_association": "Federación Puertoborriqueña de Fútbol Asociación",
+    "default_points": 1024,
+    "strength": 52,
+    "flag_url": "https://flagcdn.com/w40/pr.png",
+    "home_stadium": "Estadio Juan Hilbert"
+  },
+  {
+    "id": "bvi",
+    "name": "British Virgin Islands",
+    "short_name": "BVI",
+    "confederation": "CONCACAF",
+    "football_association": "BVI Football Association",
+    "default_points": 777,
+    "strength": 13,
+    "flag_url": "https://flagcdn.com/w40/vg.png",
+    "home_stadium": "BVI National Sports Complex"
+  },
+  {
+    "id": "usv",
+    "name": "US Virgin Islands",
+    "short_name": "USV",
+    "confederation": "CONCACAF",
+    "football_association": "USVI Soccer Federation",
+    "default_points": 779,
+    "strength": 12,
+    "flag_url": "https://flagcdn.com/w40/vi.png",
+    "home_stadium": "Bói Fields"
+  }
+]

@@ -1,0 +1,276 @@
+{
+  "tournamentName": "Global World Cup Qualifiers",
+  "totalFinalsSlots": 32,
+  "confederations": [
+    {
+      "id": "UEFA",
+      "totalTeams": 90,
+      "qualifiedSlots": 10,
+      "phases": [
+        {
+          "phaseNumber": 1,
+          "type": "MultiBranchKnockout",
+          "seedCriteria": "Bottom 40",
+          "participatingTeams": 40,
+          "format": {
+            "paths": 10,
+            "teamsPerPath": 4
+          },
+          "progression": {
+            "advancingPerPath": 1,
+            "destinationPhase": 2
+          }
+        },
+        {
+          "phaseNumber": 2,
+          "type": "GroupStage",
+          "seedCriteria": "Top 50 + 10 Phase 1 Winners",
+          "participatingTeams": 60,
+          "format": {
+            "groups": 10,
+            "teamsPerGroup": 6
+          },
+          "progression": {
+            "advancingPerGroup": 1,
+            "destination": "Finals"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CONMEBOL",
+      "totalTeams": 13,
+      "qualifiedSlots": 6,
+      "phases": [
+        {
+          "phaseNumber": 1,
+          "type": "SingleEliminationKnockout",
+          "seedCriteria": "Bottom 4",
+          "participatingTeams": 4,
+          "format": {
+            "paths": 1,
+            "teamsPerPath": 4
+          },
+          "progression": {
+            "advancingPerPath": 1,
+            "destinationPhase": 2
+          }
+        },
+        {
+          "phaseNumber": 2,
+          "type": "SingleLeague",
+          "seedCriteria": "Top 9 + 1 Phase 1 Winner",
+          "participatingTeams": 10,
+          "format": {
+            "groups": 1,
+            "teamsPerGroup": 10
+          },
+          "progression": {
+            "advancingPerGroup": 6,
+            "destination": "Finals"
+          }
+        }
+      ]
+    },
+    {
+      "id": "AFC",
+      "totalTeams": 70,
+      "qualifiedSlots": 5,
+      "phases": [
+        {
+          "phaseNumber": 1,
+          "type": "MultiBranchKnockout",
+          "seedCriteria": "Bottom 20",
+          "participatingTeams": 20,
+          "format": {
+            "paths": 10,
+            "teamsPerPath": 2
+          },
+          "progression": {
+            "advancingPerPath": 1,
+            "destinationPhase": 2
+          }
+        },
+        {
+          "phaseNumber": 2,
+          "type": "MultiBranchKnockout",
+          "seedCriteria": "Ranked 41-50 + 10 Phase 1 Winners",
+          "participatingTeams": 20,
+          "format": {
+            "paths": 10,
+            "teamsPerPath": 2
+          },
+          "progression": {
+            "advancingPerPath": 1,
+            "destinationPhase": 3
+          }
+        },
+        {
+          "phaseNumber": 3,
+          "type": "GroupStage",
+          "seedCriteria": "Top 40 + 10 Phase 2 Winners",
+          "participatingTeams": 50,
+          "format": {
+            "groups": 10,
+            "teamsPerGroup": 5
+          },
+          "progression": {
+            "advancingPerGroup": 2,
+            "destinationPhase": 4
+          }
+        },
+        {
+          "phaseNumber": 4,
+          "type": "GroupStage",
+          "seedCriteria": "20 Phase 3 Qualifiers",
+          "participatingTeams": 20,
+          "format": {
+            "groups": 5,
+            "teamsPerGroup": 4
+          },
+          "progression": {
+            "advancingPerGroup": 1,
+            "destination": "Finals"
+          }
+        }
+      ]
+    },
+    {
+      "id": "OFC",
+      "totalTeams": 27,
+      "qualifiedSlots": 1,
+      "phases": [
+        {
+          "phaseNumber": 1,
+          "type": "MultiBranchKnockout",
+          "seedCriteria": "Bottom 18",
+          "participatingTeams": 18,
+          "format": {
+            "paths": 9,
+            "teamsPerPath": 2
+          },
+          "progression": {
+            "advancingPerPath": 1,
+            "destinationPhase": 2
+          }
+        },
+        {
+          "phaseNumber": 2,
+          "type": "GroupStage",
+          "seedCriteria": "Top 9 + 9 Phase 1 Winners",
+          "participatingTeams": 18,
+          "format": {
+            "groups": 3,
+            "teamsPerGroup": 6
+          },
+          "progression": {
+            "advancingPerGroup": 1,
+            "destinationPhase": 3
+          }
+        },
+        {
+          "phaseNumber": 3,
+          "type": "SingleLeague",
+          "seedCriteria": "3 Phase 2 Winners",
+          "participatingTeams": 3,
+          "format": {
+            "groups": 1,
+            "teamsPerGroup": 3
+          },
+          "progression": {
+            "advancingPerGroup": 1,
+            "destination": "Finals"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CAF",
+      "totalTeams": 77,
+      "qualifiedSlots": 6,
+      "phases": [
+        {
+          "phaseNumber": 1,
+          "type": "MultiBranchKnockout",
+          "seedCriteria": "Bottom 34",
+          "participatingTeams": 34,
+          "format": {
+            "paths": 17,
+            "teamsPerPath": 2
+          },
+          "progression": {
+            "advancingPerPath": 1,
+            "destinationPhase": 2
+          }
+        },
+        {
+          "phaseNumber": 2,
+          "type": "GroupStage",
+          "seedCriteria": "Top 43 + 17 Phase 1 Winners",
+          "participatingTeams": 60,
+          "format": {
+            "groups": 10,
+            "teamsPerGroup": 6
+          },
+          "progression": {
+            "advancingPerGroup": 1,
+            "destinationPhase": 3
+          }
+        },
+        {
+          "phaseNumber": 3,
+          "type": "SingleLeague",
+          "seedCriteria": "10 Phase 2 Winners",
+          "participatingTeams": 10,
+          "format": {
+            "groups": 1,
+            "teamsPerGroup": 10
+          },
+          "progression": {
+            "advancingPerGroup": 6,
+            "destination": "Finals"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CONCACAF",
+      "totalTeams": 48,
+      "qualifiedSlots": 4,
+      "phases": [
+        {
+          "phaseNumber": 1,
+          "type": "GroupStage",
+          "seedCriteria": "All 48 Teams",
+          "participatingTeams": 48,
+          "format": {
+            "groups": 12,
+            "teamsPerGroup": 4
+          },
+          "progression": {
+            "advancingPerGroup": 1,
+            "destinationPhase": 2
+          }
+        },
+        {
+          "phaseNumber": 2,
+          "type": "GroupStage",
+          "seedCriteria": "12 Phase 1 Winners",
+          "participatingTeams": 12,
+          "format": {
+            "groups": 4,
+            "teamsPerGroup": 3
+          },
+          "progression": {
+            "advancingPerGroup": 1,
+            "destination": "Finals"
+          }
+        }
+      ]
+    }
+  ],
+  "finals": {
+    "participatingTeams": 32,
+    "source": "Aggregated from Confederation Finals Destinations"
+  }
+}

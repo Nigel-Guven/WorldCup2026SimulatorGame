@@ -1,0 +1,57 @@
+[
+  {
+    "id": "irl",
+    "name": "Ireland",
+    "short_name": "IRL",
+    "confederation": "UEFA",
+    "football_association": "Football Association of Ireland",
+    "default_points": 1441,
+    "strength": 74,
+    "flag_url": "https://flagcdn.com/w40/ie.png",
+    "home_stadium": "Aviva Stadium"
+  },
+  {
+    "id": "nir",
+    "name": "Northern Ireland",
+    "short_name": "NIR",
+    "confederation": "UEFA",
+    "football_association": "Irish Football Association",
+    "default_points": 1365,
+    "strength": 67,
+    "flag_url": "https://flagcdn.com/w40/gb-nir.png",
+    "home_stadium": "Windsor Park"
+  },
+  {
+    "id": "wal",
+    "name": "Wales",
+    "short_name": "WAL",
+    "confederation": "UEFA",
+    "football_association": "Football Association of Wales",
+    "default_points": 1516,
+    "strength": 75,
+    "flag_url": "https://flagcdn.com/w40/gb-wls.png",
+    "home_stadium": "Cardiff City Stadium"
+  },
+  {
+    "id": "sco",
+    "name": "Scotland",
+    "short_name": "SCO",
+    "confederation": "UEFA",
+    "football_association": "Scottish Football Association",
+    "default_points": 1491,
+    "strength": 77,
+    "flag_url": "https://flagcdn.com/w40/gb-sct.png",
+    "home_stadium": "Hampden Park"
+  },
+  {
+    "id": "eng",
+    "name": "England",
+    "short_name": "ENG",
+    "confederation": "UEFA",
+    "football_association": "The Football Association",
+    "default_points": 1922,
+    "strength": 91,
+    "flag_url": "https://flagcdn.com/w40/gb-eng.png",
+    "home_stadium": "Wembley Stadium"
+  }
+]

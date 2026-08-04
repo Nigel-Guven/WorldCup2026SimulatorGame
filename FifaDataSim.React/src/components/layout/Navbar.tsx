@@ -2,13 +2,11 @@ import type { ActivePage } from '../../App';
 
 interface NavbarProps {
   activePage: ActivePage;
-  hasSession: boolean;
   onNavigate: (page: ActivePage) => void;
 }
 
 export default function Navbar({
   activePage,
-  hasSession,
   onNavigate,
 }: NavbarProps) {
   return (
@@ -22,7 +20,6 @@ export default function Navbar({
               🏆 World Cup Sim
             </span>
           </div>
-
           {/* Navigation */}
           <div className="flex items-center space-x-2">
 
@@ -34,38 +31,11 @@ export default function Navbar({
             </NavButton>
 
             <NavButton
-              active={activePage === 'drawv2'}
-              onClick={() => onNavigate('drawv2')}
+              active={activePage === 'confederations'}
+              onClick={() => onNavigate('confederations')}
             >
-              Tournament Draw V2
+              Confederations
             </NavButton>
-
-            <NavButton
-              active={activePage === 'draw'}
-              onClick={() => onNavigate('draw')}
-            >
-              Tournament Draw
-            </NavButton>
-
-            {hasSession && (
-              <>
-                <NavButton
-                  active={activePage === 'centre'}
-                  highlight
-                  onClick={() => onNavigate('centre')}
-                >
-                  Match Centre ⚽
-                </NavButton>
-
-                <NavButton
-                  active={activePage === 'knockout'}
-                  onClick={() => onNavigate('knockout')}
-                >
-                  Knockout Bracket
-                </NavButton>
-              </>
-            )}
-
           </div>
         </div>
       </div>

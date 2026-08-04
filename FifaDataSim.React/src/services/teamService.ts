@@ -1,6 +1,7 @@
+import type { Confederation } from "../types/confederation";
 import type { Country } from "../types/country";
 
-const API_URL = "http://localhost:5002/api";
+const API_URL = "http://localhost:5000/api";
 
 export async function getTeams(): Promise<Country[]> {
     const response = await fetch(`${API_URL}/teams`);
@@ -14,7 +15,7 @@ export async function getTeamById(id: string): Promise<Country> {
     return response.json();
 }
 
-export async function getTeamsByConfederation(confederation: string): Promise<Country[]> {
+export async function getTeamsByConfederation(confederation: Confederation): Promise<Country[]> {
     const response = await fetch(`${API_URL}/teams/confederation/${confederation}`);
     if (!response.ok) throw new Error(`Failed to fetch rankings for ${confederation}`);
     return response.json();

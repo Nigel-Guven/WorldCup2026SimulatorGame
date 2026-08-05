@@ -4,3 +4,7 @@
 *.DotSettings
 *.user
 *.user
+*.dll
+/FifaDataSim.Net/FifaDataSim.App/bin
+/FifaDataSim.Net/FifaDataSim.App/bin
+/FifaDataSim.Net/FifaDataSim.App/obj

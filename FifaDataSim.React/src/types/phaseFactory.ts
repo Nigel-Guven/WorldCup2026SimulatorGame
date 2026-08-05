@@ -1,4 +1,4 @@
-import { PhaseType } from './phase';
+import { PhaseType } from './phaseType';
 import type { 
   GroupStagePhase, 
   SingleKnockoutPhase, 
@@ -23,8 +23,11 @@ export function createGroupStagePhase(
     is_active: false,
     config: {
       number_of_groups: 1,
+      group_size: 4,
       direct_advance_per_group: 2,
-      number_of_legs: 1
+      wildcard_position: 3,
+      wildcard_teams_count: 1,
+      number_of_legs: 1,
     },
   };
 }
@@ -46,13 +49,13 @@ export function createSingleKnockoutPhase(
     is_active: false,
     config: {
       number_of_legs: 1,
-      third_place_match: false
+      third_place_match: false,
     },
   };
 }
 
 /**
- * Creates a default Multi-Branch Knockout phase (Double Elimination by default)
+ * Creates a default Multi-Branch Knockout phase
  */
 export function createMultiKnockoutPhase(
   name: string = 'Double Elimination',
@@ -67,7 +70,9 @@ export function createMultiKnockoutPhase(
     has_draw: true,
     is_active: false,
     config: {
-      number_of_legs: 1,
+      number_of_legs: 2,
+      number_of_paths: 1,
+      third_place_match: false,
     },
   };
 }

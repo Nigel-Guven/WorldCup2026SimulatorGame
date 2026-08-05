@@ -1,4 +1,4 @@
-import type { Confederation } from "./confederation";
+import type { Confederation } from './confederation';
 
 export interface Country {
   id: string;

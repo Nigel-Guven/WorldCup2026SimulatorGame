@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorldCupSimulator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2def6d4245cbd28d643c4ebeccb159404a0868af")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a09b6f0d7cfa4771c9a17185f1ef971b2c4bff12")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorldCupSimulator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorldCupSimulator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

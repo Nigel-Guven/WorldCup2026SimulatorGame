@@ -1,7 +1,7 @@
 import type { ActivePage } from '../../App';
-import ConfederationTeams from '../../pages/ConfederationTeams';
 
 import RankingsPage from '../../pages/RankingsPage';
+import TournamentCreatorPage from '../../pages/TournamentCreatorPage';
 
 interface PageRendererProps {
   activePage: ActivePage;
@@ -15,7 +15,7 @@ export default function PageRenderer({
     case 'rankings':
       return <RankingsPage />;
     case 'confederations':
-      return <ConfederationTeams />;
+      return <TournamentCreatorPage />;
     default:
       return null;
   }

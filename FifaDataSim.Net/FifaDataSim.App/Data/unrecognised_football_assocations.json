@@ -999,5 +999,49 @@
     "strength": 36,
     "flag_url": "/flags/karakalpakstan.png",
     "home_stadium": "Turan Stadium"
+  },
+  {
+    "id": "fez",
+    "name": "Fezzan",
+    "short_name": "fez",
+    "confederation": "CAF",
+    "football_association": "Fezzan Football Federation",
+    "default_points": 1031,
+    "strength": 40,
+    "flag_url": "/flags/fezzan.png",
+    "home_stadium": "Complexe Sportif de Fès"
+  },
+  {
+    "id": "fpo",
+    "name": "Fernando Po",
+    "short_name": "FPO",
+    "confederation": "CAF",
+    "football_association": "Fernando Po Football Federation",
+    "default_points": 909,
+    "strength": 32,
+    "flag_url": "/flags/fernando.png",
+    "home_stadium": "Estadio de Malabo"
+  },
+  {
+    "id": "bak",
+    "name": "Bakassi",
+    "short_name": "BAK",
+    "confederation": "CAF",
+    "football_association": "Bakassi Football Federation",
+    "default_points": 838,
+    "strength": 27,
+    "flag_url": "/flags/bakassi.png",
+    "home_stadium": "Bakassi Sports Complex"
+  },
+  {
+    "id": "zbz",
+    "name": "Zambezia",
+    "short_name": "ZBZ",
+    "confederation": "CAF",
+    "football_association": "Zambezia Football Federation",
+    "default_points": 1008,
+    "strength": 37,
+    "flag_url": "/flags/zambezia.png",
+    "home_stadium": "Levy Mwanawasa Stadium"
   }
 ]

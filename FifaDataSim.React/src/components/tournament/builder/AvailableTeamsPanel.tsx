@@ -1,8 +1,8 @@
 import type { JSX } from 'react';
-import type { Country } from '../../types/country';
-import type { Confederation } from '../../types/confederation';
-import { CONFEDERATIONS } from '../../types/confederationConfig';
-import { ConfederationBox } from '../confederations/ConfederationBox';
+import type { Confederation } from '../../../types/confederation';
+import type { Country } from '../../../types/country';
+import { CONFEDERATIONS } from '../../../types/confederationConfiguration';
+import { ConfederationBox } from './ConfederationBox';
 
 interface AvailableTeamsPanelProps {
   teamsData: Record<Confederation, Country[]>;

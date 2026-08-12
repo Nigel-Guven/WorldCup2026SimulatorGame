@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import type { Phase } from '../types/tournamentConfig';
+import type { Phase } from '../types/phase';
 
 export function useTournamentExecution(phases: Phase[]) {
   const [isExecuting, setIsExecuting] = useState(false);

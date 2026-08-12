@@ -6,7 +6,7 @@ export interface Fixture {
   groupKey: string;
   round: number;
   leg: number;
-  homeTeam: Country | null; // null represents a BYE round
+  homeTeam: Country | null;
   awayTeam: Country | null;
   homeScore: number | null;
   awayScore: number | null;

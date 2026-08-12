@@ -1,14 +1,9 @@
-import { useState, useMemo, type JSX } from 'react';
-import type { Country } from '../../types/country';
-import type { MultiKnockoutPhase } from '../../types/tournamentConfig';
-import {
-  MultiKnockoutSimulationUtils,
-  type PathState,
-} from '../../services/helpers/multiKnockoutSimulationUtils';
-import {
-  SingleKnockoutSimulationUtils,
-  type KnockoutMatch,
-} from '../../services/helpers/singleKnockoutSimulationUtils';
+import { useMemo, useState, type JSX } from "react";
+import { SingleKnockoutSimulationUtils, type KnockoutMatch } from "../../../../services/helpers/singleKnockoutSimulationUtils";
+import type { Country } from "../../../../types/country";
+import type { MultiKnockoutPhase } from "../../../../types/tournamentConfiguration";
+import { MultiKnockoutSimulationUtils, type PathState } from "../../../../services/helpers/multiKnockoutSimulationUtils";
+
 
 interface Props {
   phase: MultiKnockoutPhase;

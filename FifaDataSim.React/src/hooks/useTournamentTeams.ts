@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import type { Country } from '../types/country';
 import type { Confederation } from '../types/confederation';
-import { CONFEDERATIONS } from '../types/confederationConfig';
 import { getTeamsByConfederation } from '../services/teamService';
+import { CONFEDERATIONS } from '../types/confederationConfiguration';
 
 export function useTournamentTeams() {
   const [teamsData, setTeamsData] =

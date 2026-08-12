@@ -14,11 +14,11 @@ export function TournamentHeader({
   return (
     <header className="mb-8 border-b border-gray-200 pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">
+        <h1 className="text-4xl font-extrabold text-white tracking-tight">
           {isExecuting ? 'Tournament Execution' : 'Tournament Setup'}
         </h1>
 
-        <p className="text-gray-600 mt-1 text-sm">
+        <p className="text-slate-400 mt-1">
           {isExecuting
             ? 'Executing created tournament phases in sequence.'
             : 'Drag teams from the confederations into tournament phases. Configure rules per phase.'}

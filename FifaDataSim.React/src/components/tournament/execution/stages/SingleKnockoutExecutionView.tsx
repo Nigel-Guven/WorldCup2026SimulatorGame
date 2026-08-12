@@ -1,10 +1,7 @@
 import { useState, type JSX } from 'react';
-import type { Country } from '../../types/country';
-import type { SingleKnockoutPhase } from '../../types/tournamentConfig';
-import {
-  SingleKnockoutSimulationUtils,
-  type KnockoutMatch,
-} from '../../services/helpers/singleKnockoutSimulationUtils';
+import { SingleKnockoutSimulationUtils, type KnockoutMatch } from '../../../../services/helpers/singleKnockoutSimulationUtils';
+import type { Country } from '../../../../types/country';
+import type { SingleKnockoutPhase } from '../../../../types/tournamentConfiguration';
 
 interface Props {
   phase: SingleKnockoutPhase;

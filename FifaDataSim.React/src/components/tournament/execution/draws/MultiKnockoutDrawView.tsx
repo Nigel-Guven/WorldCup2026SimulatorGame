@@ -1,11 +1,11 @@
 import { useCallback, type JSX } from 'react';
 import { DrawHeader } from './DrawHeader';
 import { PotSidebar } from './PotSidebar';
-import type { MultiKnockoutPhase } from '../../types/tournamentConfig';
-import type { Pot } from './TournamentExecutionView';
-import type { Country } from '../../types/country';
-import { DrawUtils } from '../../services/helpers/drawUtils';
-import { useDrawAssignment } from '../../hooks/useDrawAssignment';
+import { DrawUtils } from '../../../../services/helpers/drawUtils';
+import { useDrawAssignment } from '../../../../hooks/useDrawAssignment';
+import type { Country } from '../../../../types/country';
+import type { MultiKnockoutPhase } from '../../../../types/tournamentConfiguration';
+import type { Pot } from '../TournamentExecutionView';
 
 interface MultiKnockoutDrawViewProps {
   phase: MultiKnockoutPhase;

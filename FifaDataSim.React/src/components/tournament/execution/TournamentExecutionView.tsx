@@ -1,25 +1,17 @@
 import { useState, useEffect, useMemo, type JSX } from 'react';
-import type { Country } from '../../types/country';
-import type { Phase } from '../../types/tournamentConfig';
-import { PhaseType } from '../../types/phaseType';
+import type { Country } from '../../../types/country';
+import { PhaseType } from '../../../types/phaseType';
+import { GroupStageExecutionView } from './stages/GroupStageExecutionView';
+import { MultiKnockoutDrawView } from './draws/MultiKnockoutDrawView';
+import { SingleKnockoutDrawView } from './draws/SingleKnockoutDrawView';
+import { SingleKnockoutExecutionView } from './stages/SingleKnockoutExecutionView';
+import { MultiKnockoutExecutionView } from './stages/MultiKnockoutExecutionView';
+import { GroupStageDrawView } from './draws/GroupStageDrawView';
+import type { Phase } from '../../../types/phase';
 
-// Draw Views
-import { GroupStageDrawView } from './GroupStageDrawView';
-import { SingleKnockoutDrawView } from './SingleKnockoutDrawView';
-import { MultiKnockoutDrawView } from './MultiKnockoutDrawView';
-
-// Execution Views
-import { GroupStageExecutionView } from './GroupStageExecutionView';
-import { SingleKnockoutExecutionView } from './SingleKnockoutExecutionView';
-import { MultiKnockoutExecutionView } from './MultiKnockoutExecutionView';
-
-interface TournamentExecutionViewProps {
-  phases: Phase[];
-  activePhase: Phase;
-  currentPhaseIndex: number;
-  onNextPhase: () => void;
-  onExitExecution: () => void;
-}
+// ==========================================
+// Types & Domain Interfaces
+// ==========================================
 
 export type ExecutionStage = 'DRAW' | 'SIMULATION';
 
@@ -28,6 +20,49 @@ export interface Pot {
   name: string;
   teams: Country[];
 }
+
+export interface KnockoutMatchup {
+  matchId: number;
+  teamA: Country;
+  teamB?: Country;
+}
+
+export type DrawResult =
+  | { type: 'GROUP'; groups: Record<string, Country[]> }
+  | { type: 'SINGLE_KNOCKOUT'; matchups: KnockoutMatchup[] }
+  | { type: 'MULTI_KNOCKOUT'; pathAssignments: Record<string, KnockoutMatchup[]> };
+
+export interface GroupStandingEntry {
+  team: Country;
+  played: number;
+  won: number;
+  drawn: number;
+  lost: number;
+  points: number;
+  goalsFor: number;
+  goalsAgainst: number;
+  goalDifference: number;
+}
+
+export interface PhaseCompletionData {
+  phaseId: string;
+  phaseType: PhaseType;
+  groupStandings?: Record<string, GroupStandingEntry[]>;
+  knockoutWinners?: Country[];
+  pathWinners?: Record<string, Country[]>;
+}
+
+interface TournamentExecutionViewProps {
+  phases: Phase[];
+  activePhase: Phase;
+  currentPhaseIndex: number;
+  onNextPhase: (completionData: PhaseCompletionData) => void;
+  onExitExecution: () => void;
+}
+
+// ==========================================
+// Component Implementation
+// ==========================================
 
 export function TournamentExecutionView({
   phases,
@@ -40,24 +75,27 @@ export function TournamentExecutionView({
     activePhase.has_draw ? 'DRAW' : 'SIMULATION'
   );
 
-  const [drawResult, setDrawResult] = useState<any | null>(null);
+  const [drawResult, setDrawResult] = useState<DrawResult | null>(null);
   const [isPhaseCompleted, setIsPhaseCompleted] = useState<boolean>(false);
+  const [completionData, setCompletionData] = useState<PhaseCompletionData | null>(null);
 
-  // Reset execution stage state when active phase changes
+  // Reset local state when active phase changes
   useEffect(() => {
     setStage(activePhase.has_draw ? 'DRAW' : 'SIMULATION');
     setDrawResult(null);
     setIsPhaseCompleted(false);
+    setCompletionData(null);
   }, [activePhase.id, activePhase.has_draw]);
 
-  // Derive pots automatically from active phase settings
+  // ------------------------------------------
+  // Pot Derivation
+  // ------------------------------------------
   const pots = useMemo<Pot[]>(() => {
     if (!activePhase.teams.length) return [];
 
     if (activePhase.type === PhaseType.GroupStage) {
       const groupCount = activePhase.config.number_of_groups || 1;
       const groupSize = activePhase.config.group_size || 4;
-
       const potCount = Math.max(groupSize, Math.ceil(activePhase.teams.length / groupCount));
 
       const derivedPots: Pot[] = Array.from({ length: potCount }, (_, i) => ({
@@ -92,7 +130,7 @@ export function TournamentExecutionView({
       return derivedPots;
     }
 
-    // Single Branch Knockout: Pot 1 & Pot 2
+    // Single Branch Knockout
     const half = Math.ceil(activePhase.teams.length / 2);
     return [
       { id: 1, name: 'Pot 1 (Seeded)', teams: activePhase.teams.slice(0, half) },
@@ -100,14 +138,16 @@ export function TournamentExecutionView({
     ];
   }, [activePhase]);
 
-  // Fallback initial structures if manual draw is bypassed (has_draw = false)
+  // ------------------------------------------
+  // Fallback Draws (When has_draw = false)
+  // ------------------------------------------
   const fallbackGroupDraw = useMemo(() => {
     if (activePhase.type !== PhaseType.GroupStage) return null;
     const groupCount = activePhase.config.number_of_groups || 1;
     const groups: Record<string, Country[]> = {};
 
     for (let i = 0; i < groupCount; i++) {
-      const key = String.fromCharCode(65 + i); // Group A, B, C...
+      const key = String.fromCharCode(65 + i);
       groups[key] = [];
     }
 
@@ -119,19 +159,17 @@ export function TournamentExecutionView({
     return groups;
   }, [activePhase]);
 
-  const fallbackSingleKnockoutDraw = useMemo(() => {
+  const fallbackSingleKnockoutDraw = useMemo<KnockoutMatchup[]>(() => {
     if (activePhase.type !== PhaseType.SingleBranchKnockoutStage) return [];
-    const matchups: { matchId: number; teamA: Country; teamB: Country }[] = [];
+    const matchups: KnockoutMatchup[] = [];
     const teams = [...activePhase.teams];
 
     for (let i = 0; i < teams.length; i += 2) {
-      if (teams[i] && teams[i + 1]) {
-        matchups.push({
-          matchId: Math.floor(i / 2) + 1,
-          teamA: teams[i],
-          teamB: teams[i + 1],
-        });
-      }
+      matchups.push({
+        matchId: Math.floor(i / 2) + 1,
+        teamA: teams[i],
+        teamB: teams[i + 1] ?? undefined,
+      });
     }
 
     return matchups;
@@ -140,7 +178,7 @@ export function TournamentExecutionView({
   const fallbackMultiKnockoutDraw = useMemo(() => {
     if (activePhase.type !== PhaseType.MultiBranchKnockoutStage) return {};
     const pathCount = activePhase.config.number_of_paths || 1;
-    const paths: Record<string, { matchId: number; teamA: Country; teamB: Country }[]> = {};
+    const paths: Record<string, KnockoutMatchup[]> = {};
 
     for (let p = 0; p < pathCount; p++) {
       const pathKey = `Path ${String.fromCharCode(65 + p)}`;
@@ -151,12 +189,12 @@ export function TournamentExecutionView({
     const teams = [...activePhase.teams];
 
     for (let i = 0; i < teams.length; i += 2) {
-      if (teams[i] && teams[i + 1]) {
-        const targetPath = pathKeys[(i / 2) % pathCount];
-        paths[targetPath]?.push({
+      const targetPath = pathKeys[Math.floor(i / 2) % pathCount];
+      if (targetPath) {
+        paths[targetPath].push({
           matchId: paths[targetPath].length + 1,
           teamA: teams[i],
-          teamB: teams[i + 1],
+          teamB: teams[i + 1] ?? undefined,
         });
       }
     }
@@ -164,16 +202,26 @@ export function TournamentExecutionView({
     return paths;
   }, [activePhase]);
 
-  const handleDrawComplete = (result: any) => {
+  // ------------------------------------------
+  // Event Handlers
+  // ------------------------------------------
+  const handleDrawComplete = (result: DrawResult) => {
     setDrawResult(result);
     setStage('SIMULATION');
   };
 
-  const handleSimulationComplete = () => {
+  const handleSimulationComplete = (data: PhaseCompletionData) => {
+    setCompletionData(data);
     setIsPhaseCompleted(true);
   };
 
-  const isNextDisabled = (activePhase.has_draw && stage === 'DRAW') || !isPhaseCompleted;
+  const handleNextClick = () => {
+    if (completionData) {
+      onNextPhase(completionData);
+    }
+  };
+
+  const isNextDisabled = (activePhase.has_draw && stage === 'DRAW') || !isPhaseCompleted || !completionData;
 
   return (
     <div className="bg-white border-2 border-blue-500 rounded-2xl shadow-lg overflow-hidden max-w-6xl mx-auto">
@@ -232,7 +280,7 @@ export function TournamentExecutionView({
               <GroupStageDrawView
                 phase={activePhase}
                 pots={pots}
-                onComplete={handleDrawComplete}
+                onComplete={(res) => handleDrawComplete({ type: 'GROUP', groups: res })}
               />
             )}
 
@@ -240,7 +288,7 @@ export function TournamentExecutionView({
               <SingleKnockoutDrawView
                 phase={activePhase}
                 pots={pots}
-                onComplete={handleDrawComplete}
+                onComplete={(res) => handleDrawComplete({ type: 'SINGLE_KNOCKOUT', matchups: res })}
               />
             )}
 
@@ -248,34 +296,63 @@ export function TournamentExecutionView({
               <MultiKnockoutDrawView
                 phase={activePhase}
                 pots={pots}
-                onComplete={handleDrawComplete}
+                onComplete={(res) => handleDrawComplete({ type: 'MULTI_KNOCKOUT', pathAssignments: res })}
               />
             )}
           </div>
         ) : (
-          /* Live Interactive Simulation Workspace */
           <div>
             {activePhase.type === PhaseType.GroupStage && (
               <GroupStageExecutionView
                 phase={activePhase}
-                groups={drawResult?.groups || fallbackGroupDraw}
-                onComplete={handleSimulationComplete}
+                groups={
+                  drawResult && drawResult.type === 'GROUP'
+                    ? drawResult.groups
+                    : fallbackGroupDraw
+                }
+                onComplete={(data) =>
+                  handleSimulationComplete({
+                    phaseId: activePhase.id,
+                    phaseType: PhaseType.GroupStage,
+                    groupStandings: data,
+                  })
+                }
               />
             )}
 
             {activePhase.type === PhaseType.SingleBranchKnockoutStage && (
               <SingleKnockoutExecutionView
                 phase={activePhase}
-                initialMatchups={drawResult?.matchups || fallbackSingleKnockoutDraw}
-                onComplete={handleSimulationComplete}
+                initialMatchups={
+                  drawResult && drawResult.type === 'SINGLE_KNOCKOUT'
+                    ? drawResult.matchups
+                    : fallbackSingleKnockoutDraw
+                }
+                onComplete={(data) =>
+                  handleSimulationComplete({
+                    phaseId: activePhase.id,
+                    phaseType: PhaseType.SingleBranchKnockoutStage,
+                    knockoutWinners: data,
+                  })
+                }
               />
             )}
 
             {activePhase.type === PhaseType.MultiBranchKnockoutStage && (
               <MultiKnockoutExecutionView
                 phase={activePhase}
-                pathAssignments={drawResult?.pathAssignments || fallbackMultiKnockoutDraw}
-                onComplete={handleSimulationComplete}
+                pathAssignments={
+                  drawResult && drawResult.type === 'MULTI_KNOCKOUT'
+                    ? drawResult.pathAssignments
+                    : fallbackMultiKnockoutDraw
+                }
+                onComplete={(data) =>
+                  handleSimulationComplete({
+                    phaseId: activePhase.id,
+                    phaseType: PhaseType.MultiBranchKnockoutStage,
+                    pathWinners: data,
+                  })
+                }
               />
             )}
           </div>
@@ -292,7 +369,7 @@ export function TournamentExecutionView({
 
         <button
           type="button"
-          onClick={onNextPhase}
+          onClick={handleNextClick}
           disabled={isNextDisabled}
           className={`text-sm font-semibold px-6 py-2.5 rounded-xl transition-colors shadow-sm ${
             isNextDisabled

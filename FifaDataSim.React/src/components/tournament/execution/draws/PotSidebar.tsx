@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
-import type { Country } from '../../types/country';
-import type { Pot } from './TournamentExecutionView';
+import type { Country } from '../../../../types/country';
+import type { Pot } from '../TournamentExecutionView';
 
 interface PotSidebarProps {
   pots: Pot[];

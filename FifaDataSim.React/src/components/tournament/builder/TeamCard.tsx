@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import type { Country } from "../../types/country";
 import type { DragEvent } from "react";
+import type { Country } from "../../../types/country";
 
 interface TeamCardProps {
     team: Country;

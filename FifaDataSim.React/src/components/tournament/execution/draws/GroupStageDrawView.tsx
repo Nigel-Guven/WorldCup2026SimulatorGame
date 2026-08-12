@@ -1,11 +1,11 @@
 import { useCallback, type JSX } from 'react';
 import { DrawHeader } from './DrawHeader';
 import { PotSidebar } from './PotSidebar';
-import { DrawUtils } from '../../services/helpers/drawUtils';
-import type { Country } from '../../types/country';
-import type { GroupStagePhase } from '../../types/tournamentConfig';
-import type { Pot } from './TournamentExecutionView';
-import { useDrawAssignment } from '../../hooks/useDrawAssignment';
+import type { Pot } from '../TournamentExecutionView';
+import type { GroupStagePhase } from '../../../../types/tournamentConfiguration';
+import type { Country } from '../../../../types/country';
+import { DrawUtils } from '../../../../services/helpers/drawUtils';
+import { useDrawAssignment } from '../../../../hooks/useDrawAssignment';
 
 interface GroupStageDrawViewProps {
   phase: GroupStagePhase;

@@ -1,11 +1,11 @@
 import { Confederation } from './confederation';
 
-export interface ConfederationConfig {
+export interface ConfederationConfiguration {
   id: Confederation;
   name: string;
 }
 
-export const CONFEDERATIONS: ConfederationConfig[] = [
+export const CONFEDERATIONS: ConfederationConfiguration[] = [
   { id: Confederation.UEFA, name: 'UEFA (Europe)' },
   { id: Confederation.CONMEBOL, name: 'CONMEBOL (South America)' },
   { id: Confederation.CONCACAF, name: 'CONCACAF (North & Central America)' },

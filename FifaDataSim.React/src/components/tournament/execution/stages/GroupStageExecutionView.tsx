@@ -1,7 +1,7 @@
 import { useState, useMemo, type JSX } from 'react';
-import type { Country } from '../../types/country';
-import { GroupSimulationUtils, type Fixture } from '../../services/helpers/groupSimulationUtils';
-import type { GroupStagePhase } from '../../types/tournamentConfig';
+import { GroupSimulationUtils, type Fixture } from '../../../../services/helpers/groupSimulationUtils';
+import type { Country } from '../../../../types/country';
+import type { GroupStagePhase } from '../../../../types/tournamentConfiguration';
 
 interface GroupStageExecutionViewProps {
   phase: GroupStagePhase;

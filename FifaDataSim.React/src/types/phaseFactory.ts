@@ -1,10 +1,10 @@
+import type { Phase } from './phase';
 import { PhaseType } from './phaseType';
 import type { 
   GroupStagePhase, 
   SingleKnockoutPhase, 
-  MultiKnockoutPhase, 
-  Phase 
-} from './tournamentConfig';
+  MultiKnockoutPhase
+} from './tournamentConfiguration';
 
 /**
  * Creates a default Group Stage phase

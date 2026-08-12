@@ -1,11 +1,11 @@
 import { type DragEvent, type JSX } from 'react';
-import type { ConfederationConfig } from '../../types/tournament';
-import type { Country } from '../../types/country';
-import type { Confederation } from '../../types/confederation';
-import TeamCard from './TeamCard'; // Import TeamCard here
+import type { ConfederationConfiguration } from '../../../types/confederationConfiguration';
+import type { Country } from '../../../types/country';
+import TeamCard from './TeamCard';
+import type { Confederation } from '../../../types/confederation';
 
 interface ConfederationBoxProps {
-  conf: ConfederationConfig;
+  conf: ConfederationConfiguration;
   teams: Country[];
   isLoading: boolean;
   error: string | null;

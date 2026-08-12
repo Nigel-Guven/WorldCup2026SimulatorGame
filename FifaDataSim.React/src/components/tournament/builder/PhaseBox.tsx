@@ -1,11 +1,12 @@
 import { useState, type DragEvent, type JSX } from 'react';
-import type { Country } from '../../types/country';
-import type { Phase, GroupStagePhase, SingleKnockoutPhase, MultiKnockoutPhase } from '../../types/tournamentConfig';
 import TeamCard from './TeamCard';
-import { MultiKnockoutConfigForm } from '../../functions/MultiStageConfigForm';
-import { GroupStageConfigForm } from '../../functions/GroupStageConfigForm';
-import { PhaseType } from '../../types/phaseType';
-import { SingleKnockoutConfigForm } from '../../functions/SingleKnockoutConfigForm';
+import type { Phase } from '../../../types/phase';
+import type { Country } from '../../../types/country';
+import { GroupStageConfigForm } from '../../../functions/GroupStageConfigForm';
+import { PhaseType } from '../../../types/phaseType';
+import { SingleKnockoutConfigForm } from '../../../functions/SingleKnockoutConfigForm';
+import { MultiKnockoutConfigForm } from '../../../functions/MultiStageConfigForm';
+import type { GroupStagePhase, MultiKnockoutPhase, SingleKnockoutPhase } from '../../../types/tournamentConfiguration';
 
 interface PhaseBoxProps {
   phase: Phase;

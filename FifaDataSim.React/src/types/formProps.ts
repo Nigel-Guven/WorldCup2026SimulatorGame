@@ -1,4 +1,4 @@
-import type { Phase } from './tournamentConfig';
+import type { Phase } from "./phase";
 
 export interface FormProps<T> {
   config: T;

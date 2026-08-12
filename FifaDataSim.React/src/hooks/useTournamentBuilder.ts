@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import type { Country } from '../types/country';
-import type { Phase } from '../types/tournamentConfig';
 import { createPhaseByType } from '../types/phaseFactory';
 import { PhaseType } from '../types/phaseType';
+import type { Phase } from '../types/phase';
 
 export function useTournamentBuilder() {
   const [phases, setPhases] = useState<Phase[]>([]);

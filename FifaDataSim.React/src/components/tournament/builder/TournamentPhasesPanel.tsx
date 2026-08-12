@@ -1,8 +1,8 @@
 import type { JSX } from 'react';
-import type { Phase } from '../../types/tournamentConfig';
-import type { Country } from '../../types/country';
-import { PhaseType } from '../../types/phaseType';
-import { PhaseBox } from '../confederations/PhaseBox';
+import { PhaseType } from '../../../types/phaseType';
+import type { Phase } from '../../../types/phase';
+import type { Country } from '../../../types/country';
+import { PhaseBox } from './PhaseBox';
 
 interface TournamentPhasesPanelProps {
   phases: Phase[];

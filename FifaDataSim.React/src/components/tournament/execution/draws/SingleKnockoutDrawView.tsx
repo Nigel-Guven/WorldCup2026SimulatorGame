@@ -1,11 +1,11 @@
 import { useCallback, type JSX } from 'react';
-import { useDrawAssignment } from '../../hooks/useDrawAssignment';
-import { DrawUtils } from '../../services/helpers/drawUtils';
-import type { Country } from '../../types/country';
-import type { SingleKnockoutPhase } from '../../types/tournamentConfig';
+import type { SingleKnockoutPhase } from '../../../../types/tournamentConfiguration';
+import type { Pot } from '../TournamentExecutionView';
+import type { Country } from '../../../../types/country';
+import { useDrawAssignment } from '../../../../hooks/useDrawAssignment';
+import { DrawUtils } from '../../../../services/helpers/drawUtils';
 import { DrawHeader } from './DrawHeader';
 import { PotSidebar } from './PotSidebar';
-import type { Pot } from './TournamentExecutionView';
 
 export interface KnockoutMatchup {
   matchId: number;

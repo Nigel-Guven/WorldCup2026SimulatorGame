@@ -1,17 +1,12 @@
 import { useCallback, type JSX } from 'react';
 import type { SingleKnockoutPhase } from '../../../../types/tournamentConfiguration';
-import type { Pot } from '../TournamentExecutionView';
 import type { Country } from '../../../../types/country';
 import { useDrawAssignment } from '../../../../hooks/useDrawAssignment';
 import { DrawUtils } from '../../../../services/helpers/drawUtils';
 import { DrawHeader } from './DrawHeader';
 import { PotSidebar } from './PotSidebar';
-
-export interface KnockoutMatchup {
-  matchId: number;
-  teamA: Country | null;
-  teamB: Country | null;
-}
+import type { KnockoutMatchup } from '../../../../types/knockoutMatchup';
+import type { Pot } from '../../../../types/pot';
 
 interface Props {
   phase: SingleKnockoutPhase;
@@ -24,12 +19,13 @@ export function SingleKnockoutDrawView({ phase, pots, onComplete }: Props): JSX.
   const matchCount = Math.ceil(totalTeams / 2);
 
   const initialMatchups = useCallback(
-    () =>
+    (): KnockoutMatchup[] =>
       Array.from({ length: matchCount }, (_, i) => ({
-        matchId: i + 1,
+        id: `match-${i + 1}`,
+        matchId: String(i + 1), // String representation fixes 'number' is not assignable to 'string'
         teamA: null,
         teamB: null,
-      })),
+      })) as KnockoutMatchup[],
     [matchCount]
   );
 
@@ -74,21 +70,31 @@ export function SingleKnockoutDrawView({ phase, pots, onComplete }: Props): JSX.
       return updated;
     },
 
-    // Shuffle both pots before pairing
     autoDrawAll: () => {
       const pot1Shuffled = DrawUtils.shuffle(pots[0]?.teams || []);
       const pot2Shuffled = DrawUtils.shuffle(pots[1]?.teams || []);
-      return DrawUtils.pairSeededKnockout(pot1Shuffled, pot2Shuffled, matchCount);
+      const rawPairs = DrawUtils.pairSeededKnockout(pot1Shuffled, pot2Shuffled, matchCount);
+
+      return rawPairs.map((pair, index) => ({
+        id: `match-${index + 1}`,
+        matchId: String(index + 1),
+        teamA: pair.teamA ?? null,
+        teamB: pair.teamB ?? null,
+      })) as KnockoutMatchup[];
     },
 
     buildResult: (ms: KnockoutMatchup[]) =>
       ms.filter(
-        (m): m is { matchId: number; teamA: Country; teamB: Country } =>
+        (m): m is KnockoutMatchup & { teamA: Country; teamB: Country } =>
           m.teamA !== null && m.teamB !== null
-      ),
+      ).map((m) => ({
+        matchId: Number(m.matchId),
+        teamA: m.teamA,
+        teamB: m.teamB,
+      })),
   });
 
-  const handleAssignToMatch = (matchId: number, slot: 'A' | 'B') => {
+  const handleAssignToMatch = (matchId: string, slot: 'A' | 'B') => {
     if (!selectedTeam) return;
     setMatchups((prev) =>
       prev.map((m) =>
@@ -100,7 +106,7 @@ export function SingleKnockoutDrawView({ phase, pots, onComplete }: Props): JSX.
     selectTeam(selectedTeam);
   };
 
-  const handleRemoveFromMatch = (matchId: number, slot: 'A' | 'B') => {
+  const handleRemoveFromMatch = (matchId: string, slot: 'A' | 'B') => {
     setMatchups((prev) =>
       prev.map((m) =>
         m.matchId === matchId
@@ -121,6 +127,7 @@ export function SingleKnockoutDrawView({ phase, pots, onComplete }: Props): JSX.
         confirmLabel="Lock Bracket"
         onDrawNext={() => handleDrawNextAvailable(pots)}
         onAutoDraw={handleAutoDrawAll}
+        onNationsLeagueDraw={handleAutoDrawAll}
         onReset={handleReset}
         onConfirm={() => onComplete(getResult())}
       />
@@ -139,7 +146,7 @@ export function SingleKnockoutDrawView({ phase, pots, onComplete }: Props): JSX.
           <h4 className="font-bold text-sm text-gray-700 uppercase tracking-wider mb-4">
             First Round Matchups
           </h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {matchups.map((m) => (
               <div key={m.matchId} className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">

@@ -3,7 +3,8 @@ import type {
   PhaseType, 
   GroupStageType, 
   SingleBranchKnockoutType, 
-  MultiBranchKnockoutType 
+  MultiBranchKnockoutType,
+  NationsLeagueType 
 } from './phaseType';
 
 export interface BasePhase {
@@ -25,11 +26,30 @@ export interface GroupStageConfig {
   wildcard_teams_count?: number;
   winners_to_phase_tag?: string;
   wildcards_to_phase_tag?: string;
+  relegated_per_group?: number;
+  playoff_qualifiers_per_group?: number;
+  relegated_to_phase_tag?: string;
 }
 
 export interface GroupStagePhase extends BasePhase {
   type: GroupStageType;
   config: GroupStageConfig;
+}
+
+export interface NationsLeagueConfig {
+  number_of_legs: 1 | 2;
+  number_of_groups: number;
+  group_size: number;
+  direct_advance_per_group: number;
+  relegated_per_group?: number;
+  playoff_qualifiers_per_group?: number;
+  winners_to_phase_tag?: string;
+  relegated_to_phase_tag?: string;
+}
+
+export interface NationsLeaguePhase extends BasePhase {
+  type: NationsLeagueType;
+  config: NationsLeagueConfig;
 }
 
 export interface SingleKnockoutConfig {
@@ -56,3 +76,9 @@ export interface MultiKnockoutPhase extends BasePhase {
   type: MultiBranchKnockoutType;
   config: MultiKnockoutConfig;
 }
+
+export type Phase = 
+  | GroupStagePhase 
+  | NationsLeaguePhase 
+  | SingleKnockoutPhase 
+  | MultiKnockoutPhase;

@@ -77,9 +77,29 @@ export function createMultiKnockoutPhase(
   };
 }
 
-/**
- * Generic factory dispatcher to create any phase by its PhaseType numeric enum
- */
+export function createNationsLeaguePhase(
+  name: string = 'Nations League Stage',
+  tag: string = 'UNL'
+): GroupStagePhase {
+  return {
+    id: crypto.randomUUID(),
+    name,
+    tag,
+    type: PhaseType.GroupStage, 
+    teams: [],
+    has_draw: false,
+    is_active: false,
+    config: {
+      number_of_groups: 4,
+      group_size: 4,
+      direct_advance_per_group: 1,
+      wildcard_position: 0,
+      wildcard_teams_count: 0,
+      number_of_legs: 2, 
+    },
+  };
+}
+
 export function createPhaseByType(
   type: PhaseType,
   name?: string,
@@ -92,6 +112,8 @@ export function createPhaseByType(
       return createSingleKnockoutPhase(name, tag);
     case PhaseType.MultiBranchKnockoutStage:
       return createMultiKnockoutPhase(name, tag);
+    case PhaseType.NationsLeagueStage:
+      return createNationsLeaguePhase(name, tag)
     default: {
       const _exhaustiveCheck: never = type;
       throw new Error(`Unsupported phase type: ${_exhaustiveCheck}`);

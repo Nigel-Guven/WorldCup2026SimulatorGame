@@ -210,14 +210,4 @@ export class GroupSimulationUtils {
       return a.played - b.played;
     });
   }
-
-  /**
-   * Weighted random score generator.
-   */
-  static simulateRandomScore(): { home: number; away: number } {
-    const weights = [0, 0, 0, 1, 1, 1, 2, 2, 3, 4];
-    const home = weights[Math.floor(Math.random() * weights.length)];
-    const away = weights[Math.floor(Math.random() * weights.length)];
-    return { home, away };
-  }
 }

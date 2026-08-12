@@ -6,12 +6,13 @@ import { GroupStageConfigForm } from '../../../functions/GroupStageConfigForm';
 import { PhaseType } from '../../../types/phaseType';
 import { SingleKnockoutConfigForm } from '../../../functions/SingleKnockoutConfigForm';
 import { MultiKnockoutConfigForm } from '../../../functions/MultiStageConfigForm';
-import type { GroupStagePhase, MultiKnockoutPhase, SingleKnockoutPhase } from '../../../types/tournamentConfiguration';
+import { NationsLeagueConfigForm } from '../../../functions/NationsLeagueConfigForm';
 
 interface PhaseBoxProps {
   phase: Phase;
-  allPhases: Phase[]; // Passed down to populate "Winners To / Losers To" phase tag dropdowns
-  onDropTeam: (phaseId: string, team: Country) => void;
+  allPhases: Phase[];
+  // Support dropping either a single team or an array of teams
+  onDropTeam: (phaseId: string, teams: Country | Country[]) => void;
   onRemovePhase: (phaseId: string) => void;
   onRemoveTeam: (phaseId: string, teamId: string | number) => void;
   onUpdatePhaseConfig: (phaseId: string, updatedConfig: Partial<Phase['config']>) => void;
@@ -45,11 +46,18 @@ export function PhaseBox({
     setIsDragOver(false);
 
     try {
-      const teamData = e.dataTransfer.getData('application/json');
-      if (teamData) {
-        const team = JSON.parse(teamData) as Country;
-        onDropTeam(phase.id, team);
-      }
+      const rawData = e.dataTransfer.getData('application/json');
+      if (!rawData) return;
+
+      const parsed = JSON.parse(rawData);
+      // Normalize: ensure incoming payload is always a flat array of Country objects
+      const incomingTeams: Country[] = Array.isArray(parsed) ? parsed.flat() : [parsed];
+
+      incomingTeams.forEach((team) => {
+        if (team && typeof team === 'object' && 'name' in team) {
+          onDropTeam(phase.id, team);
+        }
+      });
     } catch (err) {
       console.error('Failed to parse dropped team data', err);
     }
@@ -59,7 +67,6 @@ export function PhaseBox({
     onUpdatePhaseConfig(phase.id, { [field]: value });
   };
 
-  // Filter out the current phase so it doesn't route to itself
   const availableTargetPhases = allPhases.filter((p) => p.id !== phase.id);
 
   return (
@@ -104,7 +111,6 @@ export function PhaseBox({
       {/* Collapsible Configuration Form */}
       {isConfigOpen && (
         <div className="bg-gray-50/80 p-4 border-b border-gray-200 text-xs space-y-4">
-          {/* Common General Metadata */}
           <div className="grid grid-cols-3 gap-3">
             <div>
               <label className="block text-gray-600 font-medium mb-1">Phase Tag Handle</label>
@@ -142,30 +148,44 @@ export function PhaseBox({
 
           <hr className="border-gray-200" />
 
-          {/* Phase-Type Specific Settings */}
-          {phase.type === PhaseType.GroupStage && (
-            <GroupStageConfigForm
-              config={(phase as GroupStagePhase).config}
-              targetPhases={availableTargetPhases}
-              onChange={handleConfigChange}
-            />
-          )}
-
-          {phase.type === PhaseType.SingleBranchKnockoutStage && (
-            <SingleKnockoutConfigForm
-              config={(phase as SingleKnockoutPhase).config}
-              targetPhases={availableTargetPhases}
-              onChange={handleConfigChange}
-            />
-          )}
-
-          {phase.type === PhaseType.MultiBranchKnockoutStage && (
-            <MultiKnockoutConfigForm
-              config={(phase as MultiKnockoutPhase).config}
-              targetPhases={availableTargetPhases}
-              onChange={handleConfigChange}
-            />
-          )}
+          {(() => {
+            switch (phase.type) {
+              case PhaseType.GroupStage:
+                return (
+                  <GroupStageConfigForm
+                    config={phase.config}
+                    targetPhases={availableTargetPhases}
+                    onChange={handleConfigChange}
+                  />
+                );
+              case PhaseType.SingleBranchKnockoutStage:
+                return (
+                  <SingleKnockoutConfigForm
+                    config={phase.config}
+                    targetPhases={availableTargetPhases}
+                    onChange={handleConfigChange}
+                  />
+                );
+              case PhaseType.MultiBranchKnockoutStage:
+                return (
+                  <MultiKnockoutConfigForm
+                    config={phase.config}
+                    targetPhases={availableTargetPhases}
+                    onChange={handleConfigChange}
+                  />
+                );
+              case PhaseType.NationsLeagueStage:
+                return (
+                  <NationsLeagueConfigForm
+                    config={phase.config}
+                    targetPhases={availableTargetPhases}
+                    onChange={handleConfigChange}
+                  />
+                );
+              default:
+                return null;
+            }
+          })()}
         </div>
       )}
 

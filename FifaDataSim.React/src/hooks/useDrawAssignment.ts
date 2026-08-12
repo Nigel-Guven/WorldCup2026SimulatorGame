@@ -41,7 +41,11 @@ export function useDrawAssignment<
 
   const isComplete = assignedTeamIds.size >= totalTeams;
 
-  const selectTeam = useCallback((team: TCountry) => {
+  const selectTeam = useCallback((team: TCountry | null) => {
+    if (!team) {
+      setSelectedTeam(null);
+      return;
+    }
     setSelectedTeam((prev) => (prev?.id === team.id ? null : team));
   }, []);
 
@@ -57,31 +61,33 @@ export function useDrawAssignment<
 
   const handleDrawNextAvailable = useCallback(
     (pots: { teams: TCountry[] }[]) => {
-      // Find the first pot that still has unassigned teams using String-coerced IDs
+      // Recalculate directly from current state inside callback logic
+      const currentAssignedIds = getAssignedIds(drawState);
+      const normalizedIds = new Set<string>();
+      currentAssignedIds.forEach((id) => id != null && normalizedIds.add(String(id)));
+
       const activePot = pots.find((pot) =>
         pot.teams.some(
-          (t) => t.id !== undefined && !assignedTeamIds.has(String(t.id))
+          (t) => t.id !== undefined && !normalizedIds.has(String(t.id))
         )
       );
 
       if (!activePot) return;
 
-      // Filter unassigned teams in this pot
       const availableInPot = activePot.teams.filter(
-        (t) => t.id !== undefined && !assignedTeamIds.has(String(t.id))
+        (t) => t.id !== undefined && !normalizedIds.has(String(t.id))
       );
 
       if (availableInPot.length === 0) return;
 
-      // Pick a random team from the active pot
       const randomIndex = Math.floor(Math.random() * availableInPot.length);
       const nextTeam = availableInPot[randomIndex];
 
       handleAssignSingle(nextTeam);
     },
-    [assignedTeamIds, handleAssignSingle]
+    [drawState, getAssignedIds, handleAssignSingle]
   );
-
+  
   const handleAutoDrawAll = useCallback(() => {
     if (autoDrawAll) {
       setDrawState(autoDrawAll());

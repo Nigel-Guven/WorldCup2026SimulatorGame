@@ -7,6 +7,7 @@ interface DrawHeaderProps {
   confirmLabel: string;
   onDrawNext?: () => void;
   onAutoDraw: () => void;
+  onNationsLeagueDraw: () => void;
   onReset: () => void;
   onConfirm: () => void;
 }
@@ -20,6 +21,7 @@ export function DrawHeader({
   confirmLabel,
   onDrawNext,
   onAutoDraw,
+  onNationsLeagueDraw,
   onReset,
   onConfirm,
 }: DrawHeaderProps) {
@@ -50,6 +52,14 @@ export function DrawHeader({
           className="text-xs bg-blue-600 hover:bg-blue-700 disabled:bg-gray-200 text-white font-semibold px-3.5 py-1.5 rounded-lg transition-colors cursor-pointer"
         >
           ⚡ Auto Draw All
+        </button>
+        <button
+          type="button"
+          onClick={onNationsLeagueDraw}
+          disabled={isComplete}
+          className="text-xs bg-blue-600 hover:bg-blue-700 disabled:bg-gray-200 text-white font-semibold px-3.5 py-1.5 rounded-lg transition-colors cursor-pointer"
+        >
+          ⚡ Nations League Draw
         </button>
         <button
           type="button"

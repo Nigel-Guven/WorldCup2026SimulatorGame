@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 import type { Country } from '../../../../types/country';
-import type { Pot } from '../TournamentExecutionView';
+import type { Pot } from '../../../../types/pot';
 
 interface PotSidebarProps {
   pots: Pot[];
@@ -21,9 +21,10 @@ export function PotSidebar({
         Seed Pools
       </h4>
       {pots.map((pot) => {
-        const unassigned = pot.teams.filter(
-          (t: Country) => t.id !== undefined && !assignedTeamIds.has(t.id)
-        );
+        const unassigned = pot.teams.filter((t: Country) => {
+          if (!t || t.id === undefined || t.id === null) return true;
+          return !assignedTeamIds.has(t.id) && !assignedTeamIds.has(String(t.id));
+        });
 
         return (
           <div key={pot.id} className="bg-white border border-gray-200 rounded-xl p-3.5 shadow-sm">
@@ -35,12 +36,18 @@ export function PotSidebar({
             </div>
             <div className="space-y-1.5">
               {pot.teams.map((team) => {
-                const isAssigned = team.id !== undefined && assignedTeamIds.has(team.id);
-                const isSelected = selectedTeam?.id === team.id;
+                const isAssigned =
+                  team.id !== undefined &&
+                  team.id !== null &&
+                  (assignedTeamIds.has(team.id) || assignedTeamIds.has(String(team.id)));
+
+                const isSelected =
+                  selectedTeam?.id !== undefined &&
+                  String(selectedTeam.id) === String(team.id);
 
                 return (
                   <button
-                    key={team.id}
+                    key={team.id ?? team.name}
                     type="button"
                     disabled={isAssigned}
                     onClick={() => onSelectTeam(team)}
@@ -52,8 +59,8 @@ export function PotSidebar({
                         : 'bg-gray-50 hover:bg-blue-50 text-gray-700 border border-gray-200 cursor-pointer'
                     }`}
                   >
-                    <span>{team.name}</span>
-                    {isSelected && <span className="text-[10px]">SELECTED</span>}
+                    <span className="truncate mr-2">{team.name}</span>
+                    {isSelected && <span className="text-[10px] shrink-0 font-bold">SELECTED</span>}
                   </button>
                 );
               })}

@@ -1,6 +1,6 @@
 import type { FormProps } from "../types/formProps";
-import type { SingleKnockoutPhase } from "../types/tournamentConfig";
 import type { Phase } from "../types/phase";
+import type { SingleKnockoutPhase } from "../types/tournamentConfiguration";
 
 export function SingleKnockoutConfigForm({ config, targetPhases, onChange }: FormProps<SingleKnockoutPhase['config']>) {
   return (

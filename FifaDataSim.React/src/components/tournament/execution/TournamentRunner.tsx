@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { TournamentExecutionView, type PhaseCompletionData } from './TournamentExecutionView';
+import { TournamentExecutionView } from './TournamentExecutionView';
 import type { Phase } from '../../../types/phase';
 import { extractQualifyingTeams } from '../../../services/helpers/extractQualifyingTeams';
+import type { PhaseCompletionData } from '../../../types/phaseCompletionData';
 
 interface Props {
   initialPhases: Phase[];

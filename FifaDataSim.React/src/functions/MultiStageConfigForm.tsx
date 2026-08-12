@@ -1,5 +1,5 @@
 import type { FormProps } from "../types/formProps";
-import type { MultiKnockoutPhase} from "../types/tournamentConfig";
+import type { MultiKnockoutPhase } from "../types/tournamentConfiguration";
 
 export function MultiKnockoutConfigForm({ config, targetPhases, onChange }: FormProps<MultiKnockoutPhase['config']>) {
   return (

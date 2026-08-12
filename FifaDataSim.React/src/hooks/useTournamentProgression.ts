@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
-import { extractAdvancingTeams, type PhaseCompletionData } from '../services/helpers/qualificationUtils';
+import { extractAdvancingTeams } from '../services/helpers/qualificationUtils';
 import type { Phase } from '../types/phase';
+import type { PhaseCompletionData } from '../types/phaseCompletionData';
 
 interface UseTournamentProgressionProps {
   initialPhases: Phase[];

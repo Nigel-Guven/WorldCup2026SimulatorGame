@@ -12,7 +12,7 @@ interface TournamentPhasesPanelProps {
 
   onAddPhase: () => void;
 
-  onDropTeam: (phaseId: string, team: Country) => void;
+  onDropTeam: (phaseId: string, teams: Country | Country[]) => void;
   onRemovePhase: (phaseId: string) => void;
   onRemoveTeam: (phaseId: string, teamId: string | number) => void;
 
@@ -67,6 +67,10 @@ export function TournamentPhasesPanel({
 
             <option value={PhaseType.MultiBranchKnockoutStage}>
               Multi-Branch Knockout
+            </option>
+
+            <option value={PhaseType.NationsLeagueStage}>
+              Nations League
             </option>
           </select>
 

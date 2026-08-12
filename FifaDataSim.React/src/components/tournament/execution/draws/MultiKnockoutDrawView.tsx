@@ -5,7 +5,7 @@ import { DrawUtils } from '../../../../services/helpers/drawUtils';
 import { useDrawAssignment } from '../../../../hooks/useDrawAssignment';
 import type { Country } from '../../../../types/country';
 import type { MultiKnockoutPhase } from '../../../../types/tournamentConfiguration';
-import type { Pot } from '../TournamentExecutionView';
+import type { Pot } from '../../../../types/pot';
 
 interface MultiKnockoutDrawViewProps {
   phase: MultiKnockoutPhase;
@@ -103,6 +103,7 @@ export function MultiKnockoutDrawView({
         confirmLabel="Confirm Multi-Branch Paths"
         onDrawNext={() => handleDrawNextAvailable(pots)}
         onAutoDraw={handleAutoDrawAll}
+        onNationsLeagueDraw={handleAutoDrawAll}
         onReset={handleReset}
         onConfirm={() => onComplete(getResult())}
       />

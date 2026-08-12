@@ -1,11 +1,11 @@
 import type { FormProps } from "../types/formProps";
 import type { Phase } from "../types/phase";
-import type { GroupStagePhase } from "../types/tournamentConfiguration";
+import type { NationsLeaguePhase } from "../types/tournamentConfiguration";
 
-export function GroupStageConfigForm({ config, targetPhases, onChange }: FormProps<GroupStagePhase['config']>) {
+export function NationsLeagueConfigForm({ config, targetPhases, onChange }: FormProps<NationsLeaguePhase['config']>) {
   return (
     <div className="space-y-3">
-      {/* Basic Group Setup */}
+      {/* Group & Format Setup */}
       <div className="grid grid-cols-3 gap-3">
         <div>
           <label className="block text-gray-600 font-medium mb-1">Number of Groups</label>
@@ -22,28 +22,28 @@ export function GroupStageConfigForm({ config, targetPhases, onChange }: FormPro
           <input
             type="number"
             min={1}
-            value={config.group_size ?? 4}
+            value={config.group_size}
             onChange={(e) => onChange('group_size', Number(e.target.value))}
             className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
           />
         </div>
         <div>
-          <label className="block text-gray-600 font-medium mb-1">Legs per Matchup</label>
+          <label className="block text-gray-600 font-medium mb-1">Number of Legs</label>
           <select
             value={config.number_of_legs}
             onChange={(e) => onChange('number_of_legs', Number(e.target.value) as 1 | 2)}
             className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
           >
-            <option value={1}>1 (Single)</option>
-            <option value={2}>2 (Home & Away)</option>
+            <option value={1}>Single Leg (1)</option>
+            <option value={2}>Home & Away (2)</option>
           </select>
         </div>
       </div>
 
-      {/* Advancement & Relegation Counts */}
+      {/* Promotion, Playoff & Relegation Positions */}
       <div className="grid grid-cols-3 gap-3">
         <div>
-          <label className="block text-gray-600 font-medium mb-1">Direct Advancers / Group</label>
+          <label className="block text-gray-600 font-medium mb-1">Direct Advancers per Group</label>
           <input
             type="number"
             min={1}
@@ -74,42 +74,16 @@ export function GroupStageConfigForm({ config, targetPhases, onChange }: FormPro
         </div>
       </div>
 
-      {/* Wildcards (Optional) */}
-      <div className="grid grid-cols-2 gap-3">
+      {/* Target Routing Setup */}
+      <div className="grid grid-cols-2 gap-3 pt-1">
         <div>
-          <label className="block text-gray-600 font-medium mb-1">Wildcard Position</label>
-          <input
-            type="number"
-            min={1}
-            value={config.wildcard_position ?? ''}
-            onChange={(e) => onChange('wildcard_position', e.target.value ? Number(e.target.value) : undefined)}
-            className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
-            placeholder="e.g. 3 (Best 3rd place)"
-          />
-        </div>
-        <div>
-          <label className="block text-gray-600 font-medium mb-1">Wildcard Teams Count</label>
-          <input
-            type="number"
-            min={1}
-            value={config.wildcard_teams_count ?? ''}
-            onChange={(e) => onChange('wildcard_teams_count', e.target.value ? Number(e.target.value) : undefined)}
-            className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
-            placeholder="e.g. 4"
-          />
-        </div>
-      </div>
-
-      {/* Routing Target Phase Tags */}
-      <div className="grid grid-cols-3 gap-3 pt-1">
-        <div>
-          <label className="block text-gray-600 font-medium mb-1">Winners Route To</label>
+          <label className="block text-gray-600 font-medium mb-1">Winners / Promoted Route To</label>
           <select
             value={config.winners_to_phase_tag ?? ''}
             onChange={(e) => onChange('winners_to_phase_tag', e.target.value || undefined)}
             className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
           >
-            <option value="">-- None --</option>
+            <option value="">-- Select Target Phase Tag --</option>
             {targetPhases.map((p: Phase) => (
               <option key={p.id} value={p.tag}>
                 {p.name} ({p.tag})
@@ -117,31 +91,14 @@ export function GroupStageConfigForm({ config, targetPhases, onChange }: FormPro
             ))}
           </select>
         </div>
-
         <div>
-          <label className="block text-gray-600 font-medium mb-1">Wildcards Route To</label>
-          <select
-            value={config.wildcards_to_phase_tag ?? ''}
-            onChange={(e) => onChange('wildcards_to_phase_tag', e.target.value || undefined)}
-            className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
-          >
-            <option value="">-- None --</option>
-            {targetPhases.map((p: Phase) => (
-              <option key={p.id} value={p.tag}>
-                {p.name} ({p.tag})
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-gray-600 font-medium mb-1">Relegated Route To</label>
+          <label className="block text-gray-600 font-medium mb-1">Relegated / Playoff Route To</label>
           <select
             value={config.relegated_to_phase_tag ?? ''}
             onChange={(e) => onChange('relegated_to_phase_tag', e.target.value || undefined)}
             className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
           >
-            <option value="">-- None --</option>
+            <option value="">-- Select Target Phase Tag --</option>
             {targetPhases.map((p: Phase) => (
               <option key={p.id} value={p.tag}>
                 {p.name} ({p.tag})

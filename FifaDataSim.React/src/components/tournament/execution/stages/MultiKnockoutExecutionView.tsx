@@ -1,16 +1,19 @@
 import { useMemo, useState, type JSX } from "react";
-import { SingleKnockoutSimulationUtils, type KnockoutMatch } from "../../../../services/helpers/singleKnockoutSimulationUtils";
+import { SingleKnockoutSimulationUtils } from "../../../../services/helpers/singleKnockoutSimulationUtils";
 import type { Country } from "../../../../types/country";
 import type { MultiKnockoutPhase } from "../../../../types/tournamentConfiguration";
-import { MultiKnockoutSimulationUtils, type PathState } from "../../../../services/helpers/multiKnockoutSimulationUtils";
+import { MultiKnockoutSimulationUtils } from "../../../../services/helpers/multiKnockoutSimulationUtils";
+import { SimulationEngine } from "../../../../services/simulationService";
+import type { KnockoutMatchup } from "../../../../types/knockoutMatchup";
+import type { PathState } from "../../../../types/multiKnockoutPathState";
 
 
 interface Props {
   phase: MultiKnockoutPhase;
-  pathAssignments: Record<string, { matchId: number; teamA: Country; teamB: Country }[]>;
+  pathAssignments: Record<string, KnockoutMatchup[]>;
   onComplete: (results: {
     pathWinners: Record<string, { champion: Country; runnerUp: Country; thirdPlace?: Country }>;
-    allMatches: Record<string, KnockoutMatch[]>;
+    allMatches: Record<string, KnockoutMatchup[]>;
   }) => void;
 }
 
@@ -42,7 +45,7 @@ export function MultiKnockoutExecutionView({
         return prev;
       }
 
-      const simulated = SingleKnockoutSimulationUtils.simulateMatch(targetMatch, legs);
+      const simulated = SimulationEngine.simulateKnockoutMatch(targetMatch, legs);
       const updatedMatches = currentPath.matches.map((m) =>
         m.id === matchId ? simulated : m
       );
@@ -58,27 +61,35 @@ export function MultiKnockoutExecutionView({
   };
 
   // Simulate active path to completion
+  const simulatePathMatches = (matches: KnockoutMatchup[]): KnockoutMatchup[] => {
+    let currentMatches = [...matches];
+    let active = true;
+
+    while (active) {
+      let playableFound = false;
+      for (let i = 0; i < currentMatches.length; i++) {
+        const m = currentMatches[i];
+        if (!m.isPlayed && m.teamA && m.teamB) {
+          // Corrected: simulateKnockoutMatch returns the updated KnockoutMatchup
+          currentMatches[i] = SimulationEngine.simulateKnockoutMatch(m, legs);
+          currentMatches = SingleKnockoutSimulationUtils.propagateWinners(currentMatches);
+          playableFound = true;
+          break;
+        }
+      }
+      if (!playableFound) active = false;
+    }
+
+    return currentMatches;
+  };
+
+  // Simulate active path to completion
   const handleSimulateActivePath = () => {
     setPathStates((prev) => {
       const currentPath = prev[activeTab];
       if (!currentPath || currentPath.isComplete) return prev;
 
-      let currentMatches = [...currentPath.matches];
-      let active = true;
-
-      while (active) {
-        let playableFound = false;
-        for (let i = 0; i < currentMatches.length; i++) {
-          const m = currentMatches[i];
-          if (!m.isPlayed && m.teamA && m.teamB) {
-            currentMatches[i] = SingleKnockoutSimulationUtils.simulateMatch(m, legs);
-            currentMatches = SingleKnockoutSimulationUtils.propagateWinners(currentMatches);
-            playableFound = true;
-            break;
-          }
-        }
-        if (!playableFound) active = false;
-      }
+      const currentMatches = simulatePathMatches(currentPath.matches);
 
       const updatedPathState = MultiKnockoutSimulationUtils.updatePathCompletion({
         ...currentPath,
@@ -95,22 +106,12 @@ export function MultiKnockoutExecutionView({
       const updatedAll: Record<string, PathState> = {};
 
       Object.entries(prev).forEach(([key, pathState]) => {
-        let currentMatches = [...pathState.matches];
-        let active = true;
-
-        while (active) {
-          let playableFound = false;
-          for (let i = 0; i < currentMatches.length; i++) {
-            const m = currentMatches[i];
-            if (!m.isPlayed && m.teamA && m.teamB) {
-              currentMatches[i] = SingleKnockoutSimulationUtils.simulateMatch(m, legs);
-              currentMatches = SingleKnockoutSimulationUtils.propagateWinners(currentMatches);
-              playableFound = true;
-              break;
-            }
-          }
-          if (!playableFound) active = false;
+        if (pathState.isComplete) {
+          updatedAll[key] = pathState;
+          return;
         }
+
+        const currentMatches = simulatePathMatches(pathState.matches);
 
         updatedAll[key] = MultiKnockoutSimulationUtils.updatePathCompletion({
           ...pathState,
@@ -133,7 +134,7 @@ export function MultiKnockoutExecutionView({
       string,
       { champion: Country; runnerUp: Country; thirdPlace?: Country }
     > = {};
-    const allMatches: Record<string, KnockoutMatch[]> = {};
+    const allMatches: Record<string, KnockoutMatchup[]> = {};
 
     Object.entries(pathStates).forEach(([key, state]) => {
       if (state.champion && state.runnerUp) {
@@ -276,7 +277,7 @@ function PathMatchCard({
   legs,
   onPlay,
 }: {
-  match: KnockoutMatch;
+  match: KnockoutMatchup;
   legs: number;
   onPlay: () => void;
 }) {

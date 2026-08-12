@@ -1,19 +1,24 @@
 import type { Country } from "../../types/country";
-import type { Phase } from "../../types/tournamentConfig";
-import type { PhaseCompletionData } from "./qualificationUtils";
+import type { GroupStandingEntry } from "../../types/groupStandingEntry";
+import type { Phase } from "../../types/phase";
+import type { PhaseCompletionData } from "../../types/phaseCompletionData";
+import { compareGroupEntries } from "./groupTieBreakerUtils";
 
 export function extractQualifyingTeams(
   completedData: PhaseCompletionData,
   nextPhase: Phase
 ): Country[] {
-  const targetCount = nextPhase.config.number_of_teams || nextPhase.teams.length;
+  // Ensure numeric types for comparisons and arithmetic
+  const targetCount = Number(nextPhase.config.winners_to_phase_tag) || nextPhase.teams.length;
+  const automaticPerGroup = nextPhase.config.winners_to_phase_tag ?? 2;
+  const numericAutomaticPerGroup = Number(automaticPerGroup) || 0;
+
   const groupStandings = completedData.groupStandings ?? {};
   const groupKeys = Object.keys(groupStandings).sort();
 
   if (groupKeys.length === 0) return [];
 
   const qualified: Country[] = [];
-  const automaticPerGroup = nextPhase.config.qualifiers_per_group ?? 2;
 
   // 1. Sort each group internally using Head-to-Head + Disciplinary rules (isSameGroup = true)
   const sortedGroups: Record<string, GroupStandingEntry[]> = {};
@@ -24,7 +29,7 @@ export function extractQualifyingTeams(
   }
 
   // 2. Extract automatic qualifiers position-by-position
-  for (let pos = 0; pos < automaticPerGroup; pos++) {
+  for (let pos = 0; pos < numericAutomaticPerGroup; pos++) {
     for (const key of groupKeys) {
       const entry = sortedGroups[key]?.[pos];
       if (entry) {

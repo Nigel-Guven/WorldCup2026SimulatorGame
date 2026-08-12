@@ -1,35 +1,37 @@
 import type { Country } from '../../types/country';
-import type { MultiKnockoutPhase } from '../../types/tournamentConfig';
+import type { KnockoutMatchup } from '../../types/knockoutMatchup';
+import type { PathState } from '../../types/multiKnockoutPathState';
+import type { MultiKnockoutPhase } from '../../types/tournamentConfiguration';
 import {
   SingleKnockoutSimulationUtils,
-  type KnockoutMatch,
 } from './singleKnockoutSimulationUtils';
 
-export interface PathState {
-  pathKey: string;
-  matches: KnockoutMatch[];
-  isComplete: boolean;
-  champion: Country | null;
-  runnerUp: Country | null;
-  thirdPlace?: Country | null;
-}
+
 
 export class MultiKnockoutSimulationUtils {
-  /**
-   * Initializes initial bracket matches for every path key.
-   */
+
   static initializeMultiBracket(
-    pathAssignments: Record<string, { matchId: number; teamA: Country; teamB: Country }[]>,
+    pathAssignments: Record<string, KnockoutMatchup[]>,
     phaseConfig: MultiKnockoutPhase['config']
   ): Record<string, PathState> {
     const states: Record<string, PathState> = {};
 
     Object.entries(pathAssignments).forEach(([pathKey, initialMatchups]) => {
+        // 1. Map string match IDs to numbers to satisfy SingleKnockoutSimulationUtils
+        const formattedMatchups = initialMatchups.map((match) => ({
+            // Fallback to match.id if matchId isn't on the object, and parse to number
+            matchId: Number(match.matchId || match.id) || 0,
+            // Cast to ensure it satisfies the strict Country requirement if teamA/B are nullable
+            teamA: match.teamA as Country, 
+            teamB: match.teamB as Country
+        }));
+
+        // 2. Pass the mapped array
         const matches = SingleKnockoutSimulationUtils.createInitialBracket(
-            initialMatchups,
+            formattedMatchups,
             {
-            ...phaseConfig,
-            third_place_match: phaseConfig.third_place_match ?? false,
+              ...phaseConfig,
+              third_place_match: phaseConfig.third_place_match ?? false,
             }
         );
 

@@ -1,4 +1,5 @@
 import type { Country } from "../../types/country";
+import type { KnockoutMatchup } from "../../types/knockoutMatchup";
 
 export const DrawUtils = {
   /** Generates path or group key letters: 0 -> "A", 1 -> "B", etc. */
@@ -21,13 +22,17 @@ export const DrawUtils = {
     return buckets;
   },
 
-  /** Pairs seeded (Pot 1) vs unseeded (Pot 2) teams for single-branch knockouts */
-  pairSeededKnockout(pot1: Country[], pot2: Country[], matchCount: number) {
+  pairSeededKnockout(
+    pot1: Country[],
+    pot2: Country[],
+    matchCount: number
+  ): KnockoutMatchup[] {
     return Array.from({ length: matchCount }, (_, i) => ({
-      matchId: i + 1,
-      teamA: pot1[i] || null,
-      teamB: pot2[i] || null,
-    }));
+      id: `match-${i + 1}`,
+      matchId: String(i + 1),
+      teamA: pot1[i] ?? null,
+      teamB: pot2[i] ?? null,
+    })) as KnockoutMatchup[];
   },
 
   shuffle<T>(array: T[]): T[] {

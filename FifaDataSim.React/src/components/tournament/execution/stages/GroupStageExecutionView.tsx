@@ -2,6 +2,7 @@ import { useState, useMemo, type JSX } from 'react';
 import { GroupSimulationUtils, type Fixture } from '../../../../services/helpers/groupSimulationUtils';
 import type { Country } from '../../../../types/country';
 import type { GroupStagePhase } from '../../../../types/tournamentConfiguration';
+import { SimulationEngine } from '../../../../services/simulationService';
 
 interface GroupStageExecutionViewProps {
   phase: GroupStagePhase;
@@ -12,15 +13,20 @@ interface GroupStageExecutionViewProps {
   }) => void;
 }
 
+const getTeamKey = (team?: Country): string | number => {
+  if (!team) return '';
+  return team.id ?? (team as unknown as { code?: string }).code ?? team.name;
+};
+
 export function GroupStageExecutionView({
   phase,
   groups,
   onComplete,
 }: GroupStageExecutionViewProps): JSX.Element {
-  const legs = phase.config.number_of_legs || 1;
-  const directAdvanceCount = phase.config.direct_advance_per_group || 2;
-  const wildcardIndex = phase.config.wildcard_position || 0;
-  const wildcardCount = phase.config.wildcard_teams_count || 0;
+  const legs = phase?.config?.number_of_legs ?? 1;
+  const directAdvanceCount = phase?.config?.direct_advance_per_group ?? 2;
+  const wildcardIndex = phase?.config?.wildcard_position ?? 0;
+  const wildcardCount = phase?.config?.wildcard_teams_count ?? 0;
 
   // Initialize Fixtures once
   const [fixtures, setFixtures] = useState<Fixture[]>(() =>
@@ -43,14 +49,14 @@ export function GroupStageExecutionView({
   const playedMatches = fixtures.filter(
     (f) => f.isPlayed && f.homeTeam && f.awayTeam
   ).length;
-  const isPhaseComplete = playedMatches === totalMatches;
+  const isPhaseComplete = totalMatches > 0 && playedMatches === totalMatches;
 
-  // Simulate next single unplayed match
   const handleSimulateNext = () => {
     const nextMatch = fixtures.find((f) => !f.isPlayed && f.homeTeam && f.awayTeam);
-    if (!nextMatch) return;
+    if (!nextMatch || !nextMatch.homeTeam || !nextMatch.awayTeam) return;
 
-    const score = GroupSimulationUtils.simulateRandomScore();
+    const score = SimulationEngine.simulateMatch(nextMatch.homeTeam, nextMatch.awayTeam);
+
     setFixtures((prev) =>
       prev.map((f) =>
         f.id === nextMatch.id
@@ -60,12 +66,13 @@ export function GroupStageExecutionView({
     );
   };
 
-  // Simulate all remaining unplayed matches at once
   const handleSimulateAll = () => {
     setFixtures((prev) =>
       prev.map((f) => {
         if (f.isPlayed || !f.homeTeam || !f.awayTeam) return f;
-        const score = GroupSimulationUtils.simulateRandomScore();
+
+        const score = SimulationEngine.simulateMatch(f.homeTeam, f.awayTeam);
+
         return { ...f, homeScore: score.home, awayScore: score.away, isPlayed: true };
       })
     );
@@ -76,7 +83,9 @@ export function GroupStageExecutionView({
   };
 
   const handleScoreChange = (fixtureId: string, side: 'home' | 'away', value: string) => {
-    const numVal = value === '' ? null : Math.max(0, parseInt(value, 10) || 0);
+    const parsed = parseInt(value, 10);
+    const numVal = value === '' || isNaN(parsed) ? null : Math.max(0, parsed);
+
     setFixtures((prev) =>
       prev.map((f) => {
         if (f.id !== fixtureId) return f;
@@ -106,7 +115,7 @@ export function GroupStageExecutionView({
   };
 
   return (
-    <div className="space-y-8">
+    <div className="w-full px-4 sm:px-6 py-6 space-y-8">
       {/* Simulation Control Header */}
       <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
@@ -158,59 +167,60 @@ export function GroupStageExecutionView({
           <h4 className="font-bold text-sm text-gray-700 uppercase tracking-wider">
             Group Tables
           </h4>
+          <div className="space-y-6 max-h-[800px] overflow-y-auto pr-1">
+            <div className="grid grid-cols-2 gap-6">
+              {Object.entries(standings).map(([groupKey, rows]) => (
+                <div key={groupKey} className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                  <div className="flex justify-between items-center border-b border-gray-100 pb-2 mb-3">
+                    <h5 className="font-bold text-gray-800 text-sm">Group {groupKey}</h5>
+                    <span className="text-[11px] text-gray-400">
+                      Top {directAdvanceCount} Direct Advance
+                    </span>
+                  </div>
 
-          <div className="grid grid-cols-1 gap-6">
-            {Object.entries(standings).map(([groupKey, rows]) => (
-              <div key={groupKey} className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
-                <div className="flex justify-between items-center border-b border-gray-100 pb-2 mb-3">
-                  <h5 className="font-bold text-gray-800 text-sm">Group {groupKey}</h5>
-                  <span className="text-[11px] text-gray-400">
-                    Top {directAdvanceCount} Direct Advance
-                  </span>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse text-xs">
+                      <thead>
+                        <tr className="border-b border-gray-100 text-gray-400 font-semibold uppercase text-[10px]">
+                          <th className="py-2 px-1 w-6">#</th>
+                          <th className="py-2 px-2">Team</th>
+                          <th className="py-2 px-1 text-center">P</th>
+                          <th className="py-2 px-1 text-center">W</th>
+                          <th className="py-2 px-1 text-center">D</th>
+                          <th className="py-2 px-1 text-center">L</th>
+                          <th className="py-2 px-1 text-center">GD</th>
+                          <th className="py-2 px-1 text-center font-bold text-gray-700">Pts</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {rows.map((row, idx) => {
+                          const rank = idx + 1;
+                          const isDirect = rank <= directAdvanceCount;
+                          const isWildcardCandidate = wildcardIndex > 0 && rank === wildcardIndex;
+
+                          let rowStyle = 'hover:bg-gray-50/50';
+                          if (isDirect) rowStyle = 'bg-emerald-50/60 text-emerald-950 font-medium';
+                          else if (isWildcardCandidate) rowStyle = 'bg-amber-50/60 text-amber-950 font-medium';
+
+                          return (
+                            <tr key={getTeamKey(row.team) || idx} className={`border-b border-gray-100/60 ${rowStyle}`}>
+                              <td className="py-2 px-1 font-bold text-[11px]">{rank}</td>
+                              <td className="py-2 px-2 font-medium">{row.team.name}</td>
+                              <td className="py-2 px-1 text-center text-gray-500">{row.played}</td>
+                              <td className="py-2 px-1 text-center text-gray-500">{row.won}</td>
+                              <td className="py-2 px-1 text-center text-gray-500">{row.drawn}</td>
+                              <td className="py-2 px-1 text-center text-gray-500">{row.lost}</td>
+                              <td className="py-2 px-1 text-center text-gray-500">{row.gd > 0 ? `+${row.gd}` : row.gd}</td>
+                              <td className="py-2 px-1 text-center font-bold text-gray-900">{row.points}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse text-xs">
-                    <thead>
-                      <tr className="border-b border-gray-100 text-gray-400 font-semibold uppercase text-[10px]">
-                        <th className="py-2 px-1 w-6">#</th>
-                        <th className="py-2 px-2">Team</th>
-                        <th className="py-2 px-1 text-center">P</th>
-                        <th className="py-2 px-1 text-center">W</th>
-                        <th className="py-2 px-1 text-center">D</th>
-                        <th className="py-2 px-1 text-center">L</th>
-                        <th className="py-2 px-1 text-center">GD</th>
-                        <th className="py-2 px-1 text-center font-bold text-gray-700">Pts</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {rows.map((row, idx) => {
-                        const rank = idx + 1;
-                        const isDirect = rank <= directAdvanceCount;
-                        const isWildcardCandidate = wildcardIndex > 0 && rank === wildcardIndex;
-
-                        let rowStyle = 'hover:bg-gray-50/50';
-                        if (isDirect) rowStyle = 'bg-emerald-50/60 text-emerald-950 font-medium';
-                        else if (isWildcardCandidate) rowStyle = 'bg-amber-50/60 text-amber-950 font-medium';
-
-                        return (
-                          <tr key={row.team.id} className={`border-b border-gray-100/60 ${rowStyle}`}>
-                            <td className="py-2 px-1 font-bold text-[11px]">{rank}</td>
-                            <td className="py-2 px-2 font-medium">{row.team.name}</td>
-                            <td className="py-2 px-1 text-center text-gray-500">{row.played}</td>
-                            <td className="py-2 px-1 text-center text-gray-500">{row.won}</td>
-                            <td className="py-2 px-1 text-center text-gray-500">{row.drawn}</td>
-                            <td className="py-2 px-1 text-center text-gray-500">{row.lost}</td>
-                            <td className="py-2 px-1 text-center text-gray-500">{row.gd > 0 ? `+${row.gd}` : row.gd}</td>
-                            <td className="py-2 px-1 text-center font-bold text-gray-900">{row.points}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/* Optional Wildcard Table */}
@@ -244,7 +254,7 @@ export function GroupStageExecutionView({
 
                       return (
                         <tr
-                          key={row.team.id}
+                          key={getTeamKey(row.team) || idx}
                           className={`border-b border-purple-50 ${
                             isWildcardPole ? 'bg-purple-100/70 text-purple-950 font-semibold' : 'hover:bg-purple-50/20'
                           }`}

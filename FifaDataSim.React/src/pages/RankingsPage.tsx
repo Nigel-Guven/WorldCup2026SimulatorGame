@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import RankingsTable from "../components/rankings/RankingsTable";
-import { useRankings } from "../hooks/useRankings";
+import { useRankings, type ConfederationFilter } from "../hooks/useRankings";
 
 const CONFEDERATIONS = [
     { label: "All", value: "ALL" },
@@ -72,7 +72,7 @@ export default function RankingsPage() {
                         return (
                             <button
                                 key={conf.value}
-                                onClick={() => setSelectedConfederation(conf.value)}
+                                onClick={() => setSelectedConfederation(conf.value as ConfederationFilter)}
                                 className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all duration-200 ${
                                     isActive
                                         ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"

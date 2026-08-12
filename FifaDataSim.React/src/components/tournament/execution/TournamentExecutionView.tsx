@@ -1,56 +1,26 @@
-import { useState, useEffect, useMemo, type JSX } from 'react';
-import type { Country } from '../../../types/country';
+import { type JSX, useState, useEffect, useMemo } from 'react';
 import { PhaseType } from '../../../types/phaseType';
 import { GroupStageExecutionView } from './stages/GroupStageExecutionView';
 import { MultiKnockoutDrawView } from './draws/MultiKnockoutDrawView';
 import { SingleKnockoutDrawView } from './draws/SingleKnockoutDrawView';
 import { SingleKnockoutExecutionView } from './stages/SingleKnockoutExecutionView';
-import { MultiKnockoutExecutionView } from './stages/MultiKnockoutExecutionView';
 import { GroupStageDrawView } from './draws/GroupStageDrawView';
 import type { Phase } from '../../../types/phase';
-
-// ==========================================
-// Types & Domain Interfaces
-// ==========================================
+import type { PhaseCompletionData } from '../../../types/phaseCompletionData';
+import type { DrawResult } from '../../../types/drawResult';
+import type { Country } from '../../../types/country';
+import {
+  createFallbackGroupDraw,
+  createFallbackMultiKnockoutDraw,
+  createFallbackSingleKnockoutDraw,
+  derivePots,
+} from '../../../services/helpers/tournamentExecutionUtils';
+import type { GroupStandingEntry } from '../../../types/groupStandingEntry';
+import type { KnockoutMatchup } from '../../../types/knockoutMatchup';
+import { MultiKnockoutExecutionView } from './stages/MultiKnockoutExecutionView';
+import type { MultiKnockoutPhase } from '../../../types/tournamentConfiguration';
 
 export type ExecutionStage = 'DRAW' | 'SIMULATION';
-
-export interface Pot {
-  id: number;
-  name: string;
-  teams: Country[];
-}
-
-export interface KnockoutMatchup {
-  matchId: number;
-  teamA: Country;
-  teamB?: Country;
-}
-
-export type DrawResult =
-  | { type: 'GROUP'; groups: Record<string, Country[]> }
-  | { type: 'SINGLE_KNOCKOUT'; matchups: KnockoutMatchup[] }
-  | { type: 'MULTI_KNOCKOUT'; pathAssignments: Record<string, KnockoutMatchup[]> };
-
-export interface GroupStandingEntry {
-  team: Country;
-  played: number;
-  won: number;
-  drawn: number;
-  lost: number;
-  points: number;
-  goalsFor: number;
-  goalsAgainst: number;
-  goalDifference: number;
-}
-
-export interface PhaseCompletionData {
-  phaseId: string;
-  phaseType: PhaseType;
-  groupStandings?: Record<string, GroupStandingEntry[]>;
-  knockoutWinners?: Country[];
-  pathWinners?: Record<string, Country[]>;
-}
 
 interface TournamentExecutionViewProps {
   phases: Phase[];
@@ -60,9 +30,44 @@ interface TournamentExecutionViewProps {
   onExitExecution: () => void;
 }
 
-// ==========================================
-// Component Implementation
-// ==========================================
+/**
+ * Seeded Group Distribution:
+ * Sorts teams by default_points or strength and distributes them
+ * sequentially across groups.
+ */
+function generateSeededGroups(
+  teams: Country[],
+  groupCount: number,
+  groupSize: number
+): Record<string, Country[]> {
+  if (!teams || teams.length === 0) return {};
+
+  const sortedTeams = [...teams].sort((a, b) => {
+    const pointsA = a.default_points ?? a.strength ?? 0;
+    const pointsB = b.default_points ?? b.strength ?? 0;
+    return pointsB - pointsA;
+  });
+
+  const numGroups = Math.max(1, groupCount);
+  const groupKeys = Array.from({ length: numGroups }, (_, i) =>
+    String.fromCharCode(65 + i)
+  );
+
+  const groups: Record<string, Country[]> = {};
+  groupKeys.forEach((key) => {
+    groups[key] = [];
+  });
+
+  sortedTeams.forEach((team, index) => {
+    const groupIndex = index % numGroups;
+    const targetGroup = groupKeys[groupIndex];
+    if (groups[targetGroup].length < groupSize) {
+      groups[targetGroup].push(team);
+    }
+  });
+
+  return groups;
+}
 
 export function TournamentExecutionView({
   phases,
@@ -71,140 +76,95 @@ export function TournamentExecutionView({
   onNextPhase,
   onExitExecution,
 }: TournamentExecutionViewProps): JSX.Element {
-  const [stage, setStage] = useState<ExecutionStage>(() =>
-    activePhase.has_draw ? 'DRAW' : 'SIMULATION'
-  );
+  // Extract configuration parameters dynamically
+  const { groupCount, groupSize } = useMemo(() => {
+    const cfg = activePhase.config as Record<string, any> | undefined;
+    return {
+      groupCount: cfg?.number_of_groups || cfg?.groupCount || 4,
+      groupSize: cfg?.group_size || cfg?.groupSize || 4,
+    };
+  }, [activePhase]);
 
-  const [drawResult, setDrawResult] = useState<DrawResult | null>(null);
+  // Determine if this phase skips the draw UI (e.g. Direct Seeding / Pre-assigned Groups)
+  const isDrawBypassed = !activePhase.has_draw;
+
+  // Initial draw computation for non-draw stages
+  const initialAutoDraw = useMemo<DrawResult | null>(() => {
+    if (isDrawBypassed && activePhase.teams && activePhase.teams.length > 0) {
+      if (activePhase.type === PhaseType.GroupStage) {
+        return {
+          type: 'GROUP',
+          groups: generateSeededGroups(
+            activePhase.teams,
+            groupCount,
+            groupSize
+          ),
+        };
+      }
+    }
+    return null;
+  }, [isDrawBypassed, activePhase.teams, activePhase.type, groupCount, groupSize]);
+
+  // Local State
+  const [stage, setStage] = useState<ExecutionStage>(() =>
+    isDrawBypassed ? 'SIMULATION' : 'DRAW'
+  );
+  const [drawResult, setDrawResult] = useState<DrawResult | null>(initialAutoDraw);
   const [isPhaseCompleted, setIsPhaseCompleted] = useState<boolean>(false);
   const [completionData, setCompletionData] = useState<PhaseCompletionData | null>(null);
 
-  // Reset local state when active phase changes
+  // Sync state whenever activePhase changes
   useEffect(() => {
-    setStage(activePhase.has_draw ? 'DRAW' : 'SIMULATION');
-    setDrawResult(null);
     setIsPhaseCompleted(false);
     setCompletionData(null);
-  }, [activePhase.id, activePhase.has_draw]);
 
-  // ------------------------------------------
-  // Pot Derivation
-  // ------------------------------------------
-  const pots = useMemo<Pot[]>(() => {
-    if (!activePhase.teams.length) return [];
-
-    if (activePhase.type === PhaseType.GroupStage) {
-      const groupCount = activePhase.config.number_of_groups || 1;
-      const groupSize = activePhase.config.group_size || 4;
-      const potCount = Math.max(groupSize, Math.ceil(activePhase.teams.length / groupCount));
-
-      const derivedPots: Pot[] = Array.from({ length: potCount }, (_, i) => ({
-        id: i + 1,
-        name: `Pot ${i + 1}`,
-        teams: [],
-      }));
-
-      activePhase.teams.forEach((team, index) => {
-        const potIndex = Math.floor(index / groupCount);
-        if (derivedPots[potIndex]) {
-          derivedPots[potIndex].teams.push(team);
-        }
-      });
-
-      return derivedPots;
-    }
-
-    if (activePhase.type === PhaseType.MultiBranchKnockoutStage) {
-      const pathCount = activePhase.config.number_of_paths || 1;
-      const derivedPots: Pot[] = Array.from({ length: pathCount }, (_, i) => ({
-        id: i + 1,
-        name: `Path ${i + 1} Seed Pool`,
-        teams: [],
-      }));
-
-      activePhase.teams.forEach((team, index) => {
-        const potIndex = index % pathCount;
-        derivedPots[potIndex]?.teams.push(team);
-      });
-
-      return derivedPots;
-    }
-
-    // Single Branch Knockout
-    const half = Math.ceil(activePhase.teams.length / 2);
-    return [
-      { id: 1, name: 'Pot 1 (Seeded)', teams: activePhase.teams.slice(0, half) },
-      { id: 2, name: 'Pot 2 (Unseeded)', teams: activePhase.teams.slice(half) },
-    ];
-  }, [activePhase]);
-
-  // ------------------------------------------
-  // Fallback Draws (When has_draw = false)
-  // ------------------------------------------
-  const fallbackGroupDraw = useMemo(() => {
-    if (activePhase.type !== PhaseType.GroupStage) return null;
-    const groupCount = activePhase.config.number_of_groups || 1;
-    const groups: Record<string, Country[]> = {};
-
-    for (let i = 0; i < groupCount; i++) {
-      const key = String.fromCharCode(65 + i);
-      groups[key] = [];
-    }
-
-    activePhase.teams.forEach((team, idx) => {
-      const groupKey = String.fromCharCode(65 + (idx % groupCount));
-      groups[groupKey]?.push(team);
-    });
-
-    return groups;
-  }, [activePhase]);
-
-  const fallbackSingleKnockoutDraw = useMemo<KnockoutMatchup[]>(() => {
-    if (activePhase.type !== PhaseType.SingleBranchKnockoutStage) return [];
-    const matchups: KnockoutMatchup[] = [];
-    const teams = [...activePhase.teams];
-
-    for (let i = 0; i < teams.length; i += 2) {
-      matchups.push({
-        matchId: Math.floor(i / 2) + 1,
-        teamA: teams[i],
-        teamB: teams[i + 1] ?? undefined,
-      });
-    }
-
-    return matchups;
-  }, [activePhase]);
-
-  const fallbackMultiKnockoutDraw = useMemo(() => {
-    if (activePhase.type !== PhaseType.MultiBranchKnockoutStage) return {};
-    const pathCount = activePhase.config.number_of_paths || 1;
-    const paths: Record<string, KnockoutMatchup[]> = {};
-
-    for (let p = 0; p < pathCount; p++) {
-      const pathKey = `Path ${String.fromCharCode(65 + p)}`;
-      paths[pathKey] = [];
-    }
-
-    const pathKeys = Object.keys(paths);
-    const teams = [...activePhase.teams];
-
-    for (let i = 0; i < teams.length; i += 2) {
-      const targetPath = pathKeys[Math.floor(i / 2) % pathCount];
-      if (targetPath) {
-        paths[targetPath].push({
-          matchId: paths[targetPath].length + 1,
-          teamA: teams[i],
-          teamB: teams[i + 1] ?? undefined,
+    if (isDrawBypassed) {
+      setStage('SIMULATION');
+      if (activePhase.type === PhaseType.GroupStage && activePhase.teams) {
+        setDrawResult({
+          type: 'GROUP',
+          groups: generateSeededGroups(
+            activePhase.teams,
+            groupCount,
+            groupSize
+          ),
         });
+      } else {
+        setDrawResult(null);
       }
+    } else {
+      setStage('DRAW');
+      setDrawResult(null);
     }
+  }, [
+    activePhase.id,
+    isDrawBypassed,
+    activePhase.type,
+    activePhase.teams,
+    groupCount,
+    groupSize,
+  ]);
 
-    return paths;
-  }, [activePhase]);
+  // Fallbacks
+  const pots = useMemo(() => derivePots(activePhase), [activePhase]);
 
-  // ------------------------------------------
-  // Event Handlers
-  // ------------------------------------------
+  const fallbackGroupDraw = useMemo(() => {
+    if (isDrawBypassed && activePhase.teams && activePhase.type === PhaseType.GroupStage) {
+      return generateSeededGroups(
+        activePhase.teams,
+        groupCount,
+        groupSize
+      );
+    }
+    return createFallbackGroupDraw(activePhase);
+  }, [isDrawBypassed, activePhase, groupCount, groupSize]);
+
+  const fallbackSingleKnockoutDraw = useMemo(
+    () => createFallbackSingleKnockoutDraw(activePhase),
+    [activePhase]
+  );
+
+  // Handlers
   const handleDrawComplete = (result: DrawResult) => {
     setDrawResult(result);
     setStage('SIMULATION');
@@ -221,10 +181,11 @@ export function TournamentExecutionView({
     }
   };
 
-  const isNextDisabled = (activePhase.has_draw && stage === 'DRAW') || !isPhaseCompleted || !completionData;
+  const isNextDisabled =
+    (!isDrawBypassed && stage === 'DRAW') || !isPhaseCompleted || !completionData;
 
   return (
-    <div className="bg-white border-2 border-blue-500 rounded-2xl shadow-lg overflow-hidden max-w-6xl mx-auto">
+    <div className="w-full px-4 sm:px-6 bg-white border-2 border-blue-500 rounded-2xl shadow-lg overflow-hidden">
       {/* Header Bar */}
       <div className="bg-blue-600 text-white p-5 flex justify-between items-center">
         <div>
@@ -245,6 +206,8 @@ export function TournamentExecutionView({
                 ? 'FIFA-Style Draw'
                 : isPhaseCompleted
                 ? 'Phase Completed'
+                : isDrawBypassed
+                ? 'Direct Seeding (Pre-assigned)'
                 : 'In Simulation'}
             </span>
           </div>
@@ -258,7 +221,7 @@ export function TournamentExecutionView({
             {' | '}
             Draw Mode:{' '}
             <span className="font-semibold">
-              {activePhase.has_draw ? 'Manual Draw Enabled' : 'Bypassed (Direct Placement)'}
+              {isDrawBypassed ? 'Bypassed (Ranking Seeding)' : 'Manual Draw Enabled'}
             </span>
           </p>
         </div>
@@ -288,7 +251,22 @@ export function TournamentExecutionView({
               <SingleKnockoutDrawView
                 phase={activePhase}
                 pots={pots}
-                onComplete={(res) => handleDrawComplete({ type: 'SINGLE_KNOCKOUT', matchups: res })}
+                onComplete={(res) => {
+                  const matchups: KnockoutMatchup[] = res.map((m, idx) => ({
+                    id: `m-${m.matchId || idx + 1}`,
+                    matchId: String(m.matchId || idx + 1),
+                    roundIndex: 0,
+                    roundName: 'Round of 16',
+                    teamA: m.teamA || null,
+                    teamB: m.teamB || null,
+                    isPlayed: false,
+                  }));
+
+                  handleDrawComplete({
+                    type: 'SINGLE_KNOCKOUT',
+                    matchups,
+                  });
+                }}
               />
             )}
 
@@ -296,7 +274,31 @@ export function TournamentExecutionView({
               <MultiKnockoutDrawView
                 phase={activePhase}
                 pots={pots}
-                onComplete={(res) => handleDrawComplete({ type: 'MULTI_KNOCKOUT', pathAssignments: res })}
+                onComplete={(res) => {
+                  const pathAssignments = Object.entries(res).reduce<
+                    Record<string, KnockoutMatchup[]>
+                  >((acc, [pathKey, teams]) => {
+                    const matchups: KnockoutMatchup[] = [];
+                    for (let i = 0; i < teams.length; i += 2) {
+                      matchups.push({
+                        id: `${pathKey}-m${i / 2 + 1}`,
+                        matchId: String(i / 2 + 1),
+                        roundIndex: 0,
+                        roundName: 'Semi-Final',
+                        teamA: teams[i] || null,
+                        teamB: teams[i + 1] || null,
+                        isPlayed: false,
+                      });
+                    }
+                    acc[pathKey] = matchups;
+                    return acc;
+                  }, {});
+
+                  handleDrawComplete({
+                    type: 'MULTI_KNOCKOUT',
+                    pathAssignments,
+                  });
+                }}
               />
             )}
           </div>
@@ -306,17 +308,36 @@ export function TournamentExecutionView({
               <GroupStageExecutionView
                 phase={activePhase}
                 groups={
-                  drawResult && drawResult.type === 'GROUP'
+                  (drawResult && drawResult.type === 'GROUP'
                     ? drawResult.groups
-                    : fallbackGroupDraw
+                    : fallbackGroupDraw) || {}
                 }
-                onComplete={(data) =>
+                onComplete={(data) => {
+                  const formattedStandings = Object.entries(data.standings || {}).reduce<
+                    Record<string, GroupStandingEntry[]>
+                  >((acc, [groupKey, countries]) => {
+                    acc[groupKey] = countries.map((country, idx) => ({
+                      team: country,
+                      played: 0,
+                      won: 0,
+                      drawn: 0,
+                      lost: 0,
+                      goalsFor: 0,
+                      goalsAgainst: 0,
+                      goalDifference: 0,
+                      points: 0,
+                      rank: idx + 1,
+                    }));
+                    return acc;
+                  }, {});
+
                   handleSimulationComplete({
                     phaseId: activePhase.id,
                     phaseType: PhaseType.GroupStage,
-                    groupStandings: data,
-                  })
-                }
+                    groupStandings: formattedStandings,
+                    wildcardQualifiers: data.wildcards,
+                  });
+                }}
               />
             )}
 
@@ -328,33 +349,44 @@ export function TournamentExecutionView({
                     ? drawResult.matchups
                     : fallbackSingleKnockoutDraw
                 }
-                onComplete={(data) =>
+                onComplete={(data) => {
+                  const winners: Country[] = [
+                    data.champion,
+                    data.runnerUp,
+                    ...(data.thirdPlace ? [data.thirdPlace] : []),
+                  ];
+
                   handleSimulationComplete({
                     phaseId: activePhase.id,
                     phaseType: PhaseType.SingleBranchKnockoutStage,
-                    knockoutWinners: data,
-                  })
-                }
+                    knockoutWinners: winners,
+                  });
+                }}
               />
             )}
-
+            
             {activePhase.type === PhaseType.MultiBranchKnockoutStage && (
-              <MultiKnockoutExecutionView
-                phase={activePhase}
-                pathAssignments={
-                  drawResult && drawResult.type === 'MULTI_KNOCKOUT'
-                    ? drawResult.pathAssignments
-                    : fallbackMultiKnockoutDraw
-                }
-                onComplete={(data) =>
-                  handleSimulationComplete({
-                    phaseId: activePhase.id,
-                    phaseType: PhaseType.MultiBranchKnockoutStage,
-                    pathWinners: data,
-                  })
-                }
-              />
-            )}
+            <MultiKnockoutExecutionView
+              phase={activePhase as MultiKnockoutPhase}
+              pathAssignments={
+                drawResult && drawResult.type === 'MULTI_KNOCKOUT'
+                  ? drawResult.pathAssignments
+                  : {}
+              }
+              onComplete={(data) => {
+                handleSimulationComplete({
+                  phaseId: activePhase.id,
+                  phaseType: PhaseType.MultiBranchKnockoutStage,
+                  // Map multi-path winners into your phase completion format
+                  knockoutWinners: Object.values(data.pathWinners).flatMap((w) => [
+                    w.champion,
+                    w.runnerUp,
+                    ...(w.thirdPlace ? [w.thirdPlace] : []),
+                  ]),
+                });
+              }}
+            />
+          )}
           </div>
         )}
       </div>

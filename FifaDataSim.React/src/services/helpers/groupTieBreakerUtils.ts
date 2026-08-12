@@ -1,21 +1,33 @@
-import type { GroupStandingEntry } from './types';
-import { calculateFairPlayScore } from './calculateFairPlayScore';
+import type { GroupStandingEntry } from "../../types/groupStandingEntry";
 
 /**
- * Sort comparator for group standings and best third-place wildcard rankings.
- * Returns negative if Team A is ranked higher than Team B.
+ * Calculates a fair play score based on cards received.
+ * Higher score means better discipline (fewer cards).
  */
+function calculateFairPlayScore(disciplinary?: {
+  yellowCards?: number;
+  redCards?: number;
+  indirectRedCards?: number;
+}): number {
+  if (!disciplinary) return 0;
+
+  const yellow = disciplinary.yellowCards ?? 0;
+  const red = disciplinary.redCards ?? 0;
+  const indirectRed = disciplinary.indirectRedCards ?? 0;
+
+  // Deduct points for cards (0 is baseline, fewer cards = closer to 0)
+  return -(yellow * 1 + indirectRed * 3 + red * 4);
+}
+
 export function compareGroupEntries(
   a: GroupStandingEntry,
   b: GroupStandingEntry,
   isSameGroup: boolean = false
 ): number {
-  // 1. Overall Points
   if (b.points !== a.points) {
     return b.points - a.points;
   }
 
-  // Head-to-Head Tiebreakers (Only applicable between teams from the exact same group)
   if (isSameGroup && a.headToHead && b.headToHead) {
     const h2hA = a.headToHead[b.team.id];
     const h2hB = b.headToHead[a.team.id];

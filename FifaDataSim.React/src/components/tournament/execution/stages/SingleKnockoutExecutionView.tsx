@@ -1,16 +1,18 @@
 import { useState, type JSX } from 'react';
-import { SingleKnockoutSimulationUtils, type KnockoutMatch } from '../../../../services/helpers/singleKnockoutSimulationUtils';
+import { SingleKnockoutSimulationUtils } from '../../../../services/helpers/singleKnockoutSimulationUtils';
 import type { Country } from '../../../../types/country';
 import type { SingleKnockoutPhase } from '../../../../types/tournamentConfiguration';
+import type { KnockoutMatchup } from '../../../../types/knockoutMatchup';
+import { SimulationEngine } from '../../../../services/simulationService';
 
-interface Props {
+interface SingleKnockoutExecutionViewProps {
   phase: SingleKnockoutPhase;
-  initialMatchups: { matchId: number; teamA: Country; teamB: Country }[];
-  onComplete: (results: {
+  initialMatchups: KnockoutMatchup[];
+  onComplete: (data: {
     champion: Country;
     runnerUp: Country;
     thirdPlace?: Country;
-    allMatches: KnockoutMatch[];
+    allMatches: KnockoutMatchup[]; // Added allMatches property
   }) => void;
 }
 
@@ -18,11 +20,22 @@ export function SingleKnockoutExecutionView({
   phase,
   initialMatchups,
   onComplete,
-}: Props): JSX.Element {
+}: SingleKnockoutExecutionViewProps): JSX.Element {
   const legs = phase.config.number_of_legs || 1;
 
-  const [matches, setMatches] = useState<KnockoutMatch[]>(() =>
-    SingleKnockoutSimulationUtils.createInitialBracket(initialMatchups, phase.config)
+  // Helper to format initial matchups into the shape createInitialBracket expects
+  const formatMatchups = (matchups: KnockoutMatchup[]) =>
+    matchups.map((m) => ({
+      matchId: Number(m.matchId || m.id) || 0,
+      teamA: m.teamA as Country,
+      teamB: m.teamB as Country,
+    }));
+
+  const [matches, setMatches] = useState<KnockoutMatchup[]>(() =>
+    SingleKnockoutSimulationUtils.createInitialBracket(
+      formatMatchups(initialMatchups),
+      phase.config
+    )
   );
 
   const finalMatch = matches.find((m) => m.roundName === 'Final');
@@ -37,7 +50,7 @@ export function SingleKnockoutExecutionView({
       const target = prev.find((m) => m.id === matchId);
       if (!target || !target.teamA || !target.teamB || target.isPlayed) return prev;
 
-      const simulated = SingleKnockoutSimulationUtils.simulateMatch(target, legs);
+      const simulated = SimulationEngine.simulateKnockoutMatch(target, legs);
       const updatedList = prev.map((m) => (m.id === matchId ? simulated : m));
 
       return SingleKnockoutSimulationUtils.propagateWinners(updatedList);
@@ -54,7 +67,7 @@ export function SingleKnockoutExecutionView({
         if (!m.isPlayed && m.teamA && m.teamB) {
           current = current.map((match) =>
             match.id === m.id
-              ? SingleKnockoutSimulationUtils.simulateMatch(match, legs)
+              ? SimulationEngine.simulateKnockoutMatch(match, legs)
               : match
           );
           updatedAny = true;
@@ -78,7 +91,7 @@ export function SingleKnockoutExecutionView({
         for (let i = 0; i < current.length; i++) {
           const m = current[i];
           if (!m.isPlayed && m.teamA && m.teamB) {
-            current[i] = SingleKnockoutSimulationUtils.simulateMatch(m, legs);
+            current[i] = SimulationEngine.simulateKnockoutMatch(m, legs);
             current = SingleKnockoutSimulationUtils.propagateWinners(current);
             playableFound = true;
             break;
@@ -92,7 +105,12 @@ export function SingleKnockoutExecutionView({
   };
 
   const handleReset = () => {
-    setMatches(SingleKnockoutSimulationUtils.createInitialBracket(initialMatchups, phase.config));
+    setMatches(
+      SingleKnockoutSimulationUtils.createInitialBracket(
+        formatMatchups(initialMatchups),
+        phase.config
+      )
+    );
   };
 
   const handleFinish = () => {
@@ -212,7 +230,7 @@ function KnockoutMatchCard({
   onPlay,
   isThirdPlace = false,
 }: {
-  match: KnockoutMatch;
+  match: KnockoutMatchup;
   legs: number;
   onPlay: () => void;
   isThirdPlace?: boolean;
@@ -272,9 +290,9 @@ function TeamSlotRow({
 }: {
   team: Country | null;
   isWinner: boolean;
-  leg1Score: number | null;
-  leg2Score: number | null;
-  penalties: number | null;
+  leg1Score?: number | null; // Changed to allow undefined
+  leg2Score?: number | null; // Changed to allow undefined
+  penalties?: number | null; // Changed to allow undefined
   legs: number;
 }) {
   return (
@@ -282,9 +300,15 @@ function TeamSlotRow({
       <span className="truncate max-w-[110px]">{team ? team.name : 'TBD'}</span>
 
       <div className="flex items-center gap-1 text-[11px]">
-        {leg1Score !== null && <span className="w-4 text-center">{leg1Score}</span>}
-        {legs === 2 && leg2Score !== null && <span className="w-4 text-center text-gray-400">({leg2Score})</span>}
-        {penalties !== null && <span className="text-[10px] text-amber-600 font-bold ml-1">p{penalties}</span>}
+        {leg1Score !== undefined && leg1Score !== null && (
+          <span className="w-4 text-center">{leg1Score}</span>
+        )}
+        {legs === 2 && leg2Score !== undefined && leg2Score !== null && (
+          <span className="w-4 text-center text-gray-400">({leg2Score})</span>
+        )}
+        {penalties !== undefined && penalties !== null && (
+          <span className="text-[10px] text-amber-600 font-bold ml-1">p{penalties}</span>
+        )}
       </div>
     </div>
   );

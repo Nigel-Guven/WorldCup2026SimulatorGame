@@ -43,6 +43,11 @@ export function useTournamentBuilder() {
         defaultName = `Multi-Branch Phase ${count}`;
         defaultTag = `MB${count}`;
         break;
+
+      case PhaseType.NationsLeagueStage:
+        defaultName = `Nations League Phase ${count}`;
+        defaultTag = `NL${count}`;
+        break;
     }
 
     setPhases((current) => [
@@ -63,18 +68,22 @@ export function useTournamentBuilder() {
 
   const dropTeamToPhase = (
     phaseId: string,
-    team: Country
+    teams: Country | Country[]
   ) => {
+    const incomingTeams = Array.isArray(teams) ? teams : [teams];
+    const incomingIds = new Set(incomingTeams.map((t) => t.id));
+
     setPhases((current) =>
       current.map((phase) => {
+        // Remove any of the incoming teams from other phases / existing list
         const cleanedTeams = phase.teams.filter(
-          (t) => t.id !== team.id
+          (t) => t.id === undefined || !incomingIds.has(t.id)
         );
 
         if (phase.id === phaseId) {
           return {
             ...phase,
-            teams: [...cleanedTeams, team],
+            teams: [...cleanedTeams, ...incomingTeams],
           };
         }
 

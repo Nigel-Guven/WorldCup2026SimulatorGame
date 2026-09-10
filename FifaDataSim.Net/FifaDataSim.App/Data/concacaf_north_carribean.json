@@ -11,9 +11,9 @@
     "home_stadium": "National Stadium"
   },
   {
-    "id": "bah",
+    "id": "bhm",
     "name": "Bahamas",
-    "short_name": "BAH",
+    "short_name": "BHM",
     "confederation": "CONCACAF",
     "football_association": "Bahamas Football Association",
     "default_points": 786,
@@ -55,9 +55,9 @@
     "home_stadium": "Truman Bodden Sports Complex"
   },
   {
-    "id": "dom",
+    "id": "dmn",
     "name": "Dominican Republic",
-    "short_name": "DOM",
+    "short_name": "DMN",
     "confederation": "CONCACAF",
     "football_association": "Federación Dominicana de Fútbol",
     "default_points": 1076,

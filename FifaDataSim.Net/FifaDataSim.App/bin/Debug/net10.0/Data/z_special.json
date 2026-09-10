@@ -429,9 +429,9 @@
     "home_stadium": "Norfolk Island Central School Oval"
   },
   {
-    "id": "skh",
+    "id": "skr",
     "name": "Sakha Republic",
-    "short_name": "SKH",
+    "short_name": "SKR",
     "confederation": "AFC",
     "football_association": "Sakha Republic Football Association",
     "default_points": 585,
@@ -586,7 +586,7 @@
     "id": "pri",
     "name": "Amur Republic",
     "short_name": "PRI",
-    "confederation": "OFC",
+    "confederation": "AFC",
     "football_association": "Amur Football Association",
     "default_points": 500,
     "strength": 4,
@@ -601,7 +601,7 @@
     "football_association": "Ordos Football Association",
     "default_points": 585,
     "strength": 14,
-    "flag_url": "/flags/ordos.png",
+    "flag_url": "/flags/mengkukuo.png",
     "home_stadium": "Stanley Stadium"
   },
   {
@@ -638,9 +638,9 @@
     "home_stadium": "Stanley Stadium"
   },
   {
-    "id": "ksh",
+    "id": "ksb",
     "name": "Kashubia",
-    "short_name": "KSH",
+    "short_name": "KSB",
     "confederation": "UEFA",
     "football_association": "Kashubian Football Association",
     "default_points": 581,
@@ -715,9 +715,9 @@
     "home_stadium": "Broadfield Stadium"
   },
   {
-    "id": "qin",
+    "id": "qnh",
     "name": "Qinghai",
-    "short_name": "QIN",
+    "short_name": "QNH",
     "confederation": "AFC",
     "football_association": "Qinghai Football Association",
     "default_points": 500,
@@ -943,6 +943,28 @@
     "default_points": 581,
     "strength": 10,
     "flag_url": "/flags/epirus.png",
+    "home_stadium": "Broadfield Stadium"
+  },
+  {
+    "id": "mlc",
+    "name": "Maluku",
+    "short_name": "MLC",
+    "confederation": "AFC",
+    "football_association": "Moluccan Football Association",
+    "default_points": 581,
+    "strength": 10,
+    "flag_url": "/flags/maluku.png",
+    "home_stadium": "Broadfield Stadium"
+  },
+  {
+    "id": "fvg",
+    "name": "Friulia",
+    "short_name": "FVG",
+    "confederation": "UEFA",
+    "football_association": "Friulia-Venezia Football Association",
+    "default_points": 581,
+    "strength": 10,
+    "flag_url": "/flags/friulia.png",
     "home_stadium": "Broadfield Stadium"
   }
 ]

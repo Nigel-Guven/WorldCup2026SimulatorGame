@@ -27,17 +27,6 @@ export function GroupStageConfigForm({ config, targetPhases, onChange }: FormPro
             className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
           />
         </div>
-        <div>
-          <label className="block text-gray-600 font-medium mb-1">Legs per Matchup</label>
-          <select
-            value={config.number_of_legs}
-            onChange={(e) => onChange('number_of_legs', Number(e.target.value) as 1 | 2)}
-            className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
-          >
-            <option value={1}>1 (Single)</option>
-            <option value={2}>2 (Home & Away)</option>
-          </select>
-        </div>
       </div>
 
       {/* Advancement & Relegation Counts */}

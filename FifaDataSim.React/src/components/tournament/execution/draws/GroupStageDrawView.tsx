@@ -15,7 +15,7 @@ interface GroupStageDrawViewProps {
 }
 
 // Extract pure helper outside component to avoid recreation
-const getTeamKey = (t: Country): string | number | undefined => {
+export const getTeamKey = (t: Country): string | number | undefined => {
   return t.id ?? (t as unknown as { code?: string }).code ?? (t as unknown as { iso?: string }).iso;
 };
 

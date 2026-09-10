@@ -195,17 +195,53 @@ export function GroupStageExecutionView({
                       <tbody>
                         {rows.map((row, idx) => {
                           const rank = idx + 1;
-                          const isDirect = rank <= directAdvanceCount;
-                          const isWildcardCandidate = wildcardIndex > 0 && rank === wildcardIndex;
+                          
+                          const status =
+                            GroupSimulationUtils.getTeamQualificationStatus(
+                              row.team,
+                              {
+                                standings,
+                                fixtures,
+                              },
+                              {
+                                directAdvanceCount,
+                                wildcardPosition: wildcardIndex,
+                                wildcardCount,
+                              }
+                            );
 
                           let rowStyle = 'hover:bg-gray-50/50';
-                          if (isDirect) rowStyle = 'bg-emerald-50/60 text-emerald-950 font-medium';
-                          else if (isWildcardCandidate) rowStyle = 'bg-amber-50/60 text-amber-950 font-medium';
+
+                          if (status === 'qualified') {
+                            rowStyle =
+                              'bg-emerald-50/60 text-emerald-950 font-medium';
+                          } else if (status === 'wildcard') {
+                            rowStyle =
+                              'bg-purple-50/60 text-purple-950 font-medium';
+                          } else if (status === 'eliminated') {
+                            rowStyle =
+                              'bg-red-50/60 text-red-950 font-medium';
+                          }
 
                           return (
                             <tr key={getTeamKey(row.team) || idx} className={`border-b border-gray-100/60 ${rowStyle}`}>
                               <td className="py-2 px-1 font-bold text-[11px]">{rank}</td>
-                              <td className="py-2 px-2 font-medium">{row.team.name}</td>
+                              <td className="py-2 px-2 font-medium">
+                                <div className="flex items-center gap-2">
+                                  <span
+                                    className={`w-2 h-2 rounded-full ${
+                                      status === 'qualified'
+                                        ? 'bg-emerald-500'
+                                        : status === 'wildcard'
+                                          ? 'bg-purple-500'
+                                          : status === 'eliminated'
+                                            ? 'bg-red-500'
+                                            : 'bg-gray-300'
+                                    }`}
+                                  />
+                                  <span>{row.team.name}</span>
+                                </div>
+                              </td>
                               <td className="py-2 px-1 text-center text-gray-500">{row.played}</td>
                               <td className="py-2 px-1 text-center text-gray-500">{row.won}</td>
                               <td className="py-2 px-1 text-center text-gray-500">{row.drawn}</td>
@@ -251,6 +287,20 @@ export function GroupStageExecutionView({
                     {wildcardStandings.map((row, idx) => {
                       const rank = idx + 1;
                       const isWildcardPole = rank <= wildcardCount;
+                      
+                      const status =
+                        GroupSimulationUtils.getTeamQualificationStatus(
+                          row.team,
+                          {
+                            standings,
+                            fixtures,
+                          },
+                          {
+                            directAdvanceCount,
+                            wildcardPosition: wildcardIndex,
+                            wildcardCount,
+                          }
+                        );
 
                       return (
                         <tr
@@ -260,7 +310,23 @@ export function GroupStageExecutionView({
                           }`}
                         >
                           <td className="py-2 px-1 font-bold">{rank}</td>
-                          <td className="py-2 px-2">{row.team.name}</td>
+                          <td className="py-2 px-2 font-medium">
+                            <div className="flex items-center gap-2">
+                              <span
+                                className={`w-2 h-2 rounded-full ${
+                                  status === 'qualified'
+                                    ? 'bg-emerald-500'
+                                    : status === 'wildcard'
+                                      ? 'bg-purple-500'
+                                      : status === 'eliminated'
+                                        ? 'bg-red-500'
+                                        : 'bg-gray-300'
+                                }`}
+                              />
+
+                              <span>{row.team.name}</span>
+                            </div>
+                          </td>
                           <td className="py-2 px-1 text-center font-bold text-purple-700">{row.groupKey}</td>
                           <td className="py-2 px-1 text-center text-gray-500">{row.played}</td>
                           <td className="py-2 px-1 text-center text-gray-500">{row.gd > 0 ? `+${row.gd}` : row.gd}</td>

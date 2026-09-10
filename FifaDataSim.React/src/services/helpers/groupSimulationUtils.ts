@@ -1,3 +1,4 @@
+import { getTeamKey } from '../../components/tournament/execution/draws/GroupStageDrawView';
 import { Confederation } from '../../types/confederation';
 import type { Country } from '../../types/country';
 
@@ -26,35 +27,52 @@ export interface GroupStandingRow {
   points: number;
 }
 
+export type TeamQualificationStatus =
+  | 'qualified'
+  | 'wildcard'
+  | 'undecided'
+  | 'eliminated';
+
+export interface QualificationStatusOptions {
+  directAdvanceCount: number;
+  wildcardPosition: number;
+  wildcardCount: number;
+}
+
+export interface QualificationContext {
+  standings: Record<string, GroupStandingRow[]>;
+  fixtures: Fixture[];
+}
+
 export class GroupSimulationUtils {
-  /**
-   * Generates Berger Round-Robin schedules supporting 1 or 2 legs and BYEs for odd team counts.
-   */
+
   static generateGroupFixtures(
     groups: Record<string, Country[]>,
     legs: number = 1
   ): Fixture[] {
-    const fixtures: Fixture[] = [];
+    const fixturesByRound: Record<number, Fixture[]> = {};
 
-    Object.entries(groups).forEach(([groupKey, teams]) => 
-    {
+    Object.entries(groups).forEach(([groupKey, teams]) => {
       const list = [...teams];
+
       const isOdd = list.length % 2 !== 0;
+
       if (isOdd) {
         const dummyBye: Country = {
-            id: '__BYE__',
-            name: 'BYE',
-            short_name: 'BYE',
-            flag_url: '',
-            confederation: Confederation.CONMEBOL,
-            football_association: '',
-            default_points: 0,
-            strength: 0,
-            home_stadium: '',
-            form: '',
+          id: '__BYE__',
+          name: 'BYE',
+          short_name: 'BYE',
+          flag_url: '',
+          confederation: Confederation.CONMEBOL,
+          football_association: '',
+          default_points: 0,
+          strength: 0,
+          home_stadium: '',
+          form: '',
         };
-            list.push(dummyBye);
-        }
+
+        list.push(dummyBye);
+      }
 
       const numTeams = list.length;
       const roundsPerLeg = numTeams - 1;
@@ -62,11 +80,16 @@ export class GroupSimulationUtils {
 
       for (let leg = 1; leg <= legs; leg++) {
         for (let round = 0; round < roundsPerLeg; round++) {
-          const roundNumber = (leg - 1) * roundsPerLeg + (round + 1);
+          const roundNumber =
+            (leg - 1) * roundsPerLeg + (round + 1);
 
           for (let m = 0; m < matchesPerRound; m++) {
-            const homeIdx = (round + m) % (numTeams - 1);
-            let awayIdx = (numTeams - 1 - m + round) % (numTeams - 1);
+            const homeIdx =
+              (round + m) % (numTeams - 1);
+
+            let awayIdx =
+              (numTeams - 1 - m + round) %
+              (numTeams - 1);
 
             if (m === 0) {
               awayIdx = numTeams - 1;
@@ -75,8 +98,13 @@ export class GroupSimulationUtils {
             let home = list[homeIdx];
             let away = list[awayIdx];
 
-            // Ignore double BYE matches if any
-            if (home.id === '__BYE__' && away.id === '__BYE__') continue;
+            // Ignore double BYE matches
+            if (
+              home.id === '__BYE__' &&
+              away.id === '__BYE__'
+            ) {
+              continue;
+            }
 
             // Reverse home/away for Leg 2
             if (leg === 2) {
@@ -88,35 +116,43 @@ export class GroupSimulationUtils {
             const isHomeBye = home.id === '__BYE__';
             const isAwayBye = away.id === '__BYE__';
 
-            fixtures.push({
+            const fixture: Fixture = {
               id: `${groupKey}-L${leg}-R${roundNumber}-M${m}`,
               groupKey,
               round: roundNumber,
               leg,
               homeTeam: isHomeBye ? null : home,
               awayTeam: isAwayBye ? null : away,
-              homeScore: isHomeBye || isAwayBye ? 0 : null,
-              awayScore: isHomeBye || isAwayBye ? 0 : null,
-              isPlayed: isHomeBye || isAwayBye, // BYEs are auto-marked played
-            });
+              homeScore:
+                isHomeBye || isAwayBye ? 0 : null,
+              awayScore:
+                isHomeBye || isAwayBye ? 0 : null,
+              isPlayed: isHomeBye || isAwayBye,
+            };
+
+            if (!fixturesByRound[roundNumber]) {
+              fixturesByRound[roundNumber] = [];
+            }
+
+            fixturesByRound[roundNumber].push(fixture);
           }
         }
       }
     });
 
-    return fixtures;
+    return Object.keys(fixturesByRound)
+      .map(Number)
+      .sort((a, b) => a - b)
+      .flatMap((round) => fixturesByRound[round]);
   }
 
-  /**
-   * Recalculates standing tables for each group based on played fixtures.
-   */
   static computeGroupStandings(
     groups: Record<string, Country[]>,
     fixtures: Fixture[]
   ): Record<string, GroupStandingRow[]> {
     const standings: Record<string, GroupStandingRow[]> = {};
 
-    // Initialize blank rows
+
     Object.entries(groups).forEach(([groupKey, teams]) => {
       standings[groupKey] = teams.map((team) => ({
         team,
@@ -132,7 +168,6 @@ export class GroupSimulationUtils {
       }));
     });
 
-    // Accumulate played match stats
     fixtures.forEach((f) => {
       if (!f.isPlayed || !f.homeTeam || !f.awayTeam || f.homeScore === null || f.awayScore === null) {
         return;
@@ -184,12 +219,9 @@ export class GroupSimulationUtils {
     return standings;
   }
 
-  /**
-   * Computes the global Wildcard Ranking Table across all groups (e.g. Best 3rd place teams).
-   */
   static computeWildcardStandings(
     standings: Record<string, GroupStandingRow[]>,
-    wildcardIndex: number // 1-indexed (e.g., 3 for 3rd placed teams)
+    wildcardIndex: number 
   ): GroupStandingRow[] {
     if (wildcardIndex <= 0) return [];
 
@@ -202,12 +234,166 @@ export class GroupSimulationUtils {
       }
     });
 
-    // Sort Wildcard Table: Points -> Goal Difference -> Goals For -> Played
     return wildcardCandidates.sort((a, b) => {
       if (b.points !== a.points) return b.points - a.points;
       if (b.gd !== a.gd) return b.gd - a.gd;
       if (b.gf !== a.gf) return b.gf - a.gf;
       return a.played - b.played;
     });
+  }
+
+  static getTeamQualificationStatus(
+    team: Country,
+    context: QualificationContext,
+    options: QualificationStatusOptions
+  ): TeamQualificationStatus {
+    const {
+      standings,
+      fixtures,
+    } = context;
+
+    const {
+      directAdvanceCount,
+      wildcardPosition,
+      wildcardCount,
+    } = options;
+
+    const teamKey = getTeamKey(team);
+
+    const getRemainingMatches = (candidate: Country): Fixture[] => {
+      const candidateKey = getTeamKey(candidate);
+
+      return fixtures.filter(
+        (fixture) =>
+          !fixture.isPlayed &&
+          fixture.homeTeam &&
+          fixture.awayTeam &&
+          (
+            getTeamKey(fixture.homeTeam) === candidateKey ||
+            getTeamKey(fixture.awayTeam) === candidateKey
+          )
+      );
+    };
+
+    const getMaximumPoints = (row: GroupStandingRow): number => {
+      const remainingMatches = getRemainingMatches(row.team).length;
+
+      return row.points + remainingMatches * 3;
+    };
+
+    const currentGroupEntry = Object.entries(standings).find(
+      ([, rows]) =>
+        rows.some(
+          (row) => getTeamKey(row.team) === teamKey
+        )
+    );
+
+    if (!currentGroupEntry) {
+      return 'undecided';
+    }
+
+    const [groupKey, groupRows] = currentGroupEntry;
+
+    const teamRow = groupRows.find(
+      (row) => getTeamKey(row.team) === teamKey
+    );
+
+    if (!teamRow) {
+      return 'undecided';
+    }
+
+    const teamMaximumPoints = getMaximumPoints(teamRow);
+
+    const teamsThatCanDefinitelyFinishAbove = groupRows.filter(
+      (other) => {
+        if (getTeamKey(other.team) === teamKey) {
+          return false;
+        }
+
+        return getMaximumPoints(other) > teamMaximumPoints;
+      }
+    ).length;
+
+    const cannotDirectQualify =
+      teamsThatCanDefinitelyFinishAbove >= directAdvanceCount;
+
+    const teamsThatCanCatchTeam = groupRows.filter(
+      (other) => {
+        if (getTeamKey(other.team) === teamKey) {
+          return false;
+        }
+
+        return getMaximumPoints(other) >= teamRow.points;
+      }
+    ).length;
+
+    const guaranteedDirectQualification =
+      teamsThatCanCatchTeam < directAdvanceCount;
+
+    if (guaranteedDirectQualification) {
+      return 'qualified';
+    }
+
+    if (wildcardPosition <= 0 || wildcardCount <= 0) {
+      return cannotDirectQualify
+        ? 'eliminated'
+        : 'undecided';
+    }
+
+    const teamsThatCanFinishAboveWildcardPosition =
+      groupRows.filter((other) => {
+        if (getTeamKey(other.team) === teamKey) {
+          return false;
+        }
+
+        return getMaximumPoints(other) > teamMaximumPoints;
+      }).length;
+
+    const canReachWildcardPosition =
+      teamsThatCanFinishAboveWildcardPosition < wildcardPosition;
+
+    if (!canReachWildcardPosition) {
+      return 'eliminated';
+    }
+
+    const wildcardCandidates = Object.entries(standings)
+      .flatMap(([candidateGroupKey, rows]) => {
+        return rows
+          .filter((row) => {
+
+            const candidateMaximumPoints =
+              getMaximumPoints(row);
+
+            const teamsAboveCandidate =
+              rows.filter(
+                (other) =>
+                  getTeamKey(other.team) !==
+                    getTeamKey(row.team) &&
+                  getMaximumPoints(other) >
+                    candidateMaximumPoints
+              ).length;
+
+            return teamsAboveCandidate < wildcardPosition;
+          })
+          .map((row) => ({
+            groupKey: candidateGroupKey,
+            row,
+          }));
+      });
+
+    const wildcardTeamsThatCanFinishAhead =
+      wildcardCandidates.filter(({ row }) => {
+        if (getTeamKey(row.team) === teamKey) {
+          return false;
+        }
+
+        return getMaximumPoints(row) >= teamRow.points;
+      }).length;
+
+    if (wildcardTeamsThatCanFinishAhead < wildcardCount) {
+      return 'wildcard';
+    }
+
+    return 'undecided';
   }
 }

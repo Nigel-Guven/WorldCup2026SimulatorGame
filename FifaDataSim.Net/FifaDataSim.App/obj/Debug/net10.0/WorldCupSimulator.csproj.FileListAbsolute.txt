@@ -98,7 +98,6 @@ B:\Documents\My Github\WorldCup2026SimulatorGame\FifaDataSim.Net\FifaDataSim.App
 B:\Documents\My Github\WorldCup2026SimulatorGame\FifaDataSim.Net\FifaDataSim.App\bin\Debug\net10.0\Data\caf_north_africa.json
 B:\Documents\My Github\WorldCup2026SimulatorGame\FifaDataSim.Net\FifaDataSim.App\bin\Debug\net10.0\Data\caf_south_africa.json
 B:\Documents\My Github\WorldCup2026SimulatorGame\FifaDataSim.Net\FifaDataSim.App\bin\Debug\net10.0\Data\caf_west_africa.json
-B:\Documents\My Github\WorldCup2026SimulatorGame\FifaDataSim.Net\FifaDataSim.App\bin\Debug\net10.0\Data\caf_west_central_africa.json
 B:\Documents\My Github\WorldCup2026SimulatorGame\FifaDataSim.Net\FifaDataSim.App\bin\Debug\net10.0\Data\concacaf_mainland.json
 B:\Documents\My Github\WorldCup2026SimulatorGame\FifaDataSim.Net\FifaDataSim.App\bin\Debug\net10.0\Data\concacaf_north_carribean.json
 B:\Documents\My Github\WorldCup2026SimulatorGame\FifaDataSim.Net\FifaDataSim.App\bin\Debug\net10.0\Data\concacaf_south_carribean.json

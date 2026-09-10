@@ -177,7 +177,7 @@
   },
   {
     "id": "tat",
-    "name": "Tannu Tuva",
+    "name": "Tannu Uriankhai",
     "short_name": "TAT",
     "confederation": "AFC",
     "football_association": "Tuvan Football Association",
@@ -592,17 +592,6 @@
     "strength": 47,
     "flag_url": "/flags/turkestan.png",
     "home_stadium": "Xinjiang Sports Centre"
-  },
-  {
-    "id": "ark",
-    "name": "Arakan",
-    "short_name": "ARK",
-    "confederation": "AFC",
-    "football_association": "Arakan FA",
-    "default_points": 785,
-    "strength": 19,
-    "flag_url": "/flags/arakan.png",
-    "home_stadium": " Wai Thar Li Stadium"
   },
   {
     "id": "shs",

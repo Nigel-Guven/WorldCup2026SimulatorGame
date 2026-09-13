@@ -1,8 +1,0 @@
-using WorldCupSimulator.Models;
-
-namespace WorldCupSimulator.Application.Simulations;
-
-public interface ISimulationEngine
-{
-    (int HomeScore, int AwayScore) SimulateMatch(Country home, Country away);
-}

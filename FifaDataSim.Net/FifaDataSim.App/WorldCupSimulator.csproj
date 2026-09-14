@@ -14,8 +14,4 @@
       <_ContentIncludedByDefault Remove="Samples\Response.json" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Contracts\" />
-    </ItemGroup>
-
 </Project>

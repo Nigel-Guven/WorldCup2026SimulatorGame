@@ -16,3 +16,6 @@ FifaDataSim.Net/FifaDataSim.App/obj/Debug/net10.0/WorldCupSimulator.AssemblyInfo
 FifaDataSim.Net/FifaDataSim.App/obj/Debug/net10.0/WorldCupSimulator.AssemblyInfo.cs
 FifaDataSim.Net/FifaDataSim.App/bin/Debug/net10.0/WorldCupSimulator.exe
 FifaDataSim.Net/FifaDataSim.App/bin/Debug/net10.0/WorldCupSimulator.dll
+FifaDataSim.Net/FifaDataSim.App/worldcup.db-wal
+FifaDataSim.Net/FifaDataSim.App/worldcup.db-shm
+FifaDataSim.Net/FifaDataSim.App/worldcup.db

@@ -1,6 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using WorldCupSimulator.Application.PotSeeding;
-using WorldCupSimulator.Application.Simulations;
 using WorldCupSimulator.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,8 +19,6 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddScoped<ICountryRepository, CountryRepository>();
-builder.Services.AddSingleton<ISimulationEngine, SimulationEngine>();
-builder.Services.AddSingleton<IPotSeedingService, PotSeedingService>();
 
 builder.Services.AddControllers();
 

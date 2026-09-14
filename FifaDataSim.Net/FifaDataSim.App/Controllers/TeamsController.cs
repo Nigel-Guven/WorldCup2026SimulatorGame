@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WorldCupSimulator.Contracts;
 using WorldCupSimulator.Infrastructure;
 using WorldCupSimulator.Models;
 
@@ -31,5 +32,18 @@ public class TeamsController(ICountryRepository repository) : ControllerBase
     {
         var teams = repository.GetTeamsByConfederation(confederation);
         return Ok(teams);
+    }
+    
+    [HttpPatch("stats/update")]
+    public IActionResult UpdateTeamStats([FromBody] MatchUpdateDto? matchUpdate)
+    {
+        if (matchUpdate == null)
+        {
+            return BadRequest(new { message = "Invalid match update payload." });
+        }
+
+        repository.UpdateTeamStats(matchUpdate);
+    
+        return NoContent();
     }
 }

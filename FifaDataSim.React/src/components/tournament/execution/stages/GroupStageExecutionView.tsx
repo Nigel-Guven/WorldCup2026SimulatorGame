@@ -3,6 +3,8 @@ import { GroupSimulationUtils, type Fixture } from '../../../../services/helpers
 import type { Country } from '../../../../types/country';
 import type { GroupStagePhase } from '../../../../types/tournamentConfiguration';
 import { SimulationEngine } from '../../../../services/simulationService';
+import type { MatchUpdateDto } from '../../../../types/MatchUpdateDto';
+import { updateTeamStats } from '../../../../services/teamService';
 
 interface GroupStageExecutionViewProps {
   phase: GroupStagePhase;
@@ -51,20 +53,37 @@ export function GroupStageExecutionView({
   ).length;
   const isPhaseComplete = totalMatches > 0 && playedMatches === totalMatches;
 
-  const handleSimulateNext = () => {
+  const handleSimulateNext = async () => {
     const nextMatch = fixtures.find((f) => !f.isPlayed && f.homeTeam && f.awayTeam);
     if (!nextMatch || !nextMatch.homeTeam || !nextMatch.awayTeam) return;
 
     const score = SimulationEngine.simulateMatch(nextMatch.homeTeam, nextMatch.awayTeam);
 
-    setFixtures((prev) =>
-      prev.map((f) =>
-        f.id === nextMatch.id
-          ? { ...f, homeScore: score.home, awayScore: score.away, isPlayed: true }
-          : f
-      )
-    );
-  };
+    const matchUpdate: MatchUpdateDto = {
+      homeTeamId: nextMatch.homeTeam.id,
+      awayTeamId: nextMatch.awayTeam.id,
+      homeTeamGoals: score.home,
+      awayTeamGoals: score.away,
+      homeTeamStrength: nextMatch.homeTeam.strength,
+      awayTeamStrength: nextMatch.awayTeam.strength,
+      homeTeamRankingPoints: nextMatch.homeTeam.default_points,
+      awayTeamRankingPoints: nextMatch.awayTeam.default_points,
+    };
+
+    try {
+        await updateTeamStats(matchUpdate);
+
+        setFixtures((prev) =>
+            prev.map((f) =>
+                f.id === nextMatch.id
+                    ? { ...f, homeScore: score.home, awayScore: score.away, isPlayed: true }
+                    : f
+            )
+        );
+    } catch (error) {
+        console.error("Failed to update team stats on backend:", error);
+    }
+};
 
   const handleSimulateAll = () => {
     setFixtures((prev) =>

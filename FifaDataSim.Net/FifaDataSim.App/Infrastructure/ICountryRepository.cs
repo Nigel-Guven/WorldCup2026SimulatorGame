@@ -1,3 +1,4 @@
+using WorldCupSimulator.Contracts;
 using WorldCupSimulator.Models;
 
 namespace WorldCupSimulator.Infrastructure;
@@ -5,9 +6,8 @@ namespace WorldCupSimulator.Infrastructure;
 public interface ICountryRepository
 {
     IEnumerable<Country> GetAllTeams();
-    IEnumerable<Country> GetAllTeamsNoOrdering();
     IEnumerable<Country> GetTeamsByConfederation(Confederation confederation);
-    IEnumerable<Country> GetTeamsByConfederationNoOrdering(Confederation confederation);
     Country? GetTeamById(string id);
-    void UpdateCountryForm(string countryId, string form);
+    void UpdateTeamStats(MatchUpdateDto matchUpdate);
+
 }

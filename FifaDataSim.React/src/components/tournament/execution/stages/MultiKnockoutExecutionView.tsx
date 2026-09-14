@@ -6,6 +6,7 @@ import { MultiKnockoutSimulationUtils } from "../../../../services/helpers/multi
 import { SimulationEngine } from "../../../../services/simulationService";
 import type { KnockoutMatchup } from "../../../../types/knockoutMatchup";
 import type { PathState } from "../../../../types/multiKnockoutPathState";
+import type { MatchUpdateDto } from "../../../../types/MatchUpdateDto";
 
 
 interface Props {
@@ -46,6 +47,7 @@ export function MultiKnockoutExecutionView({
       }
 
       const simulated = SimulationEngine.simulateKnockoutMatch(targetMatch, legs);
+
       const updatedMatches = currentPath.matches.map((m) =>
         m.id === matchId ? simulated : m
       );

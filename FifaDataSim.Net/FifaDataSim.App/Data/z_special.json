@@ -302,8 +302,8 @@
     "short_name": "FLK",
     "confederation": "CONMEBOL",
     "football_association": "Falklands Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 660,
+    "strength": 17,
     "flag_url": "/flags/falklands.png",
     "home_stadium": "Stanley Stadium"
   },
@@ -313,10 +313,10 @@
     "short_name": "CHG",
     "confederation": "CAF",
     "football_association": "Chagos Islands Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 641,
+    "strength": 12,
     "flag_url": "/flags/chagos.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Vancleve Park"
   },
   {
     "id": "asc",
@@ -324,10 +324,10 @@
     "short_name": "ASC",
     "confederation": "CAF",
     "football_association": "Ascension Island Football Association",
-    "default_points": 500,
+    "default_points": 501,
     "strength": 4,
     "flag_url": "/flags/ascension.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Georgetown Stadium"
   },
   {
     "id": "trc",
@@ -335,10 +335,10 @@
     "short_name": "TRC",
     "confederation": "CAF",
     "football_association": "Tristan de Cunha Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 566,
+    "strength": 7,
     "flag_url": "/flags/tristan.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "American Field"
   },
   {
     "id": "stg",
@@ -346,21 +346,10 @@
     "short_name": "STG",
     "confederation": "CONMEBOL",
     "football_association": "South Georgia Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 589,
+    "strength": 6,
     "flag_url": "/flags/south_georgia.png",
-    "home_stadium": "Broadfield Stadium"
-  },
-  {
-    "id": "snd",
-    "name": "Sandwich Islands",
-    "short_name": "SND",
-    "confederation": "CONMEBOL",
-    "football_association": "Sandwich Islands Football Association",
-    "default_points": 500,
-    "strength": 4,
-    "flag_url": "/flags/sandwich.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Grytviken Fotballbannen"
   },
   {
     "id": "tex",
@@ -368,10 +357,10 @@
     "short_name": "TEX",
     "confederation": "CONCACAF",
     "football_association": "Texas Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 1264,
+    "strength": 38,
     "flag_url": "/flags/texas.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Reliant Stadium"
   },
   {
     "id": "clf",
@@ -379,10 +368,10 @@
     "short_name": "CLF",
     "confederation": "CONCACAF",
     "football_association": "California Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 1303,
+    "strength": 41,
     "flag_url": "/flags/california.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "California Memorial Stadium"
   },
   {
     "id": "lou",
@@ -390,10 +379,10 @@
     "short_name": "LOU",
     "confederation": "CONCACAF",
     "football_association": "Louisiana Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 901,
+    "strength": 26,
     "flag_url": "/flags/louisiana.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Caesars Superdome"
   },
   {
     "id": "hur",
@@ -401,10 +390,10 @@
     "short_name": "HUR",
     "confederation": "CONCACAF",
     "football_association": "Huron Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 798,
+    "strength": 18,
     "flag_url": "/flags/huron.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "ONT Field"
   },
   {
     "id": "tmz",
@@ -412,10 +401,10 @@
     "short_name": "TMZ",
     "confederation": "CAF",
     "football_association": "Amazigh Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 700,
+    "strength": 13,
     "flag_url": "/flags/amazigh.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Hocine Aït Ahmed Stadium"
   },
   {
     "id": "yid",
@@ -423,10 +412,10 @@
     "short_name": "YID",
     "confederation": "AFC",
     "football_association": "Jewish Republic Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 803,
+    "strength": 26,
     "flag_url": "/flags/jewish.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Lenin Stadium"
   },
   {
     "id": "skr",
@@ -434,10 +423,10 @@
     "short_name": "SKR",
     "confederation": "AFC",
     "football_association": "Sakha Republic Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 614,
+    "strength": 18,
     "flag_url": "/flags/sakha.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Tuymaada Stadium"
   },
   {
     "id": "chk",
@@ -445,10 +434,10 @@
     "short_name": "CHK",
     "confederation": "AFC",
     "football_association": "Chukotkan Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 588,
+    "strength": 12,
     "flag_url": "/flags/chukotka.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Anadyr Lenina Stadion"
   },
   {
     "id": "kam",
@@ -456,10 +445,10 @@
     "short_name": "KAM",
     "confederation": "AFC",
     "football_association": "Kamchatkan Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 602,
+    "strength": 14,
     "flag_url": "/flags/kamchatka.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Kamchatsky Stadion"
   },
   {
     "id": "mor",
@@ -467,10 +456,10 @@
     "short_name": "MOR",
     "confederation": "UEFA",
     "football_association": "Mordovian Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 888,
+    "strength": 30,
     "flag_url": "/flags/mordovia.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Mordovia Arena"
   },
   {
     "id": "udm",
@@ -478,10 +467,10 @@
     "short_name": "UDM",
     "confederation": "UEFA",
     "football_association": "Udmurtian Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 930,
+    "strength": 32,
     "flag_url": "/flags/udmurtia.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Stadium Znamya"
   },
   {
     "id": "ttr",
@@ -489,10 +478,10 @@
     "short_name": "TTR",
     "confederation": "UEFA",
     "football_association": "Tatarstan Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 899,
+    "strength": 34,
     "flag_url": "/flags/tatarstan.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Ak Bars Arena"
   },
   {
     "id": "chu",
@@ -500,10 +489,10 @@
     "short_name": "CHU",
     "confederation": "UEFA",
     "football_association": "Chuvash Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 741,
+    "strength": 21,
     "flag_url": "/flags/chuvash.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Cheboksary Stadium"
   },
   {
     "id": "mrl",
@@ -511,10 +500,10 @@
     "short_name": "MRL",
     "confederation": "UEFA",
     "football_association": "Mari El Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 711,
+    "strength": 29,
     "flag_url": "/flags/mariel.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Mari El Arena"
   },
   {
     "id": "krl",
@@ -522,10 +511,10 @@
     "short_name": "KRL",
     "confederation": "UEFA",
     "football_association": "Karelian Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 693,
+    "strength": 22,
     "flag_url": "/flags/karelia.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Petrozavodsk Spartak Stadion"
   },
   {
     "id": "ady",
@@ -533,10 +522,10 @@
     "short_name": "ADY",
     "confederation": "UEFA",
     "football_association": "Adygean Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 1003,
+    "strength": 32,
     "flag_url": "/flags/adygea.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Adyghe Republican Stadium"
   },
   {
     "id": "dpr",
@@ -544,10 +533,10 @@
     "short_name": "DPR",
     "confederation": "UEFA",
     "football_association": "Donetsk Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 1048,
+    "strength": 41,
     "flag_url": "/flags/donetsk.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Donbas Arena"
   },
   {
     "id": "lhr",
@@ -555,10 +544,10 @@
     "short_name": "LHR",
     "confederation": "UEFA",
     "football_association": "Luhansk Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 904,
+    "strength": 24,
     "flag_url": "/flags/luhansk.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Avanhard Stadium"
   },
   {
     "id": "ing",
@@ -566,10 +555,10 @@
     "short_name": "ING",
     "confederation": "UEFA",
     "football_association": "Ingrian Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 1298,
+    "strength": 39,
     "flag_url": "/flags/ingria.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Krestovsky Stadium"
   },
   {
     "id": "nnt",
@@ -577,10 +566,10 @@
     "short_name": "NNT",
     "confederation": "UEFA",
     "football_association": "Nenetsia Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 636,
+    "strength": 11,
     "flag_url": "/flags/nenets.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Krestovsky Stadium"
   },
   {
     "id": "pri",
@@ -588,10 +577,10 @@
     "short_name": "PRI",
     "confederation": "AFC",
     "football_association": "Amur Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 999,
+    "strength": 32,
     "flag_url": "/flags/amur.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Vladivostok Dynamo Stadium"
   },
   {
     "id": "ord",
@@ -599,10 +588,10 @@
     "short_name": "ORD",
     "confederation": "AFC",
     "football_association": "Ordos Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 881,
+    "strength": 15,
     "flag_url": "/flags/mengkukuo.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Ordos Stadium"
   },
   {
     "id": "hmn",
@@ -610,10 +599,10 @@
     "short_name": "HMN",
     "confederation": "AFC",
     "football_association": "Hmong Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 1102,
+    "strength": 31,
     "flag_url": "/flags/mon.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Monywa Stadium"
   },
   {
     "id": "bvr",
@@ -621,10 +610,10 @@
     "short_name": "BVR",
     "confederation": "UEFA",
     "football_association": "Bavarian Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 1420,
+    "strength": 64,
     "flag_url": "/flags/bavaria.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Allianz Arena"
   },
   {
     "id": "sax",
@@ -632,10 +621,10 @@
     "short_name": "SAX",
     "confederation": "UEFA",
     "football_association": "Saxony Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 1201,
+    "strength": 31,
     "flag_url": "/flags/saxony.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Rudolf-Harbig-Stadion"
   },
   {
     "id": "ksb",
@@ -643,10 +632,10 @@
     "short_name": "KSB",
     "confederation": "UEFA",
     "football_association": "Kashubian Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 1000,
+    "strength": 30,
     "flag_url": "/flags/kashubia.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Stadion Miejski Kościerzyna"
   },
   {
     "id": "occ",
@@ -654,10 +643,10 @@
     "short_name": "OCC",
     "confederation": "UEFA",
     "football_association": "Occitan Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 1298,
+    "strength": 39,
     "flag_url": "/flags/occitania.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Stadium de Toulouse"
   },
   {
     "id": "saa",
@@ -665,10 +654,10 @@
     "short_name": "SAA",
     "confederation": "UEFA",
     "football_association": "Saarland Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 989,
+    "strength": 25,
     "flag_url": "/flags/saarland.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Ludwigsparkstadion"
   },
   {
     "id": "bgy",
@@ -676,10 +665,10 @@
     "short_name": "BGY",
     "confederation": "UEFA",
     "football_association": "Burgundy Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 1200,
+    "strength": 41,
     "flag_url": "/flags/burgundy.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Stade Gaston Gérard"
   },
   {
     "id": "svy",
@@ -687,10 +676,10 @@
     "short_name": "SVY",
     "confederation": "UEFA",
     "football_association": "Savoyard Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 1210,
+    "strength": 44,
     "flag_url": "/flags/savoy.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Chambéry Savoie Stadium"
   },
   {
     "id": "pnt",
@@ -698,10 +687,10 @@
     "short_name": "PNT",
     "confederation": "UEFA",
     "football_association": "Pontic Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 1015,
+    "strength": 41,
     "flag_url": "/flags/pontus.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Sinop City Stadium"
   },
   {
     "id": "tsm",
@@ -709,10 +698,10 @@
     "short_name": "TSM",
     "confederation": "OFC",
     "football_association": "Tasmania Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 918,
+    "strength": 32,
     "flag_url": "/flags/tasmania.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Macquarie Point Stadium"
   },
   {
     "id": "qnh",
@@ -720,10 +709,10 @@
     "short_name": "QNH",
     "confederation": "AFC",
     "football_association": "Qinghai Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 930,
+    "strength": 28,
     "flag_url": "/flags/qinghai.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Xining Stadium"
   },
   {
     "id": "ynn",
@@ -731,10 +720,10 @@
     "short_name": "YNN",
     "confederation": "AFC",
     "football_association": "Dalian Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 860,
+    "strength": 24,
     "flag_url": "/flags/yunnan.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Yuxi Plateau Sports Center Stadium"
   },
   {
     "id": "hty",
@@ -742,10 +731,10 @@
     "short_name": "HTY",
     "confederation": "AFC",
     "football_association": "Hatay Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 921,
+    "strength": 37,
     "flag_url": "/flags/hatay.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "New Hatay Stadium"
   },
   {
     "id": "amz",
@@ -753,10 +742,10 @@
     "short_name": "AMZ",
     "confederation": "CONMEBOL",
     "football_association": "Amazonia Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 1041,
+    "strength": 40,
     "flag_url": "/flags/amazonas.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Arena da Amazônia"
   },
   {
     "id": "flr",
@@ -764,10 +753,10 @@
     "short_name": "FLR",
     "confederation": "CONCACAF",
     "football_association": "Florida Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 1100,
+    "strength": 36,
     "flag_url": "/flags/florida.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Ben Hill Griffin Stadium"
   },
   {
     "id": "bjc",
@@ -775,10 +764,10 @@
     "short_name": "BJC",
     "confederation": "CONCACAF",
     "football_association": "Baja California Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 1130,
+    "strength": 34,
     "flag_url": "/flags/baja.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Estadio Caliente"
   },
   {
     "id": "chp",
@@ -786,10 +775,10 @@
     "short_name": "CHP",
     "confederation": "CONCACAF",
     "football_association": "Chiapas Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 1170,
+    "strength": 39,
     "flag_url": "/flags/chiapas.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Estadio Víctor Manuel Reyna"
   },
   {
     "id": "nrm",
@@ -797,10 +786,10 @@
     "short_name": "NRM",
     "confederation": "UEFA",
     "football_association": "Normandy Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 1300,
+    "strength": 48,
     "flag_url": "/flags/normandy.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Stade Malherbe Caen"
   },
   {
     "id": "glg",
@@ -808,10 +797,10 @@
     "short_name": "GLG",
     "confederation": "CONMEBOL",
     "football_association": "Galapagos Islands Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 692,
+    "strength": 12,
     "flag_url": "/flags/galapagos.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Estadio Pampas Coloradas"
   },
   {
     "id": "anm",
@@ -819,10 +808,10 @@
     "short_name": "ANM",
     "confederation": "AFC",
     "football_association": "Ainu Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 688,
+    "strength": 11,
     "flag_url": "/flags/ainu.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Sapporo Dome"
   },
   {
     "id": "khr",
@@ -830,10 +819,10 @@
     "short_name": "KHR",
     "confederation": "AFC",
     "football_association": "Khorasan Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 938,
+    "strength": 29,
     "flag_url": "/flags/khorasan.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Imam Reza Stadium"
   },
   {
     "id": "khz",
@@ -841,10 +830,10 @@
     "short_name": "KHZ",
     "confederation": "AFC",
     "football_association": "Khuzestan Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 866,
+    "strength": 21,
     "flag_url": "/flags/khuzestan.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Takhti Stadium"
   },
   {
     "id": "bdw",
@@ -852,10 +841,10 @@
     "short_name": "BDW",
     "confederation": "UEFA",
     "football_association": "Baden-Wurttemberg Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 1241,
+    "strength": 42,
     "flag_url": "/flags/baden.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "MHPArena"
   },
   {
     "id": "wfl",
@@ -863,10 +852,10 @@
     "short_name": "WFL",
     "confederation": "UEFA",
     "football_association": "Westphalian Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 1119,
+    "strength": 41,
     "flag_url": "/flags/westphalia.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Westfalenstadion"
   },
   {
     "id": "hss",
@@ -874,10 +863,10 @@
     "short_name": "HSS",
     "confederation": "UEFA",
     "football_association": "Hessian Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 1110,
+    "strength": 36,
     "flag_url": "/flags/hesse.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Auestadion"
   },
   {
     "id": "mcs",
@@ -885,10 +874,10 @@
     "short_name": "MCS",
     "confederation": "UEFA",
     "football_association": "Mecklenburg Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 1003,
+    "strength": 23,
     "flag_url": "/flags/mecklenburg.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "Sportpark Lankow"
   },
   {
     "id": "nub",
@@ -896,10 +885,10 @@
     "short_name": "NUB",
     "confederation": "CAF",
     "football_association": "Nubian Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 832,
+    "strength": 11,
     "flag_url": "/flags/nubia.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Nubank Parque"
   },
   {
     "id": "drf",
@@ -907,10 +896,10 @@
     "short_name": "DRF",
     "confederation": "CAF",
     "football_association": "Darfur Sultanate Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 857,
+    "strength": 12,
     "flag_url": "/flags/darfur.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Al-Fasher Stadium"
   },
   {
     "id": "knb",
@@ -918,10 +907,10 @@
     "short_name": "KNB",
     "confederation": "CAF",
     "football_association": "Kanem Bornu Football Association",
-    "default_points": 500,
-    "strength": 4,
+    "default_points": 901,
+    "strength": 14,
     "flag_url": "/flags/kanem.png",
-    "home_stadium": "Norfolk Island Central School Oval"
+    "home_stadium": "El-Kanemi Stadium"
   },
   {
     "id": "sok",
@@ -929,10 +918,10 @@
     "short_name": "SOK",
     "confederation": "CAF",
     "football_association": "Sokotoan Football Association",
-    "default_points": 585,
-    "strength": 14,
+    "default_points": 841,
+    "strength": 19,
     "flag_url": "/flags/sokoto.png",
-    "home_stadium": "Stanley Stadium"
+    "home_stadium": "Giginya Memorial Stadium"
   },
   {
     "id": "epr",
@@ -940,10 +929,10 @@
     "short_name": "EPR",
     "confederation": "UEFA",
     "football_association": "Epirot Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 892,
+    "strength": 18,
     "flag_url": "/flags/epirus.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Zosimades Stadium"
   },
   {
     "id": "mlc",
@@ -951,10 +940,10 @@
     "short_name": "MLC",
     "confederation": "AFC",
     "football_association": "Moluccan Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 788,
+    "strength": 16,
     "flag_url": "/flags/maluku.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Gelora Kie Raha Stadium"
   },
   {
     "id": "fvg",
@@ -962,9 +951,108 @@
     "short_name": "FVG",
     "confederation": "UEFA",
     "football_association": "Friulia-Venezia Football Association",
-    "default_points": 581,
-    "strength": 10,
+    "default_points": 900,
+    "strength": 20,
     "flag_url": "/flags/friulia.png",
-    "home_stadium": "Broadfield Stadium"
+    "home_stadium": "Stadio Friuli"
+  },
+  {
+    "id": "vrm",
+    "name": "Vermont",
+    "short_name": "VRM",
+    "confederation": "CONCACAF",
+    "football_association": "Vermont Football Association",
+    "default_points": 848,
+    "strength": 16,
+    "flag_url": "/flags/vermont.png",
+    "home_stadium": "Virtue Field"
+  },
+  {
+    "id": "fiu",
+    "name": "Fiume",
+    "short_name": "FIU",
+    "confederation": "UEFA",
+    "football_association": "Fiume Free State Football Association",
+    "default_points": 747,
+    "strength": 16,
+    "flag_url": "/flags/fiume.png",
+    "home_stadium": "Stadion Kantrida"
+  },
+  {
+    "id": "dlm",
+    "name": "Dalmatia",
+    "short_name": "DLM",
+    "confederation": "UEFA",
+    "football_association": "Dalmatian Football Association",
+    "default_points": 1042,
+    "strength": 28,
+    "flag_url": "/flags/dalmatia.png",
+    "home_stadium": "Stadion Poljud"
+  },
+  {
+    "id": "thr",
+    "name": "Thrace",
+    "short_name": "THR",
+    "confederation": "UEFA",
+    "football_association": "Thracian Football Association",
+    "default_points": 1104,
+    "strength": 26,
+    "flag_url": "/flags/thrace.png",
+    "home_stadium": "Xanthi FC Arena"
+  },
+  {
+    "id": "jbs",
+    "name": "Jabal Shammar",
+    "short_name": "JBS",
+    "confederation": "AFC",
+    "football_association": "Royal Jabal Shammar Football Association",
+    "default_points": 910,
+    "strength": 16,
+    "flag_url": "/flags/jabal.png",
+    "home_stadium": "Al-Shamal Stadium"
+  },
+  {
+    "id": "cou",
+    "name": "Courland",
+    "short_name": "COU",
+    "confederation": "UEFA",
+    "football_association": "Courland Football Association",
+    "default_points": 1002,
+    "strength": 22,
+    "flag_url": "/flags/courland.png",
+    "home_stadium": "Kurland Kunstgress"
+  },
+  {
+    "id": "tig",
+    "name": "Tigray",
+    "short_name": "TIG",
+    "confederation": "CAF",
+    "football_association": "Tigray Football Association",
+    "default_points": 598,
+    "strength": 12,
+    "flag_url": "/flags/tigray.png",
+    "home_stadium": "Tigray Stadium"
+  },
+  {
+    "id": "cuz",
+    "name": "Cuzco",
+    "short_name": "CUZ",
+    "confederation": "CONMEBOL",
+    "football_association": "Quechua Football Association",
+    "default_points": 891,
+    "strength": 16,
+    "flag_url": "/flags/quechua.png",
+    "home_stadium": "Estadio Inca Garcilaso de la Vega"
+  },
+  {
+    "id": "oro",
+    "name": "Oromia",
+    "short_name": "ORO",
+    "confederation": "CAF",
+    "football_association": "Oromia Football Association",
+    "default_points": 788,
+    "strength": 14,
+    "flag_url": "/flags/oromia.png",
+    "home_stadium": "Moi International Sports Centre"
   }
 ]

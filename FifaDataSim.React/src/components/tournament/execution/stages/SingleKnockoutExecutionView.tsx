@@ -290,9 +290,9 @@ function TeamSlotRow({
 }: {
   team: Country | null;
   isWinner: boolean;
-  leg1Score?: number | null; // Changed to allow undefined
-  leg2Score?: number | null; // Changed to allow undefined
-  penalties?: number | null; // Changed to allow undefined
+  leg1Score?: number | null; 
+  leg2Score?: number | null; 
+  penalties?: number | null;
   legs: number;
 }) {
   return (

@@ -4,6 +4,7 @@ import type { Country } from '../../../../types/country';
 import type { SingleKnockoutPhase } from '../../../../types/tournamentConfiguration';
 import type { KnockoutMatchup } from '../../../../types/knockoutMatchup';
 import { SimulationEngine } from '../../../../services/simulationService';
+import { KnockoutMatchCard } from '../../singleKnockoutStage/KnockoutMatchCard';
 
 interface SingleKnockoutExecutionViewProps {
   phase: SingleKnockoutPhase;
@@ -12,7 +13,7 @@ interface SingleKnockoutExecutionViewProps {
     champion: Country;
     runnerUp: Country;
     thirdPlace?: Country;
-    allMatches: KnockoutMatchup[]; // Added allMatches property
+    allMatches: KnockoutMatchup[];
   }) => void;
 }
 
@@ -123,7 +124,6 @@ export function SingleKnockoutExecutionView({
     });
   };
 
-  // Group bracket matches by round index for rendering columns
   const rounds = Array.from(
     new Set(matches.filter((m) => !m.isThirdPlaceMatch).map((m) => m.roundIndex))
   ).sort((a, b) => a - b);
@@ -219,96 +219,6 @@ export function SingleKnockoutExecutionView({
             </div>
           )}
         </div>
-      </div>
-    </div>
-  );
-}
-
-function KnockoutMatchCard({
-  match,
-  legs,
-  onPlay,
-  isThirdPlace = false,
-}: {
-  match: KnockoutMatchup;
-  legs: number;
-  onPlay: () => void;
-  isThirdPlace?: boolean;
-}) {
-  const isPlayable = !match.isPlayed && match.teamA !== null && match.teamB !== null;
-
-  return (
-    <div
-      className={`border rounded-xl p-3 bg-white shadow-sm transition-all ${
-        isThirdPlace ? 'border-amber-300 bg-amber-50/20' : 'border-gray-200'
-      }`}
-    >
-      <div className="space-y-2">
-        {/* Team A Slot */}
-        <TeamSlotRow
-          team={match.teamA}
-          isWinner={match.winner?.id === match.teamA?.id && match.isPlayed}
-          leg1Score={match.leg1ScoreA}
-          leg2Score={match.leg2ScoreA}
-          penalties={match.penaltiesA}
-          legs={legs}
-        />
-
-        <div className="border-t border-gray-100 my-1" />
-
-        {/* Team B Slot */}
-        <TeamSlotRow
-          team={match.teamB}
-          isWinner={match.winner?.id === match.teamB?.id && match.isPlayed}
-          leg1Score={match.leg1ScoreB}
-          leg2Score={match.leg2ScoreB}
-          penalties={match.penaltiesB}
-          legs={legs}
-        />
-      </div>
-
-      {isPlayable && (
-        <button
-          type="button"
-          onClick={onPlay}
-          className="mt-3 w-full py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-[10px] rounded-lg transition-all"
-        >
-          Play Match
-        </button>
-      )}
-    </div>
-  );
-}
-
-function TeamSlotRow({
-  team,
-  isWinner,
-  leg1Score,
-  leg2Score,
-  penalties,
-  legs,
-}: {
-  team: Country | null;
-  isWinner: boolean;
-  leg1Score?: number | null; 
-  leg2Score?: number | null; 
-  penalties?: number | null;
-  legs: number;
-}) {
-  return (
-    <div className={`flex justify-between items-center text-xs ${isWinner ? 'font-bold text-blue-950' : 'text-gray-600'}`}>
-      <span className="truncate max-w-[110px]">{team ? team.name : 'TBD'}</span>
-
-      <div className="flex items-center gap-1 text-[11px]">
-        {leg1Score !== undefined && leg1Score !== null && (
-          <span className="w-4 text-center">{leg1Score}</span>
-        )}
-        {legs === 2 && leg2Score !== undefined && leg2Score !== null && (
-          <span className="w-4 text-center text-gray-400">({leg2Score})</span>
-        )}
-        {penalties !== undefined && penalties !== null && (
-          <span className="text-[10px] text-amber-600 font-bold ml-1">p{penalties}</span>
-        )}
       </div>
     </div>
   );

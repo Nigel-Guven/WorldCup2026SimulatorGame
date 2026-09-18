@@ -5,6 +5,9 @@ import type { GroupStagePhase } from '../../../../types/tournamentConfiguration'
 import { SimulationEngine } from '../../../../services/simulationService';
 import type { MatchUpdateDto } from '../../../../types/MatchUpdateDto';
 import { updateTeamStats } from '../../../../services/teamService';
+import { GroupTable } from '../../groupStage/GroupTable';
+import { WildcardTable } from '../../groupStage/WildcardTable';
+import { FixtureItem } from '../../groupStage/FixtureItem';
 
 interface GroupStageExecutionViewProps {
   phase: GroupStagePhase;
@@ -14,11 +17,6 @@ interface GroupStageExecutionViewProps {
     wildcards: Country[];
   }) => void;
 }
-
-const getTeamKey = (team?: Country): string | number => {
-  if (!team) return '';
-  return team.id ?? (team as unknown as { code?: string }).code ?? team.name;
-};
 
 export function GroupStageExecutionView({
   phase,
@@ -30,32 +28,33 @@ export function GroupStageExecutionView({
   const wildcardIndex = phase?.config?.wildcard_position ?? 0;
   const wildcardCount = phase?.config?.wildcard_teams_count ?? 0;
 
-  // Initialize Fixtures once
   const [fixtures, setFixtures] = useState<Fixture[]>(() =>
     GroupSimulationUtils.generateGroupFixtures(groups, legs)
   );
 
-  // Compute live group standings
   const standings = useMemo(
     () => GroupSimulationUtils.computeGroupStandings(groups, fixtures),
     [groups, fixtures]
   );
 
-  // Compute live wildcard standings table
   const wildcardStandings = useMemo(
     () => GroupSimulationUtils.computeWildcardStandings(standings, wildcardIndex),
     [standings, wildcardIndex]
   );
 
-  const totalMatches = fixtures.filter((f) => f.homeTeam && f.awayTeam).length;
-  const playedMatches = fixtures.filter(
-    (f) => f.isPlayed && f.homeTeam && f.awayTeam
-  ).length;
-  const isPhaseComplete = totalMatches > 0 && playedMatches === totalMatches;
+  const { totalMatches, playedMatches, isPhaseComplete } = useMemo(() => {
+    const total = fixtures.filter((f) => f.homeTeam && f.awayTeam).length;
+    const played = fixtures.filter((f) => f.isPlayed && f.homeTeam && f.awayTeam).length;
+    return {
+      totalMatches: total,
+      playedMatches: played,
+      isPhaseComplete: total > 0 && played === total,
+    };
+  }, [fixtures]);
 
   const handleSimulateNext = async () => {
     const nextMatch = fixtures.find((f) => !f.isPlayed && f.homeTeam && f.awayTeam);
-    if (!nextMatch || !nextMatch.homeTeam || !nextMatch.awayTeam) return;
+    if (!nextMatch?.homeTeam || !nextMatch?.awayTeam) return;
 
     const score = SimulationEngine.simulateMatch(nextMatch.homeTeam, nextMatch.awayTeam);
 
@@ -71,27 +70,24 @@ export function GroupStageExecutionView({
     };
 
     try {
-        await updateTeamStats(matchUpdate);
-
-        setFixtures((prev) =>
-            prev.map((f) =>
-                f.id === nextMatch.id
-                    ? { ...f, homeScore: score.home, awayScore: score.away, isPlayed: true }
-                    : f
-            )
-        );
+      await updateTeamStats(matchUpdate);
+      setFixtures((prev) =>
+        prev.map((f) =>
+          f.id === nextMatch.id
+            ? { ...f, homeScore: score.home, awayScore: score.away, isPlayed: true }
+            : f
+        )
+      );
     } catch (error) {
-        console.error("Failed to update team stats on backend:", error);
+      console.error('Failed to update team stats on backend:', error);
     }
-};
+  };
 
   const handleSimulateAll = () => {
     setFixtures((prev) =>
       prev.map((f) => {
         if (f.isPlayed || !f.homeTeam || !f.awayTeam) return f;
-
         const score = SimulationEngine.simulateMatch(f.homeTeam, f.awayTeam);
-
         return { ...f, homeScore: score.home, awayScore: score.away, isPlayed: true };
       })
     );
@@ -126,10 +122,7 @@ export function GroupStageExecutionView({
       finalStandings[gKey] = rows.map((r) => r.team);
     });
 
-    const wildcards = wildcardStandings
-      .slice(0, wildcardCount)
-      .map((r) => r.team);
-
+    const wildcards = wildcardStandings.slice(0, wildcardCount).map((r) => r.team);
     onComplete({ standings: finalStandings, wildcards });
   };
 
@@ -183,246 +176,43 @@ export function GroupStageExecutionView({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left Side: Group Tables + Wildcard Ranking */}
         <div className="lg:col-span-7 space-y-6">
-          <h4 className="font-bold text-sm text-gray-700 uppercase tracking-wider">
-            Group Tables
-          </h4>
+          <h4 className="font-bold text-sm text-gray-700 uppercase tracking-wider">Group Tables</h4>
           <div className="space-y-6 max-h-[800px] overflow-y-auto pr-1">
             <div className="grid grid-cols-2 gap-6">
               {Object.entries(standings).map(([groupKey, rows]) => (
-                <div key={groupKey} className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
-                  <div className="flex justify-between items-center border-b border-gray-100 pb-2 mb-3">
-                    <h5 className="font-bold text-gray-800 text-sm">Group {groupKey}</h5>
-                    <span className="text-[11px] text-gray-400">
-                      Top {directAdvanceCount} Direct Advance
-                    </span>
-                  </div>
-
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse text-xs">
-                      <thead>
-                        <tr className="border-b border-gray-100 text-gray-400 font-semibold uppercase text-[10px]">
-                          <th className="py-2 px-1 w-6">#</th>
-                          <th className="py-2 px-2">Team</th>
-                          <th className="py-2 px-1 text-center">P</th>
-                          <th className="py-2 px-1 text-center">W</th>
-                          <th className="py-2 px-1 text-center">D</th>
-                          <th className="py-2 px-1 text-center">L</th>
-                          <th className="py-2 px-1 text-center">GD</th>
-                          <th className="py-2 px-1 text-center font-bold text-gray-700">Pts</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {rows.map((row, idx) => {
-                          const rank = idx + 1;
-                          
-                          const status =
-                            GroupSimulationUtils.getTeamQualificationStatus(
-                              row.team,
-                              {
-                                standings,
-                                fixtures,
-                              },
-                              {
-                                directAdvanceCount,
-                                wildcardPosition: wildcardIndex,
-                                wildcardCount,
-                              }
-                            );
-
-                          let rowStyle = 'hover:bg-gray-50/50';
-
-                          if (status === 'qualified') {
-                            rowStyle =
-                              'bg-emerald-50/60 text-emerald-950 font-medium';
-                          } else if (status === 'wildcard') {
-                            rowStyle =
-                              'bg-purple-50/60 text-purple-950 font-medium';
-                          } else if (status === 'eliminated') {
-                            rowStyle =
-                              'bg-red-50/60 text-red-950 font-medium';
-                          }
-
-                          return (
-                            <tr key={getTeamKey(row.team) || idx} className={`border-b border-gray-100/60 ${rowStyle}`}>
-                              <td className="py-2 px-1 font-bold text-[11px]">{rank}</td>
-                              <td className="py-2 px-2 font-medium">
-                                <div className="flex items-center gap-2">
-                                  <span
-                                    className={`w-2 h-2 rounded-full ${
-                                      status === 'qualified'
-                                        ? 'bg-emerald-500'
-                                        : status === 'wildcard'
-                                          ? 'bg-purple-500'
-                                          : status === 'eliminated'
-                                            ? 'bg-red-500'
-                                            : 'bg-gray-300'
-                                    }`}
-                                  />
-                                  <span>{row.team.name}</span>
-                                </div>
-                              </td>
-                              <td className="py-2 px-1 text-center text-gray-500">{row.played}</td>
-                              <td className="py-2 px-1 text-center text-gray-500">{row.won}</td>
-                              <td className="py-2 px-1 text-center text-gray-500">{row.drawn}</td>
-                              <td className="py-2 px-1 text-center text-gray-500">{row.lost}</td>
-                              <td className="py-2 px-1 text-center text-gray-500">{row.gd > 0 ? `+${row.gd}` : row.gd}</td>
-                              <td className="py-2 px-1 text-center font-bold text-gray-900">{row.points}</td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+                <GroupTable
+                  key={groupKey}
+                  groupKey={groupKey}
+                  rows={rows}
+                  standings={standings}
+                  fixtures={fixtures}
+                  directAdvanceCount={directAdvanceCount}
+                  wildcardIndex={wildcardIndex}
+                  wildcardCount={wildcardCount}
+                />
               ))}
             </div>
           </div>
 
-          {/* Optional Wildcard Table */}
           {wildcardIndex > 0 && (
-            <div className="bg-white border-2 border-purple-200 rounded-xl p-4 shadow-sm">
-              <div className="flex justify-between items-center border-b border-purple-100 pb-2 mb-3">
-                <h5 className="font-bold text-purple-900 text-sm flex items-center gap-1.5">
-                  ⭐ Wildcard Ranking Table (Position #{wildcardIndex} across groups)
-                </h5>
-                <span className="text-[11px] text-purple-600 font-semibold">
-                  Top {wildcardCount} Advance
-                </span>
-              </div>
-
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse text-xs">
-                  <thead>
-                    <tr className="border-b border-purple-100 text-purple-400 font-semibold uppercase text-[10px]">
-                      <th className="py-2 px-1 w-6">#</th>
-                      <th className="py-2 px-2">Team</th>
-                      <th className="py-2 px-1 text-center">Group</th>
-                      <th className="py-2 px-1 text-center">P</th>
-                      <th className="py-2 px-1 text-center">GD</th>
-                      <th className="py-2 px-1 text-center font-bold text-purple-900">Pts</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {wildcardStandings.map((row, idx) => {
-                      const rank = idx + 1;
-                      const isWildcardPole = rank <= wildcardCount;
-                      
-                      const status =
-                        GroupSimulationUtils.getTeamQualificationStatus(
-                          row.team,
-                          {
-                            standings,
-                            fixtures,
-                          },
-                          {
-                            directAdvanceCount,
-                            wildcardPosition: wildcardIndex,
-                            wildcardCount,
-                          }
-                        );
-
-                      return (
-                        <tr
-                          key={getTeamKey(row.team) || idx}
-                          className={`border-b border-purple-50 ${
-                            isWildcardPole ? 'bg-purple-100/70 text-purple-950 font-semibold' : 'hover:bg-purple-50/20'
-                          }`}
-                        >
-                          <td className="py-2 px-1 font-bold">{rank}</td>
-                          <td className="py-2 px-2 font-medium">
-                            <div className="flex items-center gap-2">
-                              <span
-                                className={`w-2 h-2 rounded-full ${
-                                  status === 'qualified'
-                                    ? 'bg-emerald-500'
-                                    : status === 'wildcard'
-                                      ? 'bg-purple-500'
-                                      : status === 'eliminated'
-                                        ? 'bg-red-500'
-                                        : 'bg-gray-300'
-                                }`}
-                              />
-
-                              <span>{row.team.name}</span>
-                            </div>
-                          </td>
-                          <td className="py-2 px-1 text-center font-bold text-purple-700">{row.groupKey}</td>
-                          <td className="py-2 px-1 text-center text-gray-500">{row.played}</td>
-                          <td className="py-2 px-1 text-center text-gray-500">{row.gd > 0 ? `+${row.gd}` : row.gd}</td>
-                          <td className="py-2 px-1 text-center font-bold text-purple-950">{row.points}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <WildcardTable
+              wildcardStandings={wildcardStandings}
+              wildcardIndex={wildcardIndex}
+              wildcardCount={wildcardCount}
+              standings={standings}
+              fixtures={fixtures}
+              directAdvanceCount={directAdvanceCount}
+            />
           )}
         </div>
 
         {/* Right Side: Interactive Match Fixtures List */}
         <div className="lg:col-span-5 space-y-4">
-          <h4 className="font-bold text-sm text-gray-700 uppercase tracking-wider">
-            Match Fixtures
-          </h4>
-
+          <h4 className="font-bold text-sm text-gray-700 uppercase tracking-wider">Match Fixtures</h4>
           <div className="space-y-3 max-h-[800px] overflow-y-auto pr-1">
-            {fixtures.map((f) => {
-              const isBye = !f.homeTeam || !f.awayTeam;
-
-              if (isBye) {
-                const activeTeam = f.homeTeam || f.awayTeam;
-                return (
-                  <div
-                    key={f.id}
-                    className="bg-gray-50 border border-gray-200 rounded-lg p-2.5 text-xs text-gray-500 flex justify-between items-center"
-                  >
-                    <span>
-                      Group <strong>{f.groupKey}</strong> (R{f.round})
-                    </span>
-                    <span className="font-medium text-gray-600">
-                      <strong>{activeTeam?.name}</strong> HAS A BYE
-                    </span>
-                  </div>
-                );
-              }
-
-              return (
-                <div
-                  key={f.id}
-                  className={`border rounded-xl p-3 bg-white shadow-sm flex items-center justify-between transition-all ${
-                    f.isPlayed ? 'border-gray-200 bg-gray-50/30' : 'border-blue-200 bg-blue-50/10'
-                  }`}
-                >
-                  <div className="flex-1 text-right font-medium text-xs text-gray-800 pr-2 truncate">
-                    {f.homeTeam?.name}
-                  </div>
-
-                  {/* Editable score inputs */}
-                  <div className="flex items-center gap-1.5 px-2">
-                    <input
-                      type="number"
-                      min={0}
-                      value={f.homeScore ?? ''}
-                      onChange={(e) => handleScoreChange(f.id, 'home', e.target.value)}
-                      className="w-8 h-8 text-center border border-gray-300 rounded-lg text-xs font-bold focus:border-blue-500 focus:outline-none"
-                    />
-                    <span className="text-gray-300 font-bold text-xs">-</span>
-                    <input
-                      type="number"
-                      min={0}
-                      value={f.awayScore ?? ''}
-                      onChange={(e) => handleScoreChange(f.id, 'away', e.target.value)}
-                      className="w-8 h-8 text-center border border-gray-300 rounded-lg text-xs font-bold focus:border-blue-500 focus:outline-none"
-                    />
-                  </div>
-
-                  <div className="flex-1 text-left font-medium text-xs text-gray-800 pl-2 truncate">
-                    {f.awayTeam?.name}
-                  </div>
-                </div>
-              );
-            })}
+            {fixtures.map((f) => (
+              <FixtureItem key={f.id} fixture={f} onScoreChange={handleScoreChange} />
+            ))}
           </div>
         </div>
       </div>

@@ -69,7 +69,7 @@ export function GroupStageConfigForm({ config, targetPhases, onChange }: FormPro
           <label className="block text-gray-600 font-medium mb-1">Wildcard Position</label>
           <input
             type="number"
-            min={1}
+            min={0}
             value={config.wildcard_position ?? ''}
             onChange={(e) => onChange('wildcard_position', e.target.value ? Number(e.target.value) : undefined)}
             className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
@@ -80,7 +80,7 @@ export function GroupStageConfigForm({ config, targetPhases, onChange }: FormPro
           <label className="block text-gray-600 font-medium mb-1">Wildcard Teams Count</label>
           <input
             type="number"
-            min={1}
+            min={0}
             value={config.wildcard_teams_count ?? ''}
             onChange={(e) => onChange('wildcard_teams_count', e.target.value ? Number(e.target.value) : undefined)}
             className="w-full border border-gray-300 rounded px-2 py-1 bg-white"

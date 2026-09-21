@@ -107,6 +107,15 @@ export default function TeamCard({
           </span>
         )}
 
+        {team.strength !== undefined && team.strength !== null && (
+          <span 
+            className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200"
+            title="Current Strength"
+          >
+            {team.strength} pts
+          </span>
+        )}
+
         {removable ? (
           <button
             onClick={(e) => {

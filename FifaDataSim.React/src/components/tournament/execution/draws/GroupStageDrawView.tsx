@@ -247,6 +247,9 @@ export function GroupStageDrawView({
                           <span>
                             <strong className="text-blue-500 mr-2">{slotIdx + 1}.</strong>
                             {team.name}
+                            {team.isStarred == true && (
+                              <span className="ml-1 text-sm" title="Starred Country">⭐</span>
+                            )}
                           </span>
                           {!isFixedSeeding && (
                             <button

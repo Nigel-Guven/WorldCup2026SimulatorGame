@@ -255,6 +255,9 @@ export function WildcardTable({
 
                       <span className="truncate">
                         {row.team.name}
+                        {row.team.isStarred == true && (
+                          <span className="ml-1 text-sm" title="Starred Country">⭐</span>
+                        )} 
                       </span>
                     </div>
                   </td>

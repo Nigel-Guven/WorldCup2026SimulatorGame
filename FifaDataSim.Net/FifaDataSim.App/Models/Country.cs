@@ -24,4 +24,5 @@ public class Country
     [JsonPropertyName("home_stadium")]
     public string HomeStadium { get; set; } = string.Empty;
     public string Form { get; set; } = string.Empty;
+    public bool IsStarred { get; set; } = false;
 }

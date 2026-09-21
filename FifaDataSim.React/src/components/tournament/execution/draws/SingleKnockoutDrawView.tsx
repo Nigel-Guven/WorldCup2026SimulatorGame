@@ -196,7 +196,12 @@ function SlotBox({
           : 'border-dashed border-gray-200 text-gray-400 cursor-pointer hover:border-amber-400 hover:bg-amber-50/20'
       }`}
     >
-      <span>{team ? team.name : label}</span>
+      <span>
+        {team ? team.name : label}
+        {team?.isStarred == true && (
+          <span className="ml-1 text-sm" title="Starred Country">⭐</span>
+        )}
+      </span>
       {team && (
         <button
           type="button"

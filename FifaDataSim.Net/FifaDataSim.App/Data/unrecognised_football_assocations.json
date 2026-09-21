@@ -23,7 +23,7 @@
   },
   {
     "id": "kbl",
-    "name": "Kabylie",
+    "name": "Kabylia",
     "short_name": "KBL",
     "confederation": "CAF",
     "football_association": "Tarvaɛt tayelnawt taqvaylit n ddavex uḍar",
@@ -56,7 +56,7 @@
   },
   {
     "id": "oss",
-    "name": "Ossetia",
+    "name": "Ossetia-Alania",
     "short_name": "OSS",
     "confederation": "UEFA",
     "football_association": "Football Association of Ossetia",
@@ -78,7 +78,7 @@
   },
   {
     "id": "sml",
-    "name": "Somaliland",
+    "name": "Free State of Somaliland",
     "short_name": "SML",
     "confederation": "CAF",
     "football_association": "Xidhiidhka Kubadda Cagta Somaliland",
@@ -100,7 +100,7 @@
   },
   {
     "id": "tns",
-    "name": "Pridnestrovian Moldavian Republic",
+    "name": "Transnistria",
     "short_name": "TNS",
     "confederation": "UEFA",
     "football_association": "Transnistria Football Federation",
@@ -166,7 +166,7 @@
   },
   {
     "id": "pru",
-    "name": "Prussia",
+    "name": "Kingdom of Prussia",
     "short_name": "PRU",
     "confederation": "UEFA",
     "football_association": "Preussen Fussballbund",
@@ -235,7 +235,7 @@
     "name": "Buryatia",
     "short_name": "BUR",
     "confederation": "AFC",
-    "football_association": "Buryatian Football Association",
+    "football_association": "Buryat Football Association",
     "default_points": 761,
     "strength": 15,
     "flag_url": "/flags/buryatia.png",
@@ -452,7 +452,7 @@
   },
   {
     "id": "esk",
-    "name": "Basque Republic",
+    "name": "Euskal Herria",
     "short_name": "ESK",
     "confederation": "UEFA",
     "football_association": "Basque Football Association",
@@ -573,7 +573,7 @@
   },
   {
     "id": "sap",
-    "name": "Sapmi",
+    "name": "Sápmi",
     "short_name": "SAP",
     "confederation": "UEFA",
     "football_association": "FA Sapmi",
@@ -1042,7 +1042,7 @@
     "default_points": 968,
     "strength": 34,
     "flag_url": "/flags/navajo.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Navajo-Pinal"
   },
   {
     "id": "lkt",
@@ -1053,7 +1053,7 @@
     "default_points": 1251,
     "strength": 48,
     "flag_url": "/flags/lakota.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Lakota East Stadium"
   },
   {
     "id": "iro",
@@ -1064,7 +1064,7 @@
     "default_points": 1103,
     "strength": 41,
     "flag_url": "/flags/iroquois.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Fryrear Field"
   },
   {
     "id": "dsr",
@@ -1075,7 +1075,7 @@
     "default_points": 986,
     "strength": 35,
     "flag_url": "/flags/deseret.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Rice–Eccles Stadium"
   },
   {
     "id": "cht",
@@ -1086,18 +1086,18 @@
     "default_points": 568,
     "strength": 4,
     "flag_url": "/flags/chatham.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Islands High School Stadium"
   },
   {
     "id": "rtu",
-    "name": "Rotuma",
+    "name": "Kingdom of Rotuma",
     "short_name": "RTU",
     "confederation": "OFC",
     "football_association": "Rotuma Football Federation",
     "default_points": 694,
     "strength": 11,
     "flag_url": "/flags/rotuma.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Govind Park"
   },
   {
     "id": "drv",
@@ -1108,7 +1108,7 @@
     "default_points": 903,
     "strength": 30,
     "flag_url": "/flags/dravida.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Padukone-Dravid Centre"
   },
   {
     "id": "khl",
@@ -1119,7 +1119,7 @@
     "default_points": 910,
     "strength": 31,
     "flag_url": "/flags/khalistan.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Khalifa International Stadium"
   },
   {
     "id": "gba",
@@ -1130,7 +1130,7 @@
     "default_points": 878,
     "strength": 29,
     "flag_url": "/flags/baltistan.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Cricket Football Stadium"
   },
   {
     "id": "sdd",
@@ -1141,7 +1141,7 @@
     "default_points": 966,
     "strength": 33,
     "flag_url": "/flags/sindh.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "People's Football Stadium"
   },
   {
     "id": "qin",
@@ -1152,7 +1152,7 @@
     "default_points": 1006,
     "strength": 38,
     "flag_url": "/flags/manchuria.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Fengtian International Stadium"
   },
   {
     "id": "mdo",
@@ -1163,7 +1163,7 @@
     "default_points": 797,
     "strength": 28,
     "flag_url": "/flags/mindanao.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Davao City UP Sports Complex"
   },
   {
     "id": "hdh",
@@ -1174,7 +1174,7 @@
     "default_points": 923,
     "strength": 34,
     "flag_url": "/flags/hadhramaut.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Baradem Mukalla Stadium"
   },
   {
     "id": "rjv",
@@ -1185,7 +1185,7 @@
     "default_points": 1001,
     "strength": 34,
     "flag_url": "/flags/rojava.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Martyr Bewar Agir Stadium"
   },
   {
     "id": "sdz",
@@ -1196,7 +1196,7 @@
     "default_points": 1009,
     "strength": 39,
     "flag_url": "/flags/sandzak.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Novi Pazar City Stadium"
   },
   {
     "id": "srp",
@@ -1207,7 +1207,7 @@
     "default_points": 1202,
     "strength": 44,
     "flag_url": "/flags/srpska.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Městský fotbalový stadion Srbská"
   },
   {
     "id": "ist",
@@ -1218,7 +1218,7 @@
     "default_points": 1132,
     "strength": 41,
     "flag_url": "/flags/istria.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Stadion Aldo Drosina"
   },
   {
     "id": "fri",
@@ -1229,7 +1229,7 @@
     "default_points": 1106,
     "strength": 50,
     "flag_url": "/flags/friesland.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Abe Lenstra Stadion"
   },
   {
     "id": "sls",
@@ -1240,7 +1240,7 @@
     "default_points": 1054,
     "strength": 45,
     "flag_url": "/flags/silesia.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Silesian Stadium"
   },
   {
     "id": "vjv",
@@ -1251,7 +1251,7 @@
     "default_points": 994,
     "strength": 36,
     "flag_url": "/flags/vojvodina.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Karađorđe Stadium"
   },
   {
     "id": "syl",
@@ -1262,7 +1262,7 @@
     "default_points": 1111,
     "strength": 41,
     "flag_url": "/flags/transylvania.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Cluj Arena"
   },
   {
     "id": "tyr",
@@ -1273,7 +1273,7 @@
     "default_points": 1003,
     "strength": 37,
     "flag_url": "/flags/tyrol.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Tivoli Stadion Tirol"
   },
   {
     "id": "jnm",
@@ -1284,7 +1284,7 @@
     "default_points": 651,
     "strength": 6,
     "flag_url": "/flags/jan.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Henningsvær Stadion"
   },
   {
     "id": "wll",
@@ -1295,7 +1295,7 @@
     "default_points": 1192,
     "strength": 41,
     "flag_url": "/flags/wallonia.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "King Baudouin Stadium"
   },
   {
     "id": "fld",
@@ -1306,7 +1306,7 @@
     "default_points": 1219,
     "strength": 47,
     "flag_url": "/flags/flanders.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Planet Group Arena"
   },
   {
     "id": "csc",
@@ -1317,18 +1317,18 @@
     "default_points": 1214,
     "strength": 44,
     "flag_url": "/flags/cascadia.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Lumen Field"
   },
   {
     "id": "nnv",
-    "name": "Nunavut",
+    "name": "Inuit Nation",
     "short_name": "NNV",
     "confederation": "CONCACAF",
     "football_association": "Inuit Football Federation",
     "default_points": 942,
     "strength": 33,
     "flag_url": "/flags/nunavut.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Iqaluit Arena"
   },
   {
     "id": "adh",
@@ -1339,7 +1339,7 @@
     "default_points": 996,
     "strength": 36,
     "flag_url": "/flags/akrotiri.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Akrotiri Stadium"
   },
   {
     "id": "wti",
@@ -1350,18 +1350,18 @@
     "default_points": 801,
     "strength": 10,
     "flag_url": "/flags/west_timor.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Oepoi Stadium"
   },
   {
     "id": "fug",
-    "name": "Fuegia",
+    "name": "Tierra del Fuego",
     "short_name": "FUG",
     "confederation": "CONMEBOL",
     "football_association": "Tierra del Fuego Football Federation",
     "default_points": 1141,
     "strength": 42,
     "flag_url": "/flags/fuego.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Municipal Stadium Hugo Lumbreras"
   },
   {
     "id": "psh",
@@ -1372,7 +1372,7 @@
     "default_points": 900,
     "strength": 28,
     "flag_url": "/flags/pashtun.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Kandahar Stadium"
   },
   {
     "id": "yuc",
@@ -1383,7 +1383,7 @@
     "default_points": 1109,
     "strength": 40,
     "flag_url": "/flags/yucatan.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Estadio Carlos Iturralde"
   },
   {
     "id": "msk",
@@ -1394,7 +1394,7 @@
     "default_points": 1070,
     "strength": 35,
     "flag_url": "/flags/miskito.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Estadio Olímpico Metropolitano"
   },
   {
     "id": "nsc",
@@ -1405,6 +1405,28 @@
     "default_points": 1213,
     "strength": 46,
     "flag_url": "/flags/scotia.png",
-    "home_stadium": "Levy Mwanawasa Stadium"
+    "home_stadium": "Wanderers Grounds"
+  },
+  {
+    "id": "ani",
+    "name": "Andaman and Nicobar Islands",
+    "short_name": "ANI",
+    "confederation": "AFC",
+    "football_association": "Andaman Football Federation",
+    "default_points": 811,
+    "strength": 12,
+    "flag_url": "/flags/andaman.png",
+    "home_stadium": "Netaji Stadium"
+  },
+  {
+    "id": "sei",
+    "name": "Sentinel Islands",
+    "short_name": "SEI",
+    "confederation": "AFC",
+    "football_association": "Sentinelese Football Federation",
+    "default_points": 524,
+    "strength": 6,
+    "flag_url": "/flags/sentinel.png",
+    "home_stadium": "Ultras Stadium"
   }
 ]

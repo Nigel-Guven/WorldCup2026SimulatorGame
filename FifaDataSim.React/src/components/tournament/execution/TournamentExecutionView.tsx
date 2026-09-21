@@ -1,4 +1,4 @@
-import { type JSX, useState, useEffect, useMemo } from 'react';
+import { type JSX, useState, useEffect, useMemo, useRef } from 'react';
 import { PhaseType } from '../../../types/phaseType';
 import { GroupStageExecutionView } from './stages/GroupStageExecutionView';
 import { MultiKnockoutDrawView } from './draws/MultiKnockoutDrawView';
@@ -17,7 +17,6 @@ import {
 import type { GroupStandingEntry } from '../../../types/groupStandingEntry';
 import type { KnockoutMatchup } from '../../../types/knockoutMatchup';
 import { MultiKnockoutExecutionView } from './stages/MultiKnockoutExecutionView';
-import type { MultiKnockoutPhase } from '../../../types/tournamentConfiguration';
 
 export type ExecutionStage = 'DRAW' | 'SIMULATION';
 
@@ -68,6 +67,54 @@ function generateSeededGroups(
   return groups;
 }
 
+/**
+ * Randomly applies a +20 strength buff (capped at 85) to 5% (min 1) of eligible teams.
+ * Sets the 'starred' property to true for modified teams.
+ */
+function applyRandomModifiers(teams: Country[]): Country[] {
+  if (!teams || teams.length === 0) return [];
+
+  const eligibleTeams = teams.filter((t) => (t.strength || 0) <= 85);
+  if (eligibleTeams.length === 0) return teams; // No eligible teams to modify
+
+  const numToModify = Math.max(1, Math.floor(teams.length * 0.1));
+  
+  // Shuffle to pick random winners
+  const shuffled = [...eligibleTeams].sort(() => 0.5 - Math.random());
+  const selectedIds = new Set(shuffled.slice(0, numToModify).map((t) => t.id));
+
+  return teams.map((t) => {
+    if (selectedIds.has(t.id)) {
+      return {
+        ...t,
+        isStarred: true,
+        strength: Math.min(85, (t.strength || 0) + 30),
+      };
+    }
+    return {
+      ...t,
+      isStarred: false,
+    };
+  });
+}
+
+/**
+ * Reduces strength by 15 and removes the 'starred' state from modified teams 
+ * upon phase completion.
+ */
+function revertTeamModifications(teams: Country[]): Country[] {
+  return teams.map((t) => {
+    if (t && t.isStarred) {
+      return {
+        ...t,
+        isStarred: false,
+        strength: Math.max(0, (t.strength || 0) - 15),
+      };
+    }
+    return t;
+  });
+}
+
 export function TournamentExecutionView({
   phases,
   activePhase,
@@ -84,17 +131,38 @@ export function TournamentExecutionView({
     };
   }, [activePhase]);
 
-  // Determine if this phase skips the draw UI (e.g. Direct Seeding / Pre-assigned Groups)
+  // --- MODIFIER LOGIC (Executed once per phase change) ---
+  const lastProcessedPhaseId = useRef<string | null>(null);
+  const modifiedTeamsRef = useRef<Country[]>([]);
+
+  // Apply modifiers only when navigating to a new phase ID
+  const modifiedTeams = useMemo(() => {
+    if (lastProcessedPhaseId.current !== activePhase.id) {
+      modifiedTeamsRef.current = applyRandomModifiers(activePhase.teams || []);
+      lastProcessedPhaseId.current = activePhase.id;
+    }
+    return modifiedTeamsRef.current;
+  }, [activePhase.id, activePhase.teams]);
+
+  // Merge the modified teams back into a working activePhase object. 
+  // Explicitly cast to Phase so TS knows it retains discriminated union properties.
+  const activePhaseWithModifiedTeams = useMemo<Phase>(() => ({
+    ...activePhase,
+    teams: modifiedTeams,
+  } as Phase), [activePhase, modifiedTeams]);
+  // -------------------------------------------------------
+
+  // Determine if this phase skips the draw UI
   const isDrawBypassed = !activePhase.has_draw;
 
-  // Initial draw computation for non-draw stages
+  // Initial draw computation using the modified teams
   const initialAutoDraw = useMemo<DrawResult | null>(() => {
-    if (isDrawBypassed && activePhase.teams && activePhase.teams.length > 0) {
+    if (isDrawBypassed && modifiedTeams.length > 0) {
       if (activePhase.type === PhaseType.GroupStage) {
         return {
           type: 'GROUP',
           groups: generateSeededGroups(
-            activePhase.teams,
+            modifiedTeams,
             groupCount,
             groupSize
           ),
@@ -102,7 +170,7 @@ export function TournamentExecutionView({
       }
     }
     return null;
-  }, [isDrawBypassed, activePhase.teams, activePhase.type, groupCount, groupSize]);
+  }, [isDrawBypassed, modifiedTeams, activePhase.type, groupCount, groupSize]);
 
   // Local State
   const [stage, setStage] = useState<ExecutionStage>(() =>
@@ -119,11 +187,11 @@ export function TournamentExecutionView({
 
     if (isDrawBypassed) {
       setStage('SIMULATION');
-      if (activePhase.type === PhaseType.GroupStage && activePhase.teams) {
+      if (activePhase.type === PhaseType.GroupStage && modifiedTeams.length > 0) {
         setDrawResult({
           type: 'GROUP',
           groups: generateSeededGroups(
-            activePhase.teams,
+            modifiedTeams,
             groupCount,
             groupSize
           ),
@@ -139,28 +207,28 @@ export function TournamentExecutionView({
     activePhase.id,
     isDrawBypassed,
     activePhase.type,
-    activePhase.teams,
+    modifiedTeams,
     groupCount,
     groupSize,
   ]);
 
   // Fallbacks
-  const pots = useMemo(() => derivePots(activePhase), [activePhase]);
+  const pots = useMemo(() => derivePots(activePhaseWithModifiedTeams), [activePhaseWithModifiedTeams]);
 
   const fallbackGroupDraw = useMemo(() => {
-    if (isDrawBypassed && activePhase.teams && activePhase.type === PhaseType.GroupStage) {
+    if (isDrawBypassed && modifiedTeams.length > 0 && activePhase.type === PhaseType.GroupStage) {
       return generateSeededGroups(
-        activePhase.teams,
+        modifiedTeams,
         groupCount,
         groupSize
       );
     }
-    return createFallbackGroupDraw(activePhase);
-  }, [isDrawBypassed, activePhase, groupCount, groupSize]);
+    return createFallbackGroupDraw(activePhaseWithModifiedTeams);
+  }, [isDrawBypassed, activePhaseWithModifiedTeams, modifiedTeams, groupCount, groupSize]);
 
   const fallbackSingleKnockoutDraw = useMemo(
-    () => createFallbackSingleKnockoutDraw(activePhase),
-    [activePhase]
+    () => createFallbackSingleKnockoutDraw(activePhaseWithModifiedTeams),
+    [activePhaseWithModifiedTeams]
   );
 
   // Handlers
@@ -182,6 +250,7 @@ export function TournamentExecutionView({
 
   const isNextDisabled =
     (!isDrawBypassed && stage === 'DRAW') || !isPhaseCompleted || !completionData;
+
 
   return (
     <div className="w-full px-4 sm:px-6 bg-white border-2 border-blue-500 rounded-2xl shadow-lg overflow-hidden">
@@ -216,28 +285,28 @@ export function TournamentExecutionView({
           <p className="text-xs text-blue-100 mt-0.5 flex items-center gap-1.5 flex-wrap">
             <span>Tag: <span className="font-semibold">{activePhase.tag}</span></span>
             {' | '}
-            <span>Teams Assigned: {activePhase.teams.length}</span>
+            <span>Teams Assigned: {modifiedTeams.length}</span>
             {' | '}
             <span>Draw Mode: <span className="font-semibold">{isDrawBypassed ? 'Bypassed (Ranking Seeding)' : 'Manual Draw Enabled'}</span></span>
           </p>
 
           {/* Optional: Preview snippet of first few team flags if available */}
-          {activePhase.teams && activePhase.teams.length > 0 && (
+          {modifiedTeams.length > 0 && (
             <div className="flex items-center gap-1 mt-2 overflow-x-auto py-1 max-w-xl">
-              {activePhase.teams.slice(0, 8).map((team) => (
+              {modifiedTeams.slice(0, 8).map((team) => (
                 team.flag_url ? (
                   <img
                     key={team.id || team.name}
                     src={team.flag_url}
                     alt={team.name}
-                    title={team.name}
-                    className="w-5 h-3.5 object-cover rounded-xs shadow-xs shrink-0"
+                    title={`${team.name} (STR: ${team.strength})${team.isStarred == true ? ' ⭐' : ''}`}
+                    className={`w-5 h-3.5 object-cover rounded-xs shadow-xs shrink-0 ${team.isStarred == true ? 'ring-2 ring-yellow-400' : ''}`}
                   />
                 ) : null
               ))}
-              {activePhase.teams.length > 8 && (
+              {modifiedTeams.length > 8 && (
                 <span className="text-[10px] text-blue-200 font-medium ml-1">
-                  +{activePhase.teams.length - 8} more
+                  +{modifiedTeams.length - 8} more
                 </span>
               )}
             </div>
@@ -257,17 +326,18 @@ export function TournamentExecutionView({
       <div className="p-6">
         {stage === 'DRAW' ? (
           <div>
-            {activePhase.type === PhaseType.GroupStage && (
+            {/* NOTICE: We check activePhaseWithModifiedTeams.type here to force TypeScript to narrow this specific object */}
+            {activePhaseWithModifiedTeams.type === PhaseType.GroupStage && (
               <GroupStageDrawView
-                phase={activePhase}
+                phase={activePhaseWithModifiedTeams}
                 pots={pots}
                 onComplete={(res) => handleDrawComplete({ type: 'GROUP', groups: res })}
               />
             )}
 
-            {activePhase.type === PhaseType.SingleBranchKnockoutStage && (
+            {activePhaseWithModifiedTeams.type === PhaseType.SingleBranchKnockoutStage && (
               <SingleKnockoutDrawView
-                phase={activePhase}
+                phase={activePhaseWithModifiedTeams}
                 pots={pots}
                 onComplete={(res) => {
                   const matchups: KnockoutMatchup[] = res.map((m, idx) => ({
@@ -288,9 +358,9 @@ export function TournamentExecutionView({
               />
             )}
 
-            {activePhase.type === PhaseType.MultiBranchKnockoutStage && (
+            {activePhaseWithModifiedTeams.type === PhaseType.MultiBranchKnockoutStage && (
               <MultiKnockoutDrawView
-                phase={activePhase}
+                phase={activePhaseWithModifiedTeams}
                 pots={pots}
                 onComplete={(res) => {
                   const pathAssignments = Object.entries(res).reduce<
@@ -322,19 +392,21 @@ export function TournamentExecutionView({
           </div>
         ) : (
           <div>
-            {activePhase.type === PhaseType.GroupStage && (
+            {activePhaseWithModifiedTeams.type === PhaseType.GroupStage && (
               <GroupStageExecutionView
-                phase={activePhase}
+                phase={activePhaseWithModifiedTeams}
                 groups={
                   (drawResult && drawResult.type === 'GROUP'
                     ? drawResult.groups
                     : fallbackGroupDraw) || {}
                 }
                 onComplete={(data) => {
+                  // Revert modifications prior to dispatching Phase Completion 
                   const formattedStandings = Object.entries(data.standings || {}).reduce<
                     Record<string, GroupStandingEntry[]>
                   >((acc, [groupKey, countries]) => {
-                    acc[groupKey] = countries.map((country, idx) => ({
+                    const revertedCountries = revertTeamModifications(countries);
+                    acc[groupKey] = revertedCountries.map((country, idx) => ({
                       team: country,
                       played: 0,
                       won: 0,
@@ -348,20 +420,22 @@ export function TournamentExecutionView({
                     }));
                     return acc;
                   }, {});
+                  
+                  const revertedWildcards = data.wildcards ? revertTeamModifications(data.wildcards) : undefined;
 
                   handleSimulationComplete({
                     phaseId: activePhase.id,
                     phaseType: PhaseType.GroupStage,
                     groupStandings: formattedStandings,
-                    wildcardQualifiers: data.wildcards,
+                    wildcardQualifiers: revertedWildcards,
                   });
                 }}
               />
             )}
 
-            {activePhase.type === PhaseType.SingleBranchKnockoutStage && (
+            {activePhaseWithModifiedTeams.type === PhaseType.SingleBranchKnockoutStage && (
               <SingleKnockoutExecutionView
-                phase={activePhase}
+                phase={activePhaseWithModifiedTeams}
                 initialMatchups={
                   drawResult && drawResult.type === 'SINGLE_KNOCKOUT'
                     ? drawResult.matchups
@@ -374,32 +448,38 @@ export function TournamentExecutionView({
                     ...(data.thirdPlace ? [data.thirdPlace] : []),
                   ];
 
+                  const revertedWinners = revertTeamModifications(winners);
+
                   handleSimulationComplete({
                     phaseId: activePhase.id,
                     phaseType: PhaseType.SingleBranchKnockoutStage,
-                    knockoutWinners: winners,
+                    knockoutWinners: revertedWinners,
                   });
                 }}
               />
             )}
             
-            {activePhase.type === PhaseType.MultiBranchKnockoutStage && (
+            {activePhaseWithModifiedTeams.type === PhaseType.MultiBranchKnockoutStage && (
               <MultiKnockoutExecutionView
-                phase={activePhase as MultiKnockoutPhase}
+                phase={activePhaseWithModifiedTeams}
                 pathAssignments={
                   drawResult && drawResult.type === 'MULTI_KNOCKOUT'
                     ? drawResult.pathAssignments
                     : {}
                 }
                 onComplete={(data) => {
+                  const multiWinners = Object.values(data.pathWinners).flatMap((w) => [
+                    w.champion,
+                    w.runnerUp,
+                    ...(w.thirdPlace ? [w.thirdPlace] : []),
+                  ]);
+
+                  const revertedWinners = revertTeamModifications(multiWinners);
+
                   handleSimulationComplete({
                     phaseId: activePhase.id,
                     phaseType: PhaseType.MultiBranchKnockoutStage,
-                    knockoutWinners: Object.values(data.pathWinners).flatMap((w) => [
-                      w.champion,
-                      w.runnerUp,
-                      ...(w.thirdPlace ? [w.thirdPlace] : []),
-                    ]),
+                    knockoutWinners: revertedWinners,
                   });
                 }}
               />

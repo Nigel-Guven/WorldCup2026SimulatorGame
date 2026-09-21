@@ -39,7 +39,12 @@ export function FixtureItem({
     >
       {/* Home Team (Right Aligned Name + Flag) */}
       <div className="flex-1 flex items-center justify-end gap-2 text-right font-medium text-xs text-gray-800 pr-2 truncate">
-        <span className="truncate">{fixture.homeTeam?.name}</span>
+        <span className="truncate">
+          {fixture.homeTeam?.isStarred == true && (
+            <span className="ml-1 text-sm" title="Starred Country">⭐</span>
+          )}
+          {fixture.homeTeam?.name}
+        </span>
         {fixture.homeTeam?.flag_url && (
           <img
             src={fixture.homeTeam.flag_url}
@@ -77,7 +82,12 @@ export function FixtureItem({
             className="w-4 h-3 object-cover rounded-sm shrink-0 shadow-xs"
           />
         )}
-        <span className="truncate">{fixture.awayTeam?.name}</span>
+        <span className="truncate">
+          {fixture.awayTeam?.name}
+          {fixture.awayTeam?.isStarred == true && (
+            <span className="ml-1 text-sm" title="Starred Country">⭐</span>
+          )}
+          </span>
       </div>
     </div>
   );

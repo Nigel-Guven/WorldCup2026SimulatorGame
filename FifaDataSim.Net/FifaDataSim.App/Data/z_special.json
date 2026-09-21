@@ -12,10 +12,10 @@
   },
   {
     "id": "vtc",
-    "name": "Vatican City",
+    "name": "Vatican City State",
     "short_name": "VTC",
     "confederation": "UEFA",
-    "football_association": "Federazione Sammarinese di Calcio",
+    "football_association": "Federazione Vaticano di Calcio",
     "default_points": 789,
     "strength": 13,
     "flag_url": "https://flagcdn.com/w40/va.png",
@@ -342,7 +342,7 @@
   },
   {
     "id": "stg",
-    "name": "South Georgia",
+    "name": "South Georgia and the Sandwich Islands",
     "short_name": "STG",
     "confederation": "CONMEBOL",
     "football_association": "South Georgia Football Association",
@@ -364,7 +364,7 @@
   },
   {
     "id": "clf",
-    "name": "California",
+    "name": "California Republic",
     "short_name": "CLF",
     "confederation": "CONCACAF",
     "football_association": "California Football Association",
@@ -386,7 +386,7 @@
   },
   {
     "id": "hur",
-    "name": "Huron Nation",
+    "name": "Huron Wyandot",
     "short_name": "HUR",
     "confederation": "CONCACAF",
     "football_association": "Huron Football Association",
@@ -408,7 +408,7 @@
   },
   {
     "id": "yid",
-    "name": "Yiddishe Republik",
+    "name": "Yiddish Republic",
     "short_name": "YID",
     "confederation": "AFC",
     "football_association": "Jewish Republic Football Association",
@@ -529,7 +529,7 @@
   },
   {
     "id": "dpr",
-    "name": "Donetsk Peoples Republic",
+    "name": "Donetsk PR",
     "short_name": "DPR",
     "confederation": "UEFA",
     "football_association": "Donetsk Football Association",
@@ -540,7 +540,7 @@
   },
   {
     "id": "lhr",
-    "name": "Luhansk Peoples Republic",
+    "name": "Luhansk PR",
     "short_name": "LHR",
     "confederation": "UEFA",
     "football_association": "Luhansk Football Association",
@@ -727,7 +727,7 @@
   },
   {
     "id": "hty",
-    "name": "Hatay",
+    "name": "Hatay State",
     "short_name": "HTY",
     "confederation": "AFC",
     "football_association": "Hatay Football Association",
@@ -782,7 +782,7 @@
   },
   {
     "id": "nrm",
-    "name": "Normandy",
+    "name": "Duchy of Normandy",
     "short_name": "NRM",
     "confederation": "UEFA",
     "football_association": "Normandy Football Association",
@@ -925,10 +925,10 @@
   },
   {
     "id": "epr",
-    "name": "Epirus",
+    "name": "Republic of Epirus",
     "short_name": "EPR",
     "confederation": "UEFA",
-    "football_association": "Epirot Football Association",
+    "football_association": "Epirus Football Clubs Association",
     "default_points": 892,
     "strength": 18,
     "flag_url": "/flags/epirus.png",
@@ -936,18 +936,18 @@
   },
   {
     "id": "mlc",
-    "name": "Maluku",
+    "name": "Maluku Islands",
     "short_name": "MLC",
     "confederation": "AFC",
     "football_association": "Moluccan Football Association",
     "default_points": 788,
     "strength": 16,
     "flag_url": "/flags/maluku.png",
-    "home_stadium": "Gelora Kie Raha Stadium"
+    "home_stadium": "Mandala Remaja Stadium"
   },
   {
     "id": "fvg",
-    "name": "Friulia",
+    "name": "Duchy of Friulia",
     "short_name": "FVG",
     "confederation": "UEFA",
     "football_association": "Friulia-Venezia Football Association",

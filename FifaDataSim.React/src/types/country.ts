@@ -11,4 +11,5 @@ export interface Country {
   flag_url: string;
   home_stadium: string;
   form: string;
+  isStarred: boolean;
 }

@@ -149,15 +149,19 @@ export function MultiKnockoutDrawView({
                       const team = currentTeams[slotIdx];
 
                       return team ? (
-                        <div
-                          key={team.id ?? slotIdx}
-                          className="flex justify-between items-center bg-blue-50/60 border border-blue-200 text-blue-900 text-xs px-3 py-2 rounded-lg font-medium"
-                        >
-                          <span>
-                            <strong className="text-blue-500 mr-2">{slotIdx + 1}.</strong>
-                            {team.name}
-                          </span>
-                          <button
+                      <div
+                        key={team.id ?? slotIdx}
+                        className="flex justify-between items-center bg-blue-50/60 border border-blue-200 text-blue-900 text-xs px-3 py-2 rounded-lg font-medium"
+                      >
+                        <span className="flex items-center">
+                          <strong className="text-blue-500 mr-2">{slotIdx + 1}.</strong>
+                          {team.name}
+                          {/* Add the star right here based on your boolean property */}
+                          {team.isStarred == true && (
+                            <span className="ml-1 text-sm" title="Starred Country">⭐</span>
+                          )}
+                        </span>
+                        <button
                             type="button"
                             onClick={(e) => {
                               e.stopPropagation();

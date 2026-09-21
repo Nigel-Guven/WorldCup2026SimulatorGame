@@ -84,7 +84,12 @@ export function PathMatchCard({ match, legs, onPlay, isThirdPlace }: PathMatchCa
             ) : (
               <div className="w-4 h-3 bg-gray-200 rounded-2xs shrink-0" />
             )}
-            <span className="truncate">{match.teamA ? match.teamA.name : 'TBD'}</span>
+            <span className="truncate">
+              {match.teamA ? match.teamA.name : 'TBD'}
+              {match.teamA?.isStarred == true && (
+                <span className="ml-1 text-sm" title="Starred Country">⭐</span>
+              )}  
+            </span>
           </div>
 
           {/* Regular Scores */}
@@ -144,7 +149,12 @@ export function PathMatchCard({ match, legs, onPlay, isThirdPlace }: PathMatchCa
             ) : (
               <div className="w-4 h-3 bg-gray-200 rounded-2xs shrink-0" />
             )}
-            <span className="truncate">{match.teamB ? match.teamB.name : 'TBD'}</span>
+            <span className="truncate">
+              {match.teamB ? match.teamB.name : 'TBD'}
+              {match.teamB?.isStarred == true && (
+                <span className="ml-1 text-sm" title="Starred Country">⭐</span>
+              )}
+              </span>
           </div>
 
           {/* Regular Scores */}

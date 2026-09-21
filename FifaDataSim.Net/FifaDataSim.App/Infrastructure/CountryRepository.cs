@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using WorldCupSimulator.Contracts;
 using WorldCupSimulator.Models;
@@ -7,10 +8,12 @@ namespace WorldCupSimulator.Infrastructure;
 public class CountryRepository : ICountryRepository
 {
     private readonly AppDbContext _context;
+    private readonly IWebHostEnvironment _env;
 
-    public CountryRepository(AppDbContext context)
+    public CountryRepository(AppDbContext context, IWebHostEnvironment env)
     {
         _context = context;
+        _env = env;
     }
 
     public IEnumerable<Country> GetAllTeams() =>
@@ -58,7 +61,6 @@ public class CountryRepository : ICountryRepository
         }
 
         const double importance = 20.0;
-        
         var homeDr = homeTeam.DefaultRankingPoints - awayTeam.DefaultRankingPoints;
         var awayDr = -homeDr;
 
@@ -71,12 +73,62 @@ public class CountryRepository : ICountryRepository
         homeTeam.DefaultRankingPoints = (int)Math.Round(homeTeam.DefaultRankingPoints + homePointChange);
         awayTeam.DefaultRankingPoints = (int)Math.Round(awayTeam.DefaultRankingPoints + awayPointChange);
         
-        const double strengthFactor = 0.25; 
+        const double strengthFactor = 2.0; 
+        
         var homeStrengthChange = strengthFactor * (homeW - homeWe);
         var awayStrengthChange = strengthFactor * (awayW - awayWe);
+        
+        homeTeam.Strength = (int)Math.Clamp(Math.Round(homeTeam.Strength + homeStrengthChange), 3, 95);
+        awayTeam.Strength = (int)Math.Clamp(Math.Round(awayTeam.Strength + awayStrengthChange), 3, 95);
 
-        homeTeam.Strength = (int) Math.Clamp(homeTeam.Strength + homeStrengthChange, 3, 95);
-        awayTeam.Strength = (int) Math.Clamp(awayTeam.Strength + awayStrengthChange, 3, 95);
+        _context.SaveChanges();
+    }
+    
+    public void RefreshTeamStrength()
+    {
+        var dataFolder = Path.Combine(_env.ContentRootPath, "Data");
+        if (!Directory.Exists(dataFolder))
+            return;
+
+        var jsonFiles = Directory.GetFiles(dataFolder, "*.json");
+        var strengthMap = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+        // 1. Read original Strength values from default JSON files
+        foreach (var file in jsonFiles)
+        {
+            try
+            {
+                var jsonString = File.ReadAllText(file);
+                var teamsInFile = JsonSerializer.Deserialize<List<Country>>(jsonString);
+
+                if (teamsInFile == null) continue;
+
+                foreach (var team in teamsInFile)
+                {
+                    if (!string.IsNullOrEmpty(team.Id))
+                    {
+                        strengthMap[team.Id] = team.Strength;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error reading file {file} during strength refresh: {ex.Message}");
+            }
+        }
+
+        if (strengthMap.Count == 0)
+            return;
+
+        var dbTeams = _context.Countries.ToList();
+
+        foreach (var team in dbTeams)
+        {
+            if (strengthMap.TryGetValue(team.Id, out int defaultStrength))
+            {
+                team.Strength = defaultStrength;
+            }
+        }
 
         _context.SaveChanges();
     }

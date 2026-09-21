@@ -11,7 +11,6 @@ import type { DrawResult } from '../../../types/drawResult';
 import type { Country } from '../../../types/country';
 import {
   createFallbackGroupDraw,
-  createFallbackMultiKnockoutDraw,
   createFallbackSingleKnockoutDraw,
   derivePots,
 } from '../../../services/helpers/tournamentExecutionUtils';
@@ -214,22 +213,41 @@ export function TournamentExecutionView({
 
           <h2 className="text-2xl font-bold mt-2">{activePhase.name}</h2>
 
-          <p className="text-xs text-blue-100 mt-0.5">
-            Tag: <span className="font-semibold">{activePhase.tag}</span>
+          <p className="text-xs text-blue-100 mt-0.5 flex items-center gap-1.5 flex-wrap">
+            <span>Tag: <span className="font-semibold">{activePhase.tag}</span></span>
             {' | '}
-            Teams Assigned: {activePhase.teams.length}
+            <span>Teams Assigned: {activePhase.teams.length}</span>
             {' | '}
-            Draw Mode:{' '}
-            <span className="font-semibold">
-              {isDrawBypassed ? 'Bypassed (Ranking Seeding)' : 'Manual Draw Enabled'}
-            </span>
+            <span>Draw Mode: <span className="font-semibold">{isDrawBypassed ? 'Bypassed (Ranking Seeding)' : 'Manual Draw Enabled'}</span></span>
           </p>
+
+          {/* Optional: Preview snippet of first few team flags if available */}
+          {activePhase.teams && activePhase.teams.length > 0 && (
+            <div className="flex items-center gap-1 mt-2 overflow-x-auto py-1 max-w-xl">
+              {activePhase.teams.slice(0, 8).map((team) => (
+                team.flag_url ? (
+                  <img
+                    key={team.id || team.name}
+                    src={team.flag_url}
+                    alt={team.name}
+                    title={team.name}
+                    className="w-5 h-3.5 object-cover rounded-xs shadow-xs shrink-0"
+                  />
+                ) : null
+              ))}
+              {activePhase.teams.length > 8 && (
+                <span className="text-[10px] text-blue-200 font-medium ml-1">
+                  +{activePhase.teams.length - 8} more
+                </span>
+              )}
+            </div>
+          )}
         </div>
 
         <button
           type="button"
           onClick={onExitExecution}
-          className="text-xs bg-blue-700 hover:bg-blue-800 text-white px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+          className="text-xs bg-blue-700 hover:bg-blue-800 text-white px-3 py-1.5 rounded-lg transition-colors cursor-pointer shrink-0"
         >
           ✕ Exit Execution
         </button>
@@ -366,27 +384,26 @@ export function TournamentExecutionView({
             )}
             
             {activePhase.type === PhaseType.MultiBranchKnockoutStage && (
-            <MultiKnockoutExecutionView
-              phase={activePhase as MultiKnockoutPhase}
-              pathAssignments={
-                drawResult && drawResult.type === 'MULTI_KNOCKOUT'
-                  ? drawResult.pathAssignments
-                  : {}
-              }
-              onComplete={(data) => {
-                handleSimulationComplete({
-                  phaseId: activePhase.id,
-                  phaseType: PhaseType.MultiBranchKnockoutStage,
-                  // Map multi-path winners into your phase completion format
-                  knockoutWinners: Object.values(data.pathWinners).flatMap((w) => [
-                    w.champion,
-                    w.runnerUp,
-                    ...(w.thirdPlace ? [w.thirdPlace] : []),
-                  ]),
-                });
-              }}
-            />
-          )}
+              <MultiKnockoutExecutionView
+                phase={activePhase as MultiKnockoutPhase}
+                pathAssignments={
+                  drawResult && drawResult.type === 'MULTI_KNOCKOUT'
+                    ? drawResult.pathAssignments
+                    : {}
+                }
+                onComplete={(data) => {
+                  handleSimulationComplete({
+                    phaseId: activePhase.id,
+                    phaseType: PhaseType.MultiBranchKnockoutStage,
+                    knockoutWinners: Object.values(data.pathWinners).flatMap((w) => [
+                      w.champion,
+                      w.runnerUp,
+                      ...(w.thirdPlace ? [w.thirdPlace] : []),
+                    ]),
+                  });
+                }}
+              />
+            )}
           </div>
         )}
       </div>

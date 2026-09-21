@@ -3,10 +3,10 @@ import { SingleKnockoutSimulationUtils } from "../../../../services/helpers/sing
 import type { Country } from "../../../../types/country";
 import type { MultiKnockoutPhase } from "../../../../types/tournamentConfiguration";
 import { MultiKnockoutSimulationUtils } from "../../../../services/helpers/multiKnockoutSimulationUtils";
-import { SimulationEngine } from "../../../../services/simulationService";
 import type { KnockoutMatchup } from "../../../../types/knockoutMatchup";
 import type { PathState } from "../../../../types/multiKnockoutPathState";
 import { PathMatchCard } from "../../multiKnockoutStage/PathMatchCard";
+import { KnockoutSimulationEngine } from "../../../../services/knockoutSimulationService";
 
 interface Props {
   phase: MultiKnockoutPhase;
@@ -45,7 +45,7 @@ export function MultiKnockoutExecutionView({
         return prev;
       }
 
-      const simulated = SimulationEngine.simulateKnockoutMatch(targetMatch, legs);
+      const simulated = KnockoutSimulationEngine.simulateKnockoutMatch(targetMatch, legs);
 
       const updatedMatches = currentPath.matches.map((m) =>
         m.id === matchId ? simulated : m
@@ -71,7 +71,7 @@ export function MultiKnockoutExecutionView({
       for (let i = 0; i < currentMatches.length; i++) {
         const m = currentMatches[i];
         if (!m.isPlayed && m.teamA && m.teamB) {
-          currentMatches[i] = SimulationEngine.simulateKnockoutMatch(m, legs);
+          currentMatches[i] = KnockoutSimulationEngine.simulateKnockoutMatch(m, legs);
           currentMatches = SingleKnockoutSimulationUtils.propagateWinners(currentMatches);
           playableFound = true;
           break;
@@ -259,6 +259,7 @@ export function MultiKnockoutExecutionView({
                         match={m}
                         legs={legs}
                         onPlay={() => handlePlayMatch(activeTab, m.id)}
+                        isThirdPlace
                       />
                     ))}
                   </div>

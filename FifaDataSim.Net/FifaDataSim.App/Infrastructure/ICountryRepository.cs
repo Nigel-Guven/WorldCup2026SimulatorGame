@@ -9,5 +9,6 @@ public interface ICountryRepository
     IEnumerable<Country> GetTeamsByConfederation(Confederation confederation);
     Country? GetTeamById(string id);
     void UpdateTeamStats(MatchUpdateDto matchUpdate);
+    void RefreshTeamStrength();
 
 }

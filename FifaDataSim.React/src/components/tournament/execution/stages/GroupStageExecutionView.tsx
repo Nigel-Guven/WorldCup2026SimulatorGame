@@ -2,12 +2,12 @@ import { useState, useMemo, type JSX } from 'react';
 import { GroupSimulationUtils, type Fixture } from '../../../../services/helpers/groupSimulationUtils';
 import type { Country } from '../../../../types/country';
 import type { GroupStagePhase } from '../../../../types/tournamentConfiguration';
-import { SimulationEngine } from '../../../../services/simulationService';
 import type { MatchUpdateDto } from '../../../../types/MatchUpdateDto';
 import { updateTeamStats } from '../../../../services/teamService';
 import { GroupTable } from '../../groupStage/GroupTable';
 import { WildcardTable } from '../../groupStage/WildcardTable';
 import { FixtureItem } from '../../groupStage/FixtureItem';
+import { GroupMatchSimulationEngine } from '../../../../services/groupMatchSimulationService';
 
 interface GroupStageExecutionViewProps {
   phase: GroupStagePhase;
@@ -56,7 +56,7 @@ export function GroupStageExecutionView({
     const nextMatch = fixtures.find((f) => !f.isPlayed && f.homeTeam && f.awayTeam);
     if (!nextMatch?.homeTeam || !nextMatch?.awayTeam) return;
 
-    const score = SimulationEngine.simulateMatch(nextMatch.homeTeam, nextMatch.awayTeam);
+    const score = GroupMatchSimulationEngine.simulateMatch(nextMatch.homeTeam, nextMatch.awayTeam);
 
     const matchUpdate: MatchUpdateDto = {
       homeTeamId: nextMatch.homeTeam.id,
@@ -87,7 +87,7 @@ export function GroupStageExecutionView({
     setFixtures((prev) =>
       prev.map((f) => {
         if (f.isPlayed || !f.homeTeam || !f.awayTeam) return f;
-        const score = SimulationEngine.simulateMatch(f.homeTeam, f.awayTeam);
+        const score = GroupMatchSimulationEngine.simulateMatch(f.homeTeam, f.awayTeam);
         return { ...f, homeScore: score.home, awayScore: score.away, isPlayed: true };
       })
     );
@@ -189,6 +189,7 @@ export function GroupStageExecutionView({
                   directAdvanceCount={directAdvanceCount}
                   wildcardIndex={wildcardIndex}
                   wildcardCount={wildcardCount}
+                  legs={legs}
                 />
               ))}
             </div>
@@ -202,6 +203,7 @@ export function GroupStageExecutionView({
               standings={standings}
               fixtures={fixtures}
               directAdvanceCount={directAdvanceCount}
+              legs={legs}
             />
           )}
         </div>

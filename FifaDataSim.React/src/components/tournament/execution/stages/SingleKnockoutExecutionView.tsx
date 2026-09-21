@@ -3,8 +3,8 @@ import { SingleKnockoutSimulationUtils } from '../../../../services/helpers/sing
 import type { Country } from '../../../../types/country';
 import type { SingleKnockoutPhase } from '../../../../types/tournamentConfiguration';
 import type { KnockoutMatchup } from '../../../../types/knockoutMatchup';
-import { SimulationEngine } from '../../../../services/simulationService';
-import { KnockoutMatchCard } from '../../singleKnockoutStage/KnockoutMatchCard';
+import { KnockoutSimulationEngine } from '../../../../services/knockoutSimulationService';
+import { PathMatchCard } from '../../multiKnockoutStage/PathMatchCard';
 
 interface SingleKnockoutExecutionViewProps {
   phase: SingleKnockoutPhase;
@@ -51,7 +51,7 @@ export function SingleKnockoutExecutionView({
       const target = prev.find((m) => m.id === matchId);
       if (!target || !target.teamA || !target.teamB || target.isPlayed) return prev;
 
-      const simulated = SimulationEngine.simulateKnockoutMatch(target, legs);
+      const simulated = KnockoutSimulationEngine.simulateKnockoutMatch(target, legs);
       const updatedList = prev.map((m) => (m.id === matchId ? simulated : m));
 
       return SingleKnockoutSimulationUtils.propagateWinners(updatedList);
@@ -68,7 +68,7 @@ export function SingleKnockoutExecutionView({
         if (!m.isPlayed && m.teamA && m.teamB) {
           current = current.map((match) =>
             match.id === m.id
-              ? SimulationEngine.simulateKnockoutMatch(match, legs)
+              ? KnockoutSimulationEngine.simulateKnockoutMatch(match, legs)
               : match
           );
           updatedAny = true;
@@ -92,7 +92,7 @@ export function SingleKnockoutExecutionView({
         for (let i = 0; i < current.length; i++) {
           const m = current[i];
           if (!m.isPlayed && m.teamA && m.teamB) {
-            current[i] = SimulationEngine.simulateKnockoutMatch(m, legs);
+            current[i] = KnockoutSimulationEngine.simulateKnockoutMatch(m, legs);
             current = SingleKnockoutSimulationUtils.propagateWinners(current);
             playableFound = true;
             break;
@@ -127,6 +127,31 @@ export function SingleKnockoutExecutionView({
   const rounds = Array.from(
     new Set(matches.filter((m) => !m.isThirdPlaceMatch).map((m) => m.roundIndex))
   ).sort((a, b) => a - b);
+
+  // Split rounds into Left and Right sides (Excluding the Final, which is the last round)
+  const earlyRounds = rounds.slice(0, -1);
+
+  // First half of matches go to the left bracket
+  const leftColumns = earlyRounds.map((roundIdx) => {
+    const roundMatches = matches.filter((m) => m.roundIndex === roundIdx && !m.isThirdPlaceMatch);
+    const half = Math.ceil(roundMatches.length / 2);
+    return {
+      roundIdx,
+      name: roundMatches[0]?.roundName || `Round ${roundIdx + 1}`,
+      matches: roundMatches.slice(0, half),
+    };
+  });
+
+  // Second half of matches go to the right bracket (Ordered backwards to flow right-to-left)
+  const rightColumns = [...earlyRounds].reverse().map((roundIdx) => {
+    const roundMatches = matches.filter((m) => m.roundIndex === roundIdx && !m.isThirdPlaceMatch);
+    const half = Math.ceil(roundMatches.length / 2);
+    return {
+      roundIdx,
+      name: roundMatches[0]?.roundName || `Round ${roundIdx + 1}`,
+      matches: roundMatches.slice(half),
+    };
+  });
 
   return (
     <div className="space-y-8">
@@ -175,49 +200,85 @@ export function SingleKnockoutExecutionView({
         </div>
       </div>
 
-      {/* Bracket Tree Columns */}
-      <div className="overflow-x-auto pb-4">
-        <div className="flex items-start gap-8 min-w-[800px]">
-          {rounds.map((roundIdx) => {
-            const roundMatches = matches.filter(
-              (m) => m.roundIndex === roundIdx && !m.isThirdPlaceMatch
-            );
-            const roundName = roundMatches[0]?.roundName || `Round ${roundIdx + 1}`;
-
-            return (
-              <div key={roundIdx} className="flex-1 flex flex-col space-y-4">
-                <h4 className="font-bold text-xs text-center text-gray-500 uppercase tracking-wider bg-gray-100 py-1.5 rounded-lg">
-                  {roundName}
-                </h4>
-
-                <div className="flex flex-col justify-around flex-1 space-y-6">
-                  {roundMatches.map((m) => (
-                    <KnockoutMatchCard
-                      key={m.id}
-                      match={m}
-                      legs={legs}
-                      onPlay={() => handlePlayMatch(m.id)}
-                    />
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-
-          {/* 3rd Place Match Sidebar Column */}
-          {thirdPlaceMatch && (
-            <div className="w-64 flex flex-col space-y-4">
-              <h4 className="font-bold text-xs text-center text-amber-700 uppercase tracking-wider bg-amber-100 py-1.5 rounded-lg">
-                Bronze Medal
+      {/* Center-Focused Bracket Tree */}
+      <div className="overflow-x-auto pb-8 w-full custom-scrollbar">
+        {/* items-stretch ensures all columns match the height of the tallest column, 
+            allowing justify-around to vertically center matches exactly between their feeders */}
+        <div className="flex items-stretch justify-center gap-8 min-w-max mx-auto px-6 pt-4">
+          
+          {/* LEFT WING */}
+          {leftColumns.map((col) => (
+            <div key={`left-${col.roundIdx}`} className="flex flex-col w-[320px]">
+              <h4 className="font-bold text-xs text-center text-gray-500 uppercase tracking-wider bg-gray-100 py-1.5 rounded-lg mb-4 shrink-0">
+                {col.name}
               </h4>
-              <KnockoutMatchCard
-                match={thirdPlaceMatch}
-                legs={legs}
-                onPlay={() => handlePlayMatch(thirdPlaceMatch.id)}
-                isThirdPlace
-              />
+              <div className="flex flex-col justify-around flex-1 gap-6">
+                {col.matches.map((m) => (
+                  <PathMatchCard
+                    key={m.id}
+                    match={m}
+                    legs={legs}
+                    onPlay={() => handlePlayMatch(m.id)}
+                  />
+                ))}
+              </div>
             </div>
-          )}
+          ))}
+
+          {/* CENTER WING (Final & 3rd Place) */}
+          <div className="flex flex-col w-[360px] mx-2">
+            <div className="flex flex-col justify-center flex-1 gap-12 relative">
+              
+              {finalMatch && (
+                <div className="flex flex-col bg-amber-50/20 border border-amber-200/60 p-3 rounded-2xl shadow-sm relative">
+                  <h4 className="font-bold text-sm text-center text-amber-700 uppercase tracking-wider bg-amber-100/70 py-2 rounded-xl mb-4 shrink-0">
+                    🏆 Grand Final
+                  </h4>
+                  <PathMatchCard
+                    match={finalMatch}
+                    legs={legs}
+                    onPlay={() => handlePlayMatch(finalMatch.id)}
+                  />
+                </div>
+              )}
+
+              {thirdPlaceMatch && (
+                <div className="flex flex-col bg-slate-50 border border-slate-200 p-3 rounded-2xl shadow-sm relative">
+                  <h4 className="font-bold text-xs text-center text-slate-600 uppercase tracking-wider bg-slate-200 py-1.5 rounded-lg mb-3 shrink-0">
+                    🥉 Third Place
+                  </h4>
+                  <PathMatchCard
+                    match={thirdPlaceMatch}
+                    legs={legs}
+                    onPlay={() => handlePlayMatch(thirdPlaceMatch.id)}
+                    // @ts-ignore - Ensure prop exists if your card expects it for styling
+                    isThirdPlace={true} 
+                  />
+                </div>
+              )}
+              
+            </div>
+          </div>
+
+          {/* RIGHT WING */}
+          {rightColumns.map((col) => (
+            <div key={`right-${col.roundIdx}`} className="flex flex-col w-[320px]">
+              <h4 className="font-bold text-xs text-center text-gray-500 uppercase tracking-wider bg-gray-100 py-1.5 rounded-lg mb-4 shrink-0">
+                {col.name}
+              </h4>
+              <div className="flex flex-col justify-around flex-1 gap-6">
+                {col.matches.map((m) => (
+                  <PathMatchCard
+                    key={m.id}
+                    match={m}
+                    legs={legs}
+                    onPlay={() => handlePlayMatch(m.id)}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+
         </div>
       </div>
     </div>

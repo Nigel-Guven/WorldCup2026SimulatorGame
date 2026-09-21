@@ -37,6 +37,7 @@ export interface QualificationStatusOptions {
   directAdvanceCount: number;
   wildcardPosition: number;
   wildcardCount: number;
+  legs: number;
 }
 
 export interface QualificationContext {
@@ -260,8 +261,153 @@ export class GroupSimulationUtils {
 
     const teamKey = getTeamKey(team);
 
-    const getRemainingMatches = (candidate: Country): Fixture[] => {
-      const candidateKey = getTeamKey(candidate);
+    /*
+    * Find the group containing this team.
+    */
+    const currentGroupEntry = Object.entries(
+      standings
+    ).find(([, rows]) =>
+      rows.some(
+        (row) =>
+          getTeamKey(row.team) === teamKey
+      )
+    );
+
+    if (!currentGroupEntry) {
+      return "undecided";
+    }
+
+    const [, groupRows] = currentGroupEntry;
+
+    const teamRow = groupRows.find(
+      (row) =>
+        getTeamKey(row.team) === teamKey
+    );
+
+    if (!teamRow) {
+      return "undecided";
+    }
+
+    /*
+    * =========================================================
+    * 1. CHECK WHETHER THE GROUP IS COMPLETED
+    * =========================================================
+    *
+    * Once every fixture involving teams in this group has
+    * been played, there is no longer any mathematical
+    * possibility to move positions.
+    *
+    * At that point we MUST use the actual table position.
+    *
+    * This is especially important when teams are tied on
+    * points and GD/tie-breakers determine their final order.
+    *
+    * Example:
+    *
+    *   3 Karen State      14 pts, +6 GD -> X
+    *   4 Saint Helena     14 pts,  0 GD -> E
+    *
+    * Both have 14 points, but Karen State is officially 3rd.
+    */
+
+    const groupTeamKeys = new Set(
+      groupRows.map((row) =>
+        getTeamKey(row.team)
+      )
+    );
+
+    const groupFixtures = fixtures.filter(
+      (fixture) => {
+        if (
+          !fixture.homeTeam ||
+          !fixture.awayTeam
+        ) {
+          return false;
+        }
+
+        const homeKey =
+          getTeamKey(fixture.homeTeam);
+
+        const awayKey =
+          getTeamKey(fixture.awayTeam);
+
+        return (
+          groupTeamKeys.has(homeKey) &&
+          groupTeamKeys.has(awayKey)
+        );
+      }
+    );
+
+    const groupHasUnplayedFixtures =
+      groupFixtures.some(
+        (fixture) => !fixture.isPlayed
+      );
+
+    /*
+    * The standings array is already ordered according
+    * to the competition's current tie-break rules.
+    */
+    if (!groupHasUnplayedFixtures) {
+      const finalRank =
+        groupRows.findIndex(
+          (row) =>
+            getTeamKey(row.team) === teamKey
+        ) + 1;
+
+      /*
+      * Direct qualification.
+      */
+      if (
+        finalRank > 0 &&
+        finalRank <= directAdvanceCount
+      ) {
+        return "qualified";
+      }
+
+      /*
+      * Wildcard qualification route.
+      *
+      * IMPORTANT:
+      * X means the team occupies the wildcard position.
+      * It does NOT mean the team has won the wildcard.
+      */
+      if (
+        wildcardCount > 0 &&
+        wildcardPosition > directAdvanceCount &&
+        finalRank === wildcardPosition
+      ) {
+        return "wildcard";
+      }
+
+      /*
+      * Everyone below the wildcard position is eliminated.
+      */
+      if (
+        wildcardCount > 0 &&
+        wildcardPosition > directAdvanceCount &&
+        finalRank > wildcardPosition
+      ) {
+        return "eliminated";
+      }
+
+      /*
+      * If there is no wildcard route, anyone outside the
+      * direct positions is eliminated.
+      */
+      return "eliminated";
+    }
+
+    /*
+    * =========================================================
+    * 2. GROUP IS STILL IN PROGRESS
+    * =========================================================
+    */
+
+    const getRemainingMatches = (
+      candidate: Country
+    ): Fixture[] => {
+      const candidateKey =
+        getTeamKey(candidate);
 
       return fixtures.filter(
         (fixture) =>
@@ -269,131 +415,185 @@ export class GroupSimulationUtils {
           fixture.homeTeam &&
           fixture.awayTeam &&
           (
-            getTeamKey(fixture.homeTeam) === candidateKey ||
-            getTeamKey(fixture.awayTeam) === candidateKey
+            getTeamKey(fixture.homeTeam) ===
+              candidateKey ||
+            getTeamKey(fixture.awayTeam) ===
+              candidateKey
           )
       );
     };
 
-    const getMaximumPoints = (row: GroupStandingRow): number => {
-      const remainingMatches = getRemainingMatches(row.team).length;
+    const getMaximumPoints = (
+      row: GroupStandingRow
+    ): number => {
+      const remainingMatches =
+        getRemainingMatches(row.team).length;
 
-      return row.points + remainingMatches * 3;
+      return (
+        row.points +
+        remainingMatches * 3
+      );
     };
 
-    const currentGroupEntry = Object.entries(standings).find(
-      ([, rows]) =>
-        rows.some(
-          (row) => getTeamKey(row.team) === teamKey
-        )
-    );
+    const teamMaximumPoints =
+      getMaximumPoints(teamRow);
 
-    if (!currentGroupEntry) {
-      return 'undecided';
-    }
+    /*
+    * =========================================================
+    * 3. IS DIRECT QUALIFICATION GUARANTEED?
+    * =========================================================
+    *
+    * For a team to be guaranteed a direct place, fewer than
+    * directAdvanceCount teams must be capable of finishing
+    * above it.
+    *
+    * We use the team's CURRENT points here because the team
+    * could theoretically gain zero more points.
+    *
+    * A team currently tied with us and already above us in
+    * the table is also treated as being ahead.
+    */
 
-    const [groupKey, groupRows] = currentGroupEntry;
-
-    const teamRow = groupRows.find(
-      (row) => getTeamKey(row.team) === teamKey
-    );
-
-    if (!teamRow) {
-      return 'undecided';
-    }
-
-    const teamMaximumPoints = getMaximumPoints(teamRow);
-
-    const teamsThatCanDefinitelyFinishAbove = groupRows.filter(
-      (other) => {
-        if (getTeamKey(other.team) === teamKey) {
+    const teamsThatCanFinishAboveDirect =
+      groupRows.filter((other) => {
+        if (
+          getTeamKey(other.team) === teamKey
+        ) {
           return false;
         }
 
-        return getMaximumPoints(other) > teamMaximumPoints;
-      }
-    ).length;
+        const otherMaximumPoints =
+          getMaximumPoints(other);
 
-    const cannotDirectQualify =
-      teamsThatCanDefinitelyFinishAbove >= directAdvanceCount;
-
-    const teamsThatCanCatchTeam = groupRows.filter(
-      (other) => {
-        if (getTeamKey(other.team) === teamKey) {
-          return false;
+        /*
+        * Other team already has more points.
+        */
+        if (
+          other.points >
+          teamRow.points
+        ) {
+          return true;
         }
 
-        return getMaximumPoints(other) >= teamRow.points;
-      }
-    ).length;
+        /*
+        * Same current points, but currently above us
+        * according to the standings/tie-break order.
+        */
+        if (
+          other.points ===
+          teamRow.points
+        ) {
+          const otherIndex =
+            groupRows.indexOf(other);
+
+          const teamIndex =
+            groupRows.indexOf(teamRow);
+
+          if (
+            otherIndex < teamIndex
+          ) {
+            return true;
+          }
+        }
+
+        /*
+        * Other team can reach or exceed our current points
+        * from below.
+        */
+        return (
+          otherMaximumPoints >
+          teamRow.points
+        );
+      }).length;
 
     const guaranteedDirectQualification =
-      teamsThatCanCatchTeam < directAdvanceCount;
+      teamsThatCanFinishAboveDirect <
+      directAdvanceCount;
 
     if (guaranteedDirectQualification) {
-      return 'qualified';
+      return "qualified";
     }
 
-    if (wildcardPosition <= 0 || wildcardCount <= 0) {
-      return cannotDirectQualify
-        ? 'eliminated'
-        : 'undecided';
-    }
+    /*
+    * =========================================================
+    * 4. CAN DIRECT QUALIFICATION STILL HAPPEN?
+    * =========================================================
+    *
+    * Now we look at the team's MAXIMUM possible points.
+    *
+    * If enough teams are already guaranteed to finish above
+    * that maximum, the team can no longer reach a direct
+    * qualification position.
+    */
 
-    const teamsThatCanFinishAboveWildcardPosition =
+    const teamsGuaranteedAboveMaximum =
       groupRows.filter((other) => {
-        if (getTeamKey(other.team) === teamKey) {
+        if (
+          getTeamKey(other.team) === teamKey
+        ) {
           return false;
         }
 
-        return getMaximumPoints(other) > teamMaximumPoints;
+        return (
+          other.points >
+          teamMaximumPoints
+        );
       }).length;
 
-    const canReachWildcardPosition =
-      teamsThatCanFinishAboveWildcardPosition < wildcardPosition;
+    const canStillDirectQualify =
+      teamsGuaranteedAboveMaximum <
+      directAdvanceCount;
 
-    if (!canReachWildcardPosition) {
-      return 'eliminated';
+    /*
+    * Direct qualification is still possible.
+    *
+    * Therefore do NOT show X yet.
+    */
+    if (canStillDirectQualify) {
+      return "undecided";
     }
 
-    const wildcardCandidates = Object.entries(standings)
-      .flatMap(([candidateGroupKey, rows]) => {
-        return rows
-          .filter((row) => {
+    /*
+    * =========================================================
+    * 5. CAN STILL REACH THE WILDCARD POSITION?
+    * =========================================================
+    *
+    * The wildcard position is a position in EACH GROUP.
+    *
+    * With:
+    *
+    *   directAdvanceCount = 2
+    *   wildcardPosition = 3
+    *
+    * a team must still be capable of finishing 3rd.
+    *
+    * If fewer than 3 teams are guaranteed to finish above
+    * its maximum possible points, it can still reach 3rd.
+    */
 
-            const candidateMaximumPoints =
-              getMaximumPoints(row);
+    if (
+      wildcardCount > 0 &&
+      wildcardPosition > directAdvanceCount
+    ) {
+      const canReachWildcardPosition =
+        teamsGuaranteedAboveMaximum <
+        wildcardPosition;
 
-            const teamsAboveCandidate =
-              rows.filter(
-                (other) =>
-                  getTeamKey(other.team) !==
-                    getTeamKey(row.team) &&
-                  getMaximumPoints(other) >
-                    candidateMaximumPoints
-              ).length;
-
-            return teamsAboveCandidate < wildcardPosition;
-          })
-          .map((row) => ({
-            groupKey: candidateGroupKey,
-            row,
-          }));
-      });
-
-    const wildcardTeamsThatCanFinishAhead =
-      wildcardCandidates.filter(({ row }) => {
-        if (getTeamKey(row.team) === teamKey) {
-          return false;
-        }
-
-        return getMaximumPoints(row) >= teamRow.points;
-      }).length;
-
-    if (wildcardTeamsThatCanFinishAhead < wildcardCount) {
-      return 'wildcard';
+      if (canReachWildcardPosition) {
+        return "wildcard";
+      }
     }
 
-    return 'undecided';
+    /*
+    * =========================================================
+    * 6. ELIMINATED
+    * =========================================================
+    *
+    * Cannot reach a direct position and cannot reach the
+    * wildcard position.
+    */
+
+    return "eliminated";
   }
+
 }

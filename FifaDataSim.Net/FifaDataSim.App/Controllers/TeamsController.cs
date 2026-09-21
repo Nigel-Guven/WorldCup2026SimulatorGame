@@ -46,4 +46,12 @@ public class TeamsController(ICountryRepository repository) : ControllerBase
     
         return NoContent();
     }
+    
+    [HttpPatch("stats/refresh-strength")]
+    public IActionResult RefreshTeamStrength()
+    {
+        repository.RefreshTeamStrength();
+    
+        return NoContent();
+    }
 }

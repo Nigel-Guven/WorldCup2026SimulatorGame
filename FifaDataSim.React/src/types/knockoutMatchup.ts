@@ -18,6 +18,6 @@ export interface KnockoutMatchup {
   leg1ScoreB?: number | null;
   leg2ScoreA?: number | null;
   leg2ScoreB?: number | null;
-  penaltiesA?: number | null;
-  penaltiesB?: number | null;
+  penaltiesA?: string[] | null;
+  penaltiesB?: string[] | null;
 }

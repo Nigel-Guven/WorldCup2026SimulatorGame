@@ -1420,13 +1420,156 @@
   },
   {
     "id": "sei",
-    "name": "Sentinel Islands",
+    "name": "Sentinel Island",
     "short_name": "SEI",
     "confederation": "AFC",
     "football_association": "Sentinelese Football Federation",
     "default_points": 524,
     "strength": 6,
     "flag_url": "/flags/sentinel.png",
-    "home_stadium": "Ultras Stadium"
+    "home_stadium": "Ultras Arena"
+  },
+  {
+    "id": "raj",
+    "name": "Rajasthan",
+    "short_name": "RAJ",
+    "confederation": "AFC",
+    "football_association": "Rajasthani Football Federation",
+    "default_points": 742,
+    "strength": 23,
+    "flag_url": "/flags/rajasthan.png",
+    "home_stadium": "Indira Gandhi Stadium"
+  },
+  {
+    "id": "rho",
+    "name": "Rhodos",
+    "short_name": "RHO",
+    "confederation": "UEFA",
+    "football_association": "Rhodian Football Federation",
+    "default_points": 694,
+    "strength": 21,
+    "flag_url": "/flags/rhodos.png",
+    "home_stadium": "Diagoras Stadium"
+  },
+  {
+    "id": "ant",
+    "name": "Antarctica",
+    "short_name": "ANT",
+    "confederation": "CONMEBOL",
+    "football_association": "South Pole Football Federation",
+    "default_points": 908,
+    "strength": 28,
+    "flag_url": "/flags/antarctica.png",
+    "home_stadium": "South Pole Stadium"
+  },
+  {
+    "id": "kch",
+    "name": "Kachin State",
+    "short_name": "KCH",
+    "confederation": "AFC",
+    "football_association": "Kachin Football Federation",
+    "default_points": 666,
+    "strength": 14,
+    "flag_url": "/flags/kachin.png",
+    "home_stadium": "Myitkyina Stadium"
+  },
+  {
+    "id": "ale",
+    "name": "Alberta Free State",
+    "short_name": "ALE",
+    "confederation": "CONCACAF",
+    "football_association": "Albertan Football Federation",
+    "default_points": 987,
+    "strength": 35,
+    "flag_url": "/flags/alberta.png",
+    "home_stadium": "Commonwealth Stadium"
+  },
+  {
+    "id": "yuk",
+    "name": "Yukon",
+    "short_name": "YUK",
+    "confederation": "CONCACAF",
+    "football_association": "Yukon Football Federation",
+    "default_points": 817,
+    "strength": 26,
+    "flag_url": "/flags/yukon.png",
+    "home_stadium": "F.H. Collins Stadium"
+  },
+  {
+    "id": "csa",
+    "name": "Confederate States",
+    "short_name": "CSA",
+    "confederation": "CONCACAF",
+    "football_association": "Confederacy Soccer Federation",
+    "default_points": 1094,
+    "strength": 39,
+    "flag_url": "/flags/confederate.png",
+    "home_stadium": "Sanford Stadium"
+  },
+  {
+    "id": "rio",
+    "name": "Riograndense Republic",
+    "short_name": "RIO",
+    "confederation": "CONMEBOL",
+    "football_association": "Riograndense Republican Football Federation",
+    "default_points": 904,
+    "strength": 32,
+    "flag_url": "/flags/riograndense.png",
+    "home_stadium": "Estádio Beira-Rio"
+  },
+  {
+    "id": "sib",
+    "name": "Siberia",
+    "short_name": "SIB",
+    "confederation": "AFC",
+    "football_association": "Siberia Football Federation",
+    "default_points": 642,
+    "strength": 18,
+    "flag_url": "/flags/siberia.png",
+    "home_stadium": "Novosibirsk Spartak Stadium"
+  },
+  {
+    "id": "bat",
+    "name": "Banat Republic",
+    "short_name": "BAT",
+    "confederation": "AFC",
+    "football_association": "Banatean Football Federation",
+    "default_points": 812,
+    "strength": 26,
+    "flag_url": "/flags/banat.png",
+    "home_stadium": "Dan Păltinișanu Stadium"
+  },
+  {
+    "id": "gas",
+    "name": "Gascony",
+    "short_name": "GAS",
+    "confederation": "AFC",
+    "football_association": "Gascon Football Federation",
+    "default_points": 1008,
+    "strength": 34,
+    "flag_url": "/flags/gascony.png",
+    "home_stadium": "Stade Atlantique"
+  },
+  {
+    "id": "acr",
+    "name": "Republic of Acre",
+    "short_name": "ACR",
+    "confederation": "CONMEBOL",
+    "football_association": "Acre Football Federation",
+    "default_points": 686,
+    "strength": 16,
+    "flag_url": "/flags/acre.png",
+    "home_stadium": "Arena da Floresta"
+  },
+  {
+    "id": "aqu",
+    "name": "Antioquia",
+    "short_name": "AQU",
+    "confederation": "CONMEBOL",
+    "football_association": "Antioquia Football Federation",
+    "default_points": 935,
+    "strength": 35,
+    "flag_url": "/flags/antioquia.png",
+    "home_stadium": "Atanasio Girardot Stadium"
   }
 ]

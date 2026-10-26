@@ -1,6 +1,5 @@
 // types/knockoutMatchup.ts
 import type { Country } from './country';
-
 export interface KnockoutMatchup {
   id: string;
   matchId: string;
@@ -13,11 +12,15 @@ export interface KnockoutMatchup {
   loser?: Country | null;
   isPlayed: boolean;
   isThirdPlaceMatch?: boolean;
-  
+
   leg1ScoreA?: number | null;
   leg1ScoreB?: number | null;
   leg2ScoreA?: number | null;
   leg2ScoreB?: number | null;
+
+  extraTimeScoreA?: number | null;
+  extraTimeScoreB?: number | null;
+
   penaltiesA?: string[] | null;
   penaltiesB?: string[] | null;
 }

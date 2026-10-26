@@ -66,6 +66,28 @@ public class CountryRepository : ICountryRepository
 
         homeTeam.Strength = (int)Math.Clamp(Math.Round(homeTeam.Strength + strengthChange), 3, 95);
         awayTeam.Strength = (int)Math.Clamp(Math.Round(awayTeam.Strength - strengthChange), 3, 95);
+        
+        char homeResult;
+        char awayResult;
+
+        if (matchUpdate.HomeTeamGoals > matchUpdate.AwayTeamGoals)
+        {
+            homeResult = 'W';
+            awayResult = 'L';
+        }
+        else if (matchUpdate.HomeTeamGoals < matchUpdate.AwayTeamGoals)
+        {
+            homeResult = 'L';
+            awayResult = 'W';
+        }
+        else
+        {
+            homeResult = 'D';
+            awayResult = 'D';
+        }
+
+        homeTeam.Form = AppendFormResult(homeTeam.Form, homeResult);
+        awayTeam.Form = AppendFormResult(awayTeam.Form, awayResult);
 
         await _context.SaveChangesAsync();
     }
@@ -116,5 +138,11 @@ public class CountryRepository : ICountryRepository
         }
 
         _context.SaveChanges();
+    }
+    
+    private static string AppendFormResult(string? currentForm, char result)
+    {
+        var newForm = (currentForm ?? string.Empty) + result;
+        return newForm.Length > 5 ? newForm[^5..] : newForm;
     }
 }

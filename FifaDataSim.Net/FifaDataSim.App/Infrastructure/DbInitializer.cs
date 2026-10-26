@@ -48,6 +48,7 @@ public static class DbInitializer
 
                     if (isValid)
                     {
+                        team.Form ??= string.Empty;
                         validTeams.Add(team);
                     }
                 }

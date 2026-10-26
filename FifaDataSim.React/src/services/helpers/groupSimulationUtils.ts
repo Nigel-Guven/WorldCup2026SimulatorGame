@@ -70,6 +70,7 @@ export class GroupSimulationUtils {
           strength: 0,
           home_stadium: '',
           form: '',
+          isStarred: false,
         };
 
         list.push(dummyBye);

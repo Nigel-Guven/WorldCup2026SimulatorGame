@@ -6,6 +6,35 @@ import {
 const getTeamKey = (team?: any): string =>
   team?.id ?? team?.name ?? "";
 
+// Helper to render form badges (e.g., WWDLW)
+const renderFormBadges = (form: string) => {
+  if (!form) return <span className="text-gray-300">-</span>;
+  
+  const formArray = typeof form === "string" ? form.split("") : form;
+
+  return (
+    <div className="flex items-center justify-center gap-1">
+      {formArray.map((result, i) => {
+        const char = result.toUpperCase();
+        let bgClass = "bg-gray-200 text-gray-700";
+        if (char === "W") bgClass = "bg-emerald-500 text-white";
+        else if (char === "D") bgClass = "bg-amber-400 text-white";
+        else if (char === "L") bgClass = "bg-rose-500 text-white";
+
+        return (
+          <span
+            key={i}
+            className={`w-4 h-4 rounded-[3px] text-[9px] font-bold flex items-center justify-center shadow-xs ${bgClass}`}
+            title={char === "W" ? "Win" : char === "D" ? "Draw" : "Loss"}
+          >
+            {char}
+          </span>
+        );
+      })}
+    </div>
+  );
+};
+
 export function GroupTable({
   groupKey,
   rows,
@@ -43,6 +72,7 @@ export function GroupTable({
             <tr className="border-b border-gray-100 text-gray-400 font-semibold uppercase text-[10px]">
               <th className="py-2 px-1 w-6">#</th>
               <th className="py-2 px-2">Team</th>
+              <th className="py-2 px-1 text-center">Form</th>
               <th className="py-2 px-1 text-center">P</th>
               <th className="py-2 px-1 text-center">W</th>
               <th className="py-2 px-1 text-center">D</th>
@@ -127,6 +157,11 @@ export function GroupTable({
                         )}  
                       </span>
                     </div>
+                  </td>
+
+                  {/* Form Column Cell */}
+                  <td className="py-2 px-1 text-center">
+                    {renderFormBadges(row.team?.form || row.form)}
                   </td>
 
                   <td className="py-2 px-1 text-center text-gray-500">

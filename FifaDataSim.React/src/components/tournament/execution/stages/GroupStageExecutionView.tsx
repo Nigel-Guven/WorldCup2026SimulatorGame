@@ -1,4 +1,4 @@
-import { useState, useMemo, type JSX } from 'react';
+import { useState, useMemo, type JSX, useEffect } from 'react';
 import { GroupSimulationUtils, type Fixture } from '../../../../services/helpers/groupSimulationUtils';
 import type { Country } from '../../../../types/country';
 import type { GroupStagePhase } from '../../../../types/tournamentConfiguration';
@@ -28,13 +28,20 @@ export function GroupStageExecutionView({
   const wildcardIndex = phase?.config?.wildcard_position ?? 0;
   const wildcardCount = phase?.config?.wildcard_teams_count ?? 0;
 
+  // 1. Hold groups in local state so we can mutate team forms on simulation
+  const [localGroups, setLocalGroups] = useState<Record<string, Country[]>>(() => groups);
+
+  useEffect(() => {
+    setLocalGroups(groups);
+  }, [groups]);
+
   const [fixtures, setFixtures] = useState<Fixture[]>(() =>
-    GroupSimulationUtils.generateGroupFixtures(groups, legs)
+    GroupSimulationUtils.generateGroupFixtures(localGroups, legs)
   );
 
   const standings = useMemo(
-    () => GroupSimulationUtils.computeGroupStandings(groups, fixtures),
-    [groups, fixtures]
+    () => GroupSimulationUtils.computeGroupStandings(localGroups, fixtures),
+    [localGroups, fixtures]
   );
 
   const wildcardStandings = useMemo(
@@ -66,8 +73,37 @@ export function GroupStageExecutionView({
       importance: 0.0
     };
 
+    const homeChar = score.home > score.away ? 'W' : score.home < score.away ? 'L' : 'D';
+    const awayChar = score.home < score.away ? 'W' : score.home > score.away ? 'L' : 'D';
+
+    const appendForm = (char: string, current?: string) => {
+      const f = current ?? '';
+      const updated = f + char;
+      return updated.length > 5 ? updated.slice(-5) : updated;
+    };
+
     try {
       await updateTeamStats(matchUpdate);
+
+      // Update local groups state by finding the freshest form string for each team
+      setLocalGroups((prevGroups) => {
+        const nextGroups: Record<string, Country[]> = {};
+        
+        for (const [gKey, teamList] of Object.entries(prevGroups)) {
+          nextGroups[gKey] = teamList.map((team) => {
+            if (team.id === nextMatch.homeTeam!.id) {
+              return { ...team, form: appendForm(homeChar, team.form) };
+            }
+            if (team.id === nextMatch.awayTeam!.id) {
+              return { ...team, form: appendForm(awayChar, team.form) };
+            }
+            return team;
+          });
+        }
+        return nextGroups;
+      });
+
+      // Mark fixture as played
       setFixtures((prev) =>
         prev.map((f) =>
           f.id === nextMatch.id
@@ -81,6 +117,7 @@ export function GroupStageExecutionView({
   };
 
   const handleSimulateAll = () => {
+    // Note: If you want 'Simulate All' to also update forms, apply similar batch state logic here
     setFixtures((prev) =>
       prev.map((f) => {
         if (f.isPlayed || !f.homeTeam || !f.awayTeam) return f;
@@ -91,6 +128,7 @@ export function GroupStageExecutionView({
   };
 
   const handleReset = () => {
+    setLocalGroups(groups);
     setFixtures(GroupSimulationUtils.generateGroupFixtures(groups, legs));
   };
 
@@ -171,7 +209,7 @@ export function GroupStageExecutionView({
 
       {/* Main Grid: Standings (9 cols) + Fixtures (3 cols) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Left Side: Group Tables + Wildcard Ranking (Expanded to 9 columns) */}
+        {/* Left Side: Group Tables + Wildcard Ranking */}
         <div className="lg:col-span-9 space-y-6">
           <h4 className="font-bold text-sm text-gray-700 uppercase tracking-wider">Group Tables</h4>
           <div className="space-y-6 max-h-[850px] overflow-y-auto pr-1">
@@ -205,7 +243,7 @@ export function GroupStageExecutionView({
           )}
         </div>
 
-        {/* Right Side: Interactive Match Fixtures List (Slimmed down to 3 columns) */}
+        {/* Right Side: Interactive Match Fixtures List */}
         <div className="lg:col-span-3 space-y-4">
           <h4 className="font-bold text-sm text-gray-700 uppercase tracking-wider">Match Fixtures</h4>
           <div className="space-y-2.5 max-h-[850px] overflow-y-auto pr-1">

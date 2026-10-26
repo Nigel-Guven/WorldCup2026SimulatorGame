@@ -15,6 +15,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         {
             entity.HasKey(c => c.Id);
             entity.Property(c => c.Confederation).HasConversion<string>();
+            
+            entity.Property(c => c.Form)
+                .HasMaxLength(5)
+                .HasDefaultValue("");
         });
     }
 }

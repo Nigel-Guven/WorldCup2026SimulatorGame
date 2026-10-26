@@ -2,12 +2,19 @@ import type { Country } from "../../types/country";
 import type { KnockoutMatchup } from "../../types/knockoutMatchup";
 
 export const DrawUtils = {
-  /** Generates path or group key letters: 0 -> "A", 1 -> "B", etc. */
+
   getGroupKey(index: number): string {
-    return String.fromCharCode(65 + index);
+    let result = '';
+    let temp = index;
+    
+    while (temp >= 0) {
+        result = String.fromCharCode(65 + (temp % 26)) + result;
+        temp = Math.floor(temp / 26) - 1;
+    }
+    
+    return result; 
   },
 
-  /** Distributes array of items round-robin across N buckets */
   roundRobinDistribute(teams: Country[], bucketCount: number): Record<string, Country[]> {
     const buckets: Record<string, Country[]> = {};
     for (let i = 0; i < bucketCount; i++) {

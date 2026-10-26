@@ -255,71 +255,71 @@ export function TournamentExecutionView({
   return (
     <div className="w-full px-4 sm:px-6 bg-white border-2 border-blue-500 rounded-2xl shadow-lg overflow-hidden">
       {/* Header Bar */}
-      <div className="bg-blue-600 text-white p-5 flex justify-between items-center">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold uppercase tracking-wider bg-blue-700 px-2.5 py-1 rounded-md text-blue-100">
-              Phase {currentPhaseIndex + 1} of {phases.length}
-            </span>
-            <span
-              className={`text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md ${
-                stage === 'DRAW'
-                  ? 'bg-amber-500 text-white'
+      <div className="bg-blue-600 text-white p-8 flex flex-col gap-6">
+        <div className="flex justify-between items-start">
+          <div>
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-semibold uppercase tracking-wider bg-blue-700 px-3 py-1.5 rounded-lg text-blue-100">
+                Phase {currentPhaseIndex + 1} of {phases.length}
+              </span>
+              <span
+                className={`text-sm font-semibold uppercase tracking-wider px-3 py-1.5 rounded-lg ${
+                  stage === 'DRAW'
+                    ? 'bg-amber-500 text-white'
+                    : isPhaseCompleted
+                    ? 'bg-emerald-600 text-white'
+                    : 'bg-blue-800 text-blue-100'
+                }`}
+              >
+                {stage === 'DRAW'
+                  ? 'FIFA-Style Draw'
                   : isPhaseCompleted
-                  ? 'bg-emerald-600 text-white'
-                  : 'bg-blue-800 text-blue-100'
-              }`}
-            >
-              {stage === 'DRAW'
-                ? 'FIFA-Style Draw'
-                : isPhaseCompleted
-                ? 'Phase Completed'
-                : isDrawBypassed
-                ? 'Direct Seeding (Pre-assigned)'
-                : 'In Simulation'}
-            </span>
+                  ? 'Phase Completed'
+                  : isDrawBypassed
+                  ? 'Direct Seeding (Pre-assigned)'
+                  : 'In Simulation'}
+              </span>
+            </div>
+
+            <h2 className="text-4xl font-extrabold mt-3">{activePhase.name}</h2>
+
+            <p className="text-xl text-blue-100 mt-2 flex items-center gap-2 flex-wrap">
+              <span>Tag: <span className="font-semibold">{activePhase.tag}</span></span>
+              {' | '}
+              <span>Teams Assigned: {modifiedTeams.length}</span>
+              {' | '}
+              <span>Draw Mode: <span className="font-semibold">{isDrawBypassed ? 'Bypassed (Ranking Seeding)' : 'Manual Draw Enabled'}</span></span>
+            </p>
           </div>
 
-          <h2 className="text-2xl font-bold mt-2">{activePhase.name}</h2>
+          <button
+            type="button"
+            onClick={onExitExecution}
+            className="text-sm bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-xl transition-colors cursor-pointer shrink-0 font-medium"
+          >
+            ✕ Exit Execution
+          </button>
+        </div>
 
-          <p className="text-xs text-blue-100 mt-0.5 flex items-center gap-1.5 flex-wrap">
-            <span>Tag: <span className="font-semibold">{activePhase.tag}</span></span>
-            {' | '}
-            <span>Teams Assigned: {modifiedTeams.length}</span>
-            {' | '}
-            <span>Draw Mode: <span className="font-semibold">{isDrawBypassed ? 'Bypassed (Ranking Seeding)' : 'Manual Draw Enabled'}</span></span>
-          </p>
-
-          {/* Optional: Preview snippet of first few team flags if available */}
-          {modifiedTeams.length > 0 && (
-            <div className="flex items-center gap-1 mt-2 overflow-x-auto py-1 max-w-xl">
-              {modifiedTeams.slice(0, 8).map((team) => (
-                team.flag_url ? (
+        {/* Full Team Flags Grid (Max 32 flags per row, wraps automatically) */}
+        {modifiedTeams.length > 0 && (
+          <div className="grid grid-cols-[repeat(32,minmax(0,1fr))] gap-2 w-full bg-blue-900/40 p-4 rounded-2xl border border-blue-500/30">
+            {modifiedTeams.map((team) => (
+              <div key={team.id || team.name} className="flex items-center justify-center">
+                {team.flag_url ? (
                   <img
-                    key={team.id || team.name}
                     src={team.flag_url}
                     alt={team.name}
                     title={`${team.name} (STR: ${team.strength})${team.isStarred == true ? ' ⭐' : ''}`}
-                    className={`w-5 h-3.5 object-cover rounded-xs shadow-xs shrink-0 ${team.isStarred == true ? 'ring-2 ring-yellow-400' : ''}`}
+                    className={`w-10 h-7 object-cover rounded shadow-xs hover:scale-125 transition-transform duration-150 ${team.isStarred == true ? 'ring-2 ring-yellow-400' : ''}`}
                   />
-                ) : null
-              ))}
-              {modifiedTeams.length > 8 && (
-                <span className="text-[10px] text-blue-200 font-medium ml-1">
-                  +{modifiedTeams.length - 8} more
-                </span>
-              )}
-            </div>
-          )}
-        </div>
-
-        <button
-          type="button"
-          onClick={onExitExecution}
-          className="text-xs bg-blue-700 hover:bg-blue-800 text-white px-3 py-1.5 rounded-lg transition-colors cursor-pointer shrink-0"
-        >
-          ✕ Exit Execution
-        </button>
+                ) : (
+                  <span className="text-xs">🏳️</span>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Main Execution Body */}

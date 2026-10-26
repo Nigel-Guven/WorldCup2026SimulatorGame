@@ -14,11 +14,11 @@ export default function RankingRow({ team, rank }: RankingRowProps) {
       </td>
 
       <td className="px-6 py-4 font-medium text-white">
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-4">
           <img
             src={team.flag_url}
             alt={`${team.name} flag`}
-            className="h-4 w-6 rounded bg-slate-800 object-cover shadow-sm"
+            className="w-12 h-8 rounded bg-slate-800 object-cover shadow-sm"
           />
 
           <div>

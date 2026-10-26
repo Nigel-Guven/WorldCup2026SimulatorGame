@@ -8,7 +8,7 @@ export function extractQualifyingTeams(
   completedData: PhaseCompletionData,
   nextPhase: Phase
 ): Country[] {
-  // Ensure numeric types for comparisons and arithmetic
+
   const targetCount = Number(nextPhase.config.winners_to_phase_tag) || nextPhase.teams.length;
   const automaticPerGroup = nextPhase.config.winners_to_phase_tag ?? 2;
   const numericAutomaticPerGroup = Number(automaticPerGroup) || 0;
@@ -20,7 +20,6 @@ export function extractQualifyingTeams(
 
   const qualified: Country[] = [];
 
-  // 1. Sort each group internally using Head-to-Head + Disciplinary rules (isSameGroup = true)
   const sortedGroups: Record<string, GroupStandingEntry[]> = {};
   for (const key of groupKeys) {
     sortedGroups[key] = [...groupStandings[key]].sort((a, b) =>
@@ -28,7 +27,6 @@ export function extractQualifyingTeams(
     );
   }
 
-  // 2. Extract automatic qualifiers position-by-position
   for (let pos = 0; pos < numericAutomaticPerGroup; pos++) {
     for (const key of groupKeys) {
       const entry = sortedGroups[key]?.[pos];
@@ -38,7 +36,6 @@ export function extractQualifyingTeams(
     }
   }
 
-  // 3. Extract Best Wildcard Teams across groups (isSameGroup = false)
   if (qualified.length < targetCount) {
     const qualifiedIds = new Set(qualified.map((c) => c.id));
     const wildcardPool: GroupStandingEntry[] = [];
@@ -50,7 +47,6 @@ export function extractQualifyingTeams(
       wildcardPool.push(...remainingInGroup);
     }
 
-    // Rank wildcard candidates across different groups (Disciplinary & Overall stats apply)
     wildcardPool.sort((a, b) => compareGroupEntries(a, b, false));
 
     const needed = targetCount - qualified.length;

@@ -63,10 +63,7 @@ export function GroupStageExecutionView({
       awayTeamId: nextMatch.awayTeam.id,
       homeTeamGoals: score.home,
       awayTeamGoals: score.away,
-      homeTeamStrength: nextMatch.homeTeam.strength,
-      awayTeamStrength: nextMatch.awayTeam.strength,
-      homeTeamRankingPoints: nextMatch.homeTeam.default_points,
-      awayTeamRankingPoints: nextMatch.awayTeam.default_points,
+      importance: 0.0
     };
 
     try {
@@ -127,7 +124,7 @@ export function GroupStageExecutionView({
   };
 
   return (
-    <div className="w-full px-4 sm:px-6 py-6 space-y-8">
+    <div className="w-full max-w-[150rem] mx-auto px-4 sm:px-6 py-6 space-y-8">
       {/* Simulation Control Header */}
       <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
@@ -142,7 +139,7 @@ export function GroupStageExecutionView({
             type="button"
             onClick={handleSimulateNext}
             disabled={isPhaseComplete}
-            className="px-4 py-2 bg-blue-50 text-blue-700 hover:bg-blue-100 disabled:opacity-40 rounded-xl font-semibold text-xs transition-all"
+            className="px-4 py-2 bg-blue-50 text-blue-700 hover:bg-blue-100 disabled:opacity-40 rounded-xl font-semibold text-xs transition-all cursor-pointer"
           >
             ⚡ Play Next Match
           </button>
@@ -150,14 +147,14 @@ export function GroupStageExecutionView({
             type="button"
             onClick={handleSimulateAll}
             disabled={isPhaseComplete}
-            className="px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-40 rounded-xl font-semibold text-xs shadow-sm transition-all"
+            className="px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-40 rounded-xl font-semibold text-xs shadow-sm transition-all cursor-pointer"
           >
             🚀 Simulate All Matches
           </button>
           <button
             type="button"
             onClick={handleReset}
-            className="px-3 py-2 border border-gray-300 text-gray-600 hover:bg-gray-50 rounded-xl font-semibold text-xs transition-all"
+            className="px-3 py-2 border border-gray-300 text-gray-600 hover:bg-gray-50 rounded-xl font-semibold text-xs transition-all cursor-pointer"
           >
             Reset
           </button>
@@ -165,20 +162,20 @@ export function GroupStageExecutionView({
             type="button"
             onClick={handleConfirmPhase}
             disabled={!isPhaseComplete}
-            className="px-5 py-2 bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-40 rounded-xl font-bold text-xs shadow-md transition-all"
+            className="px-5 py-2 bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-40 rounded-xl font-bold text-xs shadow-md transition-all cursor-pointer"
           >
             Confirm & Advance
           </button>
         </div>
       </div>
 
-      {/* Main Grid: Standings + Fixtures */}
+      {/* Main Grid: Standings (9 cols) + Fixtures (3 cols) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Left Side: Group Tables + Wildcard Ranking */}
-        <div className="lg:col-span-7 space-y-6">
+        {/* Left Side: Group Tables + Wildcard Ranking (Expanded to 9 columns) */}
+        <div className="lg:col-span-9 space-y-6">
           <h4 className="font-bold text-sm text-gray-700 uppercase tracking-wider">Group Tables</h4>
-          <div className="space-y-6 max-h-[800px] overflow-y-auto pr-1">
-            <div className="grid grid-cols-2 gap-6">
+          <div className="space-y-6 max-h-[850px] overflow-y-auto pr-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {Object.entries(standings).map(([groupKey, rows]) => (
                 <GroupTable
                   key={groupKey}
@@ -208,10 +205,10 @@ export function GroupStageExecutionView({
           )}
         </div>
 
-        {/* Right Side: Interactive Match Fixtures List */}
-        <div className="lg:col-span-5 space-y-4">
+        {/* Right Side: Interactive Match Fixtures List (Slimmed down to 3 columns) */}
+        <div className="lg:col-span-3 space-y-4">
           <h4 className="font-bold text-sm text-gray-700 uppercase tracking-wider">Match Fixtures</h4>
-          <div className="space-y-3 max-h-[800px] overflow-y-auto pr-1">
+          <div className="space-y-2.5 max-h-[850px] overflow-y-auto pr-1">
             {fixtures.map((f) => (
               <FixtureItem key={f.id} fixture={f} onScoreChange={handleScoreChange} />
             ))}

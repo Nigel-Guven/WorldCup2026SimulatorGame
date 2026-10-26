@@ -33,55 +33,41 @@ public class CountryRepository : ICountryRepository
         _context.Countries
             .FirstOrDefault(t => t.Id.ToLower() == id.ToLower());
 
-    public void UpdateTeamStats(MatchUpdateDto matchUpdate)
+    public async Task UpdateTeamStatsAsync(MatchUpdateDto matchUpdate)
     {
-        var homeTeam = _context.Countries.FirstOrDefault(t => t.Id.ToLower() == matchUpdate.HomeTeamId.ToLower());
-        var awayTeam = _context.Countries.FirstOrDefault(t => t.Id.ToLower() == matchUpdate.AwayTeamId.ToLower());
+        var homeId = matchUpdate.HomeTeamId.ToLower();
+        var awayId = matchUpdate.AwayTeamId.ToLower();
+
+        var teams = await _context.Countries
+            .Where(t => t.Id.ToLower() == homeId || t.Id.ToLower() == awayId)
+            .ToListAsync();
+
+        var homeTeam = teams.FirstOrDefault(t => t.Id.ToLower() == homeId);
+        var awayTeam = teams.FirstOrDefault(t => t.Id.ToLower() == awayId);
 
         if (homeTeam == null || awayTeam == null)
         {
             throw new KeyNotFoundException("One or both teams could not be found.");
         }
-        
-        double homeW, awayW;
-        if (matchUpdate.HomeTeamGoals > matchUpdate.AwayTeamGoals)
-        {
-            homeW = 1.0;
-            awayW = 0.0;
-        }
-        else if (matchUpdate.HomeTeamGoals < matchUpdate.AwayTeamGoals)
-        {
-            homeW = 0.0;
-            awayW = 1.0;
-        }
-        else
-        {
-            homeW = 0.5;
-            awayW = 0.5;
-        }
 
-        const double importance = 20.0;
+        var homeW = matchUpdate.HomeTeamGoals > matchUpdate.AwayTeamGoals ? 1.0 :
+            matchUpdate.HomeTeamGoals < matchUpdate.AwayTeamGoals ? 0.0 : 0.5;
+
         var homeDr = homeTeam.DefaultRankingPoints - awayTeam.DefaultRankingPoints;
-        var awayDr = -homeDr;
-
         var homeWe = 1.0 / (Math.Pow(10.0, -homeDr / 600.0) + 1.0);
-        var awayWe = 1.0 / (Math.Pow(10.0, -awayDr / 600.0) + 1.0);
 
-        var homePointChange = importance * (homeW - homeWe);
-        var awayPointChange = importance * (awayW - awayWe);
+        const double strengthFactor = 2.0;
+        
+        var pointChange = matchUpdate.Importance * (homeW - homeWe);
+        var strengthChange = strengthFactor * (homeW - homeWe);
 
-        homeTeam.DefaultRankingPoints = (int)Math.Round(homeTeam.DefaultRankingPoints + homePointChange);
-        awayTeam.DefaultRankingPoints = (int)Math.Round(awayTeam.DefaultRankingPoints + awayPointChange);
-        
-        const double strengthFactor = 2.0; 
-        
-        var homeStrengthChange = strengthFactor * (homeW - homeWe);
-        var awayStrengthChange = strengthFactor * (awayW - awayWe);
-        
-        homeTeam.Strength = (int)Math.Clamp(Math.Round(homeTeam.Strength + homeStrengthChange), 3, 95);
-        awayTeam.Strength = (int)Math.Clamp(Math.Round(awayTeam.Strength + awayStrengthChange), 3, 95);
+        homeTeam.DefaultRankingPoints = (int)Math.Round(homeTeam.DefaultRankingPoints + pointChange);
+        awayTeam.DefaultRankingPoints = (int)Math.Round(awayTeam.DefaultRankingPoints - pointChange);
 
-        _context.SaveChanges();
+        homeTeam.Strength = (int)Math.Clamp(Math.Round(homeTeam.Strength + strengthChange), 3, 95);
+        awayTeam.Strength = (int)Math.Clamp(Math.Round(awayTeam.Strength - strengthChange), 3, 95);
+
+        await _context.SaveChangesAsync();
     }
     
     public void RefreshTeamStrength()
@@ -92,8 +78,7 @@ public class CountryRepository : ICountryRepository
 
         var jsonFiles = Directory.GetFiles(dataFolder, "*.json");
         var strengthMap = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
-
-        // 1. Read original Strength values from default JSON files
+        
         foreach (var file in jsonFiles)
         {
             try

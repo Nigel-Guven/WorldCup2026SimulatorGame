@@ -42,7 +42,7 @@ public class TeamsController(ICountryRepository repository) : ControllerBase
             return BadRequest(new { message = "Invalid match update payload." });
         }
 
-        repository.UpdateTeamStats(matchUpdate);
+        repository.UpdateTeamStatsAsync(matchUpdate);
     
         return NoContent();
     }

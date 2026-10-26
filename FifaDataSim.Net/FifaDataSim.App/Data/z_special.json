@@ -342,7 +342,7 @@
   },
   {
     "id": "stg",
-    "name": "South Georgia and the Sandwich Islands",
+    "name": "South Georgia",
     "short_name": "STG",
     "confederation": "CONMEBOL",
     "football_association": "South Georgia Football Association",
@@ -364,7 +364,7 @@
   },
   {
     "id": "clf",
-    "name": "California Republic",
+    "name": "California",
     "short_name": "CLF",
     "confederation": "CONCACAF",
     "football_association": "California Football Association",
@@ -396,17 +396,6 @@
     "home_stadium": "ONT Field"
   },
   {
-    "id": "tmz",
-    "name": "Tamazgha",
-    "short_name": "TMZ",
-    "confederation": "CAF",
-    "football_association": "Amazigh Football Association",
-    "default_points": 700,
-    "strength": 13,
-    "flag_url": "/flags/amazigh.png",
-    "home_stadium": "Hocine Aït Ahmed Stadium"
-  },
-  {
     "id": "yid",
     "name": "Yiddish Republic",
     "short_name": "YID",
@@ -416,17 +405,6 @@
     "strength": 26,
     "flag_url": "/flags/jewish.png",
     "home_stadium": "Lenin Stadium"
-  },
-  {
-    "id": "skr",
-    "name": "Sakha Republic",
-    "short_name": "SKR",
-    "confederation": "AFC",
-    "football_association": "Sakha Republic Football Association",
-    "default_points": 614,
-    "strength": 18,
-    "flag_url": "/flags/sakha.png",
-    "home_stadium": "Tuymaada Stadium"
   },
   {
     "id": "chk",
@@ -529,7 +507,7 @@
   },
   {
     "id": "dpr",
-    "name": "Donetsk PR",
+    "name": "Donetsk Peoples Republic",
     "short_name": "DPR",
     "confederation": "UEFA",
     "football_association": "Donetsk Football Association",
@@ -540,7 +518,7 @@
   },
   {
     "id": "lhr",
-    "name": "Luhansk PR",
+    "name": "Luhansk Peoples Republic",
     "short_name": "LHR",
     "confederation": "UEFA",
     "football_association": "Luhansk Football Association",
@@ -548,17 +526,6 @@
     "strength": 24,
     "flag_url": "/flags/luhansk.png",
     "home_stadium": "Avanhard Stadium"
-  },
-  {
-    "id": "ing",
-    "name": "Ingria",
-    "short_name": "ING",
-    "confederation": "UEFA",
-    "football_association": "Ingrian Football Association",
-    "default_points": 1298,
-    "strength": 39,
-    "flag_url": "/flags/ingria.png",
-    "home_stadium": "Krestovsky Stadium"
   },
   {
     "id": "nnt",
@@ -583,28 +550,6 @@
     "home_stadium": "Vladivostok Dynamo Stadium"
   },
   {
-    "id": "ord",
-    "name": "Ordos",
-    "short_name": "ORD",
-    "confederation": "AFC",
-    "football_association": "Ordos Football Association",
-    "default_points": 881,
-    "strength": 15,
-    "flag_url": "/flags/mengkukuo.png",
-    "home_stadium": "Ordos Stadium"
-  },
-  {
-    "id": "hmn",
-    "name": "Mon",
-    "short_name": "HMN",
-    "confederation": "AFC",
-    "football_association": "Hmong Football Association",
-    "default_points": 1102,
-    "strength": 31,
-    "flag_url": "/flags/mon.png",
-    "home_stadium": "Monywa Stadium"
-  },
-  {
     "id": "bvr",
     "name": "Bavaria",
     "short_name": "BVR",
@@ -627,17 +572,6 @@
     "home_stadium": "Rudolf-Harbig-Stadion"
   },
   {
-    "id": "ksb",
-    "name": "Kashubia",
-    "short_name": "KSB",
-    "confederation": "UEFA",
-    "football_association": "Kashubian Football Association",
-    "default_points": 1000,
-    "strength": 30,
-    "flag_url": "/flags/kashubia.png",
-    "home_stadium": "Stadion Miejski Kościerzyna"
-  },
-  {
     "id": "occ",
     "name": "Occitania",
     "short_name": "OCC",
@@ -647,28 +581,6 @@
     "strength": 39,
     "flag_url": "/flags/occitania.png",
     "home_stadium": "Stadium de Toulouse"
-  },
-  {
-    "id": "saa",
-    "name": "Saarland",
-    "short_name": "SAA",
-    "confederation": "UEFA",
-    "football_association": "Saarland Football Association",
-    "default_points": 989,
-    "strength": 25,
-    "flag_url": "/flags/saarland.png",
-    "home_stadium": "Ludwigsparkstadion"
-  },
-  {
-    "id": "bgy",
-    "name": "Burgundy",
-    "short_name": "BGY",
-    "confederation": "UEFA",
-    "football_association": "Burgundy Football Association",
-    "default_points": 1200,
-    "strength": 41,
-    "flag_url": "/flags/burgundy.png",
-    "home_stadium": "Stade Gaston Gérard"
   },
   {
     "id": "svy",
@@ -704,39 +616,6 @@
     "home_stadium": "Macquarie Point Stadium"
   },
   {
-    "id": "qnh",
-    "name": "Qinghai",
-    "short_name": "QNH",
-    "confederation": "AFC",
-    "football_association": "Qinghai Football Association",
-    "default_points": 930,
-    "strength": 28,
-    "flag_url": "/flags/qinghai.png",
-    "home_stadium": "Xining Stadium"
-  },
-  {
-    "id": "ynn",
-    "name": "Yunnan",
-    "short_name": "YNN",
-    "confederation": "AFC",
-    "football_association": "Dalian Football Association",
-    "default_points": 860,
-    "strength": 24,
-    "flag_url": "/flags/yunnan.png",
-    "home_stadium": "Yuxi Plateau Sports Center Stadium"
-  },
-  {
-    "id": "hty",
-    "name": "Hatay State",
-    "short_name": "HTY",
-    "confederation": "AFC",
-    "football_association": "Hatay Football Association",
-    "default_points": 921,
-    "strength": 37,
-    "flag_url": "/flags/hatay.png",
-    "home_stadium": "New Hatay Stadium"
-  },
-  {
     "id": "amz",
     "name": "Amazonia",
     "short_name": "AMZ",
@@ -760,36 +639,14 @@
   },
   {
     "id": "bjc",
-    "name": "Baja California",
+    "name": "Sonora",
     "short_name": "BJC",
     "confederation": "CONCACAF",
-    "football_association": "Baja California Football Association",
+    "football_association": "Sonora Football Association",
     "default_points": 1130,
     "strength": 34,
-    "flag_url": "/flags/baja.png",
+    "flag_url": "/flags/sonora.png",
     "home_stadium": "Estadio Caliente"
-  },
-  {
-    "id": "chp",
-    "name": "Chiapas",
-    "short_name": "CHP",
-    "confederation": "CONCACAF",
-    "football_association": "Chiapas Football Association",
-    "default_points": 1170,
-    "strength": 39,
-    "flag_url": "/flags/chiapas.png",
-    "home_stadium": "Estadio Víctor Manuel Reyna"
-  },
-  {
-    "id": "nrm",
-    "name": "Duchy of Normandy",
-    "short_name": "NRM",
-    "confederation": "UEFA",
-    "football_association": "Normandy Football Association",
-    "default_points": 1300,
-    "strength": 48,
-    "flag_url": "/flags/normandy.png",
-    "home_stadium": "Stade Malherbe Caen"
   },
   {
     "id": "glg",
@@ -804,7 +661,7 @@
   },
   {
     "id": "anm",
-    "name": "Ainu Mosir",
+    "name": "Ainu",
     "short_name": "ANM",
     "confederation": "AFC",
     "football_association": "Ainu Football Association",
@@ -812,83 +669,6 @@
     "strength": 11,
     "flag_url": "/flags/ainu.png",
     "home_stadium": "Sapporo Dome"
-  },
-  {
-    "id": "khr",
-    "name": "Khorasan",
-    "short_name": "KHR",
-    "confederation": "AFC",
-    "football_association": "Khorasan Football Association",
-    "default_points": 938,
-    "strength": 29,
-    "flag_url": "/flags/khorasan.png",
-    "home_stadium": "Imam Reza Stadium"
-  },
-  {
-    "id": "khz",
-    "name": "Khuzestan",
-    "short_name": "KHZ",
-    "confederation": "AFC",
-    "football_association": "Khuzestan Football Association",
-    "default_points": 866,
-    "strength": 21,
-    "flag_url": "/flags/khuzestan.png",
-    "home_stadium": "Takhti Stadium"
-  },
-  {
-    "id": "bdw",
-    "name": "Baden-Wurttemberg",
-    "short_name": "BDW",
-    "confederation": "UEFA",
-    "football_association": "Baden-Wurttemberg Football Association",
-    "default_points": 1241,
-    "strength": 42,
-    "flag_url": "/flags/baden.png",
-    "home_stadium": "MHPArena"
-  },
-  {
-    "id": "wfl",
-    "name": "Westphalia",
-    "short_name": "WFL",
-    "confederation": "UEFA",
-    "football_association": "Westphalian Football Association",
-    "default_points": 1119,
-    "strength": 41,
-    "flag_url": "/flags/westphalia.png",
-    "home_stadium": "Westfalenstadion"
-  },
-  {
-    "id": "hss",
-    "name": "Hessen",
-    "short_name": "HSS",
-    "confederation": "UEFA",
-    "football_association": "Hessian Football Association",
-    "default_points": 1110,
-    "strength": 36,
-    "flag_url": "/flags/hesse.png",
-    "home_stadium": "Auestadion"
-  },
-  {
-    "id": "mcs",
-    "name": "Mecklenburg-Schwerin",
-    "short_name": "MCS",
-    "confederation": "UEFA",
-    "football_association": "Mecklenburg Football Association",
-    "default_points": 1003,
-    "strength": 23,
-    "flag_url": "/flags/mecklenburg.png",
-    "home_stadium": "Sportpark Lankow"
-  },
-  {
-    "id": "nub",
-    "name": "Nubia",
-    "short_name": "NUB",
-    "confederation": "CAF",
-    "football_association": "Nubian Football Association",
-    "default_points": 832,
-    "strength": 11,
-    "flag_url": "/flags/nubia.png",
-    "home_stadium": "Nubank Parque"
   },
   {
     "id": "drf",
@@ -902,28 +682,6 @@
     "home_stadium": "Al-Fasher Stadium"
   },
   {
-    "id": "knb",
-    "name": "Kanem Bornu",
-    "short_name": "KNB",
-    "confederation": "CAF",
-    "football_association": "Kanem Bornu Football Association",
-    "default_points": 901,
-    "strength": 14,
-    "flag_url": "/flags/kanem.png",
-    "home_stadium": "El-Kanemi Stadium"
-  },
-  {
-    "id": "sok",
-    "name": "Sokoto",
-    "short_name": "SOK",
-    "confederation": "CAF",
-    "football_association": "Sokotoan Football Association",
-    "default_points": 841,
-    "strength": 19,
-    "flag_url": "/flags/sokoto.png",
-    "home_stadium": "Giginya Memorial Stadium"
-  },
-  {
     "id": "epr",
     "name": "Republic of Epirus",
     "short_name": "EPR",
@@ -935,19 +693,8 @@
     "home_stadium": "Zosimades Stadium"
   },
   {
-    "id": "mlc",
-    "name": "Maluku Islands",
-    "short_name": "MLC",
-    "confederation": "AFC",
-    "football_association": "Moluccan Football Association",
-    "default_points": 788,
-    "strength": 16,
-    "flag_url": "/flags/maluku.png",
-    "home_stadium": "Mandala Remaja Stadium"
-  },
-  {
     "id": "fvg",
-    "name": "Duchy of Friulia",
+    "name": "Friulia",
     "short_name": "FVG",
     "confederation": "UEFA",
     "football_association": "Friulia-Venezia Football Association",
@@ -955,39 +702,6 @@
     "strength": 20,
     "flag_url": "/flags/friulia.png",
     "home_stadium": "Stadio Friuli"
-  },
-  {
-    "id": "vrm",
-    "name": "Vermont",
-    "short_name": "VRM",
-    "confederation": "CONCACAF",
-    "football_association": "Vermont Football Association",
-    "default_points": 848,
-    "strength": 16,
-    "flag_url": "/flags/vermont.png",
-    "home_stadium": "Virtue Field"
-  },
-  {
-    "id": "fiu",
-    "name": "Fiume",
-    "short_name": "FIU",
-    "confederation": "UEFA",
-    "football_association": "Fiume Free State Football Association",
-    "default_points": 747,
-    "strength": 16,
-    "flag_url": "/flags/fiume.png",
-    "home_stadium": "Stadion Kantrida"
-  },
-  {
-    "id": "dlm",
-    "name": "Dalmatia",
-    "short_name": "DLM",
-    "confederation": "UEFA",
-    "football_association": "Dalmatian Football Association",
-    "default_points": 1042,
-    "strength": 28,
-    "flag_url": "/flags/dalmatia.png",
-    "home_stadium": "Stadion Poljud"
   },
   {
     "id": "thr",
@@ -1001,39 +715,6 @@
     "home_stadium": "Xanthi FC Arena"
   },
   {
-    "id": "jbs",
-    "name": "Jabal Shammar",
-    "short_name": "JBS",
-    "confederation": "AFC",
-    "football_association": "Royal Jabal Shammar Football Association",
-    "default_points": 910,
-    "strength": 16,
-    "flag_url": "/flags/jabal.png",
-    "home_stadium": "Al-Shamal Stadium"
-  },
-  {
-    "id": "cou",
-    "name": "Courland",
-    "short_name": "COU",
-    "confederation": "UEFA",
-    "football_association": "Courland Football Association",
-    "default_points": 1002,
-    "strength": 22,
-    "flag_url": "/flags/courland.png",
-    "home_stadium": "Kurland Kunstgress"
-  },
-  {
-    "id": "tig",
-    "name": "Tigray",
-    "short_name": "TIG",
-    "confederation": "CAF",
-    "football_association": "Tigray Football Association",
-    "default_points": 598,
-    "strength": 12,
-    "flag_url": "/flags/tigray.png",
-    "home_stadium": "Tigray Stadium"
-  },
-  {
     "id": "cuz",
     "name": "Cuzco",
     "short_name": "CUZ",
@@ -1043,16 +724,5 @@
     "strength": 16,
     "flag_url": "/flags/quechua.png",
     "home_stadium": "Estadio Inca Garcilaso de la Vega"
-  },
-  {
-    "id": "oro",
-    "name": "Oromia",
-    "short_name": "ORO",
-    "confederation": "CAF",
-    "football_association": "Oromia Football Association",
-    "default_points": 788,
-    "strength": 14,
-    "flag_url": "/flags/oromia.png",
-    "home_stadium": "Moi International Sports Centre"
   }
 ]

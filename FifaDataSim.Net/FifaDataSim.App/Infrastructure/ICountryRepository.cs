@@ -8,7 +8,7 @@ public interface ICountryRepository
     IEnumerable<Country> GetAllTeams();
     IEnumerable<Country> GetTeamsByConfederation(Confederation confederation);
     Country? GetTeamById(string id);
-    void UpdateTeamStats(MatchUpdateDto matchUpdate);
+    Task UpdateTeamStatsAsync(MatchUpdateDto matchUpdate);
     void RefreshTeamStrength();
 
 }

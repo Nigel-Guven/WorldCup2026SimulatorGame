@@ -568,7 +568,7 @@
     </routine>
     <schema id="214" parent="1" name="main">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2026-09-21.02:25:51</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2026-09-21.15:18:43</LastIntrospectionLocalTimestamp>
     </schema>
     <argument id="215" parent="14">
       <ArgumentDirection>R</ArgumentDirection>
@@ -1807,158 +1807,91 @@
       <Position>1</Position>
     </argument>
     <table id="627" parent="214" name="Countries"/>
-    <table id="628" parent="214" name="Countries_dg_tmp"/>
-    <table id="629" parent="214" name="sqlite_master">
+    <table id="628" parent="214" name="sqlite_master">
       <System>1</System>
     </table>
-    <column id="630" parent="627" name="Id">
+    <column id="629" parent="627" name="Id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="631" parent="627" name="Name">
+    <column id="630" parent="627" name="Name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="632" parent="627" name="ShortName">
+    <column id="631" parent="627" name="ShortName">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="633" parent="627" name="Confederation">
+    <column id="632" parent="627" name="Confederation">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="634" parent="627" name="FootballAssociationName">
+    <column id="633" parent="627" name="FootballAssociationName">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="635" parent="627" name="DefaultRankingPoints">
+    <column id="634" parent="627" name="DefaultRankingPoints">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>INTEGER|0s</StoredType>
     </column>
-    <column id="636" parent="627" name="Strength">
+    <column id="635" parent="627" name="Strength">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>INTEGER|0s</StoredType>
     </column>
-    <column id="637" parent="627" name="FlagUrl">
+    <column id="636" parent="627" name="FlagUrl">
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="638" parent="627" name="HomeStadium">
+    <column id="637" parent="627" name="HomeStadium">
       <NotNull>1</NotNull>
       <Position>9</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="639" parent="627" name="Form">
+    <column id="638" parent="627" name="Form">
       <NotNull>1</NotNull>
       <Position>10</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="640" parent="627" name="IsStarred">
-      <DefaultExpression>0</DefaultExpression>
+    <column id="639" parent="627" name="IsStarred">
       <NotNull>1</NotNull>
       <Position>11</Position>
-      <StoredType>BOOLEAN|0s</StoredType>
+      <StoredType>INTEGER|0s</StoredType>
     </column>
-    <index id="641" parent="627" name="sqlite_autoindex_Countries_1">
+    <index id="640" parent="627" name="sqlite_autoindex_Countries_1">
       <ColNames>Id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="642" parent="627" name="PK_Countries">
+    <key id="641" parent="627" name="PK_Countries">
       <ColNames>Id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_Countries_1</UnderlyingIndexName>
     </key>
-    <column id="643" parent="628" name="Id">
-      <NotNull>1</NotNull>
+    <column id="642" parent="628" name="type">
       <Position>1</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="644" parent="628" name="Name">
-      <NotNull>1</NotNull>
+    <column id="643" parent="628" name="name">
       <Position>2</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="645" parent="628" name="ShortName">
-      <NotNull>1</NotNull>
+    <column id="644" parent="628" name="tbl_name">
       <Position>3</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="646" parent="628" name="Confederation">
-      <NotNull>1</NotNull>
-      <Position>4</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="647" parent="628" name="FootballAssociationName">
-      <NotNull>1</NotNull>
-      <Position>5</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="648" parent="628" name="DefaultRankingPoints">
-      <NotNull>1</NotNull>
-      <Position>6</Position>
-      <StoredType>INTEGER|0s</StoredType>
-    </column>
-    <column id="649" parent="628" name="Strength">
-      <NotNull>1</NotNull>
-      <Position>7</Position>
-      <StoredType>INTEGER|0s</StoredType>
-    </column>
-    <column id="650" parent="628" name="FlagUrl">
-      <NotNull>1</NotNull>
-      <Position>8</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="651" parent="628" name="HomeStadium">
-      <NotNull>1</NotNull>
-      <Position>9</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="652" parent="628" name="Form">
-      <NotNull>1</NotNull>
-      <Position>10</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="653" parent="628" name="IsStarred">
-      <NotNull>1</NotNull>
-      <Position>11</Position>
-      <StoredType>text|0s</StoredType>
-    </column>
-    <index id="654" parent="628" name="sqlite_autoindex_Countries_dg_tmp_1">
-      <ColNames>Id</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <Unique>1</Unique>
-    </index>
-    <key id="655" parent="628" name="PK_Countries">
-      <ColNames>Id</ColNames>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>sqlite_autoindex_Countries_dg_tmp_1</UnderlyingIndexName>
-    </key>
-    <column id="656" parent="629" name="type">
-      <Position>1</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="657" parent="629" name="name">
-      <Position>2</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="658" parent="629" name="tbl_name">
-      <Position>3</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="659" parent="629" name="rootpage">
+    <column id="645" parent="628" name="rootpage">
       <Position>4</Position>
       <StoredType>INT|0s</StoredType>
     </column>
-    <column id="660" parent="629" name="sql">
+    <column id="646" parent="628" name="sql">
       <Position>5</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>

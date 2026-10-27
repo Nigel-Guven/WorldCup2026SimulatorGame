@@ -42,24 +42,17 @@ export function GroupStageConfigForm({ config, targetPhases, onChange }: FormPro
           />
         </div>
         <div>
-          <label className="block text-gray-600 font-medium mb-1">Playoff Qualifiers / Group</label>
-          <input
-            type="number"
-            min={0}
-            value={config.playoff_qualifiers_per_group ?? 0}
-            onChange={(e) => onChange('playoff_qualifiers_per_group', Number(e.target.value))}
+          <label className="block text-gray-600 font-medium mb-1">Match Importance</label>
+          <select
+            value={config.match_importance ?? 5}
+            onChange={(e) => onChange('match_importance', Number(e.target.value))}
             className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
-          />
-        </div>
-        <div>
-          <label className="block text-gray-600 font-medium mb-1">Relegated per Group</label>
-          <input
-            type="number"
-            min={0}
-            value={config.relegated_per_group ?? 0}
-            onChange={(e) => onChange('relegated_per_group', Number(e.target.value))}
-            className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
-          />
+          >
+            <option value={5}>International Friendlies (5)</option>
+            <option value={15}>Nations League (15)</option>
+            <option value={25}>WC/Regional Qualifiers (25)</option>
+            <option value={35}>WC/Regional Group Stage (35)</option>
+          </select>
         </div>
       </div>
 

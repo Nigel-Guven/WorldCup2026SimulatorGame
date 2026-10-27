@@ -5,6 +5,8 @@ import type { SingleKnockoutPhase } from '../../../../types/tournamentConfigurat
 import type { KnockoutMatchup } from '../../../../types/knockoutMatchup';
 import { KnockoutSimulationEngine } from '../../../../services/knockoutSimulationService';
 import { PathMatchCard } from '../../multiKnockoutStage/PathMatchCard';
+import { updateTeamStats } from '../../../../services/teamService';
+import type { MatchUpdateDto } from '../../../../types/matchUpdateDto';
 
 interface SingleKnockoutExecutionViewProps {
   phase: SingleKnockoutPhase;
@@ -45,17 +47,49 @@ export function SingleKnockoutExecutionView({
   const isBracketComplete =
     finalMatch?.isPlayed && (!thirdPlaceMatch || thirdPlaceMatch.isPlayed);
 
-  // Play a single target match
-  const handlePlayMatch = (matchId: string) => {
-    setMatches((prev) => {
-      const target = prev.find((m) => m.id === matchId);
-      if (!target || !target.teamA || !target.teamB || target.isPlayed) return prev;
+  const getKnockoutImportance = (matchesInRound: number, isThirdPlace?: boolean) => {
+    if (isThirdPlace) return 60.0;
+    if (matchesInRound <= 4) return 60.0; // Quarter-Finals (4), Semi-Finals (2), Final (1)
+    return 50.0; // Round of 16 (8), Round of 32 (16), etc.
+  };
 
-      const simulated = KnockoutSimulationEngine.simulateKnockoutMatch(target, legs);
-      const updatedList = prev.map((m) => (m.id === matchId ? simulated : m));
+  const handlePlayMatch = async (matchId: string) => {
+    const target = matches.find((m) => m.id === matchId);
+    if (!target || !target.teamA || !target.teamB || target.isPlayed) return;
 
-      return SingleKnockoutSimulationUtils.propagateWinners(updatedList);
-    });
+    const simulated = KnockoutSimulationEngine.simulateKnockoutMatch(target, legs);
+
+    const homeGoals = 
+      (simulated.leg1ScoreA ?? 0) + 
+      (simulated.leg2ScoreA ?? 0) + 
+      (simulated.extraTimeScoreA ?? 0);
+
+    const awayGoals = 
+      (simulated.leg1ScoreB ?? 0) + 
+      (simulated.leg2ScoreB ?? 0) + 
+      (simulated.extraTimeScoreB ?? 0);
+
+    const matchesInRound = matches.filter(m => m.roundIndex === target.roundIndex).length;
+    const importance = getKnockoutImportance(matchesInRound, target.isThirdPlaceMatch);
+
+    const matchUpdate: MatchUpdateDto = {
+      homeTeamId: target.teamA.id,
+      awayTeamId: target.teamB.id,
+      homeTeamGoals: homeGoals,
+      awayTeamGoals: awayGoals,
+      importance: importance
+    };
+
+    try {
+      await updateTeamStats(matchUpdate);
+
+      setMatches((prev) => {
+        const updatedList = prev.map((m) => (m.id === matchId ? simulated : m));
+        return SingleKnockoutSimulationUtils.propagateWinners(updatedList);
+      });
+    } catch (error) {
+      console.error('Failed to update knockout match stats on backend:', error);
+    }
   };
 
   // Simulate all currently playable matches

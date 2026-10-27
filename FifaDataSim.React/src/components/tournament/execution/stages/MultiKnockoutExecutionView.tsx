@@ -7,6 +7,8 @@ import type { KnockoutMatchup } from "../../../../types/knockoutMatchup";
 import type { PathState } from "../../../../types/multiKnockoutPathState";
 import { PathMatchCard } from "../../multiKnockoutStage/PathMatchCard";
 import { KnockoutSimulationEngine } from "../../../../services/knockoutSimulationService";
+import type { MatchUpdateDto } from "../../../../types/matchUpdateDto";
+import { updateTeamStats } from "../../../../services/teamService";
 
 interface Props {
   phase: MultiKnockoutPhase;
@@ -24,6 +26,7 @@ export function MultiKnockoutExecutionView({
 }: Props): JSX.Element {
   const legs = phase.config.number_of_legs || 1;
   const pathKeys = useMemo(() => Object.keys(pathAssignments), [pathAssignments]);
+  const matchImportance = phase?.config?.match_importance ?? 5;
 
   const [activeTab, setActiveTab] = useState<string>(pathKeys[0] || 'Path A');
   const [pathStates, setPathStates] = useState<Record<string, PathState>>(() =>
@@ -34,34 +37,59 @@ export function MultiKnockoutExecutionView({
     return Object.values(pathStates).every((p) => p.isComplete);
   }, [pathStates]);
 
-  // Play single match within a specific path
-  const handlePlayMatch = (pathKey: string, matchId: string) => {
-    setPathStates((prev) => {
-      const currentPath = prev[pathKey];
-      if (!currentPath) return prev;
+  const handlePlayMatch = async (pathKey: string, matchId: string) => {
+    const currentPath = pathStates[pathKey];
+    if (!currentPath) return;
 
-      const targetMatch = currentPath.matches.find((m) => m.id === matchId);
-      if (!targetMatch || !targetMatch.teamA || !targetMatch.teamB || targetMatch.isPlayed) {
-        return prev;
-      }
+    const targetMatch = currentPath.matches.find((m) => m.id === matchId);
+    if (!targetMatch || !targetMatch.teamA || !targetMatch.teamB || targetMatch.isPlayed) {
+      return;
+    }
 
-      const simulated = KnockoutSimulationEngine.simulateKnockoutMatch(targetMatch, legs);
+    const simulated = KnockoutSimulationEngine.simulateKnockoutMatch(targetMatch, legs);
 
-      const updatedMatches = currentPath.matches.map((m) =>
-        m.id === matchId ? simulated : m
-      );
+    const homeGoals = 
+      (simulated.leg1ScoreA ?? 0) + 
+      (simulated.leg2ScoreA ?? 0) + 
+      (simulated.extraTimeScoreA ?? 0);
 
-      const propagated = SingleKnockoutSimulationUtils.propagateWinners(updatedMatches);
-      const updatedPathState = MultiKnockoutSimulationUtils.updatePathCompletion({
-        ...currentPath,
-        matches: propagated,
+    const awayGoals = 
+      (simulated.leg1ScoreB ?? 0) + 
+      (simulated.leg2ScoreB ?? 0) + 
+      (simulated.extraTimeScoreB ?? 0);
+
+    const matchUpdate: MatchUpdateDto = {
+      homeTeamId: targetMatch.teamA.id,
+      awayTeamId: targetMatch.teamB.id,
+      homeTeamGoals: homeGoals,
+      awayTeamGoals: awayGoals,
+      importance: matchImportance
+    };
+
+    try {
+      await updateTeamStats(matchUpdate);
+
+      setPathStates((prev) => {
+        const path = prev[pathKey];
+        if (!path) return prev;
+
+        const updatedMatches = path.matches.map((m) =>
+          m.id === matchId ? simulated : m
+        );
+
+        const propagated = SingleKnockoutSimulationUtils.propagateWinners(updatedMatches);
+        const updatedPathState = MultiKnockoutSimulationUtils.updatePathCompletion({
+          ...path,
+          matches: propagated,
+        });
+
+        return { ...prev, [pathKey]: updatedPathState };
       });
-
-      return { ...prev, [pathKey]: updatedPathState };
-    });
+    } catch (error) {
+      console.error('Failed to update multi-knockout match stats on backend:', error);
+    }
   };
 
-  // Simulate active path to completion
   const simulatePathMatches = (matches: KnockoutMatchup[]): KnockoutMatchup[] => {
     let currentMatches = [...matches];
     let active = true;

@@ -7,7 +7,7 @@ export interface PhaseCompletionData {
   phaseId: string;
   phaseType: PhaseType;
   groupStandings?: Record<string, GroupStandingEntry[]>;
-  wildcardQualifiers?: Country[]; // Added optional wildcardQualifiers field
+  wildcardQualifiers?: Country[];
   knockoutWinners?: Country[];
   pathWinners?: Record<string, PathWinnerSummary>;
 }

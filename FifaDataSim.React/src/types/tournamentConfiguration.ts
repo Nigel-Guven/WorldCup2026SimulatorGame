@@ -24,10 +24,9 @@ export interface GroupStageConfig {
   direct_advance_per_group: number;
   wildcard_position?: number;
   wildcard_teams_count?: number;
+  match_importance?: number;
   winners_to_phase_tag?: string;
   wildcards_to_phase_tag?: string;
-  relegated_per_group?: number;
-  playoff_qualifiers_per_group?: number;
   relegated_to_phase_tag?: string;
 }
 
@@ -55,6 +54,7 @@ export interface NationsLeaguePhase extends BasePhase {
 export interface SingleKnockoutConfig {
   number_of_legs: 1 | 2;
   third_place_match: boolean;
+  match_importance?: number;
   winners_to_phase_tag?: string;
   losers_to_phase_tag?: string;
 }
@@ -68,6 +68,7 @@ export interface MultiKnockoutConfig {
   number_of_legs: 1 | 2;
   number_of_paths: number;
   third_place_match?: boolean;
+  match_importance?: number;
   winners_to_phase_tag?: string;
   losers_to_phase_tag?: string;
 }

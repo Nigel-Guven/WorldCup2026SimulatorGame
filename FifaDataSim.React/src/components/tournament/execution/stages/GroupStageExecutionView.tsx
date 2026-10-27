@@ -2,7 +2,7 @@ import { useState, useMemo, type JSX, useEffect } from 'react';
 import { GroupSimulationUtils, type Fixture } from '../../../../services/helpers/groupSimulationUtils';
 import type { Country } from '../../../../types/country';
 import type { GroupStagePhase } from '../../../../types/tournamentConfiguration';
-import type { MatchUpdateDto } from '../../../../types/MatchUpdateDto';
+import type { MatchUpdateDto } from '../../../../types/matchUpdateDto';
 import { updateTeamStats } from '../../../../services/teamService';
 import { GroupTable } from '../../groupStage/GroupTable';
 import { WildcardTable } from '../../groupStage/WildcardTable';
@@ -27,6 +27,7 @@ export function GroupStageExecutionView({
   const directAdvanceCount = phase?.config?.direct_advance_per_group ?? 2;
   const wildcardIndex = phase?.config?.wildcard_position ?? 0;
   const wildcardCount = phase?.config?.wildcard_teams_count ?? 0;
+  const matchImportance = phase?.config?.match_importance ?? 5;
 
   // 1. Hold groups in local state so we can mutate team forms on simulation
   const [localGroups, setLocalGroups] = useState<Record<string, Country[]>>(() => groups);
@@ -70,7 +71,7 @@ export function GroupStageExecutionView({
       awayTeamId: nextMatch.awayTeam.id,
       homeTeamGoals: score.home,
       awayTeamGoals: score.away,
-      importance: 0.0
+      importance: matchImportance,
     };
 
     const homeChar = score.home > score.away ? 'W' : score.home < score.away ? 'L' : 'D';

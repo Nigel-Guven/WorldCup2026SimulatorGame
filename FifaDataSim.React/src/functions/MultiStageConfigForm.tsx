@@ -15,6 +15,18 @@ export function MultiKnockoutConfigForm({ config, targetPhases, onChange }: Form
             className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
           />
         </div>
+        <div>
+          <label className="block text-gray-600 font-medium mb-1">Match Importance</label>
+          <select
+            value={config.match_importance ?? 5}
+            onChange={(e) => onChange('match_importance', Number(e.target.value))}
+            className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
+          >
+            <option value={5}>International Friendlies (5)</option>
+            <option value={25}>WC Qualifiers (25)</option>
+            <option value={30}>Confederation Playoffs (30)</option>
+          </select>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-3 pt-1">

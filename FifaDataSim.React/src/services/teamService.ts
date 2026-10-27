@@ -1,6 +1,6 @@
 import type { Confederation } from "../types/confederation";
 import type { Country } from "../types/country";
-import type { MatchUpdateDto } from "../types/MatchUpdateDto";
+import type { MatchUpdateDto } from "../types/matchUpdateDto";
 
 const API_URL = "http://localhost:5000/api";
 

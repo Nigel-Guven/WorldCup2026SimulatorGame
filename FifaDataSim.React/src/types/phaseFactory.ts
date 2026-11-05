@@ -3,12 +3,10 @@ import { PhaseType } from './phaseType';
 import type { 
   GroupStagePhase, 
   SingleKnockoutPhase, 
-  MultiKnockoutPhase
+  MultiKnockoutPhase,
+  SwissLeaguePhase
 } from './tournamentConfiguration';
 
-/**
- * Creates a default Group Stage phase
- */
 export function createGroupStagePhase(
   name: string = 'Group Stage',
   tag: string = 'GS'
@@ -32,9 +30,6 @@ export function createGroupStagePhase(
   };
 }
 
-/**
- * Creates a default Single-Branch Knockout phase
- */
 export function createSingleKnockoutPhase(
   name: string = 'Knockout Stage',
   tag: string = 'KO'
@@ -54,9 +49,6 @@ export function createSingleKnockoutPhase(
   };
 }
 
-/**
- * Creates a default Multi-Branch Knockout phase
- */
 export function createMultiKnockoutPhase(
   name: string = 'Double Elimination',
   tag: string = 'DE'
@@ -77,25 +69,24 @@ export function createMultiKnockoutPhase(
   };
 }
 
-export function createNationsLeaguePhase(
-  name: string = 'Nations League Stage',
-  tag: string = 'UNL'
-): GroupStagePhase {
+export function createSwissLeaguePhase(
+  name: string = 'Swiss League',
+  tag: string = 'SL'
+): SwissLeaguePhase {
   return {
     id: crypto.randomUUID(),
     name,
     tag,
-    type: PhaseType.GroupStage, 
+    type: PhaseType.SwissLeagueStage,
     teams: [],
-    has_draw: false,
+    has_draw: true,
     is_active: false,
     config: {
-      number_of_groups: 4,
-      group_size: 4,
-      direct_advance_per_group: 1,
-      wildcard_position: 0,
-      wildcard_teams_count: 0,
-      number_of_legs: 2, 
+      number_of_legs: 1,
+      number_of_matches_per_team: 4,
+      direct_advance_count: 2,
+      playoff_position_start: 3,
+      playoff_teams_count: 4,
     },
   };
 }
@@ -112,8 +103,8 @@ export function createPhaseByType(
       return createSingleKnockoutPhase(name, tag);
     case PhaseType.MultiBranchKnockoutStage:
       return createMultiKnockoutPhase(name, tag);
-    case PhaseType.NationsLeagueStage:
-      return createNationsLeaguePhase(name, tag)
+    case PhaseType.SwissLeagueStage:
+      return createSwissLeaguePhase(name, tag);
     default: {
       const _exhaustiveCheck: never = type;
       throw new Error(`Unsupported phase type: ${_exhaustiveCheck}`);

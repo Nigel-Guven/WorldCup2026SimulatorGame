@@ -50,7 +50,6 @@ export class SingleKnockoutSimulationUtils {
       });
     });
 
-    // Generate downstream placeholder rounds (Quarter-Finals, Semi-Finals, Final)
     while (currentMatchCount > 1) {
       currentMatchCount = currentMatchCount / 2;
       roundIndex++;
@@ -78,7 +77,6 @@ export class SingleKnockoutSimulationUtils {
       }
     }
 
-    // Append 3rd Place Match if configured
     const hasThirdPlace =
       phaseConfig.third_place_match ||
       (phaseConfig as unknown as { third_place_match?: boolean }).third_place_match;
@@ -89,7 +87,7 @@ export class SingleKnockoutSimulationUtils {
         id,
         matchId: id,
         roundName: 'Third Place Match',
-        roundIndex: roundIndex, // Same visual level as Final
+        roundIndex: roundIndex,
         matchIndex: 99,
         teamA: null,
         teamB: null,

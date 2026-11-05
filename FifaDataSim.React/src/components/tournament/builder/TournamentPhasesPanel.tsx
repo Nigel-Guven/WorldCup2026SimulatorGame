@@ -69,8 +69,8 @@ export function TournamentPhasesPanel({
               Multi-Branch Knockout
             </option>
 
-            <option value={PhaseType.NationsLeagueStage}>
-              Nations League
+            <option value={PhaseType.SwissLeagueStage}>
+              Swiss League
             </option>
           </select>
 

@@ -6,6 +6,7 @@ import { GroupStageConfigForm } from '../../../functions/GroupStageConfigForm';
 import { PhaseType } from '../../../types/phaseType';
 import { SingleKnockoutConfigForm } from '../../../functions/SingleKnockoutConfigForm';
 import { MultiKnockoutConfigForm } from '../../../functions/MultiStageConfigForm';
+import { SwissLeagueConfigForm } from '../../../functions/SwissLeagueConfigForm';
 
 interface PhaseBoxProps {
   phase: Phase;
@@ -170,6 +171,15 @@ export function PhaseBox({
                   <MultiKnockoutConfigForm
                     config={phase.config}
                     targetPhases={availableTargetPhases}
+                    onChange={handleConfigChange}
+                  />
+                );
+              case PhaseType.SwissLeagueStage:
+                return (
+                  <SwissLeagueConfigForm
+                    config={phase.config}
+                    targetPhases={availableTargetPhases}
+                    teams={phase.teams}
                     onChange={handleConfigChange}
                   />
                 );

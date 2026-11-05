@@ -22,7 +22,6 @@ export function MultiKnockoutDrawView({
   const pathCount = phase.config.number_of_paths || 2;
   const teamsPerPath = Math.ceil(totalTeams / pathCount);
 
-  // Helper to generate empty path map: { "A": [], "B": [], ... }
   const createEmptyPaths = useCallback(() => {
     const initial: Record<string, Country[]> = {};
     for (let i = 0; i < pathCount; i++) {
@@ -103,7 +102,6 @@ export function MultiKnockoutDrawView({
         confirmLabel="Confirm Multi-Branch Paths"
         onDrawNext={() => handleDrawNextAvailable(pots)}
         onAutoDraw={handleAutoDrawAll}
-        onNationsLeagueDraw={handleAutoDrawAll}
         onReset={handleReset}
         onConfirm={() => onComplete(getResult())}
       />

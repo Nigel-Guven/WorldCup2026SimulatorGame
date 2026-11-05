@@ -3,6 +3,7 @@ import { TournamentExecutionView } from './TournamentExecutionView';
 import type { Phase } from '../../../types/phase';
 import { extractQualifyingTeams } from '../../../services/helpers/extractQualifyingTeams';
 import type { PhaseCompletionData } from '../../../types/phaseCompletionData';
+import { useTournamentExecution } from '../../../hooks/useTournamentExecution';
 
 interface Props {
   initialPhases: Phase[];
@@ -11,19 +12,18 @@ interface Props {
 
 export function TournamentRunner({ initialPhases, onFinish }: Props) {
   const [phases, setPhases] = useState<Phase[]>(initialPhases);
-  const [currentPhaseIndex, setCurrentPhaseIndex] = useState<number>(0);
-
-  const activePhase = phases[currentPhaseIndex];
+  
+  const execution = useTournamentExecution(phases);
 
   const handleNextPhase = (completionData: PhaseCompletionData) => {
-    const isLastPhase = currentPhaseIndex + 1 === phases.length;
+    const isLastPhase = execution.currentPhaseIndex + 1 === phases.length;
 
     if (isLastPhase) {
       onFinish();
       return;
     }
 
-    const nextPhaseIndex = currentPhaseIndex + 1;
+    const nextPhaseIndex = execution.currentPhaseIndex + 1;
     const nextPhase = phases[nextPhaseIndex];
 
     // 1. Extract advancing teams using the completion payload
@@ -36,15 +36,14 @@ export function TournamentRunner({ initialPhases, onFinish }: Props) {
       )
     );
 
-    // 3. Advance execution view to the next phase
-    setCurrentPhaseIndex(nextPhaseIndex);
+    // 3. Advance execution hook to the next phase
+    execution.nextPhase();
   };
 
   return (
     <TournamentExecutionView
       phases={phases}
-      activePhase={activePhase}
-      currentPhaseIndex={currentPhaseIndex}
+      execution={execution}
       onNextPhase={handleNextPhase}
       onExitExecution={onFinish}
     />

@@ -29,7 +29,6 @@ export function GroupStageExecutionView({
   const wildcardCount = phase?.config?.wildcard_teams_count ?? 0;
   const matchImportance = phase?.config?.match_importance ?? 5;
 
-  // 1. Hold groups in local state so we can mutate team forms on simulation
   const [localGroups, setLocalGroups] = useState<Record<string, Country[]>>(() => groups);
 
   useEffect(() => {
@@ -86,7 +85,6 @@ export function GroupStageExecutionView({
     try {
       await updateTeamStats(matchUpdate);
 
-      // Update local groups state by finding the freshest form string for each team
       setLocalGroups((prevGroups) => {
         const nextGroups: Record<string, Country[]> = {};
         
@@ -118,7 +116,6 @@ export function GroupStageExecutionView({
   };
 
   const handleSimulateAll = () => {
-    // Note: If you want 'Simulate All' to also update forms, apply similar batch state logic here
     setFixtures((prev) =>
       prev.map((f) => {
         if (f.isPlayed || !f.homeTeam || !f.awayTeam) return f;

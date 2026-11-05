@@ -23,7 +23,6 @@ export function AvailableTeamsPanel({
 }: AvailableTeamsPanelProps): JSX.Element {
   const [selectedTeamIds, setSelectedTeamIds] = useState<Set<string | number>>(new Set());
 
-  // Toggle single team selection
   const handleToggleSelectTeam = (teamId: string | number) => {
     setSelectedTeamIds((prev) => {
       const next = new Set(prev);
@@ -36,7 +35,6 @@ export function AvailableTeamsPanel({
     });
   };
 
-  // Select or Deselect all available teams in a confederation
   const handleToggleSelectConfederation = (teams: Country[]) => {
     const unassignedTeamIds = teams
       .map((t) => t.id)
@@ -61,7 +59,6 @@ export function AvailableTeamsPanel({
     setSelectedTeamIds(new Set());
   };
 
-  // Collect selected Country objects for batch assignment
   const handleBatchAssign = () => {
     if (!onAssignMultipleTeams) return;
 

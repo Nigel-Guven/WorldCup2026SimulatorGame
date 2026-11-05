@@ -7,6 +7,8 @@ import { TournamentExecutionView } from '../components/tournament/execution/Tour
 import { TournamentHeader } from '../components/tournament/builder/TournamentsHeader';
 import { AvailableTeamsPanel } from '../components/tournament/builder/AvailableTeamsPanel';
 import { TournamentPhasesPanel } from '../components/tournament/builder/TournamentPhasesPanel';
+import type { PhaseCompletionData } from '../types/phaseCompletionData';
+import { extractQualifyingTeams } from '../services/helpers/extractQualifyingTeams';
 
 export default function TournamentCreatorPage(): JSX.Element {
   const {
@@ -20,44 +22,44 @@ export default function TournamentCreatorPage(): JSX.Element {
     phases,
     selectedPhaseType,
     setSelectedPhaseType,
-
     assignedTeamIds,
-
     addPhase,
     removePhase,
-
     dropTeamToPhase,
     removeTeamFromPhase,
-
     updatePhaseConfig,
     updatePhaseMetadata,
+    updatePhaseTeams,
   } = useTournamentBuilder();
 
-  const {
-    isExecuting,
-    activePhase,
-    currentPhaseIndex,
+  const execution = useTournamentExecution(phases);
 
-    beginTournament,
-    nextPhase,
-    exitExecution,
-  } = useTournamentExecution(phases);
+  const handleNextPhase = (completionData: PhaseCompletionData) => {
+    const nextPhaseIndex = execution.currentPhaseIndex + 1;
+
+    if (nextPhaseIndex < phases.length && updatePhaseTeams) {
+      const nextPhase = phases[nextPhaseIndex];
+      const qualifyingTeams = extractQualifyingTeams(completionData, nextPhase);
+      updatePhaseTeams(nextPhaseIndex, qualifyingTeams);
+    }
+
+    execution.nextPhase();
+  };
 
   return (
     <div className="w-full px-2 sm:px-4 py-6 font-sans text-gray-800">
       <TournamentHeader
-        isExecuting={isExecuting}
+        isExecuting={execution.isExecuting}
         phaseCount={phases.length}
-        onBeginTournament={beginTournament}
+        onBeginTournament={execution.beginTournament}
       />
 
-      {isExecuting && activePhase ? (
+      {execution.isExecuting && execution.activePhase ? (
         <TournamentExecutionView
           phases={phases}
-          activePhase={activePhase}
-          currentPhaseIndex={currentPhaseIndex}
-          onNextPhase={nextPhase}
-          onExitExecution={exitExecution}
+          execution={execution}
+          onNextPhase={handleNextPhase}
+          onExitExecution={execution.exitExecution}
         />
       ) : (
         <div className="flex flex-col lg:flex-row gap-8 items-start">

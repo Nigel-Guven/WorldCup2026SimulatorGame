@@ -3,7 +3,6 @@ import { getTeams, getTeamsByConfederation } from "../services/teamService";
 import type { Country } from "../types/country";
 import type { Confederation } from "../types/confederation";
 
-// Define a type for UI filter selection
 export type ConfederationFilter = Confederation | "ALL";
 
 export function useRankings() {

@@ -14,7 +14,7 @@ function getPenaltyScore(penalties: string[] | null | undefined): number {
   return penalties.filter((p) => p === "G" || p === "GOAL").length;
 }
 
-export function PathMatchCard({ match, legs, onPlay, isThirdPlace }: PathMatchCardProps) {
+export function PathMatchCard({ match, legs, onPlay }: PathMatchCardProps) {
   const isPlayable = !match.isPlayed && match.teamA !== null && match.teamB !== null;
 
   const isTeamAWinner = match.isPlayed && match.winner?.id === match.teamA?.id;

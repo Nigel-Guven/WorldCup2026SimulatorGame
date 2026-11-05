@@ -44,9 +44,9 @@ export function useTournamentBuilder() {
         defaultTag = `MB${count}`;
         break;
 
-      case PhaseType.NationsLeagueStage:
-        defaultName = `Nations League Phase ${count}`;
-        defaultTag = `NL${count}`;
+      case PhaseType.SwissLeagueStage:
+        defaultName = `Swiss League Phase ${count}`;
+        defaultTag = `SL${count}`;
         break;
     }
 
@@ -58,6 +58,12 @@ export function useTournamentBuilder() {
         defaultTag
       ),
     ]);
+  };
+
+  const updatePhaseTeams = (phaseIndex: number, teams: Country[]) => {
+    setPhases((prev) =>
+      prev.map((p, idx) => (idx === phaseIndex ? { ...p, teams } : p))
+    );
   };
 
   const removePhase = (phaseId: string) => {
@@ -169,5 +175,6 @@ export function useTournamentBuilder() {
 
     updatePhaseConfig,
     updatePhaseMetadata,
+    updatePhaseTeams,
   };
 }

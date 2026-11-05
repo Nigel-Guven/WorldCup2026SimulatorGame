@@ -127,7 +127,6 @@ export function SingleKnockoutDrawView({ phase, pots, onComplete }: Props): JSX.
         confirmLabel="Lock Bracket"
         onDrawNext={() => handleDrawNextAvailable(pots)}
         onAutoDraw={handleAutoDrawAll}
-        onNationsLeagueDraw={handleAutoDrawAll}
         onReset={handleReset}
         onConfirm={() => onComplete(getResult())}
       />

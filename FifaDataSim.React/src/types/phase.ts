@@ -1,6 +1,6 @@
-import type { GroupStagePhase, MultiKnockoutPhase, NationsLeaguePhase, SingleKnockoutPhase } from "./tournamentConfiguration";
+import type { GroupStagePhase, MultiKnockoutPhase, SingleKnockoutPhase, SwissLeaguePhase } from "./tournamentConfiguration";
 
-export type Phase = GroupStagePhase | SingleKnockoutPhase | MultiKnockoutPhase | NationsLeaguePhase;
+export type Phase = GroupStagePhase | SingleKnockoutPhase | MultiKnockoutPhase | SwissLeaguePhase;
 
 // --- HELPER TYPE GUARDS ---
 
@@ -16,6 +16,6 @@ export function isMultiKnockoutPhase(phase: Phase): phase is MultiKnockoutPhase 
   return phase.type === 2;
 }
 
-export function isNationsLeaguePhase(phase: Phase): phase is NationsLeaguePhase {
+export function isSwissLeaguePhase(phase: Phase): phase is SwissLeaguePhase {
   return phase.type === 3;
 }

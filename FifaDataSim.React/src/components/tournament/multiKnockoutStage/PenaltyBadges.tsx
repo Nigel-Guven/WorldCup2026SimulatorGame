@@ -1,11 +1,4 @@
-import React from 'react';
 
-/**
- * Supports either:
- * - A string like "RGGGR" or "RGGGG"
- * - An array like ['R', 'G', 'G', 'G', 'R']
- * - A single total string/number (fallback display)
- */
 interface PenaltyBadgesProps {
   penalties: string | string[] | number | null | undefined;
 }

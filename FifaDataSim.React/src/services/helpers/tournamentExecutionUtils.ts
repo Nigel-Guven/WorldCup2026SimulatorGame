@@ -55,7 +55,6 @@ export function derivePots(phase: Phase): Pot[] {
     return pots;
   }
 
-  // Single branch knockout
   const half = Math.ceil(phase.teams.length / 2);
 
   return [

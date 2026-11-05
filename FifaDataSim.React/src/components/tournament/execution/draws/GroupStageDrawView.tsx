@@ -123,33 +123,6 @@ export function GroupStageDrawView({
     buildResult: (groupState) => groupState,
   });
 
-  // Sequential slot-by-slot distribution: 1st team -> Group 1 slot 1, 2nd team -> Group 2 slot 1, etc.
-  const handleDirectNationsLeagueDraw = useCallback(() => {
-    const allTeams = pots.flatMap((pot) => pot.teams || []);
-    
-    if (allTeams.length === 0) {
-      console.warn("⚠️ No teams found to draw!");
-      return;
-    }
-
-    const distributedGroups: Record<string, Country[]> = {};
-    for (let i = 0; i < numberofGroups; i++) {
-      distributedGroups[DrawUtils.getGroupKey(i)] = [];
-    }
-
-    allTeams.forEach((team, index) => {
-      const groupIndex = index % numberofGroups;
-      const groupKey = DrawUtils.getGroupKey(groupIndex);
-      
-      if (distributedGroups[groupKey].length < groupSize) {
-        distributedGroups[groupKey].push(team);
-      }
-    });
-
-    setGroups(distributedGroups);
-    setSelectedTeam(null);
-  }, [pots, numberofGroups, groupSize, setGroups, setSelectedTeam]);
-
   const handleAssignToGroup = (groupKey: string) => {
     if (isFixedSeeding || !selectedTeam) return;
     const currentGroup = groups[groupKey] || [];
@@ -191,7 +164,6 @@ export function GroupStageDrawView({
         confirmLabel="Lock & Confirm Groups"
         onDrawNext={isFixedSeeding ? undefined : () => handleDrawNextAvailable(pots)}
         onAutoDraw={handleAutoDrawAll}
-        onNationsLeagueDraw={handleDirectNationsLeagueDraw}
         onReset={handleReset}
         onConfirm={() => onComplete(getResult())}
       />

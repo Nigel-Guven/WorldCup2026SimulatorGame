@@ -26,10 +26,152 @@ export interface SwissStandingEntry {
   rank: number;
 }
 
+export type QualificationStatus = 'Q' | 'X' | 'E';
+
+export interface QualificationResult {
+    teamId: string;
+    status: QualificationStatus;
+    bestPossibleRank: number;
+    worstPossibleRank: number;
+}
+
 export class SwissSimulationUtils {
-  /**
-   * Computes a unified league standing table sorted by points, goal difference, and goals for.
-   */
+
+  static getQualificationStatus(
+        bestPossibleRank: number,
+        worstPossibleRank: number,
+        directAdvanceCount: number,
+        playoffStartPosition: number,
+        playoffTeamsCount: number
+    ): QualificationStatus {
+
+      const playoffEndPosition =
+          playoffStartPosition + playoffTeamsCount - 1;
+
+      const qualificationEndPosition = Math.max(
+              directAdvanceCount,
+              playoffEndPosition
+      );
+
+      if (worstPossibleRank <= directAdvanceCount) {
+          return 'Q';
+      }
+
+      if (bestPossibleRank <= qualificationEndPosition) {
+          return 'X';
+      }
+
+      return 'E';
+    }
+
+  static computeQualificationResults(
+      teams: Country[],
+      fixtures: SwissFixture[],
+      directAdvanceCount: number,
+      playoffStartPosition: number,
+      playoffTeamsCount: number
+  ): QualificationResult[] {
+
+      const standings = this.computeStandings(teams, fixtures);
+
+      const remainingMatches = new Map<string | number, number>();
+
+      teams.forEach(team => {
+          remainingMatches.set(team.id, 0);
+      });
+
+      // Count each team's remaining fixtures.
+      fixtures.forEach(fixture => {
+          if (
+              fixture.isPlayed ||
+              !fixture.homeTeam ||
+              !fixture.awayTeam
+          ) {
+              return;
+          }
+
+          remainingMatches.set(
+              fixture.homeTeam.id,
+              (remainingMatches.get(fixture.homeTeam.id) ?? 0) + 1
+          );
+
+          remainingMatches.set(
+              fixture.awayTeam.id,
+              (remainingMatches.get(fixture.awayTeam.id) ?? 0) + 1
+          );
+      });
+
+      const playoffEndPosition =
+          playoffStartPosition + playoffTeamsCount - 1;
+
+      const qualificationEndPosition = Math.max(
+          directAdvanceCount,
+          playoffEndPosition
+      );
+
+      return standings.map(teamStanding => {
+
+          const teamId = teamStanding.team.id;
+
+          const teamRemainingMatches =
+              remainingMatches.get(teamId) ?? 0;
+
+          const maximumPoints =
+              teamStanding.points + (teamRemainingMatches * 3);
+
+          let guaranteedAheadCount = 0;
+          let potentiallyAheadCount = 0;
+
+          standings.forEach(opponent => {
+
+              if (opponent.team.id === teamId) {
+                  return;
+              }
+
+              const opponentRemainingMatches =
+                  remainingMatches.get(opponent.team.id) ?? 0;
+
+              const opponentMaximumPoints =
+                  opponent.points + (opponentRemainingMatches * 3);
+
+              // Opponent is guaranteed to finish ahead.
+              // Even if this team wins every remaining match,
+              // the opponent already has more points.
+              if (opponent.points > maximumPoints) {
+                  guaranteedAheadCount++;
+              }
+
+              // Opponent could potentially finish ahead.
+              // Equal points are included because goal difference
+              // and goals scored can determine the final ranking.
+              if (opponentMaximumPoints >= teamStanding.points) {
+                  potentiallyAheadCount++;
+              }
+          });
+
+          const bestPossibleRank =
+              guaranteedAheadCount + 1;
+
+          const worstPossibleRank =
+              potentiallyAheadCount + 1;
+
+          const status = this.getQualificationStatus(
+              bestPossibleRank,
+              worstPossibleRank,
+              directAdvanceCount,
+              playoffStartPosition,
+              playoffTeamsCount
+          );
+
+          return {
+              teamId: String(teamId),
+              status,
+              bestPossibleRank,
+              worstPossibleRank
+          };
+      });
+  }
+
   static computeStandings(teams: Country[], fixtures: SwissFixture[]): SwissStandingEntry[] {
     const statsMap = new Map<string | number, {
       played: number;
@@ -92,7 +234,6 @@ export class SwissSimulationUtils {
       };
     });
 
-    // Sort by Points -> Goal Difference -> Goals For
     entries.sort((a, b) => {
       if (b.points !== a.points) return b.points - a.points;
       if (b.goalDifference !== a.goalDifference) return b.goalDifference - a.goalDifference;
@@ -106,15 +247,15 @@ export class SwissSimulationUtils {
     return entries;
   }
 
-  /**
-   * Generates initial Round 1 fixtures (either random or pot-seeded).
-   */
-  static generateInitialFixtures(teams: Country[], numberOfMatches: number): SwissFixture[] {
+  static generateInitialFixtures(
+    teams: Country[],
+    numberOfMatches: number,
+    numberOfLegs: number = 1
+  ): SwissFixture[] {
     const fixtures: SwissFixture[] = [];
     const teamCount = teams.length;
     if (teamCount < 2) return fixtures;
 
-    // Track match history to avoid duplicate pairings across rounds
     const playedPairs = new Set<string>();
 
     for (let round = 0; round < numberOfMatches; round++) {
@@ -125,7 +266,6 @@ export class SwissSimulationUtils {
         const teamA = shuffled[i];
         if (usedInRound.has(teamA.id)) continue;
 
-        // Find an available opponent teamA hasn't played yet
         const teamB = shuffled.find(
           (t) =>
             t.id !== teamA.id &&
@@ -139,8 +279,9 @@ export class SwissSimulationUtils {
           usedInRound.add(teamB.id);
           playedPairs.add(`${teamA.id}-${teamB.id}`);
 
+          // Leg 1
           fixtures.push({
-            id: `r${round + 1}-m${fixtures.length + 1}`,
+            id: `r${round + 1}-m${fixtures.length + 1}-l1`,
             roundIndex: round,
             round: round + 1,
             groupKey: 'Swiss',
@@ -151,6 +292,22 @@ export class SwissSimulationUtils {
             awayScore: null,
             isPlayed: false,
           });
+
+          // Leg 2 (Reverse fixtures if 2 legs are configured)
+          if (numberOfLegs === 2) {
+            fixtures.push({
+              id: `r${round + 1}-m${fixtures.length + 1}-l2`,
+              roundIndex: round,
+              round: round + 1,
+              groupKey: 'Swiss',
+              leg: 2,
+              homeTeam: teamB, // Swapped home/away
+              awayTeam: teamA,
+              homeScore: null,
+              awayScore: null,
+              isPlayed: false,
+            });
+          }
         }
       }
     }

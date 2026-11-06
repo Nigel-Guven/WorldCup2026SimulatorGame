@@ -107,27 +107,22 @@ export function ConfederationBox({
         {!isLoading && !error && teams.length > 0 && (
           <ul className="m-0 p-0 list-none space-y-2">
             {teams.map((team, index) => {
-              const isSelected = team.id !== undefined && selectedTeamIds.has(team.id);
+              const isSelected =
+                team.id !== undefined && selectedTeamIds?.has(team.id);
 
               return (
-                <div
+                <TeamCard
                   key={team.id ?? index}
+                  team={team}
+                  draggable={true}
+                  isSelected={isSelected}
                   onClick={() => {
-                    // Optional: Support CMD/Ctrl click or plain click to select
-                    if (team.id !== undefined && onToggleSelectTeam) {
-                      onToggleSelectTeam(team.id);
+                    if (team.id !== undefined) {
+                      onToggleSelectTeam?.(team.id);
                     }
                   }}
-                  className={`rounded-lg transition-all ${
-                    isSelected ? 'ring-2 ring-blue-500 bg-blue-50/50' : ''
-                  }`}
-                >
-                  <TeamCard
-                    team={team}
-                    draggable={true}
-                    onDragStart={handleDragStart}
-                  />
-                </div>
+                  onDragStart={handleDragStart}
+                />
               );
             })}
           </ul>

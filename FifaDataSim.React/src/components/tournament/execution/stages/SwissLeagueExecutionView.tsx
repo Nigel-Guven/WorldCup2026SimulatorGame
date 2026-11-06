@@ -6,6 +6,7 @@ import { updateTeamStats } from '../../../../services/teamService';
 import { GroupMatchSimulationEngine } from '../../../../services/groupMatchSimulationService';
 import { FixtureItem } from '../../groupStage/FixtureItem';
 import { SwissSimulationUtils, type SwissFixture } from '../../../../services/helpers/swissLeagueSimulationUtils';
+import { SwissLeagueStandingsTable } from '../../swissLeague/SwissLeagueStandingsTable';
 
 interface SwissLeagueExecutionViewProps {
   phase: SwissLeaguePhase;
@@ -21,11 +22,12 @@ export function SwissLeagueExecutionView({
   teams,
   onComplete,
 }: SwissLeagueExecutionViewProps): JSX.Element {
+  const numberOfLegs = phase?.config?.number_of_legs ?? 1;
   const matchesPerTeam = phase?.config?.number_of_matches_per_team ?? 8;
   const directAdvanceCount = phase?.config?.direct_advance_count ?? 8;
   const playoffStartPosition = phase?.config?.playoff_position_start ?? 9;
   const playoffTeamsCount = phase?.config?.playoff_teams_count ?? 16;
-  const matchImportance = phase?.config?.match_importance ?? 35; // UCL level importance
+  const matchImportance = phase?.config?.match_importance ?? 35;
 
   const [localTeams, setLocalTeams] = useState<Country[]>(() => teams);
 
@@ -34,13 +36,22 @@ export function SwissLeagueExecutionView({
   }, [teams]);
 
   const [fixtures, setFixtures] = useState<SwissFixture[]>(() =>
-    SwissSimulationUtils.generateInitialFixtures(localTeams, matchesPerTeam)
+    SwissSimulationUtils.generateInitialFixtures(localTeams, matchesPerTeam, numberOfLegs)
   );
 
-  const standings = useMemo(
-    () => SwissSimulationUtils.computeStandings(localTeams, fixtures),
-    [localTeams, fixtures]
+  const standings = SwissSimulationUtils.computeStandings(
+      teams,
+      fixtures
   );
+
+  const qualificationResults =
+      SwissSimulationUtils.computeQualificationResults(
+          teams,
+          fixtures,
+          directAdvanceCount,
+          playoffStartPosition,
+          playoffTeamsCount
+      );
 
   const { totalMatches, playedMatches, isPhaseComplete } = useMemo(() => {
     const total = fixtures.filter((f) => f.homeTeam && f.awayTeam).length;
@@ -114,7 +125,7 @@ export function SwissLeagueExecutionView({
 
   const handleReset = () => {
     setLocalTeams(teams);
-    setFixtures(SwissSimulationUtils.generateInitialFixtures(teams, matchesPerTeam));
+    setFixtures(SwissSimulationUtils.generateInitialFixtures(teams, matchesPerTeam, numberOfLegs));
   };
 
   const handleScoreChange = (fixtureId: string, side: 'home' | 'away', value: string) => {
@@ -155,7 +166,7 @@ export function SwissLeagueExecutionView({
         <div>
           <h3 className="text-lg font-bold text-gray-900">Swiss League Phase Simulation</h3>
           <p className="text-xs text-gray-500 mt-1">
-            Played: <strong className="text-blue-600">{playedMatches}</strong> / {totalMatches} Matches ({matchesPerTeam} Matches / Team)
+            Played: <strong className="text-blue-600">{playedMatches}</strong> / {totalMatches} Matches ({matchesPerTeam} Matches / Team, {numberOfLegs} Leg{numberOfLegs > 1 ? 's' : ''})
           </p>
         </div>
 
@@ -197,77 +208,13 @@ export function SwissLeagueExecutionView({
       {/* Main Grid: Unified Standings Table (9 cols) + Fixtures (3 cols) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left Side: Unified Swiss Standings Table */}
-        <div className="lg:col-span-9 space-y-4">
-          <h4 className="font-bold text-sm text-gray-700 uppercase tracking-wider">Overall League Standings</h4>
-          
-          <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-            <div className="overflow-x-auto max-h-[800px] overflow-y-auto">
-              <table className="w-full text-left border-collapse text-xs">
-                <thead className="bg-gray-50 sticky top-0 border-b border-gray-200 text-gray-600 uppercase">
-                  <tr>
-                    <th className="py-3 px-4 w-12 text-center">Rank</th>
-                    <th className="py-3 px-4">Team</th>
-                    <th className="py-3 px-2 text-center">P</th>
-                    <th className="py-3 px-2 text-center">W</th>
-                    <th className="py-3 px-2 text-center">D</th>
-                    <th className="py-3 px-2 text-center">L</th>
-                    <th className="py-3 px-2 text-center">GF</th>
-                    <th className="py-3 px-2 text-center">GA</th>
-                    <th className="py-3 px-2 text-center">GD</th>
-                    <th className="py-3 px-3 text-center font-bold">Pts</th>
-                    <th className="py-3 px-4 text-center">Form</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {standings.map((row) => {
-                    const isDirectAdvance = row.rank <= directAdvanceCount;
-                    const isPlayoff = row.rank >= playoffStartPosition && row.rank < playoffStartPosition + playoffTeamsCount;
-
-                    return (
-                      <tr 
-                        key={row.team.id} 
-                        className={`hover:bg-gray-50/80 transition-colors ${
-                          isDirectAdvance ? 'bg-emerald-50/40' : isPlayoff ? 'bg-blue-50/30' : ''
-                        }`}
-                      >
-                        <td className="py-2.5 px-4 text-center font-bold text-gray-700">
-                          <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs ${
-                            isDirectAdvance ? 'bg-emerald-100 text-emerald-800 font-extrabold' : 
-                            isPlayoff ? 'bg-blue-100 text-blue-800 font-extrabold' : 'text-gray-600'
-                          }`}>
-                            {row.rank}
-                          </span>
-                        </td>
-                        <td className="py-2.5 px-4 font-semibold text-gray-900 flex items-center gap-2">
-                          {row.team.flag_url && (
-                            <img src={row.team.flag_url} alt="" className="w-5 h-3.5 object-cover rounded shadow-xs" />
-                          )}
-                          <span>{row.team.name}</span>
-                          {row.team.isStarred && <span title="Starred Country">⭐</span>}
-                        </td>
-                        <td className="py-2.5 px-2 text-center text-gray-600">{row.played}</td>
-                        <td className="py-2.5 px-2 text-center text-gray-600">{row.won}</td>
-                        <td className="py-2.5 px-2 text-center text-gray-600">{row.drawn}</td>
-                        <td className="py-2.5 px-2 text-center text-gray-600">{row.lost}</td>
-                        <td className="py-2.5 px-2 text-center text-gray-600">{row.goalsFor}</td>
-                        <td className="py-2.5 px-2 text-center text-gray-600">{row.goalsAgainst}</td>
-                        <td className="py-2.5 px-2 text-center font-medium text-gray-700">
-                          {row.goalDifference > 0 ? `+${row.goalDifference}` : row.goalDifference}
-                        </td>
-                        <td className="py-2.5 px-3 text-center font-extrabold text-gray-900 text-sm">{row.points}</td>
-                        <td className="py-2.5 px-4 text-center">
-                          <span className="font-mono tracking-wider font-bold text-[11px] text-gray-500">
-                            {row.team.form ?? ''}
-                          </span>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+        <SwissLeagueStandingsTable
+          standings={standings}
+          qualificationResults={qualificationResults}
+          directAdvanceCount={directAdvanceCount}
+          playoffStartPosition={playoffStartPosition}
+          playoffTeamsCount={playoffTeamsCount}
+        />
 
         {/* Right Side: Interactive Match Fixtures List */}
         <div className="lg:col-span-3 space-y-4">
@@ -280,7 +227,7 @@ export function SwissLeagueExecutionView({
                   ...f,
                   groupKey: 'Swiss',
                   round: (f.roundIndex ?? 0) + 1,
-                  leg: 1,
+                  leg: f.leg ?? 1,
                 }}
                 onScoreChange={handleScoreChange}
               />

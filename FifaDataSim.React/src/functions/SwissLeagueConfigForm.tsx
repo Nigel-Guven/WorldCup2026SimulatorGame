@@ -33,7 +33,7 @@ export function SwissLeagueConfigForm({
     matchesPerTeam
   );
 
-  const totalMatches = (numberOfTeams * matchesPerTeam) / 2;
+  const totalMatches = (numberOfTeams * matchesPerTeam) * config.number_of_legs;
 
   return (
     <div className="space-y-3">

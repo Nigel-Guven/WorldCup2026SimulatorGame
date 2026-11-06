@@ -77,19 +77,27 @@ export function useTournamentBuilder() {
     teams: Country | Country[]
   ) => {
     const incomingTeams = Array.isArray(teams) ? teams : [teams];
-    const incomingIds = new Set(incomingTeams.map((t) => t.id));
 
-    setPhases((current) =>
-      current.map((phase) => {
-        // Remove any of the incoming teams from other phases / existing list
+    const uniqueIncomingTeams = Array.from(
+      new Map(
+        incomingTeams.map(team => [team.id, team])
+      ).values()
+    );
+
+    const incomingIds = new Set(
+      uniqueIncomingTeams.map(team => team.id)
+    );
+
+    setPhases(current =>
+      current.map(phase => {
         const cleanedTeams = phase.teams.filter(
-          (t) => t.id === undefined || !incomingIds.has(t.id)
+          team => !incomingIds.has(team.id)
         );
 
         if (phase.id === phaseId) {
           return {
             ...phase,
-            teams: [...cleanedTeams, ...incomingTeams],
+            teams: [...cleanedTeams, ...uniqueIncomingTeams],
           };
         }
 

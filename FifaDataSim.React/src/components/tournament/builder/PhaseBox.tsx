@@ -123,17 +123,6 @@ export function PhaseBox({
               />
             </div>
             <div>
-              <label className="block text-gray-600 font-medium mb-1">Has Draw</label>
-              <select
-                value={phase.has_draw ? 'true' : 'false'}
-                onChange={(e) => onUpdatePhaseMetadata?.(phase.id, { has_draw: e.target.value === 'true' })}
-                className="w-full border border-gray-300 rounded px-2 py-1 bg-white"
-              >
-                <option value="true">Yes</option>
-                <option value="false">No (Fixed Seeding)</option>
-              </select>
-            </div>
-            <div>
               <label className="block text-gray-600 font-medium mb-1">Number of Legs</label>
               <select
                 value={phase.config.number_of_legs}

@@ -9,6 +9,7 @@ export function derivePots(phase: Phase): Pot[] {
     return [];
   }
 
+  // 1. Group Stage Handling
   if (phase.type === PhaseType.GroupStage) {
     const groupCount = phase.config.number_of_groups || 1;
     const groupSize = phase.config.group_size || 4;
@@ -35,6 +36,7 @@ export function derivePots(phase: Phase): Pot[] {
     return pots;
   }
 
+  // 2. Multi-Branch Knockout Stage Handling
   if (phase.type === PhaseType.MultiBranchKnockoutStage) {
     const pathCount = phase.config.number_of_paths || 1;
 
@@ -55,6 +57,29 @@ export function derivePots(phase: Phase): Pot[] {
     return pots;
   }
 
+  if (phase.type === PhaseType.SwissLeagueStage) {
+    const sortedTeams = [...phase.teams].sort(
+      (a, b) => (b.default_points ?? 0) - (a.default_points ?? 0)
+    );
+
+    const totalTeams = sortedTeams.length;
+    
+    const potCount = totalTeams % 4 === 0 ? 4 : totalTeams % 2 === 0 ? 2 : 1;
+    const teamsPerPot = Math.ceil(totalTeams / potCount);
+
+    const pots: Pot[] = [];
+    for (let i = 0; i < potCount; i++) {
+      pots.push({
+        id: i + 1,
+        name: `Pot ${i + 1}`,
+        teams: sortedTeams.slice(i * teamsPerPot, (i + 1) * teamsPerPot),
+      });
+    }
+
+    return pots;
+  }
+
+  // 4. Default Fallback (Seeded vs Unseeded)
   const half = Math.ceil(phase.teams.length / 2);
 
   return [

@@ -101,14 +101,6 @@ export class SwissSimulationUtils {
           );
       });
 
-      const playoffEndPosition =
-          playoffStartPosition + playoffTeamsCount - 1;
-
-      const qualificationEndPosition = Math.max(
-          directAdvanceCount,
-          playoffEndPosition
-      );
-
       return standings.map(teamStanding => {
 
           const teamId = teamStanding.team.id;
@@ -254,61 +246,97 @@ export class SwissSimulationUtils {
   ): SwissFixture[] {
     const fixtures: SwissFixture[] = [];
     const teamCount = teams.length;
-    if (teamCount < 2) return fixtures;
+    if (teamCount < 2 || numberOfMatches >= teamCount) return fixtures;
+
+    // Track home/away counts and home-game deficits per team to ensure balance
+    const homeCounts = new Map<string | number, number>();
+    const awayCounts = new Map<string | number, number>();
+    teams.forEach(t => {
+      homeCounts.set(t.id, 0);
+      awayCounts.set(t.id, 0);
+    });
 
     const playedPairs = new Set<string>();
+    const leg1Fixtures: { teamA: Country; teamB: Country; round: number }[] = [];
 
+    // --- STEP 1: Generate Leg 1 with Balanced Venues & Unique Opponents ---
     for (let round = 0; round < numberOfMatches; round++) {
-      const shuffled = [...teams].sort(() => 0.5 - Math.random());
+      const availableTeams = [...teams].sort(() => 0.5 - Math.random());
       const usedInRound = new Set<string | number>();
 
-      for (let i = 0; i < shuffled.length; i++) {
-        const teamA = shuffled[i];
+      for (let i = 0; i < availableTeams.length; i++) {
+        const teamA = availableTeams[i];
         if (usedInRound.has(teamA.id)) continue;
 
-        const teamB = shuffled.find(
+        // Find an opponent that hasn't played teamA yet and isn't used this round
+        const teamB = availableTeams.find(
           (t) =>
             t.id !== teamA.id &&
             !usedInRound.has(t.id) &&
             !playedPairs.has(`${teamA.id}-${t.id}`) &&
             !playedPairs.has(`${t.id}-${teamA.id}`)
-        ) || shuffled.find((t) => t.id !== teamA.id && !usedInRound.has(t.id));
+        );
 
         if (teamB) {
           usedInRound.add(teamA.id);
           usedInRound.add(teamB.id);
           playedPairs.add(`${teamA.id}-${teamB.id}`);
 
-          // Leg 1
-          fixtures.push({
-            id: `r${round + 1}-m${fixtures.length + 1}-l1`,
-            roundIndex: round,
-            round: round + 1,
-            groupKey: 'Swiss',
-            leg: 1,
-            homeTeam: teamA,
-            awayTeam: teamB,
-            homeScore: null,
-            awayScore: null,
-            isPlayed: false,
-          });
+          // Determine home/away based on who needs home games more
+          const aHome = homeCounts.get(teamA.id)!;
+          const bHome = homeCounts.get(teamB.id)!;
+          const targetHome = numberOfMatches / 2;
 
-          // Leg 2 (Reverse fixtures if 2 legs are configured)
-          if (numberOfLegs === 2) {
-            fixtures.push({
-              id: `r${round + 1}-m${fixtures.length + 1}-l2`,
-              roundIndex: round,
-              round: round + 1,
-              groupKey: 'Swiss',
-              leg: 2,
-              homeTeam: teamB, // Swapped home/away
-              awayTeam: teamA,
-              homeScore: null,
-              awayScore: null,
-              isPlayed: false,
-            });
+          let home: Country, away: Country;
+          if (aHome < targetHome && (bHome >= targetHome || Math.random() < 0.5)) {
+            home = teamA;
+            away = teamB;
+          } else {
+            home = teamB;
+            away = teamA;
           }
+
+          homeCounts.set(home.id, homeCounts.get(home.id)! + 1);
+          awayCounts.set(away.id, awayCounts.get(away.id)! + 1);
+
+          leg1Fixtures.push({ teamA: home, teamB: away, round: round + 1 });
         }
+      }
+    }
+
+    // --- STEP 2: Push Leg 1 Fixtures ---
+    let fixtureIdCounter = 1;
+    for (const f of leg1Fixtures) {
+      fixtures.push({
+        id: `r${f.round}-m${fixtureIdCounter++}-l1`,
+        roundIndex: f.round - 1,
+        round: f.round,
+        groupKey: 'Swiss',
+        leg: 1,
+        homeTeam: f.teamA,
+        awayTeam: f.teamB,
+        homeScore: null,
+        awayScore: null,
+        isPlayed: false,
+      });
+    }
+
+    // --- STEP 3: Push Leg 2 Fixtures (In Subsequent Rounds) ---
+    if (numberOfLegs === 2) {
+      for (const f of leg1Fixtures) {
+        const leg2Round = f.round + numberOfMatches; // Played in the second half of the season
+        fixtures.push({
+          id: `r${leg2Round}-m${fixtureIdCounter++}-l2`,
+          roundIndex: leg2Round - 1,
+          round: leg2Round,
+          groupKey: 'Swiss',
+          leg: 2,
+          homeTeam: f.teamB, // Reversed home/away
+          awayTeam: f.teamA,
+          homeScore: null,
+          awayScore: null,
+          isPlayed: false,
+        });
       }
     }
 

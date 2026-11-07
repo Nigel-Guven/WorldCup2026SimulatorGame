@@ -17,7 +17,6 @@ export function createGroupStagePhase(
     tag,
     type: PhaseType.GroupStage,
     teams: [],
-    has_draw: true,
     is_active: false,
     config: {
       number_of_groups: 1,
@@ -40,7 +39,6 @@ export function createSingleKnockoutPhase(
     tag,
     type: PhaseType.SingleBranchKnockoutStage,
     teams: [],
-    has_draw: true,
     is_active: false,
     config: {
       number_of_legs: 1,
@@ -59,7 +57,6 @@ export function createMultiKnockoutPhase(
     tag,
     type: PhaseType.MultiBranchKnockoutStage,
     teams: [],
-    has_draw: true,
     is_active: false,
     config: {
       number_of_legs: 2,
@@ -79,7 +76,6 @@ export function createSwissLeaguePhase(
     tag,
     type: PhaseType.SwissLeagueStage,
     teams: [],
-    has_draw: true,
     is_active: false,
     config: {
       number_of_legs: 1,
@@ -87,6 +83,7 @@ export function createSwissLeaguePhase(
       direct_advance_count: 2,
       playoff_position_start: 3,
       playoff_teams_count: 4,
+      teams: []
     },
   };
 }

@@ -26,7 +26,6 @@ export function GroupStageDrawView({
 }: GroupStageDrawViewProps): JSX.Element {
   const numberofGroups = phase?.config?.number_of_groups || 1;
   const groupSize = phase?.config?.group_size || 4;
-  const isFixedSeeding = phase?.has_draw === false;
 
   const totalPotsTeams = useMemo(
     () => pots.reduce((sum, pot) => sum + (pot.teams?.length || 0), 0),
@@ -45,7 +44,7 @@ export function GroupStageDrawView({
       return {};
     }
 
-    if (isFixedSeeding && pots.length > 0) {
+    if (pots.length > 0) {
       const fixed: Record<string, Country[]> = {};
       for (let i = 0; i < numberofGroups; i++) {
         fixed[DrawUtils.getGroupKey(i)] = [];
@@ -69,7 +68,7 @@ export function GroupStageDrawView({
       initial[DrawUtils.getGroupKey(i)] = [];
     }
     return initial;
-  }, [phase?.type, isFixedSeeding, pots, numberofGroups, groupSize]);
+  }, [phase?.type, pots, numberofGroups, groupSize]);
 
   const autoDrawGroups = useCallback(() => {
     const randomizedPotsTeams = pots.flatMap((pot) => DrawUtils.shuffle(pot.teams || []));
@@ -124,7 +123,7 @@ export function GroupStageDrawView({
   });
 
   const handleAssignToGroup = (groupKey: string) => {
-    if (isFixedSeeding || !selectedTeam) return;
+    if (!selectedTeam) return;
     const currentGroup = groups[groupKey] || [];
     if (currentGroup.length >= groupSize) return;
 
@@ -137,7 +136,6 @@ export function GroupStageDrawView({
   };
 
   const handleRemoveFromGroup = (groupKey: string, team: Country) => {
-    if (isFixedSeeding) return;
     const keyToRemove = getTeamKey(team);
     if (keyToRemove === undefined) return;
 
@@ -152,17 +150,13 @@ export function GroupStageDrawView({
   return (
     <div className="space-y-6">
       <DrawHeader
-        title={isFixedSeeding ? 'Fixed Group Seeding' : 'Group Stage Draw'}
-        subtitle={
-          isFixedSeeding
-            ? 'Teams have been automatically placed into groups based on pot seeding.'
-            : 'Draw teams one-by-one, auto-draw, or use Nations League tier assignment.'
-        }
+        title={'Group Stage Draw'}
+        subtitle={'Draw teams one-by-one, auto-draw, or use Nations League tier assignment.'}
         assignedCount={assignedTeamIds.size}
         totalTeams={totalSlots}
         isComplete={isComplete}
         confirmLabel="Lock & Confirm Groups"
-        onDrawNext={isFixedSeeding ? undefined : () => handleDrawNextAvailable(pots)}
+        onDrawNext={() => handleDrawNextAvailable(pots)}
         onAutoDraw={handleAutoDrawAll}
         onReset={handleReset}
         onConfirm={() => onComplete(getResult())}
@@ -174,7 +168,7 @@ export function GroupStageDrawView({
             pots={pots}
             assignedTeamIds={assignedTeamIds}
             selectedTeam={selectedTeam}
-            onSelectTeam={isFixedSeeding ? () => {} : selectTeam}
+            onSelectTeam={selectTeam}
           />
         </div>
 
@@ -192,10 +186,10 @@ export function GroupStageDrawView({
                 <div
                   key={groupKey}
                   onClick={() =>
-                    !isFixedSeeding && selectedTeam && !isFull && handleAssignToGroup(groupKey)
+                    selectedTeam && !isFull && handleAssignToGroup(groupKey)
                   }
                   className={`bg-white border-2 rounded-xl p-4 shadow-sm transition-all ${
-                    !isFixedSeeding && selectedTeam && !isFull
+                    selectedTeam && !isFull
                       ? 'border-dashed border-amber-400 bg-amber-50/20 cursor-pointer hover:border-amber-500'
                       : 'border-gray-200'
                   }`}
@@ -223,30 +217,28 @@ export function GroupStageDrawView({
                               <span className="ml-1 text-sm" title="Starred Country">⭐</span>
                             )}
                           </span>
-                          {!isFixedSeeding && (
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleRemoveFromGroup(groupKey, team);
-                              }}
-                              className="text-blue-400 hover:text-red-500 text-xs font-bold px-1"
-                            >
-                              ✕
-                            </button>
-                          )}
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleRemoveFromGroup(groupKey, team);
+                            }}
+                            className="text-blue-400 hover:text-red-500 text-xs font-bold px-1"
+                          >
+                            ✕
+                          </button>
                         </div>
                       ) : (
                         <div
                           key={`empty-${slotIdx}`}
                           className={`text-xs px-3 py-2 rounded-lg border border-dashed flex items-center ${
-                            !isFixedSeeding && selectedTeam
+                            selectedTeam
                               ? 'border-amber-300 bg-amber-50/50 text-amber-700'
                               : 'border-gray-200 text-gray-300'
                           }`}
                         >
                           <span className="mr-2 text-gray-300">{slotIdx + 1}.</span>
-                          {!isFixedSeeding && selectedTeam
+                          {selectedTeam
                             ? 'Click to assign selected team'
                             : 'Empty Slot'}
                         </div>

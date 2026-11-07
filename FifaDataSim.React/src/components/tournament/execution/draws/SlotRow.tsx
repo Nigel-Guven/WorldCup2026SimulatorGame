@@ -5,7 +5,6 @@ import { getTeamKey } from './GroupStageDrawView';
 interface SlotRowProps {
   slotIdx: number;
   team?: Country;
-  isFixedSeeding: boolean;
   selectedTeam: Country | null;
   onRemove?: (team: Country) => void;
 }
@@ -13,7 +12,6 @@ interface SlotRowProps {
 export function SlotRow({
   slotIdx,
   team,
-  isFixedSeeding,
   selectedTeam,
   onRemove,
 }: SlotRowProps): JSX.Element {
@@ -42,7 +40,7 @@ export function SlotRow({
           )}
         </span>
 
-        {!isFixedSeeding && onRemove && (
+        {onRemove && (
           <button
             type="button"
             onClick={(e) => {
@@ -58,7 +56,7 @@ export function SlotRow({
     );
   }
 
-  const isAwaitingAssignment = !isFixedSeeding && selectedTeam;
+  const isAwaitingAssignment = selectedTeam;
 
   return (
     <div

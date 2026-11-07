@@ -94,12 +94,11 @@ export function TournamentExecutionView({
     };
   }, [activePhase]);
 
-  const isDrawBypassed = !activePhase?.has_draw;
   const pots = useMemo(() => activePhaseWithModifiedTeams ? derivePots(activePhaseWithModifiedTeams) : [], [activePhaseWithModifiedTeams]);
 
   if (!activePhase || !activePhaseWithModifiedTeams) return <></>;
 
-  const isNextDisabled = (!isDrawBypassed && stage === 'DRAW') || !isPhaseCompleted || !completionData;
+  const isNextDisabled = stage === 'DRAW' || !isPhaseCompleted || !completionData;
 
   return (
     <div className="w-full px-4 sm:px-6 bg-white border-2 border-blue-500 rounded-2xl shadow-lg overflow-hidden">
@@ -114,7 +113,7 @@ export function TournamentExecutionView({
               <span className={`text-sm font-semibold uppercase tracking-wider px-3 py-1.5 rounded-lg ${
                 stage === 'DRAW' ? 'bg-amber-500 text-white' : isPhaseCompleted ? 'bg-emerald-600 text-white' : 'bg-blue-800 text-blue-100'
               }`}>
-                {stage === 'DRAW' ? 'FIFA-Style Draw' : isPhaseCompleted ? 'Phase Completed' : isDrawBypassed ? 'Direct Seeding' : 'In Simulation'}
+                {stage === 'DRAW' ? 'FIFA-Style Draw' : isPhaseCompleted ? 'Phase Completed' : 'In Simulation'}
               </span>
             </div>
             <h2 className="text-4xl font-extrabold mt-3">{activePhase.name}</h2>

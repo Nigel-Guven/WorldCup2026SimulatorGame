@@ -1,7 +1,4 @@
-- Make Swiss system fair
 - Improve the Match sim algorithm on React 
 - Alternate ways to sort instead of confederations
 - Fix knockout phase AET, Penalty shootout etc
 - New SpecificPlacement Phase system
-- Clean up config forms 
-- 

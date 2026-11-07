@@ -14,7 +14,6 @@ export interface BasePhase {
   type: PhaseType;
   teams: Country[];
   is_active?: boolean;
-  has_draw: boolean;
 }
 
 export interface GroupStageConfig {

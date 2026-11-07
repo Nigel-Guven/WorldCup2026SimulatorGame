@@ -10,7 +10,7 @@ import { SwissLeagueStandingsTable } from '../../swissLeague/SwissLeagueStanding
 
 interface SwissLeagueExecutionViewProps {
   phase: SwissLeaguePhase;
-  teams: Country[]; // Drawn/seeded teams array from SwissLeagueDrawView
+  teams: Country[];
   onComplete: (summary: {
     standings: Country[];
     playoffs?: Country[];

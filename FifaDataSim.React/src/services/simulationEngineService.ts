@@ -7,16 +7,14 @@ export class SimulationEngineService {
 
     static readonly HOME_ADVANTAGE = 1.10;
 
-    static readonly STRENGTH_SENSITIVITY = 0.02;
+    // Lower sensitivity than the original 0.02.
+    static readonly STRENGTH_SENSITIVITY = 0.012;
 
     static readonly MAX_EXPECTED_GOALS = 4.5;
     static readonly MIN_EXPECTED_GOALS = 0.08;
 
-    static readonly MATCH_VARIANCE = 0.12;
-
-    static readonly EXTRA_TIME_HOME_GOALS = 0.40;
-    static readonly EXTRA_TIME_AWAY_GOALS = 0.34;
-    static readonly PENALTY_CONVERSION_RATE = 0.76;
+    // Shared match conditions.
+    static readonly MATCH_TEMPO_VARIANCE = 0.10;
 
     static clamp(
         value: number,
@@ -24,10 +22,6 @@ export class SimulationEngineService {
         max: number
     ): number {
         return Math.min(max, Math.max(min, value));
-    }
-
-    static getQuality(strength: number): number {
-        return this.clamp(strength, 1, 100) / 50;
     }
 
     static randomNormal(
@@ -47,9 +41,14 @@ export class SimulationEngineService {
         return mean + standardNormal * standardDeviation;
     }
 
-    static randomPerformanceFactor(): number {
+    static randomMatchTempo(): number {
+        const variance = this.MATCH_TEMPO_VARIANCE;
+
         return Math.exp(
-            this.randomNormal(0, this.MATCH_VARIANCE)
+            this.randomNormal(
+                -(variance ** 2) / 2,
+                variance
+            )
         );
     }
 
@@ -70,8 +69,10 @@ export class SimulationEngineService {
 
     static calculateExpectedGoals(
         home: Country,
-        away: Country
+        away: Country,
+        neutralVenue = false
     ): { home: number; away: number } {
+
         const homeStrength = this.clamp(
             home.strength, 1, 100
         );
@@ -83,21 +84,23 @@ export class SimulationEngineService {
         const strengthDifference =
             homeStrength - awayStrength;
 
-        // Positive difference benefits the home team;
-        // negative difference benefits the away team.
-        const relativeStrengthFactor = Math.exp(
+        const strengthFactor = Math.exp(
             strengthDifference *
             this.STRENGTH_SENSITIVITY
         );
 
+        const homeAdvantage = neutralVenue
+            ? 1
+            : this.HOME_ADVANTAGE;
+
         const homeLambda =
             this.BASE_HOME_GOALS *
-            this.HOME_ADVANTAGE *
-            relativeStrengthFactor;
+            homeAdvantage *
+            strengthFactor;
 
         const awayLambda =
             this.BASE_AWAY_GOALS /
-            relativeStrengthFactor;
+            strengthFactor;
 
         return {
             home: this.clamp(
@@ -115,20 +118,29 @@ export class SimulationEngineService {
 
     static simulateMatch(
         home: Country,
-        away: Country
-    ): { homeGoals: number; awayGoals: number } {
+        away: Country,
+        neutralVenue = false
+    ): {
+        homeGoals: number;
+        awayGoals: number;
+    } {
+
         const expected = this.calculateExpectedGoals(
-            home, away
+            home,
+            away,
+            neutralVenue
         );
 
+        const matchTempo = this.randomMatchTempo();
+
         const homeLambda = this.clamp(
-            expected.home * this.randomPerformanceFactor(),
+            expected.home * matchTempo,
             this.MIN_EXPECTED_GOALS,
             this.MAX_EXPECTED_GOALS
         );
 
         const awayLambda = this.clamp(
-            expected.away * this.randomPerformanceFactor(),
+            expected.away * matchTempo,
             this.MIN_EXPECTED_GOALS,
             this.MAX_EXPECTED_GOALS
         );

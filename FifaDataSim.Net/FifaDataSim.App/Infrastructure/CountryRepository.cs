@@ -56,7 +56,7 @@ public class CountryRepository : ICountryRepository
         var homeDr = homeTeam.DefaultRankingPoints - awayTeam.DefaultRankingPoints;
         var homeWe = 1.0 / (Math.Pow(10.0, -homeDr / 600.0) + 1.0);
 
-        const double strengthFactor = 2.0;
+        const double strengthFactor = 1.5;
         
         var pointChange = matchUpdate.Importance * (homeW - homeWe);
         var strengthChange = strengthFactor * (homeW - homeWe);
@@ -64,8 +64,8 @@ public class CountryRepository : ICountryRepository
         homeTeam.DefaultRankingPoints = (int)Math.Round(homeTeam.DefaultRankingPoints + pointChange);
         awayTeam.DefaultRankingPoints = (int)Math.Round(awayTeam.DefaultRankingPoints - pointChange);
 
-        homeTeam.Strength = (int)Math.Clamp(Math.Round(homeTeam.Strength + strengthChange), 3, 95);
-        awayTeam.Strength = (int)Math.Clamp(Math.Round(awayTeam.Strength - strengthChange), 3, 95);
+        homeTeam.Strength = (int)Math.Clamp(Math.Round(homeTeam.Strength + strengthChange), 1, 99);
+        awayTeam.Strength = (int)Math.Clamp(Math.Round(awayTeam.Strength - strengthChange), 1, 99);
         
         char homeResult;
         char awayResult;

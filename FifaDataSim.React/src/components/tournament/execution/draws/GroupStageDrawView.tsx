@@ -40,35 +40,14 @@ export function GroupStageDrawView({
 
   // Compute initial state incorporating fixed seeding (Nations League style)
   const initialGroups = useMemo(() => {
-    if (phase?.type !== PhaseType.GroupStage) {
-      return {};
-    }
+  const initial: Record<string, Country[]> = {};
 
-    if (pots.length > 0) {
-      const fixed: Record<string, Country[]> = {};
-      for (let i = 0; i < numberofGroups; i++) {
-        fixed[DrawUtils.getGroupKey(i)] = [];
-      }
+  for (let i = 0; i < numberofGroups; i++) {
+    initial[DrawUtils.getGroupKey(i)] = [];
+  }
 
-      pots.forEach((pot) => {
-        (pot.teams || []).forEach((team, teamIndex) => {
-          const groupIndex = teamIndex % numberofGroups;
-          const groupKey = DrawUtils.getGroupKey(groupIndex);
-          if (fixed[groupKey] && fixed[groupKey].length < groupSize) {
-            fixed[groupKey].push(team);
-          }
-        });
-      });
-
-      return fixed;
-    }
-
-    const initial: Record<string, Country[]> = {};
-    for (let i = 0; i < numberofGroups; i++) {
-      initial[DrawUtils.getGroupKey(i)] = [];
-    }
-    return initial;
-  }, [phase?.type, pots, numberofGroups, groupSize]);
+  return initial;
+}, [numberofGroups]);
 
   const autoDrawGroups = useCallback(() => {
     const randomizedPotsTeams = pots.flatMap((pot) => DrawUtils.shuffle(pot.teams || []));

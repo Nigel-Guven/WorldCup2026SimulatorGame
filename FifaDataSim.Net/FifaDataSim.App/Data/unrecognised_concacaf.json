@@ -1,0 +1,212 @@
+[
+  {
+    "id": "grl",
+    "name": "Greenland",
+    "short_name": "GRL",
+    "confederation": "CONCACAF",
+    "football_association": "Grønlands Fodboldlandshold",
+    "default_points": 904,
+    "strength": 27,
+    "flag_url": "https://flagcdn.com/w40/gl.png",
+    "home_stadium": "Nuuk Stadium"
+  },
+  {
+    "id": "fgf",
+    "name": "French Guiana",
+    "short_name": "GFN",
+    "confederation": "CONCACAF",
+    "football_association": "Ligue de Football de la Guyane",
+    "default_points": 990,
+    "strength": 43,
+    "flag_url": "https://flagcdn.com/w40/gf.png",
+    "home_stadium": "Stade Régional Centre"
+  },
+  {
+    "id": "bon",
+    "name": "Bonaire",
+    "short_name": "BON",
+    "confederation": "CONCACAF",
+    "football_association": "Bonaire Football Federation",
+    "default_points": 894,
+    "strength": 20,
+    "flag_url": "https://flagcdn.com/w40/bq.png",
+    "home_stadium": "S Chronic Stadium"
+  },
+  {
+    "id": "sma",
+    "name": "Saint Martin",
+    "short_name": "SMA",
+    "confederation": "CONCACAF",
+    "football_association": "Saint Martin Football Federation",
+    "default_points": 778,
+    "strength": 11,
+    "flag_url": "https://flagcdn.com/w40/mf.png",
+    "home_stadium": "Stade Louis Van Mégret"
+  },
+  {
+    "id": "sxt",
+    "name": "Sint Maarten",
+    "short_name": "SXT",
+    "confederation": "CONCACAF",
+    "football_association": "Sint Maarten Football Federation",
+    "default_points": 792,
+    "strength": 8,
+    "flag_url": "https://flagcdn.com/w40/sx.png",
+    "home_stadium": "Sint Maarten Sports Complex"
+  },
+  {
+    "id": "gdl",
+    "name": "Guadeloupe",
+    "short_name": "GDL",
+    "confederation": "CONCACAF",
+    "football_association": "Ligue de Football de la Guadeloupe",
+    "default_points": 799,
+    "strength": 9,
+    "flag_url": "https://flagcdn.com/w40/gp.png",
+    "home_stadium": "Stade René Serge Nabajoth"
+  },
+  {
+    "id": "mtq",
+    "name": "Martinique",
+    "short_name": "MTQ",
+    "confederation": "CONCACAF",
+    "football_association": "Ligue de Football de la Martinique",
+    "default_points": 962,
+    "strength": 46,
+    "flag_url": "https://flagcdn.com/w40/mq.png",
+    "home_stadium": "Stade Pierre et Victor"
+  },
+  {
+    "id": "tex",
+    "name": "Texas",
+    "short_name": "TEX",
+    "confederation": "CONCACAF",
+    "football_association": "Texas Football Association",
+    "default_points": 1264,
+    "strength": 38,
+    "flag_url": "/flags/texas.png",
+    "home_stadium": "Reliant Stadium"
+  },
+  {
+    "id": "clf",
+    "name": "California",
+    "short_name": "CLF",
+    "confederation": "CONCACAF",
+    "football_association": "California Football Association",
+    "default_points": 1303,
+    "strength": 41,
+    "flag_url": "/flags/california.png",
+    "home_stadium": "California Memorial Stadium"
+  },
+  {
+    "id": "lou",
+    "name": "Louisiana",
+    "short_name": "LOU",
+    "confederation": "CONCACAF",
+    "football_association": "Louisiana Football Association",
+    "default_points": 901,
+    "strength": 26,
+    "flag_url": "/flags/louisiana.png",
+    "home_stadium": "Caesars Superdome"
+  },
+  {
+    "id": "hur",
+    "name": "Huron Wyandot",
+    "short_name": "HUR",
+    "confederation": "CONCACAF",
+    "football_association": "Huron Football Association",
+    "default_points": 798,
+    "strength": 18,
+    "flag_url": "/flags/huron.png",
+    "home_stadium": "ONT Field"
+  },
+  {
+    "id": "flr",
+    "name": "Florida",
+    "short_name": "FLR",
+    "confederation": "CONCACAF",
+    "football_association": "Florida Football Association",
+    "default_points": 1100,
+    "strength": 36,
+    "flag_url": "/flags/florida.png",
+    "home_stadium": "Ben Hill Griffin Stadium"
+  },
+  {
+    "id": "bjc",
+    "name": "Republic of Sonora",
+    "short_name": "BJC",
+    "confederation": "CONCACAF",
+    "football_association": "Sonora Football Association",
+    "default_points": 1130,
+    "strength": 34,
+    "flag_url": "/flags/sonora.png",
+    "home_stadium": "Estadio Caliente"
+  },
+  {
+    "id": "spm",
+    "name": "Saint Pierre and Miquelon",
+    "short_name": "SPM",
+    "confederation": "CONCACAF",
+    "football_association": "Ligue de football de Saint-Pierre-et-Miquelon",
+    "default_points": 684,
+    "strength": 12,
+    "flag_url": "https://flagcdn.com/w40/pm.png",
+    "home_stadium": "Stade John Girardin"
+  },
+  {
+    "id": "que",
+    "name": "Quebec",
+    "short_name": "QUE",
+    "confederation": "CONCACAF",
+    "football_association": "Quebec Soccer Federation",
+    "default_points": 1130,
+    "strength": 54,
+    "flag_url": "/flags/quebec.png",
+    "home_stadium": "Stade Saputo de Montreal"
+  },
+  {
+    "id": "alk",
+    "name": "Alaska",
+    "short_name": "ALK",
+    "confederation": "CONCACAF",
+    "football_association": "Alaska Soccer Association",
+    "default_points": 811,
+    "strength": 17,
+    "flag_url": "/flags/alaska.png",
+    "home_stadium": "Anchorage Soccer Stadium"
+  },
+  {
+    "id": "ste",
+    "name": "Sint Eustatius",
+    "short_name": "STE",
+    "confederation": "CONCACAF",
+    "football_association": "Sint Eustatius Football Federation",
+    "default_points": 597,
+    "strength": 11,
+    "flag_url": "/flags/eustatius.png",
+    "home_stadium": "Cottage Ball Park"
+  },
+  {
+    "id": "sba",
+    "name": "Saba",
+    "short_name": "SBA",
+    "confederation": "CONCACAF",
+    "football_association": "Saba Football Federation",
+    "default_points": 574,
+    "strength": 10,
+    "flag_url": "/flags/saba.png",
+    "home_stadium": "Cruyff Court Saba"
+  },
+  
+  {
+    "id": "new",
+    "name": "Newfoundland",
+    "short_name": "NEW",
+    "confederation": "CONCACAF",
+    "football_association": "Newfoundland Football Federation",
+    "default_points": 1010,
+    "strength": 44,
+    "flag_url": "/flags/newfoundland.png",
+    "home_stadium": "King George V Park"
+  },
+]

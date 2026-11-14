@@ -1,0 +1,68 @@
+[
+  {
+    "id": "mni",
+    "name": "Northern Mariana Islands",
+    "short_name": "MNI",
+    "confederation": "AFC",
+    "football_association": "Northern Mariana Islands Football Association",
+    "default_points": 697,
+    "strength": 8,
+    "flag_url": "https://flagcdn.com/w40/mp.png",
+    "home_stadium": "Smith Recreational Field"
+  },
+  {
+    "id": "yid",
+    "name": "Yiddish Republic",
+    "short_name": "YID",
+    "confederation": "AFC",
+    "football_association": "Jewish Republic Football Association",
+    "default_points": 803,
+    "strength": 26,
+    "flag_url": "/flags/jewish.png",
+    "home_stadium": "Lenin Stadium"
+  },
+  {
+    "id": "chk",
+    "name": "Chukotka",
+    "short_name": "CHK",
+    "confederation": "AFC",
+    "football_association": "Chukotkan Football Association",
+    "default_points": 588,
+    "strength": 12,
+    "flag_url": "/flags/chukotka.png",
+    "home_stadium": "Anadyr Lenina Stadion"
+  },
+  {
+    "id": "kam",
+    "name": "Kamchatka",
+    "short_name": "KAM",
+    "confederation": "AFC",
+    "football_association": "Kamchatkan Football Association",
+    "default_points": 602,
+    "strength": 14,
+    "flag_url": "/flags/kamchatka.png",
+    "home_stadium": "Kamchatsky Stadion"
+  },
+  {
+    "id": "pri",
+    "name": "Amur Republic",
+    "short_name": "PRI",
+    "confederation": "AFC",
+    "football_association": "Amur Football Association",
+    "default_points": 999,
+    "strength": 32,
+    "flag_url": "/flags/amur.png",
+    "home_stadium": "Vladivostok Dynamo Stadium"
+  },
+  {
+    "id": "anm",
+    "name": "Ainu",
+    "short_name": "ANM",
+    "confederation": "AFC",
+    "football_association": "Ainu Football Association",
+    "default_points": 688,
+    "strength": 11,
+    "flag_url": "/flags/ainu.png",
+    "home_stadium": "Sapporo Dome"
+  }
+]

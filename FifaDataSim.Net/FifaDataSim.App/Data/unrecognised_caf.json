@@ -1,0 +1,189 @@
+[
+  {
+    "id": "myt",
+    "name": "Mayotte",
+    "short_name": "MAY",
+    "confederation": "CAF",
+    "football_association": "Ligue Mahoraise de football",
+    "default_points": 813,
+    "strength": 11,
+    "flag_url": "https://flagcdn.com/w40/yt.png",
+    "home_stadium": "Complexe de Kawani"
+  },
+  {
+    "id": "zan",
+    "name": "Zanzibar",
+    "short_name": "ZAN",
+    "confederation": "CAF",
+    "football_association": "Zanzibar Football Federation",
+    "default_points": 1000,
+    "strength": 37,
+    "flag_url": "https://flagcdn.com/w40/tz.png",
+    "home_stadium": "Amaan Stadium"
+  },
+  {
+    "id": "reu",
+    "name": "Reunion",
+    "short_name": "REU",
+    "confederation": "CAF",
+    "football_association": "Ligue de Football de la Réunion",
+    "default_points": 972,
+    "strength": 45,
+    "flag_url": "https://flagcdn.com/w40/re.png",
+    "home_stadium": "Stade Georges SMTP"
+  },
+  {
+    "id": "chg",
+    "name": "Chagos Islands",
+    "short_name": "CHG",
+    "confederation": "CAF",
+    "football_association": "Chagos Islands Football Association",
+    "default_points": 641,
+    "strength": 12,
+    "flag_url": "/flags/chagos.png",
+    "home_stadium": "Vancleve Park"
+  },
+  {
+    "id": "sth",
+    "name": "St. Helena and the Ascension Islands",
+    "short_name": "STH",
+    "confederation": "CAF",
+    "football_association": "Saint Helena Football Federation",
+    "default_points": 570,
+    "strength": 8,
+    "flag_url": "https://flagcdn.com/w40/sh.png",
+    "home_stadium": "Francis Plain Playing Field"
+  },
+  {
+    "id": "drf",
+    "name": "Darfur",
+    "short_name": "DRF",
+    "confederation": "CAF",
+    "football_association": "Darfur Sultanate Football Association",
+    "default_points": 857,
+    "strength": 12,
+    "flag_url": "/flags/darfur.png",
+    "home_stadium": "Al-Fasher Stadium"
+  },
+  {
+    "id": "bfr",
+    "name": "Biafra",
+    "short_name": "BFR",
+    "confederation": "CAF",
+    "football_association": "Biafra Football Association",
+    "default_points": 864,
+    "strength": 21,
+    "flag_url": "/flags/biafra.png",
+    "home_stadium": "Muhoroni Stadium"
+  },
+  {
+    "id": "kbl",
+    "name": "Kabylia",
+    "short_name": "KBL",
+    "confederation": "CAF",
+    "football_association": "Tarvaɛt tayelnawt taqvaylit n ddavex uḍar",
+    "default_points": 1001,
+    "strength": 39,
+    "flag_url": "/flags/kabylia.png",
+    "home_stadium": "Hocine Aït Ahmed Stadium"
+  },
+  {
+    "id": "sml",
+    "name": "Free State of Somaliland",
+    "short_name": "SML",
+    "confederation": "CAF",
+    "football_association": "Xidhiidhka Kubadda Cagta Somaliland",
+    "default_points": 905,
+    "strength": 30,
+    "flag_url": "/flags/somaliland.png",
+    "home_stadium": "Hargeisa Stadium"
+  },
+  {
+    "id": "ceu",
+    "name": "Ceuta",
+    "short_name": "CEU",
+    "confederation": "CAF",
+    "football_association": "Ceuta Football Association",
+    "default_points": 904,
+    "strength": 24,
+    "flag_url": "/flags/ceuta.png",
+    "home_stadium": "Estadio Alfonso Murube"
+  },
+  {
+    "id": "orj",
+    "name": "Orange Free State",
+    "short_name": "ORJ",
+    "confederation": "CAF",
+    "football_association": "Oranj Football Association",
+    "default_points": 983,
+    "strength": 39,
+    "flag_url": "/flags/boerstaat.png",
+    "home_stadium": "Free State Stadium"
+  },
+  {
+    "id": "kat",
+    "name": "Katanga",
+    "short_name": "KAT",
+    "confederation": "CAF",
+    "football_association": "Katanga Football Association",
+    "default_points": 957,
+    "strength": 37,
+    "flag_url": "/flags/katanga.png",
+    "home_stadium": "Stade TP Mazembe"
+  },
+  {
+    "id": "cbd",
+    "name": "Cabinda",
+    "short_name": "CBD",
+    "confederation": "CAF",
+    "football_association": "Cabinda Football Association",
+    "default_points": 924,
+    "strength": 27,
+    "flag_url": "/flags/cabinda.png",
+    "home_stadium": "Estádio Nacional do Chiazi"
+  },
+  {
+    "id": "wsh",
+    "name": "Western Sahara",
+    "short_name": "WSH",
+    "confederation": "CAF",
+    "football_association": "Sahrawi Arab Football Association",
+    "default_points": 978,
+    "strength": 26,
+    "flag_url": "/flags/sahrawi.png",
+    "home_stadium": "Sheikh Mohamed Laghdaf Stadium"
+  },
+  {
+    "id": "bnt",
+    "name": "Bantustan",
+    "short_name": "BNT",
+    "confederation": "CAF",
+    "football_association": "Kwa-Zulu Sports Federation",
+    "default_points": 1052,
+    "strength": 39,
+    "flag_url": "/flags/bantustan.png",
+    "home_stadium": "Mbombela Stadium"
+  },
+  {
+    "id": "mel",
+    "name": "Melilla",
+    "short_name": "MEL",
+    "confederation": "CAF",
+    "football_association": "Melilla Football Federation",
+    "default_points": 862,
+    "strength": 20,
+    "flag_url": "/flags/melilla.png",
+    "home_stadium": "Estadio Municipal Álvarez Claro"
+  },
+  {
+    "id": "fez",
+    "name": "Fezzan",
+    "short_name": "fez",
+    "confederation": "CAF",
+    "football_association": "Fezzan Football Federation",
+    "default_points": 1031,
+    "strength": 40,
+    "flag_url": "/flags/fezzan.png",
+    "home_stadium": "Complexe Sportif de Fès"
+  }
+]

@@ -1,0 +1,156 @@
+[
+  {
+    "id": "flk",
+    "name": "Falkland Islands",
+    "short_name": "FLK",
+    "confederation": "CONMEBOL",
+    "football_association": "Falklands Football Association",
+    "default_points": 660,
+    "strength": 17,
+    "flag_url": "/flags/falklands.png",
+    "home_stadium": "Stanley Stadium"
+  },
+  {
+    "id": "acr",
+    "name": "Republic of Acre",
+    "short_name": "ACR",
+    "confederation": "CONMEBOL",
+    "football_association": "Acre Football Federation",
+    "default_points": 686,
+    "strength": 16,
+    "flag_url": "/flags/acre.png",
+    "home_stadium": "Arena da Floresta"
+  },
+  {
+    "id": "aqu",
+    "name": "Antioquia",
+    "short_name": "AQU",
+    "confederation": "CONMEBOL",
+    "football_association": "Antioquia Football Federation",
+    "default_points": 935,
+    "strength": 35,
+    "flag_url": "/flags/antioquia.png",
+    "home_stadium": "Atanasio Girardot Stadium"
+  },
+  {
+    "id": "cuz",
+    "name": "Cuzco",
+    "short_name": "CUZ",
+    "confederation": "CONMEBOL",
+    "football_association": "Quechua Football Association",
+    "default_points": 891,
+    "strength": 16,
+    "flag_url": "/flags/quechua.png",
+    "home_stadium": "Estadio Inca Garcilaso de la Vega"
+  },
+  {
+    "id": "stg",
+    "name": "South Georgia",
+    "short_name": "STG",
+    "confederation": "CONMEBOL",
+    "football_association": "South Georgia Football Association",
+    "default_points": 589,
+    "strength": 6,
+    "flag_url": "/flags/south_georgia.png",
+    "home_stadium": "Grytviken Fotballbannen"
+  },
+  {
+    "id": "amz",
+    "name": "Amazonia",
+    "short_name": "AMZ",
+    "confederation": "CONMEBOL",
+    "football_association": "Amazonia Football Association",
+    "default_points": 1041,
+    "strength": 40,
+    "flag_url": "/flags/amazonas.png",
+    "home_stadium": "Arena da Amazônia"
+  },
+  {
+    "id": "glg",
+    "name": "Galapagos Islands",
+    "short_name": "GLG",
+    "confederation": "CONMEBOL",
+    "football_association": "Galapagos Islands Football Association",
+    "default_points": 692,
+    "strength": 12,
+    "flag_url": "/flags/galapagos.png",
+    "home_stadium": "Estadio Pampas Coloradas"
+  },
+  {
+    "id": "amp",
+    "name": "Amapa",
+    "short_name": "AMP",
+    "confederation": "CONMEBOL",
+    "football_association": "Amapa Football Federation",
+    "default_points": 809,
+    "strength": 36,
+    "flag_url": "/flags/amapa.png",
+    "home_stadium": "Zerão"
+  },
+  {
+    "id": "zul",
+    "name": "Zulia",
+    "short_name": "ZUL",
+    "confederation": "CONMEBOL",
+    "football_association": "Zuliano Football Federation",
+    "default_points": 943,
+    "strength": 40,
+    "flag_url": "/flags/zulia.png",
+    "home_stadium": "Estadio Luis Aparicio El Grande"
+  },
+  {
+    "id": "fug",
+    "name": "Fuegia",
+    "short_name": "FUG",
+    "confederation": "CONMEBOL",
+    "football_association": "Tierra del Fuego Football Federation",
+    "default_points": 1141,
+    "strength": 42,
+    "flag_url": "/flags/fuego.png",
+    "home_stadium": "Municipal Stadium Hugo Lumbreras"
+  },
+  {
+    "id": "ant",
+    "name": "Antarctica",
+    "short_name": "ANT",
+    "confederation": "CONMEBOL",
+    "football_association": "South Pole Football Federation",
+    "default_points": 908,
+    "strength": 28,
+    "flag_url": "/flags/antarctica.png",
+    "home_stadium": "South Pole Stadium"
+  },
+  {
+    "id": "rio",
+    "name": "Riograndense Republic",
+    "short_name": "RIO",
+    "confederation": "CONMEBOL",
+    "football_association": "Riograndense Republican Football Federation",
+    "default_points": 904,
+    "strength": 32,
+    "flag_url": "/flags/riograndense.png",
+    "home_stadium": "Estádio Beira-Rio"
+  },
+  {
+    "id": "ptg",
+    "name": "Patagonia",
+    "short_name": "PTG",
+    "confederation": "CONMEBOL",
+    "football_association": "Patagonia Football Association",
+    "default_points": 812,
+    "strength": 20,
+    "flag_url": "/flags/patagonia.png",
+    "home_stadium": "Estadio Ruca Che"
+  },
+  {
+    "id": "mpc",
+    "name": "Mapuche",
+    "short_name": "MPC",
+    "confederation": "CONMEBOL",
+    "football_association": "Mapuche Football Association",
+    "default_points": 580,
+    "strength": 8,
+    "flag_url": "/flags/mapuche.png",
+    "home_stadium": "Estadio Ruca Che"
+  }
+]

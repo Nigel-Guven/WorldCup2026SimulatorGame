@@ -63,7 +63,8 @@ export function MultiKnockoutExecutionView({
       awayTeamId: targetMatch.teamB.id,
       homeTeamGoals: homeGoals,
       awayTeamGoals: awayGoals,
-      importance: matchImportance
+      importance: matchImportance,
+      neutral_venue: false
     };
 
     try {

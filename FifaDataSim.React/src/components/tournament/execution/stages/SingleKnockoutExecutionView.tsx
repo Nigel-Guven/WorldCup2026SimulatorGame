@@ -77,7 +77,8 @@ export function SingleKnockoutExecutionView({
       awayTeamId: target.teamB.id,
       homeTeamGoals: homeGoals,
       awayTeamGoals: awayGoals,
-      importance: importance
+      importance: importance,
+      neutral_venue: false
     };
 
     try {

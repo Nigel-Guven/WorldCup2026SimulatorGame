@@ -5,8 +5,12 @@ export class SimulationEngineService {
     static readonly BASE_HOME_GOALS = 1.35;
     static readonly BASE_AWAY_GOALS = 1.05;
 
-    // Lower sensitivity than the original 0.02.
     static readonly STRENGTH_SENSITIVITY = 0.012;
+
+    static readonly DEFAULT_HOME_ADVANTAGE = 1.12;
+    static readonly MAX_HOME_ADVANTAGE = 1.45;
+
+    static readonly PENALTY_CONVERSION_RATE = 0.78;
 
     static readonly MAX_EXPECTED_GOALS = 4.5;
     static readonly MIN_EXPECTED_GOALS = 0.08;
@@ -70,34 +74,59 @@ export class SimulationEngineService {
         neutralVenue = false
     ): { home: number; away: number } {
 
-        const homeStrength = this.clamp(
+        // Clamp team attributes to their valid ranges
+        const homeAttack = this.clamp(
             home.strength_attack, 1, 100
         );
 
-        const awayStrength = this.clamp(
+        const homeDefence = this.clamp(
+            home.strength_defence, 1, 100
+        );
+
+        const awayAttack = this.clamp(
             away.strength_attack, 1, 100
         );
 
-        const strengthDifference =
-            homeStrength - awayStrength;
+        const awayDefence = this.clamp(
+            away.strength_defence, 1, 100
+        );
 
-        const strengthFactor = Math.exp(
-            strengthDifference *
+        // Compare each team's attack against the opposition's defence
+        const homeStrengthDifference =
+            homeAttack - awayDefence;
+
+        const awayStrengthDifference =
+            awayAttack - homeDefence;
+
+        // Calculate attacking effectiveness
+        const homeStrengthFactor = Math.exp(
+            homeStrengthDifference *
             this.STRENGTH_SENSITIVITY
         );
 
+        const awayStrengthFactor = Math.exp(
+            awayStrengthDifference *
+            this.STRENGTH_SENSITIVITY
+        );
+
+        // Apply home advantage, unless playing at a neutral venue
         const homeAdvantage = neutralVenue
             ? 1
-            : home.home_advantage;
+            : this.clamp(
+                home.home_advantage ?? this.DEFAULT_HOME_ADVANTAGE,
+                this.DEFAULT_HOME_ADVANTAGE,
+                this.MAX_HOME_ADVANTAGE
+            );
 
+        // Calculate expected goals
         const homeLambda =
             this.BASE_HOME_GOALS *
             homeAdvantage *
-            strengthFactor;
+            homeStrengthFactor;
 
         const awayLambda =
-            this.BASE_AWAY_GOALS /
-            strengthFactor;
+            this.BASE_AWAY_GOALS *
+            awayStrengthFactor;
 
         return {
             home: this.clamp(

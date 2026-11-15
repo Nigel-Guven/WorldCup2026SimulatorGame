@@ -71,6 +71,7 @@ export function GroupStageExecutionView({
       homeTeamGoals: score.home,
       awayTeamGoals: score.away,
       importance: matchImportance,
+      neutral_venue: false
     };
 
     const homeChar = score.home > score.away ? 'W' : score.home < score.away ? 'L' : 'D';

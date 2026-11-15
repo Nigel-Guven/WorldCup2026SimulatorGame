@@ -7,4 +7,5 @@ public class MatchUpdateDto
     public int HomeTeamGoals { get; set; }
     public int AwayTeamGoals { get; set; }
     public double Importance { get; set; }
+    public bool NeutralVenue { get; set; }
 }

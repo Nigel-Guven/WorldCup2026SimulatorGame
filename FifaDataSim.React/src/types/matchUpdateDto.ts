@@ -4,4 +4,5 @@ export interface MatchUpdateDto {
     homeTeamGoals: number;
     awayTeamGoals: number;
     importance: number;
+    neutral_venue: boolean;
 }

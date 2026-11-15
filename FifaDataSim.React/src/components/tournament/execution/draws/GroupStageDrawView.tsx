@@ -6,7 +6,6 @@ import type { Country } from '../../../../types/country';
 import { DrawUtils } from '../../../../services/helpers/drawUtils';
 import { useDrawAssignment } from '../../../../hooks/useDrawAssignment';
 import type { Pot } from '../../../../types/pot';
-import { PhaseType } from '../../../../types/phaseType';
 
 interface GroupStageDrawViewProps {
   phase: GroupStagePhase;
@@ -192,7 +191,7 @@ export function GroupStageDrawView({
                           <span>
                             <strong className="text-blue-500 mr-2">{slotIdx + 1}.</strong>
                             {team.name}
-                            {team.isStarred == true && (
+                            {team.is_starred == true && (
                               <span className="ml-1 text-sm" title="Starred Country">⭐</span>
                             )}
                           </span>

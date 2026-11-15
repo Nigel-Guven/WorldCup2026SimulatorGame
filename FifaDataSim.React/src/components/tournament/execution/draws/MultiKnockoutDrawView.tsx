@@ -155,7 +155,7 @@ export function MultiKnockoutDrawView({
                           <strong className="text-blue-500 mr-2">{slotIdx + 1}.</strong>
                           {team.name}
                           {/* Add the star right here based on your boolean property */}
-                          {team.isStarred == true && (
+                          {team.is_starred == true && (
                             <span className="ml-1 text-sm" title="Starred Country">⭐</span>
                           )}
                         </span>

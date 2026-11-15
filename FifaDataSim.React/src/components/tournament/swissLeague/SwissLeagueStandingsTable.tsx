@@ -134,7 +134,7 @@ export function SwissLeagueStandingsTable({
 
                         <span>{row.team.name}</span>
 
-                        {row.team.isStarred && (
+                        {row.team.is_starred && (
                           <span title="Starred Country">⭐</span>
                         )}
                       </div>

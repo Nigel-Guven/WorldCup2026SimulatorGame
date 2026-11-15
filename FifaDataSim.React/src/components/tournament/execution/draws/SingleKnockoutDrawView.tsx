@@ -197,7 +197,7 @@ function SlotBox({
     >
       <span>
         {team ? team.name : label}
-        {team?.isStarred == true && (
+        {team?.is_starred == true && (
           <span className="ml-1 text-sm" title="Starred Country">⭐</span>
         )}
       </span>

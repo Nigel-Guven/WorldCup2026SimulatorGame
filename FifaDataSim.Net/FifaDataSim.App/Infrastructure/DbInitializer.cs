@@ -33,7 +33,7 @@ public static class DbInitializer
 
                 foreach (var team in teamsInFile)
                 {
-                    bool isValid = true;
+                    var isValid = true;
                     if (!globalIds.Add(team.Id))
                     {
                         Console.WriteLine($"[Seeder Error] Duplicate id found in {file}: {team.Id}");
@@ -48,7 +48,7 @@ public static class DbInitializer
 
                     if (isValid)
                     {
-                        team.Form ??= string.Empty;
+                        team.HomeAdvantage = SetHomeAdvantage(team);
                         validTeams.Add(team);
                     }
                 }
@@ -62,5 +62,18 @@ public static class DbInitializer
         }
 
         context.SaveChanges();
+    }
+
+    private static double SetHomeAdvantage(Country team)
+    {
+        return team.ShortName switch
+        {
+            "SEI" or "KSH" or "CHG" or "ALK" or "NNV" or "STG" or "AMZ" or "FUG" or "ANT" or "JNM" => 1.45,
+            "BOL" or "ECU" or "COL" or "MEX" or "SKK" or "UYG" or "KAM" or "CHK" or "CUZ" or "MPC" or "KER" or "CRZ" => 1.35,
+            "TUR" or "GRE" or "SRB" or "SCO" or "JPN" or "MAR" or "BUR" or "TIB" or "ACR" or "AQU" or "PTC" => 1.25,
+            "GEO" or "IRQ" or "NGA" or "RWA" or "KEN" or "ISL" or "ANM" or "PRI" or "GRL" or "YUK" or "KRL" => 1.21,
+            "GHA" or "ISR" or "ARM" or "NOR" or "SAP" or "ADE" or "TEX" or "YUC" or "TYR" or "NFK" or "SRP" or "OSS" => 1.18,
+            _ => 1.12
+        };
     }
 }

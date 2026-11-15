@@ -5,15 +5,12 @@ export class SimulationEngineService {
     static readonly BASE_HOME_GOALS = 1.35;
     static readonly BASE_AWAY_GOALS = 1.05;
 
-    static readonly HOME_ADVANTAGE = 1.10;
-
     // Lower sensitivity than the original 0.02.
     static readonly STRENGTH_SENSITIVITY = 0.012;
 
     static readonly MAX_EXPECTED_GOALS = 4.5;
     static readonly MIN_EXPECTED_GOALS = 0.08;
 
-    // Shared match conditions.
     static readonly MATCH_TEMPO_VARIANCE = 0.10;
 
     static clamp(
@@ -74,11 +71,11 @@ export class SimulationEngineService {
     ): { home: number; away: number } {
 
         const homeStrength = this.clamp(
-            home.strength, 1, 100
+            home.strength_attack, 1, 100
         );
 
         const awayStrength = this.clamp(
-            away.strength, 1, 100
+            away.strength_attack, 1, 100
         );
 
         const strengthDifference =
@@ -91,7 +88,7 @@ export class SimulationEngineService {
 
         const homeAdvantage = neutralVenue
             ? 1
-            : this.HOME_ADVANTAGE;
+            : home.home_advantage;
 
         const homeLambda =
             this.BASE_HOME_GOALS *

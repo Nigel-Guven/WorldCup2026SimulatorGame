@@ -7,9 +7,11 @@ export interface Country {
   confederation: Confederation;
   football_association: string;
   default_points: number;
-  strength: number;
+  strength_attack: number;
+  strength_defence: number;
   flag_url: string;
   home_stadium: string;
   form: string;
-  isStarred: boolean;
+  home_advantage: number;
+  is_starred: boolean;
 }

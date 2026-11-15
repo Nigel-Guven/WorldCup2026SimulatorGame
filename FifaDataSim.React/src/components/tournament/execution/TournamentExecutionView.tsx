@@ -28,23 +28,34 @@ interface TournamentExecutionViewProps {
 // --- Local Helpers for Team Buffs / Modifiers ---
 function applyRandomModifiers(teams: Country[]): Country[] {
   if (!teams || teams.length === 0) return [];
-  const eligibleTeams = teams.filter((t) => (t.strength || 0) <= 85);
+  const eligibleTeams = teams.filter((t) => ((t.strength_attack + t.strength_defence)/2) <= 85);
   if (eligibleTeams.length === 0) return teams;
   
   const numToModify = Math.max(1, Math.floor(teams.length * 0.1));
   const shuffled = [...eligibleTeams].sort(() => 0.5 - Math.random());
   const selectedIds = new Set(shuffled.slice(0, numToModify).map((t) => t.id));
 
-  return teams.map((t) => selectedIds.has(t.id) ? { ...t, isStarred: true, strength: Math.min(85, (t.strength || 0) + 30) } : { ...t, isStarred: false });
+  return teams.map((t) => selectedIds.has(t.id) ? 
+    { 
+      ...t, is_starred: true, 
+      strength_attack: Math.min(85, (t.strength_attack || 0) + 25),
+      strength_defence: Math.min(85, (t.strength_defence || 0) + 25) 
+    } : 
+    { 
+      ...t, is_starred: false 
+    });
 }
 
 function revertTeamModifications(teams: Country[]): Country[] {
-  return teams.map((t) => t && t.isStarred ? { ...t, isStarred: false, strength: Math.max(0, (t.strength || 0) - 15) } : t);
+  return teams.map((t) => t && t.is_starred ? 
+  { 
+    ...t, is_starred: false, strength_attack: Math.max(0, (t.strength_attack || 0) - 15), strength_defence: Math.max(0, (t.strength_defence || 0) - 15)
+  } : t);
 }
 
 function generateSeededGroups(teams: Country[], groupCount: number, groupSize: number): Record<string, Country[]> {
   if (!teams || teams.length === 0) return {};
-  const sortedTeams = [...teams].sort((a, b) => (b.default_points ?? b.strength ?? 0) - (a.default_points ?? a.strength ?? 0));
+  const sortedTeams = [...teams].sort((a, b) => (b.default_points) - (a.default_points));
   const numGroups = Math.max(1, groupCount);
   const groupKeys = Array.from({ length: numGroups }, (_, i) => String.fromCharCode(65 + i));
   const groups: Record<string, Country[]> = {};
@@ -129,7 +140,7 @@ export function TournamentExecutionView({
             {modifiedTeams.map((team) => (
               <div key={team.id || team.name} className="flex items-center justify-center">
                 {team.flag_url ? (
-                  <img src={team.flag_url} alt={team.name} title={`${team.name} (STR: ${team.strength})${team.isStarred ? ' ⭐' : ''}`} className={`w-10 h-7 object-cover rounded shadow-xs hover:scale-125 transition-transform duration-150 ${team.isStarred ? 'ring-2 ring-yellow-400' : ''}`} />
+                  <img src={team.flag_url} alt={team.name} title={`${team.name} ${team.is_starred ? ' ⭐' : ''}`} className={`w-10 h-7 object-cover rounded shadow-xs hover:scale-125 transition-transform duration-150 ${team.is_starred ? 'ring-2 ring-yellow-400' : ''}`} />
                 ) : (
                   <span className="text-xs">🏳️</span>
                 )}

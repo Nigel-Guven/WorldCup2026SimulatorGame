@@ -67,10 +67,12 @@ export class GroupSimulationUtils {
           confederation: Confederation.CONMEBOL,
           football_association: '',
           default_points: 0,
-          strength: 0,
+          strength_attack: 0,
+          strength_defence: 0,
+          home_advantage: 0.0,
           home_stadium: '',
           form: '',
-          isStarred: false,
+          is_starred: false,
         };
 
         list.push(dummyBye);

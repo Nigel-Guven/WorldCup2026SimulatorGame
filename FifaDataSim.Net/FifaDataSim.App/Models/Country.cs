@@ -21,9 +21,13 @@ public class Country
     public string FootballAssociationName { get; set; } = string.Empty;
     
     [JsonPropertyName("default_points")]
-    public int DefaultRankingPoints { get; set; }
-    [JsonPropertyName("strength")]
-    public int Strength { get; set; }
+    public double DefaultRankingPoints { get; set; }
+    
+    [JsonPropertyName("strength_attack")]
+    public int StrengthAttack { get; set; }
+
+    [JsonPropertyName("strength_defence")] 
+    public int StrengthDefence { get; set; }
 
     [JsonPropertyName("flag_url")] 
     public string FlagUrl { get; set; } = string.Empty;
@@ -34,6 +38,9 @@ public class Country
     [JsonPropertyName("form")]
     public string Form { get; set; } = string.Empty;
     
-    [JsonPropertyName("isStarred")]
+    [JsonPropertyName("home_advantage")]
+    public double HomeAdvantage { get; set; }
+    
+    [JsonPropertyName("is_starred")]
     public bool IsStarred { get; set; } = false;
 }

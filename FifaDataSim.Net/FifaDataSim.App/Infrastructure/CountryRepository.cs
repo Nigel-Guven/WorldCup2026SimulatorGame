@@ -64,8 +64,11 @@ public class CountryRepository : ICountryRepository
         homeTeam.DefaultRankingPoints = (int)Math.Round(homeTeam.DefaultRankingPoints + pointChange);
         awayTeam.DefaultRankingPoints = (int)Math.Round(awayTeam.DefaultRankingPoints - pointChange);
 
-        homeTeam.Strength = (int)Math.Clamp(Math.Round(homeTeam.Strength + strengthChange), 1, 99);
-        awayTeam.Strength = (int)Math.Clamp(Math.Round(awayTeam.Strength - strengthChange), 1, 99);
+        homeTeam.StrengthAttack = (int)Math.Clamp(Math.Round(homeTeam.StrengthAttack + strengthChange), 1, 100);
+        awayTeam.StrengthAttack = (int)Math.Clamp(Math.Round(awayTeam.StrengthAttack - strengthChange), 1, 100);
+        
+        homeTeam.StrengthDefence = (int)Math.Clamp(Math.Round(homeTeam.StrengthDefence + strengthChange), 1, 100);
+        awayTeam.StrengthDefence = (int)Math.Clamp(Math.Round(awayTeam.StrengthDefence - strengthChange), 1, 100);
         
         char homeResult;
         char awayResult;
@@ -91,55 +94,12 @@ public class CountryRepository : ICountryRepository
 
         await _context.SaveChangesAsync();
     }
-    
+
     public void RefreshTeamStrength()
     {
-        var dataFolder = Path.Combine(_env.ContentRootPath, "Data");
-        if (!Directory.Exists(dataFolder))
-            return;
-
-        var jsonFiles = Directory.GetFiles(dataFolder, "*.json");
-        var strengthMap = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
-        
-        foreach (var file in jsonFiles)
-        {
-            try
-            {
-                var jsonString = File.ReadAllText(file);
-                var teamsInFile = JsonSerializer.Deserialize<List<Country>>(jsonString);
-
-                if (teamsInFile == null) continue;
-
-                foreach (var team in teamsInFile)
-                {
-                    if (!string.IsNullOrEmpty(team.Id))
-                    {
-                        strengthMap[team.Id] = team.Strength;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error reading file {file} during strength refresh: {ex.Message}");
-            }
-        }
-
-        if (strengthMap.Count == 0)
-            return;
-
-        var dbTeams = _context.Countries.ToList();
-
-        foreach (var team in dbTeams)
-        {
-            if (strengthMap.TryGetValue(team.Id, out int defaultStrength))
-            {
-                team.Strength = defaultStrength;
-            }
-        }
-
-        _context.SaveChanges();
+        throw new NotImplementedException();
     }
-    
+
     private static string AppendFormResult(string? currentForm, char result)
     {
         var newForm = (currentForm ?? string.Empty) + result;

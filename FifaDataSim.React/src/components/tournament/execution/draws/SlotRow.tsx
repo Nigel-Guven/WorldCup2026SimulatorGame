@@ -33,7 +33,7 @@ export function SlotRow({
             />
           )}
           <span className="truncate">{team.name}</span>
-          {team.isStarred && (
+          {team.is_starred && (
             <span className="text-sm shrink-0" title="Starred Country">
               ⭐
             </span>

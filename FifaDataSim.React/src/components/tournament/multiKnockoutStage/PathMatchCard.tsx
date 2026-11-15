@@ -86,7 +86,7 @@ export function PathMatchCard({ match, legs, onPlay }: PathMatchCardProps) {
             )}
             <span className="truncate">
               {match.teamA ? match.teamA.name : 'TBD'}
-              {match.teamA?.isStarred == true && (
+              {match.teamA?.is_starred == true && (
                 <span className="ml-1 text-sm" title="Starred Country">⭐</span>
               )}  
             </span>
@@ -151,7 +151,7 @@ export function PathMatchCard({ match, legs, onPlay }: PathMatchCardProps) {
             )}
             <span className="truncate">
               {match.teamB ? match.teamB.name : 'TBD'}
-              {match.teamB?.isStarred == true && (
+              {match.teamB?.is_starred == true && (
                 <span className="ml-1 text-sm" title="Starred Country">⭐</span>
               )}
               </span>

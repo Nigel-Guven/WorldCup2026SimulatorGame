@@ -401,7 +401,7 @@
     "short_name": "BRI",
     "confederation": "UEFA",
     "football_association": "Brittany Football Association",
-    "default_points": 1000.00,
+    "default_points": 1000.01,
     "strength_attack": 37,
     "strength_defence": 23,
     "flag_url": "/flags/brittany.png",

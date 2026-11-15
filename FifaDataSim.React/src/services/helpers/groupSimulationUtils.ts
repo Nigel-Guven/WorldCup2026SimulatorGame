@@ -73,6 +73,7 @@ export class GroupSimulationUtils {
           home_stadium: '',
           form: '',
           is_starred: false,
+          is_official: false
         };
 
         list.push(dummyBye);

@@ -78,6 +78,8 @@ export function GroupTable({
               <th className="py-2 px-1 text-center">D</th>
               <th className="py-2 px-1 text-center">L</th>
               <th className="py-2 px-1 text-center">GD</th>
+              <th className="py-2 px-1 text-center">GF</th>
+              <th className="py-2 px-1 text-center">GA</th>
               <th className="py-2 px-1 text-center font-bold text-gray-700">
                 Pts
               </th>
@@ -182,6 +184,14 @@ export function GroupTable({
 
                   <td className="py-2 px-1 text-center text-gray-500">
                     {row.gd > 0 ? `+${row.gd}` : row.gd}
+                  </td>
+
+                  <td className="py-2 px-1 text-center text-gray-500">
+                    {row.gf }
+                  </td>
+
+                  <td className="py-2 px-1 text-center text-gray-500">
+                    {row.ga }
                   </td>
 
                   <td className="py-2 px-1 text-center font-bold text-gray-900">

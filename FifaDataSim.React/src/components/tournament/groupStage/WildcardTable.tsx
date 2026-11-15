@@ -43,6 +43,8 @@ export function WildcardTable({
               <th className="py-2 px-1 text-center">Group</th>
               <th className="py-2 px-1 text-center">P</th>
               <th className="py-2 px-1 text-center">GD</th>
+              <th className="py-2 px-1 text-center">GF</th>
+              <th className="py-2 px-1 text-center">GA</th>
               <th className="py-2 px-1 text-center font-bold text-purple-900">
                 Pts
               </th>
@@ -274,6 +276,14 @@ export function WildcardTable({
                     {row.gd > 0
                       ? `+${row.gd}`
                       : row.gd}
+                  </td>
+
+                  <td className="py-2 px-1 text-center text-gray-500">
+                    {row.gf}
+                  </td>
+
+                  <td className="py-2 px-1 text-center text-gray-500">
+                    {row.ga}
                   </td>
 
                   <td className="py-2 px-1 text-center font-bold text-purple-950">

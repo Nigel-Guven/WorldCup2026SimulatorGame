@@ -1,1 +1,41 @@
+
 @import "tailwindcss";
+
+@theme {
+  --animate-shock-flash: shockFlash 900ms ease-out;
+  --animate-trashing-flash: trashingFlash 900ms ease-out;
+
+  @keyframes shockFlash {
+    0% {
+      background-color: rgb(216 180 254);
+      border-color: rgb(126 34 206);
+      box-shadow: 0 0 0 4px rgb(168 85 247 / 40%);
+    }
+    50% {
+      background-color: rgb(233 213 255);
+      box-shadow: 0 0 0 2px rgb(168 85 247 / 20%);
+    }
+    100% {
+      background-color: rgb(250 245 255);
+      border-color: rgb(192 132 252);
+      box-shadow: 0 0 0 0 transparent;
+    }
+  }
+
+  @keyframes trashingFlash {
+    0% {
+      background-color: rgb(252 165 165);
+      border-color: rgb(185 28 28);
+      box-shadow: 0 0 0 4px rgb(239 68 68 / 40%);
+    }
+    50% {
+      background-color: rgb(254 202 202);
+      box-shadow: 0 0 0 2px rgb(239 68 68 / 20%);
+    }
+    100% {
+      background-color: rgb(254 242 242);
+      border-color: rgb(248 113 113);
+      box-shadow: 0 0 0 0 transparent;
+    }
+  }
+}

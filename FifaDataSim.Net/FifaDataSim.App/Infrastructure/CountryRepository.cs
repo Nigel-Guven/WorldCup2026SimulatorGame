@@ -42,8 +42,8 @@ public class CountryRepository : ICountryRepository
             .Where(t => t.Id.ToLower() == homeId || t.Id.ToLower() == awayId)
             .ToListAsync();
 
-        var homeTeam = teams.FirstOrDefault(t => t.Id.ToLower() == homeId);
-        var awayTeam = teams.FirstOrDefault(t => t.Id.ToLower() == awayId);
+        var homeTeam = teams.FirstOrDefault(t => t.Id.Equals(homeId, StringComparison.CurrentCultureIgnoreCase));
+        var awayTeam = teams.FirstOrDefault(t => t.Id.Equals(awayId, StringComparison.CurrentCultureIgnoreCase));
 
         if (homeTeam == null || awayTeam == null)
         {
@@ -75,11 +75,11 @@ public class CountryRepository : ICountryRepository
         var pointChange =
             matchUpdate.Importance * (homeW - homeWe);
 
-        homeTeam.DefaultRankingPoints =
-            (int)Math.Round(homeTeam.DefaultRankingPoints + pointChange);
+        homeTeam.DefaultRankingPoints = Math.Round(
+            homeTeam.DefaultRankingPoints + pointChange, 2);
 
-        awayTeam.DefaultRankingPoints =
-            (int)Math.Round(awayTeam.DefaultRankingPoints - pointChange);
+        awayTeam.DefaultRankingPoints = Math.Round(
+            awayTeam.DefaultRankingPoints - pointChange, 2);
 
 
         // -----------------------------------------

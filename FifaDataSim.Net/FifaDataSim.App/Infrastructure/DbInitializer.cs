@@ -28,6 +28,9 @@ public static class DbInitializer
                 var teamsInFile = JsonSerializer.Deserialize<List<Country>>(jsonString);
 
                 if (teamsInFile == null) continue;
+                
+                var isRecognised = !Path.GetFileName(file)
+                    .StartsWith("unrecognised_", StringComparison.OrdinalIgnoreCase);
 
                 var validTeams = new List<Country>();
 
@@ -48,6 +51,7 @@ public static class DbInitializer
 
                     if (isValid)
                     {
+                        team.IsOfficial = isRecognised;
                         team.HomeAdvantage = SetHomeAdvantage(team);
                         validTeams.Add(team);
                     }

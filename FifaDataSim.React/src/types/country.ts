@@ -14,4 +14,5 @@ export interface Country {
   form: string;
   home_advantage: number;
   is_starred: boolean;
+  is_official: boolean;
 }

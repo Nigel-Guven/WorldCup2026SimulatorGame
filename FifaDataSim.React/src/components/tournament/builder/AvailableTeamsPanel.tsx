@@ -22,6 +22,7 @@ export function AvailableTeamsPanel({
   onAssignMultipleTeams,
 }: AvailableTeamsPanelProps): JSX.Element {
   const [selectedTeamIds, setSelectedTeamIds] = useState<Set<string | number>>(new Set());
+  const [includeUnrecognisedTeams, setIncludeUnrecognisedTeams] = useState(false);
 
   const handleToggleSelectTeam = (teamId: string | number) => {
     setSelectedTeamIds((prev) => {
@@ -74,32 +75,49 @@ export function AvailableTeamsPanel({
   return (
     <div className="w-full lg:w-1/2 xl:w-7/12 space-y-4">
       {/* Panel Header & Batch Toolbar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-        <h2 className="text-xl font-bold text-gray-800">
-          Available Teams
-        </h2>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <h2 className="text-xl font-bold text-gray-800">
+              Available Teams
+          </h2>
 
-        {selectedTeamIds.size > 0 && (
-          <div className="flex items-center gap-2 bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-lg text-xs">
-            <span className="font-semibold text-blue-900">
-              {selectedTeamIds.size} Selected
-            </span>
-            <button
-              type="button"
-              onClick={handleBatchAssign}
-              className="px-2 py-1 bg-blue-600 text-white rounded font-bold hover:bg-blue-700 transition-colors"
-            >
-              Add Selected
-            </button>
-            <button
-              type="button"
-              onClick={handleClearSelection}
-              className="text-gray-500 hover:text-gray-700 font-medium px-1"
-            >
-              Clear
-            </button>
+          <div className="flex flex-wrap items-center gap-3">
+
+              {/* Include Unrecognised Teams Toggle */}
+              <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+                  <input
+                      type="checkbox"
+                      checked={includeUnrecognisedTeams}
+                      onChange={(e) => setIncludeUnrecognisedTeams(e.target.checked)}
+                      className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  />
+                  Include unrecognised teams
+              </label>
+
+              {/* Batch Assignment Toolbar */}
+              {selectedTeamIds.size > 0 && (
+                  <div className="flex items-center gap-2 bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-lg text-xs">
+                      <span className="font-semibold text-blue-900">
+                          {selectedTeamIds.size} Selected
+                      </span>
+
+                      <button
+                          type="button"
+                          onClick={handleBatchAssign}
+                          className="px-2 py-1 bg-blue-600 text-white rounded font-bold hover:bg-blue-700 transition-colors"
+                      >
+                          Add Selected
+                      </button>
+
+                      <button
+                          type="button"
+                          onClick={handleClearSelection}
+                          className="text-gray-500 hover:text-gray-700 font-medium px-1"
+                      >
+                          Clear
+                      </button>
+                  </div>
+              )}
           </div>
-        )}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -107,7 +125,10 @@ export function AvailableTeamsPanel({
           const allConfTeams = teamsData[conf.id] || [];
 
           const availableTeams = allConfTeams.filter(
-            (team) => team.id !== undefined && !assignedTeamIds.has(team.id)
+              (team) =>
+                  team.id !== undefined &&
+                  !assignedTeamIds.has(team.id) &&
+                  (includeUnrecognisedTeams || team.is_official)
           );
 
           return (

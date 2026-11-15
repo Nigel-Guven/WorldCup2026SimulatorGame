@@ -43,4 +43,7 @@ public class Country
     
     [JsonPropertyName("is_starred")]
     public bool IsStarred { get; set; } = false;
+    
+    [JsonPropertyName("is_official")]
+    public bool IsOfficial { get; set; }
 }

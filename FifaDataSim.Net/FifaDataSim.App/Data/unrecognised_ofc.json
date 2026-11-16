@@ -226,17 +226,5 @@
     "strength_defence": 7,
     "flag_url": "/flags/bismarck.png",
     "home_stadium": "Bismarck Municipal Ballpark"
-  },
-  {
-    "id": "rtu",
-    "name": "Rotuma",
-    "short_name": "RTU",
-    "confederation": "OFC",
-    "football_association": "Rotuma Football Federation",
-    "default_points": 694.57,
-    "strength_attack": 11,
-    "strength_defence": 10,
-    "flag_url": "/flags/rotuma.png",
-    "home_stadium": "Govind Park"
   }
 ]

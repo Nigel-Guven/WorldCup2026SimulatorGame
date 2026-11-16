@@ -1,3 +1,14 @@
 - Host and Neutral venue
 - Fix knockout phase AET, Penalty shootout etc
 - New SpecificPlacement Phase system
+- Red/Yellow Penalty modifier
+- Environmental conditions modifier
+- Rivalry modifier
+- Fix Swiss system
+- Team restrictions for fixtures
+- Statistics page and backend
+- World map of qualified teams
+
+
+
+

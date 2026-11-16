@@ -24,30 +24,6 @@
     "home_stadium": "Arena da Floresta"
   },
   {
-    "id": "aqu",
-    "name": "Antioquia",
-    "short_name": "AQU",
-    "confederation": "CONMEBOL",
-    "football_association": "Antioquia Football Federation",
-    "default_points": 935.25,
-    "strength_attack": 38,
-    "strength_defence": 26,
-    "flag_url": "/flags/antioquia.png",
-    "home_stadium": "Atanasio Girardot Stadium"
-  },
-  {
-    "id": "cuz",
-    "name": "Cuzco",
-    "short_name": "CUZ",
-    "confederation": "CONMEBOL",
-    "football_association": "Quechua Football Association",
-    "default_points": 891.34,
-    "strength_attack": 10,
-    "strength_defence": 35,
-    "flag_url": "/flags/quechua.png",
-    "home_stadium": "Estadio Inca Garcilaso de la Vega"
-  },
-  {
     "id": "stg",
     "name": "South Georgia",
     "short_name": "STG",
@@ -120,18 +96,6 @@
     "home_stadium": "Municipal Stadium Hugo Lumbreras"
   },
   {
-    "id": "ant",
-    "name": "Antarctica",
-    "short_name": "ANT",
-    "confederation": "CONMEBOL",
-    "football_association": "South Pole Football Federation",
-    "default_points": 908.32,
-    "strength_attack": 20,
-    "strength_defence": 35,
-    "flag_url": "/flags/antarctica.png",
-    "home_stadium": "South Pole Stadium"
-  },
-  {
     "id": "rio",
     "name": "Riograndense Republic",
     "short_name": "RIO",
@@ -153,18 +117,6 @@
     "strength_attack": 23,
     "strength_defence": 27,
     "flag_url": "/flags/patagonia.png",
-    "home_stadium": "Estadio Ruca Che"
-  },
-  {
-    "id": "mpc",
-    "name": "Mapuche",
-    "short_name": "MPC",
-    "confederation": "CONMEBOL",
-    "football_association": "Mapuche Football Association",
-    "default_points": 580.14,
-    "strength_attack": 8,
-    "strength_defence": 2,
-    "flag_url": "/flags/mapuche.png",
     "home_stadium": "Estadio Ruca Che"
   }
 ]

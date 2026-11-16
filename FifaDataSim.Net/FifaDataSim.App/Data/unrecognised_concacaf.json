@@ -350,10 +350,10 @@
   },
   {
     "id": "csa",
-    "name": "Confederate States",
+    "name": "CSA",
     "short_name": "CSA",
     "confederation": "CONCACAF",
-    "football_association": "Confederacy Soccer Federation",
+    "football_association": "Confederate States Soccer Federation",
     "default_points": 1094.01,
     "strength_attack": 29,
     "strength_defence": 57,

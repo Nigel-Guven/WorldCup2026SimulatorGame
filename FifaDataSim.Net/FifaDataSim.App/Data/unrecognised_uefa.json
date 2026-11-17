@@ -504,6 +504,18 @@
     "home_stadium": "Nicosia Atatürk Stadium"
   },
   {
+    "id": "adh",
+    "name": "Akrotiri & Dhekelia",
+    "short_name": "ADH",
+    "confederation": "UEFA",
+    "football_association": "British Cypriot Football Federation",
+    "default_points": 996.07,
+    "strength_attack": 32,
+    "strength_defence": 26,
+    "flag_url": "/flags/akrotiri.png",
+    "home_stadium": "Akrotiri Stadium"
+  },
+  {
     "id": "NGK",
     "name": "Artsakh",
     "short_name": "NGK",

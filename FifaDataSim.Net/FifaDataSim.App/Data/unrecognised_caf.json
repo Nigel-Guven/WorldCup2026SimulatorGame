@@ -168,18 +168,6 @@
     "home_stadium": "Sheikh Mohamed Laghdaf Stadium"
   },
   {
-    "id": "bnt",
-    "name": "Bantustan",
-    "short_name": "BNT",
-    "confederation": "CAF",
-    "football_association": "Kwa-Zulu Sports Federation",
-    "default_points": 1052.56,
-    "strength_attack": 38,
-    "strength_defence": 32,
-    "flag_url": "/flags/bantustan.png",
-    "home_stadium": "Mbombela Stadium"
-  },
-  {
     "id": "mel",
     "name": "Melilla",
     "short_name": "MEL",

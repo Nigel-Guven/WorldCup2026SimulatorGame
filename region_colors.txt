@@ -1,0 +1,369 @@
+"map_colour": { "r": 38, "g": 121, "b": 0 } 		// Republic of Ireland
+"map_colour": { "r": 169, "g": 50, "b": 47 } 		// Northern Ireland
+"map_colour": { "r": 0, "g": 24, "b": 127 } 		// Scotland
+"map_colour": { "r": 85, "g": 150, "b": 6 } 		// Wales
+"map_colour": { "r": 255, "g": 8, "b": 0 } 			// England
+"map_colour": { "r": 255, "g": 237, "b": 255 } 		// Channel Islands
+"map_colour": { "r": 127, "g": 6, "b": 110 } 		// Isle Of Man
+"map_colour": { "r": 127, "g":4, "b": 55 } 			// Cornwall
+"map_colour": { "r": 55, "g": 12, "b": 240 } 		// France
+"map_colour": { "r": 127, "g": 114, "b": 0 } 		// Occitania
+"map_colour": { "r": 86, "g": 117, "b": 196 } 		// Brittany
+"map_colour": { "r": 127, "g": 240, "b": 255 } 		// Monaco
+"map_colour": { "r": 46, "g": 39, "b": 43 } 		// Corsica
+"map_colour": { "r": 185, "g": 255, "b": 0 } 		// Spain
+"map_colour": { "r": 122, "g": 140, "b": 251 } 		// Andorra
+"map_colour": { "r": 255, "g": 90, "b": 0 } 		// Catalonia
+"map_colour": { "r": 4, "g": 255, "b": 255 } 		// Galicia
+"map_colour": { "r": 171, "g": 150, "b": 7 } 		// Euskal Herria
+"map_colour": { "r": 122, "g": 149, "b": 253 } 		// Canary Islands
+"map_colour": { "r": 255, "g": 5, "b": 10 } 		// Gibraltar
+"map_colour": { "r": 3, "g": 135, "b": 75 } 		// Portugal
+"map_colour": { "r": 171, "g": 50, "b": 11 } 		// Switzerland
+"map_colour": { "r": 33, "g": 11, "b": 127 } 		// Wallonia
+"map_colour": { "r": 180, "g": 255, "b": 0 } 		// Belgium
+"map_colour": { "r": 86, "g": 183, "b": 134 } 		// Luxembourg
+"map_colour": { "r": 86, "g": 156, "b": 26 } 		// Flanders
+"map_colour": { "r": 255, "g": 106, "b": 5 } 		// Netherlands
+"map_colour": { "r": 4, "g": 135, "b": 30 } 		// Italy
+"map_colour": { "r": 0, "g": 140, "b": 255 } 		// San Marino
+"map_colour": { "r": 157, "g": 121, "b": 255 } 		// Friulia
+"map_colour": { "r": 218, "g": 250, "b": 125 } 		// Vatican City State
+"map_colour": { "r": 255, "g": 122, "b": 185 } 		// Sardinia
+"map_colour": { "r": 0, "g": 123, "b": 123 } 		// Sicily
+"map_colour": { "r": 173, "g": 100, "b": 207 } 		// Malta
+"map_colour": { "r": 0, "g": 9, "b": 0 } 			// Elba
+"map_colour": { "r": 87, "g": 57, "b": 141 } 		// Tyrol
+"map_colour": { "r": 127, "g": 240, "b": 230 } 		// Bavaria
+"map_colour": { "r": 4, "g": 127, "b": 70 } 		// Lietchenstein
+"map_colour": { "r": 2, "g": 27, "b": 5 } 			// Germany
+"map_colour": { "r": 255, "g": 238, "b": 127 } 		// Austria
+"map_colour": { "r": 127, "g": 4, "b": 4 } 			// Denmark
+"map_colour": { "r": 127, "g": 0, "b": 100 } 		// Norway
+"map_colour": { "r": 178, "g": 4, "b": 255 } 		// Sapmi
+"map_colour": { "r": 1, "g": 24, "b": 135 } 		// Sweden
+"map_colour": { "r": 255, "g": 123, "b": 182 } 		// Faroe Islands
+"map_colour": { "r": 182, "g": 250, "b": 0 } 		// Aland Islands
+"map_colour": { "r": 118, "g": 146, "b": 250 } 		// Jan Mayen
+"map_colour": { "r": 0, "g": 154, "b": 250 } 		// Iceland
+"map_colour": { "r": 168, "g": 207, "b": 217 } 		// Finland
+"map_colour": { "r": 2, "g": 206, "b": 175 } 		// Czechia
+"map_colour": { "r": 0, "g": 201, "b": 210 } 		// Slovakia
+"map_colour": { "r": 175, "g": 61, "b": 142 } 		// Poland
+"map_colour": { "r": 62, "g": 62, "b": 62 } 		// Prussia
+"map_colour": { "r": 127, "g": 205, "b": 44 } 		// Lithuania
+"map_colour": { "r": 127, "g": 4, "b": 5 } 			// Latvia
+"map_colour": { "r": 0, "g": 68, "b": 200 } 		// Estonia
+"map_colour": { "r": 169, "g": 86, "b": 40 } 		// Belarus
+"map_colour": { "r": 171, "g": 72, "b": 50 } 		// Hungary
+"map_colour": { "r": 35, "g": 20, "b": 143 } 		// Slovenia
+"map_colour": { "r": 255, "g": 3, "b": 10 } 		// Croatia
+"map_colour": { "r": 129, "g": 23, "b": 219 } 		// Serbia
+"map_colour": { "r": 0, "g": 127, "b": 66 } 		// Montenegro
+"map_colour": { "r": 172, "g": 32, "b": 77 } 		// Albania
+"map_colour": { "r": 255, "g": 100, "b": 20 } 		// Epirus
+"map_colour": { "r": 4, "g": 19, "b": 127 } 		// Kosovo
+"map_colour": { "r": 87, "g": 10, "b": 181 } 		// Bosnia & Herzergovina
+"map_colour": { "r": 127, "g": 0, "b": 55 } 		// Republika Srpska
+"map_colour": { "r": 255, "g": 125, "b": 125 } 		// North Macedonia
+"map_colour": { "r": 127, "g": 253, "b": 197 } 		// Bulgaria
+"map_colour": { "r": 0, "g": 70, "b": 127 } 		// Thrace
+"map_colour": { "r": 4, "g": 198, "b": 210 } 		// Greece
+"map_colour": { "r": 214, "g": 123, "b": 255 } 		// Crete
+"map_colour": { "r": 87, "g": 5, "b": 120 } 		// Romania
+"map_colour": { "r": 3, "g": 42, "b": 255 } 		// Szeklerland
+"map_colour": { "r": 127, "g": 93, "b": 69 } 		// Transnistria
+"map_colour": { "r": 161, "g": 127, "b": 252 } 		// Gagauzia
+"map_colour": { "r": 182, "g": 252, "b": 4 } 		// Moldova
+"map_colour": { "r": 16, "g": 97, "b": 250 } 		// Ukraine
+"map_colour": { "r": 86, "g": 3, "b": 56 } 			// Donetsk Peoples Republic
+"map_colour": { "r": 126, "g": 60, "b": 59 } 		// Luhansk Peoples Republic
+"map_colour": { "r": 171, "g": 100, "b": 57 } 		// Crimea
+"map_colour": { "r": 127, "g": 55, "b": 0 } 		// Turkey
+"map_colour": { "r": 127, "g": 199, "b": 255 } 		// Pontus
+"map_colour": { "r": 170, "g": 81, "b": 197 } 		// Cyprus
+"map_colour": { "r": 82, "g": 127, "b": 66 } 		// Northern Cyprus
+"map_colour": { "r": 252, "g": 125, "b": 180 } 		// Akrotiri & Dhekelia
+"map_colour": { "r": 127, "g": 141, "b": 255 } 		// Israel
+"map_colour": { "r": 126, "g": 75, "b": 39 } 		// Russia
+"map_colour": { "r": 0, "g": 124, "b": 127 } 		// Karelia
+"map_colour": { "r": 127, "g": 251, "b": 255 } 		// Georgia
+"map_colour": { "r": 214, "g": 124, "b": 255 } 		// Abkhazia
+"map_colour": { "r": 255, "g": 127, "b": 127 } 		// Ossetia
+"map_colour": { "r": 87, "g": 10, "b": 127 } 		// Armenia
+"map_colour": { "r": 214, "g": 127, "b": 255 } 		// Artsakh
+"map_colour": { "r": 127, "g": 8, "b": 55 } 		// Nakhchivan Autonomous Republic
+"map_colour": { "r": 255, "g": 132, "b": 237 } 		// Azerbaijan
+"map_colour": { "r": 91, "g": 127, "b": 4 } 		// Dagestan
+"map_colour": { "r": 109, "g": 127, "b": 63 } 		// Chechnya
+"map_colour": { "r": 8, "g": 74, "b": 127 } 		// Adygea
+"map_colour": { "r": 165, "g": 251, "b": 131 } 		// Kalmykia
+"map_colour": { "r": 33, "g": 5, "b": 127 } 		// Chuvashia
+"map_colour": { "r": 3, "g": 148, "b": 250 } 		// Kazakhstan
+"map_colour": { "r": 255, "g": 6, "b": 111 } 		// Mordovia
+"map_colour": { "r": 127, "g": 7, "b": 110 } 		// Nenetsia
+"map_colour": { "r": 158, "g": 163, "b": 163 } 		// Mari-El
+"map_colour": { "r": 120, "g": 251, "b": 201 } 		// Bashkortostan
+"map_colour": { "r": 126, "g": 126, "b": 130 } 		// Udmurtia
+"map_colour": { "r": 109, "g": 131, "b": 68 } 		// Circassia
+"map_colour": { "r": 250, "g": 216, "b": 0 } 		// Brazil
+"map_colour": { "r": 174, "g": 0, "b": 243 } 		// Colombia
+"map_colour": { "r": 177, "g": 102, "b": 87 } 		// Ecuador
+"map_colour": { "r": 94, "g": 30, "b": 46 } 		// Peru
+"map_colour": { "r": 9, "g": 78, "b": 175 } 		// Venezuela
+"map_colour": { "r": 161, "g": 127, "b": 255 } 		// Argentina
+"map_colour": { "r": 178, "g": 3, "b": 77 } 		// Bolivia
+"map_colour": { "r": 52, "g": 162, "b": 173 } 		// Chile
+"map_colour": { "r": 52, "g": 69, "b": 88 } 		// Paraguay
+"map_colour": { "r": 175, "g": 207, "b": 167 } 		// Uruguay
+"map_colour": { "r": 178, "g": 126, "b": 167 } 		// Falkland Islands
+"map_colour": { "r": 127, "g": 255, "b": 255 } 		// Republic of Acre
+"map_colour": { "r": 136, "g": 153, "b": 44 } 		// South Georgia
+"map_colour": { "r": 10, "g": 147, "b": 30 } 		// Amazonia
+"map_colour": { "r": 51, "g": 123, "b": 218 } 		// Galapagos Islands
+"map_colour": { "r": 123, "g": 3, "b": 59 } 		// Amapa
+"map_colour": { "r": 255, "g": 127, "b": 242 } 		// Zulia
+"map_colour": { "r": 255, "g": 108, "b": 3 } 		// Fuegia
+"map_colour": { "r": 7, "g": 150, "b": 30 } 		// Riograndense Republic
+"map_colour": { "r": 165, "g": 255, "b": 127 } 		// Patagonia
+"map_colour": { "r": 214, "g": 129, "b": 255 } 		// Cook Islands
+"map_colour": { "r": 127, "g": 2, "b": 55 } 		// American Samoa
+"map_colour": { "r": 8, "g": 66, "b": 150 } 		// New Zealand
+"map_colour": { "r": 5, "g": 36, "b": 254 } 		// New Caledonia
+"map_colour": { "r": 127, "g": 66, "b": 118 } 		// Tonga
+"map_colour": { "r": 251, "g": 3, "b": 113 } 		// Vanuatu
+"map_colour": { "r": 54, "g": 53, "b": 44 } 		// Papua New Guinea
+"map_colour": { "r": 1, "g": 150, "b": 252 } 		// Solomon Islands
+"map_colour": { "r": 127, "g": 148, "b": 253 } 		// Tahiti
+"map_colour": { "r": 212, "g": 124, "b": 254 } 		// Fiji
+"map_colour": { "r": 82, "g": 65, "b": 127 } 		// Samoa
+"map_colour": { "r": 255, "g": 34, "b": 40 } 		// Micronesia
+"map_colour": { "r": 1, "g": 1, "b": 1 } 			// Nauru
+"map_colour": { "r": 255, "g": 12, "b": 160 } 		// Marshall Islands
+"map_colour": { "r": 174, "g": 0, "b": 187 } 		// Palau
+"map_colour": { "r": 218, "g": 252, "b": 131 } 		// Niue
+"map_colour": { "r": 199, "g": 16, "b": 94 } 		// Cocos Islands
+"map_colour": { "r": 190, "g": 193, "b": 194 } 		// Tokelau
+"map_colour": { "r": 127, "g": 148, "b": 254 } 		// Kiribati
+"map_colour": { "r": 80, "g": 65, "b": 127 } 		// Tuvalu
+"map_colour": { "r": 4, "g": 255, "b": 33 } 		// Norfolk Island
+"map_colour": { "r": 255, "g": 108, "b": 7 } 		// Tasmania
+"map_colour": { "r": 47, "g": 180, "b": 133 } 		// Hawaii
+"map_colour": { "r": 132, "g": 171, "b": 59 } 		// Bougainville
+"map_colour": { "r": 6, "g": 51, "b": 10 } 			// Rapa Nui
+"map_colour": { "r": 131, "g": 130, "b": 125 } 		// Wallis and Futuna
+"map_colour": { "r": 160, "g": 160, "b": 160 } 		// Pitcairn Islands
+"map_colour": { "r": 255, "g": 129, "b": 184 } 		// Crozet Islands
+"map_colour": { "r": 10, "g": 75, "b": 60 } 		// Kerguelen Islands
+"map_colour": { "r": 132, "g": 81, "b": 44 } 		// Bismarck Islands
+"map_colour": { "r": 129, "g":6, "b": 34 } 			// Canada
+"map_colour": { "r": 4, "g": 12, "b": 195 } 		// USA
+"map_colour": { "r": 51, "g": 123, "b": 13 } 		// Mexico
+"map_colour": { "r": 9, "g": 180, "b": 150 } 		// Belize
+"map_colour": { "r": 177, "g": 186, "b": 222 } 		// Costa Rica
+"map_colour": { "r": 210, "g": 188, "b": 132 } 		// El Salvador
+"map_colour": { "r": 135, "g": 171, "b": 184 } 		// Guatemala
+"map_colour": { "r": 9, "g": 177, "b": 185 } 		// Nicaragua
+"map_colour": { "r": 93, "g": 93, "b": 171 } 		// Honduras
+"map_colour": { "r": 133, "g": 165, "b": 189 } 		// Panama
+"map_colour": { "r":177, "g": 135, "b": 57 } 		// Suriname
+"map_colour": { "r": 177, "g": 15, "b": 37 } 		// Guyana
+"map_colour": { "r": 255, "g": 2, "b": 120 } 		// Bermuda
+"map_colour": { "r": 7, "g": 57, "b": 200 } 		// Bahamas
+"map_colour": { "r": 133, "g": 123, "b": 19 } 		// Turks and Caicos Islands
+"map_colour": { "r": 49, "g": 150, "b": 88 } 		// Cuba
+"map_colour": { "r": 253, "g": 127, "b": 190 } 		// Cayman Islands
+"map_colour": { "r": 133, "g": 168, "b": 154 } 		// Dominican Republic
+"map_colour": { "r": 7, "g": 144, "b": 150 } 		// Haiti
+"map_colour": { "r": 175, "g": 3, "b": 162 } 		// Jamaica
+"map_colour": { "r": 47, "g": 153, "b": 138 } 		// Puerto Rico
+"map_colour": { "r": 91, "g": 118, "b": 4 } 		// British Virgin Islands
+"map_colour": { "r": 9, "g": 74, "b": 127 } 		// US Virgin Islands
+"map_colour": { "r": 61, "g": 0, "b": 255 } 		// St. Lucia
+"map_colour": { "r": 127, "g": 231, "b": 252 } 		// Aruba
+"map_colour": { "r": 0, "g": 150, "b": 25 } 		// Curaçao
+"map_colour": { "r": 127, "g": 9, "b": 110 } 		// Grenada
+"map_colour": { "r": 251, "g": 119, "b": 239 } 		// St. Vincent and the Grenadines
+"map_colour": { "r": 255, "g": 3, "b": 160 } 		// Trinidad and Tobago
+"map_colour": { "r": 255, "g": 1, "b": 40 } 		// Barbados
+"map_colour": { "r": 0, "g": 251, "b": 27 } 		// Dominica
+"map_colour": { "r": 253, "g": 124, "b": 180 } 		// Montserrat
+"map_colour": { "r": 175, "g": 4, "b": 251 } 		// Anguilla
+"map_colour": { "r": 83, "g": 4, "b": 130 } 		// St. Kitts and Nevis
+"map_colour": { "r": 250, "g": 230, "b": 130 } 		// Antigua and Barbuda
+"map_colour": { "r": 132, "g": 120, "b": 149 } 		// Greenland
+"map_colour": { "r": 51, "g": 33, "b":203 } 		// French Guiana
+"map_colour": { "r": 218, "g": 246, "b": 127 } 		// Bonaire
+"map_colour": { "r": 127, "g": 239, "b": 247 } 		// Saint Martin
+"map_colour": { "r": 3, "g": 255, "b": 23 } 		// Sint Maarten
+"map_colour": { "r": 4, "g": 133, "b": 14 } 		// Guadeloupe
+"map_colour": { "r": 89, "g": 105, "b": 51 } 		// Martinique
+"map_colour": { "r": 30, "g": 0, "b": 130 } 		// Texas
+"map_colour": { "r": 222, "g": 253, "b": 123 } 		// California
+"map_colour": { "r": 122, "g": 0, "b": 118 } 		// Louisiana
+"map_colour": { "r": 233, "g": 228, "b": 127 } 		// Huron Wyandot
+"map_colour": { "r": 7, "g": 120, "b": 175 } 		// Florida
+"map_colour": { "r": 127, "g": 114, "b": 63 } 		// Republic of Sonora
+"map_colour": { "r": 4, "g": 154, "b": 255 } 		// Saint Pierre and Miquelon
+"map_colour": { "r": 174, "g": 48, "b": 87 } 		// Quebec
+"map_colour": { "r": 5, "g": 132, "b": 225 } 		// Alaska
+"map_colour": { "r": 251, "g": 106, "b": 14 } 		// Sint Eustatius
+"map_colour": { "r": 2, "g": 122, "b": 121 } 		// Saba
+"map_colour": { "r": 176, "g": 3, "b": 67 } 		// Newfoundland
+"map_colour": { "r": 8, "g": 117, "b": 220 } 		// Navajo
+"map_colour": { "r": 50, "g": 162, "b": 208 } 		// Lakota
+"map_colour": { "r": 91, "g": 0, "b": 127 } 		// Iroquois
+"map_colour": { "r": 5, "g": 72, "b": 124 } 		// Deseret
+"map_colour": { "r": 176, "g":81, "b": 67 } 		// Cascadia
+"map_colour": { "r": 129, "g": 42, "b": 69 } 		// Inuit Nunangat
+"map_colour": { "r": 51, "g": 63, "b": 3 } 			// Yucatan
+"map_colour": { "r": 90, "g": 138, "b": 31 } 		// Nova Scotia
+"map_colour": { "r": 174, "g": 69, "b": 147 } 		// Alberta
+"map_colour": { "r":176, "g": 6, "b": 182 } 		// Yukon
+"map_colour": { "r": 127, "g": 66, "b": 66 } 		// CSA`
+"map_colour": { "r": 10, "g": 192, "b": 165 } 		// Burundi
+"map_colour": { "r": 131, "g": 30, "b": 74 } 		// Rwanda
+"map_colour": { "r": 10, "g": 132, "b": 155 } 		// Congo
+"map_colour": { "r": 177, "g": 207, "b": 27 } 		// DR Congo
+"map_colour": { "r": 177, "g": 30, "b": 167 } 		// Nigeria
+"map_colour": { "r": 51, "g": 156, "b": 188 } 		// Cameroon
+"map_colour": { "r": 94, "g": 186, "b": 1 } 		// Equatorial Guinea
+"map_colour": { "r": 255, "g": 6, "b": 160 } 		// São Tomé and Príncipe
+"map_colour": { "r": 9, "g": 69, "b": 225 } 		// Central African Republic
+"map_colour": { "r": 94, "g": 108, "b": 151 } 		// Gabon
+"map_colour": { "r": 177, "g": 24, "b": 32 } 		// Sudan
+"map_colour": { "r": 255, "g": 5, "b": 218 } 		// South Sudan
+"map_colour": { "r": 51, "g": 150, "b": 53 } 		// Eritrea
+"map_colour": { "r": 93, "g": 54, "b": 171 } 		// Ethiopia
+"map_colour": { "r":93, "g": 207, "b": 161 } 		// Djibouti
+"map_colour": { "r": 51, "g": 168, "b": 98 } 		// Somalia
+"map_colour": { "r": 94, "g": 3, "b": 6 } 			// Kenya
+"map_colour": { "r": 178, "g": 60, "b": 22 } 		// Uganda
+"map_colour": { "r": 10, "g": 126, "b": 225 } 		// Seychelles
+"map_colour": { "r": 178, "g": 93, "b": 92 } 		// Tanzania
+"map_colour": { "r": 125, "g": 102, "b": 4 } 		// Algeria
+"map_colour": { "r": 218, "g": 250, "b": 133 } 		// Egypt
+"map_colour": { "r": 93, "g": 150, "b": 11 } 		// Libya
+"map_colour": { "r": 127, "g": 89, "b": 63 } 		// Morocco
+"map_colour": { "r": 255, "g": 127, "b": 179 } 		// Tunisia
+"map_colour": { "r": 127, "g": 250, "b": 142 } 		// Mauritania
+"map_colour": { "r": 9, "g": 144, "b": 215 } 		// Mali
+"map_colour": { "r": 0, "g": 127, "b": 70 } 		// Niger
+"map_colour": { "r": 51, "g":75, "b": 168 } 		// Chad
+"map_colour": { "r": 50, "g": 24, "b": 143 } 		// South Africa
+"map_colour": { "r": 178, "g": 2, "b": 255 } 		// Lesotho
+"map_colour": { "r": 255, "g": 0, "b": 111 } 		// Eswatini
+"map_colour": { "r": 178, "g": 84, "b": 97 } 		// Botswana
+"map_colour": { "r": 92, "g": 72, "b": 151 } 		// Namibia
+"map_colour": { "r": 136, "g": 9, "b": 49 } 		// Zimbabwe
+"map_colour": { "r": 52, "g": 93, "b": 63 } 		// Mozambique
+"map_colour": { "r": 94, "g": 99, "b": 156 } 		// Angola
+"map_colour": { "r": 176, "g": 3, "b": 12 } 		// Zambia
+"map_colour": { "r": 255, "g": 9, "b": 160 } 		// Mauritius
+"map_colour": { "r": 52, "g": 111, "b": 158 } 		// Madagascar
+"map_colour": { "r": 255, "g": 61, "b": 130 } 		// Comoros
+"map_colour": { "r": 255, "g": 127, "b": 235 } 		// Malawi
+"map_colour": { "r": 255, "g": 5, "b": 120 } 		// Cabo Verde
+"map_colour": { "r": 87, "g": 7, "b": 147 } 		// The Gambia
+"map_colour": { "r": 40, "g": 127, "b": 0 } 		// Senegal
+"map_colour": { "r": 9, "g": 18, "b": 165 } 		// Guinea
+"map_colour": { "r": 177, "g": 201, "b": 97 } 		// Guinea-Bissau
+"map_colour": { "r": 9, "g": 198, "b": 195 } 		// Sierra Leone
+"map_colour": { "r": 93, "g": 36, "b": 76 } 		// Liberia
+"map_colour": { "r": 255, "g": 108, "b": 1 } 		// Côte d'Ivoire
+"map_colour": { "r": 0, "g": 127, "b": 15 } 		// Burkina Faso
+"map_colour": { "r": 177, "g": 42, "b": 77 } 		// Ghana
+"map_colour": { "r": 181, "g": 254, "b": 1 } 		// Togo
+"map_colour": { "r": 177, "g": 183, "b": 157 } 		// Benin
+"map_colour": { "r": 126, "g": 1, "b": 56 } 		// Mayotte
+"map_colour": { "r": 0, "g": 127, "b": 74 } 		// Zanzibar
+"map_colour": { "r": 255, "g": 8, "b": 120 } 		// Reunion
+"map_colour": { "r": 255, "g": 0, "b": 105 } 		// Chagos Islands
+"map_colour": { "r": 255, "g": 7, "b": 40 } 		// St. Helena and the Ascension Islands
+"map_colour": { "r": 254, "g": 175, "b": 129 } 		// Darfur
+"map_colour": { "r": 0, "g": 128, "b": 70 } 		// Biafra
+"map_colour": { "r": 89, "g": 42, "b": 226 } 		// Kabylia
+"map_colour": { "r": 135, "g": 57, "b": 44 } 		// Free State of Somaliland
+"map_colour": { "r": 0, "g": 148, "b": 255 } 		// Ceuta
+"map_colour": { "r": 255, "g": 104, "b": 8 } 		// Orange Free State
+"map_colour": { "r": 216, "g": 254, "b": 131 } 		// Katanga
+"map_colour": { "r": 161, "g": 126, "b": 253 } 		// Cabinda
+"map_colour": { "r": 51, "g": 111, "b": 203 } 		// Western Sahara
+"map_colour": { "r": 125, "g": 0, "b": 55 } 		// Melilla
+"map_colour": { "r": 9, "g": 93, "b": 50 } 			// Fezzan
+"map_colour": { "r": 133, "g": 75, "b": 69 } 		// China PR
+"map_colour": { "r": 173, "g": 6, "b": 12 } 		// Taiwan
+"map_colour": { "r": 174, "g": 39, "b": 187 } 		// Guam
+"map_colour": { "r": 0, "g": 251, "b": 33 } 		// Hong Kong SAR
+"map_colour": { "r": 173, "g": 39, "b": 132 } 		// Japan
+"map_colour": { "r": 172, "g": 111, "b": 97 } 		// DPR Korea
+"map_colour": { "r": 173, "g": 3, "b": 92 } 		// Korea Republic
+"map_colour": { "r": 47, "g": 192, "b":43 } 		// Macau SAR
+"map_colour": { "r": 92, "g": 171, "b": 66 } 		// Mongolia
+"map_colour": { "r": 47, "g": 49, "b": 47 } 		// Afghanistan
+"map_colour": { "r": 93, "g": 108, "b": 196 } 		// IR Iran
+"map_colour": { "r": 134, "g": 6, "b": 74 } 		// Kyrgyz Republic
+"map_colour": { "r": 177, "g": 111, "b": 27 } 		// Tajikistan
+"map_colour": { "r": 91, "g": 127, "b": 2 } 		// Turkmenistan
+"map_colour": { "r": 91, "g": 36, "b": 56 } 		// Uzbekistan
+"map_colour": { "r": 133, "g": 66, "b": 74 } 		// Bangladesh
+"map_colour": { "r": 93, "g": 87, "b": 36 } 		// Bhutan
+"map_colour": { "r": 173, "g": 93, "b": 62 } 		// India
+"map_colour": { "r": 51, "g": 63, "b": 208 } 		// Maldives
+"map_colour": { "r": 135, "g": 108, "b": 4 } 		// Nepal
+"map_colour": { "r": 135, "g": 51, "b": 59 } 		// Pakistan
+"map_colour": { "r": 132, "g": 105, "b": 169 } 		// Sri Lanka
+"map_colour": { "r": 8, "g": 189, "b": 135 } 		// Australia
+"map_colour": { "r": 127, "g": 2, "b": 50 } 		// Brunei
+"map_colour": { "r": 7, "g": 171, "b": 190 } 		// Cambodia
+"map_colour": { "r": 6, "g": 99, "b": 210 } 		// Timor-Leste
+"map_colour": { "r": 174, "g": 69, "b": 42 } 		// Indonesia
+"map_colour": { "r": 7, "g": 51, "b": 170 } 		// Laos
+"map_colour": { "r": 174, "g": 12, "b": 97 } 		// Malaysia
+"map_colour": { "r": 90, "g": 48, "b": 61 } 		// Myanmar
+"map_colour": { "r": 48, "g": 36, "b": 193 } 		// Philippines
+"map_colour": { "r": 254, "g": 126, "b": 184 } 		// Singapore
+"map_colour": { "r": 48, "g": 162, "b": 143 } 		// Thailand
+"map_colour": { "r": 255, "g": 2, "b": 4 } 			// Vietnam
+"map_colour": { "r": 93, "g": 189, "b": 216 } 		// Bahrain
+"map_colour": { "r": 135, "g": 21, "b": 54 } 		// Iraq
+"map_colour": { "r": 173, "g": 75, "b": 17 } 		// Jordan
+"map_colour": { "r": 93, "g": 165, "b": 141 } 		// Kuwait
+"map_colour": { "r": 5, "g": 105, "b": 80 } 		// Lebanon
+"map_colour": { "r": 93, "g": 96, "b": 136 } 		// Oman
+"map_colour": { "r": 60, "g": 60, "b": 62 } 		// Palestine
+"map_colour": { "r": 52, "g": 50, "b": 46 } 		// Qatar
+"map_colour": { "r": 51, "g": 186, "b": 88 } 		// Saudi Arabia
+"map_colour": { "r": 91, "g": 39, "b": 226 } 		// Syria
+"map_colour": { "r": 3, "g": 3, "b": 3 } 			// United Arab Emirates
+"map_colour": { "r": 135, "g": 30, "b": 4 } 		// Yemen
+"map_colour": { "r": 255, "g": 16, "b": 40 } 		// Northern Mariana Islands
+"map_colour": { "r": 176, "g": 186, "b": 62 } 		// Yiddish Republic
+"map_colour": { "r": 176, "g": 51, "b": 62 } 		// Chukotka
+"map_colour": { "r": 176, "g": 21, "b": 162 } 		// Kamchatka
+"map_colour": { "r": 193, "g": 191, "b": 191 } 		// Amur Republic
+"map_colour": { "r": 175, "g": 129, "b": 7 } 		// Ainu
+"map_colour": { "r": 91, "g": 153, "b": 11 } 		// Kurdistan
+"map_colour": { "r": 177, "g": 6, "b": 87 } 		// Panjab
+"map_colour": { "r": 93, "g": 147, "b": 196 } 		// Tibet
+"map_colour": { "r": 9, "g": 141, "b": 45 } 		// Balochistan
+"map_colour": { "r": 50, "g": 15, "b": 98 } 		// Tannu Tuva
+"map_colour": { "r": 127, "g": 203, "b": 253 } 		// Buryatia
+"map_colour": { "r": 174, "g": 159, "b": 57 } 		// Aceh
+"map_colour": { "r": 177, "g": 126, "b": 212 } 		// South Yemen
+"map_colour": { "r": 176, "g": 162, "b": 192 } 		// Uyghurstan
+"map_colour": { "r": 240, "g": 2, "b": 2 } 			// Shan
+"map_colour": { "r": 1, "g": 43, "b": 254 } 		// Tamil Ealam
+"map_colour": { "r": 135, "g": 102, "b": 224 } 		// Kashmir
+"map_colour": { "r": 173, "g": 24, "b": 207 } 		// Ryukyu Islands
+"map_colour": { "r": 175, "g": 75, "b": 82 } 		// West Papua
+"map_colour": { "r": 214, "g": 125, "b": 252 } 		// Sikkim
+"map_colour": { "r": 175, "g": 99, "b": 207 } 		// Assam
+"map_colour": { "r": 177, "g": 21, "b": 12 } 		// Karakalpakstan
+"map_colour": { "r": 172, "g": 207, "b": 42 } 		// Manchuria
+"map_colour": { "r": 255, "g": 104, "b": 3 } 		// Rojava
+"map_colour": { "r": 120, "g": 255, "b": 200 } 		// West Timor
+"map_colour": { "r": 247, "g": 253, "b": 250 } 		// Pashtunistan
+"map_colour": { "r": 174, "g": 159, "b": 207 } 		// Andaman and Nicobar Islands
+"map_colour": { "r": 132, "g": 201, "b": 214 } 		// Sentinel Island
+"map_colour": { "r": 114, "g": 253, "b": 248 } 		// Siberia
